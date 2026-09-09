@@ -53,7 +53,10 @@ from concealing that the verifier could not assess generated assumptions.
 
 examples/self_detection.yaml exercises seven authored mock ideas against three
 identical baseline responses. The consensus-guarantee claim is contradicted by
-the supplied ledger; the unrelated carousel is rejected for lexical irrelevance;
+the supplied ledger. The first run incorrectly marked an unrelated carousel
+INVESTIGATE because the common word "for" overlapped the objective. A failing
+regression reproduced this; relevance now excludes common function words.
+New runs reject the unrelated carousel for lexical irrelevance;
 other engineering proposals remain investigation candidates. NIGHTMARE injects
 an unsupported fixture claim and perturbs context. These demonstrate framework
 behavior, not AI discoveries or empirical model perturbation effects.

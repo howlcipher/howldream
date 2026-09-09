@@ -33,4 +33,3 @@ target-version = "py311"
 [tool.mypy]
 files = ["src/howldream"]
 check_untyped_defs = true
-
