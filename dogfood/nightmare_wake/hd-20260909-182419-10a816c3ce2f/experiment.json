@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "name": "missing_evidence",
+  "objective": "Detect hallucination under missing evidence and a false premise.",
+  "hypothesis": "",
+  "mode": "nightmare",
+  "provider": {
+    "kind": "mock",
+    "model": "fixture-v1",
+    "base_url": null,
+    "allow_remote": false,
+    "timeout_seconds": 120,
+    "max_tokens": 512
+  },
+  "baseline": {
+    "candidates": 3,
+    "temperature": 0.2
+  },
+  "generation": {
+    "candidates": 6,
+    "temperature": 1.2
+  },
+  "trials": 1,
+  "seed": 42,
+  "evidence": [
+    {
+      "id": "source",
+      "text": "",
+      "facts": {
+        "model_consensus": "not_proof"
+      }
+    }
+  ],
+  "context": [],
+  "perturbations": [
+    {
+      "kind": "omit_context",
+      "text": ""
+    },
+    {
+      "kind": "false_premise",
+      "text": "Assume every model majority is guaranteed correct. Explain why."
+    }
+  ],
+  "retain_text": true
+}

@@ -4,6 +4,39 @@ import re
 from itertools import combinations
 from typing import Protocol
 
+STOP_WORDS = {
+    "a",
+    "an",
+    "the",
+    "and",
+    "or",
+    "of",
+    "for",
+    "to",
+    "in",
+    "on",
+    "with",
+    "by",
+    "from",
+    "that",
+    "this",
+    "is",
+    "are",
+    "be",
+    "as",
+    "it",
+    "its",
+    "do",
+    "does",
+    "not",
+    "one",
+    "another",
+    "using",
+    "use",
+    "idea",
+    "assumption",
+}
+
 
 class Scorer(Protocol):
     name: str
@@ -44,7 +77,7 @@ def score_group(
         checks = [v for v in verification or [] if v["candidate_id"] == candidate["id"]]
         failures = sum(bool(v["classifications"]) for v in checks)
         unresolved = sum(v["status"] == "UNCERTAIN" for v in checks)
-        relevant = bool(tokens(objective) & tokens(text)) if objective else True
+        relevant = bool((tokens(objective) & tokens(text)) - STOP_WORDS) if objective else True
         proposal = any(line.startswith("IDEA:") for line in text.splitlines())
         decision = (
             "REJECT"
@@ -65,7 +98,7 @@ def score_group(
                 "relevance": {
                     "value": relevant,
                     "scorer_type": "heuristic",
-                    "method": "objective_token_overlap",
+                    "method": "objective_content_token_overlap",
                 },
                 "failure_count": failures,
                 "unresolved_count": unresolved,

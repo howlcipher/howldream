@@ -236,6 +236,16 @@ def test_duplicates_do_not_become_discoveries():
     assert result[1]["decision"] == "REJECT"
 
 
+def test_common_words_do_not_make_noise_relevant():
+    result = score_group(
+        [{"id": "noise", "text": "IDEA: Build an unrelated purple carousel for entertainment."}],
+        [],
+        objective="Generate unconventional methods for detecting hallucination "
+        "that do not depend exclusively on asking one LLM to judge another LLM.",
+    )
+    assert result[0]["decision"] == "REJECT"
+
+
 def test_benchmark_balanced_and_exact():
     result = benchmark()
     assert result["fixtures"] >= 14

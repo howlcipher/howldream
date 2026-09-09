@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "name": "self_detection",
+  "objective": "Generate unconventional methods for detecting hallucination that do not depend exclusively on asking one LLM to judge another LLM.",
+  "hypothesis": "Divergent proposals will show greater lexical diversity than the conventional baseline, while some fail evidence checks.",
+  "mode": "dream",
+  "provider": {
+    "kind": "mock",
+    "model": "fixture-v1",
+    "base_url": null,
+    "allow_remote": false,
+    "timeout_seconds": 120,
+    "max_tokens": 512
+  },
+  "baseline": {
+    "candidates": 3,
+    "temperature": 0.2
+  },
+  "generation": {
+    "candidates": 7,
+    "temperature": 1.2
+  },
+  "trials": 1,
+  "seed": 42,
+  "evidence": [
+    {
+      "id": "trust_contract",
+      "text": "Model agreement is not proof. Proposed methods need independent validation on both failures and grounded controls.",
+      "facts": {
+        "model_consensus": "not_proof",
+        "ledger_scope": "supplied_facts_only"
+      }
+    }
+  ],
+  "context": [],
+  "perturbations": [
+    {
+      "kind": "reverse_context",
+      "text": ""
+    }
+  ],
+  "retain_text": true
+}

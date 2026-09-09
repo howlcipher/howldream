@@ -1,0 +1,58 @@
+{
+  "schema": "howldream.run/v1",
+  "run_id": "hd-20260909-182419-10a816c3ce2f",
+  "experiment_id": "a852ece4947669dab5e3ed2ef3d8f0c3f7b69d3707bc91257f601afda32cd722",
+  "version": "0.1.0",
+  "git_commit": "2224ef83b8d7857b1902b0a3c4889bae5159e473",
+  "implementation_hash": "977c54565add305829f91e94c2e24eb2ddc653a5f0c49469e377b38bfc094a88",
+  "mode": "nightmare",
+  "started_at": "2026-09-09T18:24:19.786111+00:00",
+  "provider": {
+    "kind": "mock",
+    "model": "fixture-v1",
+    "base_url": null,
+    "allow_remote": false,
+    "timeout_seconds": 120,
+    "max_tokens": 512
+  },
+  "capabilities": {
+    "supports_seed": true,
+    "supports_logprobs": false,
+    "supports_tool_calls": false,
+    "supports_structured_output": false,
+    "supports_token_usage": false,
+    "supports_local_instrumentation": false
+  },
+  "authority": "NONE",
+  "parent_run": "hd-20260909-182408-63260fd187d2",
+  "status": "COMPLETE",
+  "errors": [],
+  "template_version": "line_experiment/v1",
+  "template_hash": "8096777d16cf15dcd68f34f709eeb4f81e1b983ba58fdda00c8008f2aa7add7b",
+  "source_hashes": {
+    "source": "7eb4c7136082cc22baffb67e86acaf148f9aab246e7ba4e4765f9ac927acb516"
+  },
+  "replay": "EXACT_OUTPUT_REPLAY",
+  "replay_available": true,
+  "warnings": [
+    "Verification is scoped to supplied evidence; generated text has no authority."
+  ],
+  "analysis": {
+    "version": "0.1.0",
+    "implementation_hash": "977c54565add305829f91e94c2e24eb2ddc653a5f0c49469e377b38bfc094a88",
+    "analyzed_at": "2026-09-09T18:24:19.786925+00:00",
+    "git_commit": "2224ef83b8d7857b1902b0a3c4889bae5159e473"
+  },
+  "completed_at": "2026-09-09T18:24:19.791771+00:00",
+  "file_hashes": {
+    "baseline.jsonl": "2c0c6e04aa2a526bca95d3da04641b552961ad02dd623e4e66c9cae28b7f1d48",
+    "candidates.jsonl": "55c597a2a2624b5c5495ff73d6055a84081530ffe00039a5973bd3a27ac8b82b",
+    "claims.jsonl": "14f75c6fc05ce45fc2904e266870d201c153f8c8b771b0d3df015a2c759f0422",
+    "experiment.json": "30e412f992bf912df1a13311ccd56fc18c9e6fbc9bb576f2f35921053e44d66d",
+    "handoff.json": "fefb6cdab3904045ba00ebf4303a8a2d17092436b89c197de1681ba32b0a5706",
+    "metrics.json": "7406c06082994aaf5b6c22f1876cc9bfb1a1cfc0159b4dfce80d639a7308b434",
+    "report.md": "f98d69ac6c8087303d389f5d11172dd13ad259e8bb383faa81e9f49dbb76ac8c",
+    "scores.json": "ed57b6dd2644d1d2c9b4c2c85800bf597fe16b35ac91a0e4e30daa600cbcda6c",
+    "verification.jsonl": "a91b541dd57e829d0a029ee7b0fe0e3e62faae0d5bc800e17b7b61b18d84150a"
+  }
+}

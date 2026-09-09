@@ -53,10 +53,20 @@ from concealing that the verifier could not assess generated assumptions.
 
 examples/self_detection.yaml exercises seven authored mock ideas against three
 identical baseline responses. The consensus-guarantee claim is contradicted by
-the supplied ledger; the unrelated carousel is rejected for lexical irrelevance;
+the supplied ledger. The first run incorrectly marked an unrelated carousel
+INVESTIGATE because the common word "for" overlapped the objective. A failing
+regression reproduced this; relevance now excludes common function words.
+New runs reject the unrelated carousel for lexical irrelevance;
 other engineering proposals remain investigation candidates. NIGHTMARE injects
 an unsupported fixture claim and perturbs context. These demonstrate framework
 behavior, not AI discoveries or empirical model perturbation effects.
+
+Final corrected demo: `hd-20260909-182619-c25315e05769`, in `dogfood/final/`.
+It records baseline diversity 0, experimental diversity 0.8959999, five INVESTIGATE
+and two REJECT candidates. The consensus claim is contradicted; the arithmetic
+claim is supported; 12 experimental extracted lines remain unresolved. Replay
+`hd-20260909-182619-f915e106d804` produced identical texts and metrics with new IDs.
+The saved benchmark result is `dogfood/benchmark.json`.
 
 ## Provenance limitation
 

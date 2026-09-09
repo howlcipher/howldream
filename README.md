@@ -63,6 +63,10 @@ taxonomy, exact arithmetic and supplied-ledger checks, modular scorer interface,
 lexical diversity/novelty, duplicate grouping, reports, replay lineage, and advisory
 handoffs. No generated code execution or hidden reasoning capture.
 
+Final dogfood strengthened relevance triage: common function words no longer make
+an unrelated proposal worth investigating. Historical artifacts retain the earlier
+scores; new runs record the corrected implementation hash.
+
 ## Documentation
 
 * [Architecture and alternatives](docs/architecture.md)
@@ -72,6 +76,7 @@ handoffs. No generated code execution or hidden reasoning capture.
 * [Dreambench scope](docs/benchmarks.md)
 * [Ecosystem audit and contracts](docs/ecosystem.md)
 * [Roadmap](ROADMAP.md)
+* [Verification evidence](docs/validation.md)
 
 ## Development
 
