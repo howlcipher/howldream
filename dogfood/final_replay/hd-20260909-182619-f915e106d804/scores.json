@@ -1,0 +1,149 @@
+[
+  {
+    "candidate_id": "hd-20260909-182619-f915e106d804/candidates/0/0",
+    "duplicate_of": null,
+    "cluster_id": "hd-20260909-182619-f915e106d804/candidates/0/0",
+    "novelty": {
+      "value": 0.0,
+      "scorer_type": "heuristic"
+    },
+    "relevance": {
+      "value": true,
+      "scorer_type": "heuristic",
+      "method": "objective_content_token_overlap"
+    },
+    "failure_count": 0,
+    "unresolved_count": 2,
+    "supported_count": 0,
+    "measurement_type": "deterministic",
+    "decision": "INVESTIGATE",
+    "decision_type": "heuristic",
+    "reason": "Proposal merits investigation only; feasibility and assumptions remain unverified."
+  },
+  {
+    "candidate_id": "hd-20260909-182619-f915e106d804/candidates/0/1",
+    "duplicate_of": null,
+    "cluster_id": "hd-20260909-182619-f915e106d804/candidates/0/1",
+    "novelty": {
+      "value": 0.8333333333333334,
+      "scorer_type": "heuristic"
+    },
+    "relevance": {
+      "value": true,
+      "scorer_type": "heuristic",
+      "method": "objective_content_token_overlap"
+    },
+    "failure_count": 0,
+    "unresolved_count": 2,
+    "supported_count": 0,
+    "measurement_type": "deterministic",
+    "decision": "INVESTIGATE",
+    "decision_type": "heuristic",
+    "reason": "Proposal merits investigation only; feasibility and assumptions remain unverified."
+  },
+  {
+    "candidate_id": "hd-20260909-182619-f915e106d804/candidates/0/2",
+    "duplicate_of": null,
+    "cluster_id": "hd-20260909-182619-f915e106d804/candidates/0/2",
+    "novelty": {
+      "value": 0.8666666666666667,
+      "scorer_type": "heuristic"
+    },
+    "relevance": {
+      "value": true,
+      "scorer_type": "heuristic",
+      "method": "objective_content_token_overlap"
+    },
+    "failure_count": 0,
+    "unresolved_count": 2,
+    "supported_count": 1,
+    "measurement_type": "deterministic",
+    "decision": "INVESTIGATE",
+    "decision_type": "heuristic",
+    "reason": "Proposal merits investigation only; feasibility and assumptions remain unverified."
+  },
+  {
+    "candidate_id": "hd-20260909-182619-f915e106d804/candidates/0/3",
+    "duplicate_of": null,
+    "cluster_id": "hd-20260909-182619-f915e106d804/candidates/0/3",
+    "novelty": {
+      "value": 0.8571428571428572,
+      "scorer_type": "heuristic"
+    },
+    "relevance": {
+      "value": true,
+      "scorer_type": "heuristic",
+      "method": "objective_content_token_overlap"
+    },
+    "failure_count": 0,
+    "unresolved_count": 2,
+    "supported_count": 0,
+    "measurement_type": "deterministic",
+    "decision": "INVESTIGATE",
+    "decision_type": "heuristic",
+    "reason": "Proposal merits investigation only; feasibility and assumptions remain unverified."
+  },
+  {
+    "candidate_id": "hd-20260909-182619-f915e106d804/candidates/0/4",
+    "duplicate_of": null,
+    "cluster_id": "hd-20260909-182619-f915e106d804/candidates/0/4",
+    "novelty": {
+      "value": 0.8620689655172413,
+      "scorer_type": "heuristic"
+    },
+    "relevance": {
+      "value": true,
+      "scorer_type": "heuristic",
+      "method": "objective_content_token_overlap"
+    },
+    "failure_count": 0,
+    "unresolved_count": 2,
+    "supported_count": 0,
+    "measurement_type": "deterministic",
+    "decision": "INVESTIGATE",
+    "decision_type": "heuristic",
+    "reason": "Proposal merits investigation only; feasibility and assumptions remain unverified."
+  },
+  {
+    "candidate_id": "hd-20260909-182619-f915e106d804/candidates/0/5",
+    "duplicate_of": null,
+    "cluster_id": "hd-20260909-182619-f915e106d804/candidates/0/5",
+    "novelty": {
+      "value": 0.88,
+      "scorer_type": "heuristic"
+    },
+    "relevance": {
+      "value": true,
+      "scorer_type": "heuristic",
+      "method": "objective_content_token_overlap"
+    },
+    "failure_count": 1,
+    "unresolved_count": 1,
+    "supported_count": 0,
+    "measurement_type": "deterministic",
+    "decision": "REJECT",
+    "decision_type": "heuristic",
+    "reason": "Failure, duplicate, or missing lexical relevance."
+  },
+  {
+    "candidate_id": "hd-20260909-182619-f915e106d804/candidates/0/6",
+    "duplicate_of": null,
+    "cluster_id": "hd-20260909-182619-f915e106d804/candidates/0/6",
+    "novelty": {
+      "value": 0.95,
+      "scorer_type": "heuristic"
+    },
+    "relevance": {
+      "value": false,
+      "scorer_type": "heuristic",
+      "method": "objective_content_token_overlap"
+    },
+    "failure_count": 0,
+    "unresolved_count": 1,
+    "supported_count": 0,
+    "measurement_type": "deterministic",
+    "decision": "REJECT",
+    "decision_type": "heuristic",
+    "reason": "Failure, duplicate, or missing lexical relevance."
+  }
+]

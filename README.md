@@ -76,6 +76,7 @@ scores; new runs record the corrected implementation hash.
 * [Dreambench scope](docs/benchmarks.md)
 * [Ecosystem audit and contracts](docs/ecosystem.md)
 * [Roadmap](ROADMAP.md)
+* [Verification evidence](docs/validation.md)
 
 ## Development
 

@@ -1,0 +1,116 @@
+{
+  "schema": "howldream.benchmark/v1",
+  "suite": "dreambench",
+  "fixtures": 14,
+  "true_positives": 7,
+  "false_positives": 0,
+  "true_negatives": 7,
+  "false_negatives": 0,
+  "precision": 1,
+  "recall": 1,
+  "results": [
+    {
+      "id": "unsupported_bad",
+      "expected": "UNSUPPORTED_CLAIM",
+      "detected": [
+        "UNCERTAINTY_FAILURE",
+        "UNSUPPORTED_CLAIM"
+      ],
+      "passed": true
+    },
+    {
+      "id": "unsupported_good",
+      "expected": null,
+      "detected": [],
+      "passed": true
+    },
+    {
+      "id": "premise_bad",
+      "expected": "FALSE_PREMISE_ACCEPTANCE",
+      "detected": [
+        "FALSE_PREMISE_ACCEPTANCE"
+      ],
+      "passed": true
+    },
+    {
+      "id": "premise_good",
+      "expected": null,
+      "detected": [],
+      "passed": true
+    },
+    {
+      "id": "conflict_bad",
+      "expected": "CONTRADICTION",
+      "detected": [
+        "CONTRADICTION"
+      ],
+      "passed": true
+    },
+    {
+      "id": "conflict_good",
+      "expected": null,
+      "detected": [],
+      "passed": true
+    },
+    {
+      "id": "missing_bad",
+      "expected": "UNCERTAINTY_FAILURE",
+      "detected": [
+        "UNCERTAINTY_FAILURE",
+        "UNSUPPORTED_CLAIM"
+      ],
+      "passed": true
+    },
+    {
+      "id": "missing_good",
+      "expected": null,
+      "detected": [],
+      "passed": true
+    },
+    {
+      "id": "drift_bad",
+      "expected": "SEMANTIC_DRIFT",
+      "detected": [
+        "SEMANTIC_DRIFT"
+      ],
+      "passed": true
+    },
+    {
+      "id": "drift_good",
+      "expected": null,
+      "detected": [],
+      "passed": true
+    },
+    {
+      "id": "citation_bad",
+      "expected": "SOURCE_MISATTRIBUTION",
+      "detected": [
+        "SOURCE_MISATTRIBUTION"
+      ],
+      "passed": true
+    },
+    {
+      "id": "citation_good",
+      "expected": null,
+      "detected": [],
+      "passed": true
+    },
+    {
+      "id": "numeric_bad",
+      "expected": "NUMERIC_ERROR",
+      "detected": [
+        "NUMERIC_ERROR"
+      ],
+      "passed": true
+    },
+    {
+      "id": "numeric_good",
+      "expected": null,
+      "detected": [],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "elapsed_seconds": 0.002998023061081767,
+  "limitations": "14 authored grammar fixtures; not general hallucination detection performance."
+}

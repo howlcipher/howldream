@@ -13,3 +13,6 @@ artifacts, and documented the corrected relevance behavior.
 
 CI upgrades pip and setuptools before dependency auditing to avoid vulnerable
 preinstalled runner tooling. Application checks and audit thresholds are unchanged.
+
+Recorded the corrected final deterministic demo, exact-output replay, benchmark
+result, and local verification evidence alongside the original model observations.

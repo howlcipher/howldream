@@ -61,6 +61,13 @@ other engineering proposals remain investigation candidates. NIGHTMARE injects
 an unsupported fixture claim and perturbs context. These demonstrate framework
 behavior, not AI discoveries or empirical model perturbation effects.
 
+Final corrected demo: `hd-20260909-182619-c25315e05769`, in `dogfood/final/`.
+It records baseline diversity 0, experimental diversity 0.8959999, five INVESTIGATE
+and two REJECT candidates. The consensus claim is contradicted; the arithmetic
+claim is supported; 12 experimental extracted lines remain unresolved. Replay
+`hd-20260909-182619-f915e106d804` produced identical texts and metrics with new IDs.
+The saved benchmark result is `dogfood/benchmark.json`.
+
 ## Provenance limitation
 
 The original local run preceded the first Git commit. Its manifest contains the
