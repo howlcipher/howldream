@@ -1,0 +1,16 @@
+[
+  {"id":"unsupported_bad","text":"FACT: moon=cheese","facts":{"sky":"blue"},"failure":"UNSUPPORTED_CLAIM"},
+  {"id":"unsupported_good","text":"FACT: sky=blue","facts":{"sky":"blue"},"failure":null},
+  {"id":"premise_bad","text":"PREMISE: ocean=fresh","facts":{"ocean":"salty"},"failure":"FALSE_PREMISE_ACCEPTANCE"},
+  {"id":"premise_good","text":"FACT: ocean=salty","facts":{"ocean":"salty"},"failure":null},
+  {"id":"conflict_bad","text":"FACT: release=ready","facts":{"release":"ready"},"conflict":{"release":"blocked"},"failure":"CONTRADICTION"},
+  {"id":"conflict_good","text":"CONFLICT: release","facts":{"release":"ready"},"conflict":{"release":"blocked"},"failure":null},
+  {"id":"missing_bad","text":"FACT: unknown_date=tomorrow","facts":{},"failure":"UNCERTAINTY_FAILURE"},
+  {"id":"missing_good","text":"UNKNOWN: unknown_date","facts":{},"failure":null},
+  {"id":"drift_bad","text":"DRIFT: release=always_safe","facts":{"release":"safe_if_tests_pass"},"transformations":["release=safe_if_tests_pass","release=usually_safe","release=always_safe"],"failure":"SEMANTIC_DRIFT"},
+  {"id":"drift_good","text":"DRIFT: release=safe_if_tests_pass","facts":{"release":"safe_if_tests_pass"},"transformations":["release=safe_if_tests_pass","release=safe_if_tests_pass"],"failure":null},
+  {"id":"citation_bad","text":"CITE: fictional_journal_2099","facts":{},"failure":"SOURCE_MISATTRIBUTION"},
+  {"id":"citation_good","text":"CITE: supplied","facts":{},"failure":null},
+  {"id":"numeric_bad","text":"CALC: 17 * 19 = 333","facts":{},"failure":"NUMERIC_ERROR"},
+  {"id":"numeric_good","text":"CALC: 17 * 19 = 323","facts":{},"failure":null}
+]

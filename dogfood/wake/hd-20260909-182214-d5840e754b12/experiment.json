@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "name": "local_self_detection",
+  "objective": "Generate unconventional methods for detecting hallucination that do not depend exclusively on asking one LLM to judge another LLM. Give one concrete IDEA and its ASSUMPTION. Use at most 120 words.",
+  "hypothesis": "Divergent prompts and sampling produce greater lexical diversity than a conventional baseline.",
+  "mode": "dream",
+  "provider": {
+    "kind": "ollama",
+    "model": "qwen2.5-coder:7b-instruct",
+    "base_url": null,
+    "allow_remote": false,
+    "timeout_seconds": 180,
+    "max_tokens": 256
+  },
+  "baseline": {
+    "candidates": 3,
+    "temperature": 0.2
+  },
+  "generation": {
+    "candidates": 5,
+    "temperature": 1.2
+  },
+  "trials": 1,
+  "seed": 42,
+  "evidence": [
+    {
+      "id": "scope",
+      "text": "We can test arithmetic, compare supplied fact ledgers, and detect exact and near lexical duplicates. Feasibility of new methods is unknown.",
+      "facts": {
+        "model_consensus": "not_proof",
+        "general_detection": "not_established"
+      }
+    }
+  ],
+  "context": [],
+  "perturbations": [
+    {
+      "kind": "false_premise",
+      "text": "A proposal assumes model consensus proves truth. Challenge that assumption before suggesting a method."
+    }
+  ],
+  "retain_text": true
+}

@@ -1,0 +1,51 @@
+{
+  "schema": "howldream.run/v1",
+  "run_id": "hd-20260909-005406-84dc8032d590",
+  "experiment_id": "a7c370824d907379045bcaf85e4de0d4944e2ea82ee94783b755e428f5cdb9bb",
+  "version": "0.1.0",
+  "git_commit": "HEAD",
+  "mode": "dream",
+  "started_at": "2026-09-09T00:54:06.842985+00:00",
+  "provider": {
+    "kind": "ollama",
+    "model": "qwen2.5-coder:7b-instruct",
+    "base_url": null,
+    "allow_remote": false,
+    "timeout_seconds": 180,
+    "max_tokens": 256
+  },
+  "capabilities": {
+    "supports_seed": true,
+    "supports_logprobs": false,
+    "supports_tool_calls": false,
+    "supports_structured_output": false,
+    "supports_token_usage": true,
+    "supports_local_instrumentation": false
+  },
+  "authority": "NONE",
+  "parent_run": null,
+  "status": "COMPLETE",
+  "errors": [],
+  "template_version": "line_experiment/v1",
+  "template_hash": "8096777d16cf15dcd68f34f709eeb4f81e1b983ba58fdda00c8008f2aa7add7b",
+  "source_hashes": {
+    "scope": "7467638dd8a50dd04423ac06313ffbfd8592c1053241d4685b950343606f8e31"
+  },
+  "replay": "CONFIGURATION_REPLAY_NOT_GUARANTEED",
+  "replay_available": true,
+  "warnings": [
+    "Verification is scoped to supplied evidence; generated text has no authority."
+  ],
+  "completed_at": "2026-09-09T00:54:36.365850+00:00",
+  "file_hashes": {
+    "baseline.jsonl": "39c8750a603e6d804c94b3714cffeacf8d3cb20539408d7a94f80aaa7a2e1df7",
+    "candidates.jsonl": "a667186ef3061f62e1f6da700a73be441f88e11b36c00dff0b61dc5f1d796ee1",
+    "claims.jsonl": "2d269b00985ff6c132878986ac8ac10a2cf1ec257c95d984790e827972008047",
+    "experiment.json": "6dcd9f64ec429ba59b4eb871485b2c72cac891b0e46debd3308936af51a7ee97",
+    "handoff.json": "6cdbf542678ebc4937cd555645bfbafa320136b2d4568947f65e08bc314c6dca",
+    "metrics.json": "35712e91b5a2faf82fc8960dfeb46fcdd5236df633dd848c35f97624321a3c8d",
+    "report.md": "e4b1c0cfd845dd8440f4b9acec618c155547ff963921d5801289fd65fed7bace",
+    "scores.json": "a8b84ddaa5df8b01c6a4311073a9756340893950ecaad8ea8c7729b26a50fb7e",
+    "verification.jsonl": "2bb6fe8491ce649f37ca836885f76bbcc418e15f65a1417d916da869f450220c"
+  }
+}

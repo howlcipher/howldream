@@ -1,0 +1,43 @@
+{
+  "baseline": {
+    "candidates": 3,
+    "lexical_diversity": 0.5824273734651094,
+    "exact_unique": 3,
+    "failure_candidates": 0,
+    "failure_rate": 0.0,
+    "scorer_type": "deterministic",
+    "scope": "lexical distance and known-check failures only"
+  },
+  "experimental": {
+    "candidates": 5,
+    "lexical_diversity": 0.8509568296246609,
+    "exact_unique": 5,
+    "failure_candidates": 0,
+    "failure_rate": 0.0,
+    "scorer_type": "deterministic",
+    "scope": "lexical distance and known-check failures only"
+  },
+  "trials": [
+    {
+      "trial": 0,
+      "baseline": {
+        "candidates": 3,
+        "lexical_diversity": 0.5824273734651094,
+        "exact_unique": 3,
+        "failure_candidates": 0,
+        "failure_rate": 0.0,
+        "scorer_type": "deterministic",
+        "scope": "lexical distance and known-check failures only"
+      },
+      "experimental": {
+        "candidates": 5,
+        "lexical_diversity": 0.8509568296246609,
+        "exact_unique": 5,
+        "failure_candidates": 0,
+        "failure_rate": 0.0,
+        "scorer_type": "deterministic",
+        "scope": "lexical distance and known-check failures only"
+      }
+    }
+  ]
+}

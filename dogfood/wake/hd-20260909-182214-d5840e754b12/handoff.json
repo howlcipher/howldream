@@ -1,0 +1,116 @@
+{
+  "schema": "howldream.handoff/v1",
+  "authority": "NONE",
+  "run_id": "hd-20260909-182214-d5840e754b12",
+  "outcome": "DEFER",
+  "outcome_namespace": "howldream.advisory",
+  "confidence": null,
+  "candidates": [
+    {
+      "candidate_id": "hd-20260909-005406-84dc8032d590/candidates/0/0",
+      "duplicate_of": null,
+      "cluster_id": "hd-20260909-005406-84dc8032d590/candidates/0/0",
+      "novelty": {
+        "value": 0.8163265306122449,
+        "scorer_type": "heuristic"
+      },
+      "relevance": {
+        "value": true,
+        "scorer_type": "heuristic",
+        "method": "objective_token_overlap"
+      },
+      "failure_count": 0,
+      "unresolved_count": 2,
+      "supported_count": 0,
+      "measurement_type": "deterministic",
+      "decision": "INVESTIGATE",
+      "decision_type": "heuristic",
+      "reason": "Proposal merits investigation only; feasibility and assumptions remain unverified."
+    },
+    {
+      "candidate_id": "hd-20260909-005406-84dc8032d590/candidates/0/1",
+      "duplicate_of": null,
+      "cluster_id": "hd-20260909-005406-84dc8032d590/candidates/0/1",
+      "novelty": {
+        "value": 0.7843137254901961,
+        "scorer_type": "heuristic"
+      },
+      "relevance": {
+        "value": true,
+        "scorer_type": "heuristic",
+        "method": "objective_token_overlap"
+      },
+      "failure_count": 0,
+      "unresolved_count": 1,
+      "supported_count": 0,
+      "measurement_type": "deterministic",
+      "decision": "INVESTIGATE",
+      "decision_type": "heuristic",
+      "reason": "Proposal merits investigation only; feasibility and assumptions remain unverified."
+    },
+    {
+      "candidate_id": "hd-20260909-005406-84dc8032d590/candidates/0/2",
+      "duplicate_of": null,
+      "cluster_id": "hd-20260909-005406-84dc8032d590/candidates/0/2",
+      "novelty": {
+        "value": 0.7818181818181819,
+        "scorer_type": "heuristic"
+      },
+      "relevance": {
+        "value": true,
+        "scorer_type": "heuristic",
+        "method": "objective_token_overlap"
+      },
+      "failure_count": 0,
+      "unresolved_count": 2,
+      "supported_count": 0,
+      "measurement_type": "deterministic",
+      "decision": "INVESTIGATE",
+      "decision_type": "heuristic",
+      "reason": "Proposal merits investigation only; feasibility and assumptions remain unverified."
+    },
+    {
+      "candidate_id": "hd-20260909-005406-84dc8032d590/candidates/0/3",
+      "duplicate_of": null,
+      "cluster_id": "hd-20260909-005406-84dc8032d590/candidates/0/3",
+      "novelty": {
+        "value": 0.8055555555555556,
+        "scorer_type": "heuristic"
+      },
+      "relevance": {
+        "value": true,
+        "scorer_type": "heuristic",
+        "method": "objective_token_overlap"
+      },
+      "failure_count": 0,
+      "unresolved_count": 2,
+      "supported_count": 0,
+      "measurement_type": "deterministic",
+      "decision": "INVESTIGATE",
+      "decision_type": "heuristic",
+      "reason": "Proposal merits investigation only; feasibility and assumptions remain unverified."
+    },
+    {
+      "candidate_id": "hd-20260909-005406-84dc8032d590/candidates/0/4",
+      "duplicate_of": null,
+      "cluster_id": "hd-20260909-005406-84dc8032d590/candidates/0/4",
+      "novelty": {
+        "value": 0.75,
+        "scorer_type": "heuristic"
+      },
+      "relevance": {
+        "value": true,
+        "scorer_type": "heuristic",
+        "method": "objective_token_overlap"
+      },
+      "failure_count": 0,
+      "unresolved_count": 2,
+      "supported_count": 0,
+      "measurement_type": "deterministic",
+      "decision": "INVESTIGATE",
+      "decision_type": "heuristic",
+      "reason": "Proposal merits investigation only; feasibility and assumptions remain unverified."
+    }
+  ],
+  "verification_status": "REQUIRES_DOWNSTREAM_REVIEW"
+}
