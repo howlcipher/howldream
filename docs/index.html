@@ -1,23 +1,386 @@
-<!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HowlDream | Controlled divergence for AI systems</title>
-<meta name="description" content="Controlled divergent generation, hallucination experiments, failure analysis and scoped verification. Let AI dream. Decide what survives when it wakes.">
-<link rel="canonical" href="https://howlcipher.github.io/howldream/">
-<meta property="og:title" content="HowlDream | Controlled divergence for AI systems">
-<meta property="og:description" content="Let AI dream. Decide what survives when it wakes. An experimental lab for generation, failure analysis and evidence.">
-<meta property="og:type" content="website"><meta property="og:url" content="https://howlcipher.github.io/howldream/">
-<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
-</head><body>
-<a class="skip" href="#main">Skip to content</a>
-<header><a class="brand" href="https://howlcipher.github.io/howl/">HOWL / DREAM</a><nav aria-label="Main"><a href="#lifecycle">Lifecycle</a><a href="#example">Evidence</a><a href="https://howlcipher.github.io/howl/ecosystem.html">Ecosystem</a><a href="https://github.com/howlcipher/howldream">Repository</a></nav></header>
-<main id="main">
-<section class="hero"><div><p class="eyebrow">Experimental / Phase 1 / Local first</p><h1>HowlDream</h1><p class="lead">Controlled divergence<br>for AI systems.</p><p class="tagline">Let AI dream.<br>Decide what survives when it wakes.</p><p>Explore unusual possibilities. Induce controlled failures. Measure what changes, challenge assumptions, and keep speculation separate from evidence.</p><a class="button" href="https://github.com/howlcipher/howldream#quick-start">Run an experiment</a></div><div class="signal" aria-label="Possibilities remain unverified until scoped checks are applied"><span class="eyebrow">A laboratory for possibilities</span><div class="branch">01 / alternative explanation<br><small>UNVERIFIED</small></div><div class="branch">02 / unsupported premise<br><small>REJECT</small></div><div class="branch">03 / unexpected approach<br><small>INVESTIGATE</small></div><p class="resolved">Evidence narrows the possibilities.<br>It does not grant execution authority.</p></div></section>
-<section id="lifecycle"><p class="eyebrow">Three states. One trust boundary.</p><h2>Explore. Challenge. Verify.</h2><div class="grid lifecycle"><article class="card"><span class="label">01 / DREAM</span><h3>Explore possibilities</h3><p>Generate multiple divergent candidates against a conventional baseline. Every output begins UNVERIFIED.</p></article><article class="card"><span class="label">02 / NIGHTMARE</span><h3>Stress reliability</h3><p>Remove context, reverse evidence order, or inject a false premise. Preserve the original evidence for later checks.</p></article><article class="card"><span class="label">03 / WAKE</span><h3>Return to evidence</h3><p>Check supplied facts, source IDs and arithmetic. Record contradictions and unresolved claims. Agreement is not proof.</p></article></div></section>
-<section><div class="two"><div><p class="eyebrow">The idea</p><h2>What can induced failure teach us?</h2><p>Traditional reliability work asks: how do we stop hallucination? HowlDream also asks what controlled failure can reveal about a system, and whether a speculative idea deserves investigation after challenge.</p></div><div><h3>A strange answer is not a research result.</h3><p>Experiments record an objective, hypothesis, baseline, condition, sources, outputs and measurements. Wrong ideas are experimental material. They never become trusted knowledge by being generated.</p><p>HowlCreate invents intentionally. HowlDream explores speculatively through measured experiments.</p></div></div></section>
-<section id="example"><p class="eyebrow">Observed local experiment / 9 September 2026</p><h2>Baseline versus DREAM</h2><p>Question: how could we detect hallucination without relying exclusively on one LLM judging another?</p><div class="table-wrap"><table><caption>One Ollama run using qwen2.5-coder:7b-instruct</caption><thead><tr><th>Condition</th><th>Outputs</th><th>Temperature</th><th>Lexical diversity</th></tr></thead><tbody><tr><td>Conventional baseline</td><td>3</td><td>0.2</td><td>0.5824</td></tr><tr><td>Divergent + premise challenge</td><td>5</td><td>1.2</td><td>0.8510</td></tr></tbody></table></div><p class="small">Mean pairwise token Jaccard distance. A single small, confounded condition comparison; not semantic novelty, causal proof, or general model performance. All five proposals retained unresolved assumptions.</p><div class="two"><article class="card"><span class="label">Candidate / INVESTIGATE</span><h3>Arithmetic witnesses</h3><p>The local model proposed an arithmetic challenge. Independent exact arithmetic can check numerical claims, while the relationship between the calculation and the real question remains an assumption.</p></article><article class="card"><span class="label">Authored control / REJECT</span><h3>Consensus guarantees truth</h3><p>The deterministic demo asserts <code>model_consensus=guarantees_truth</code>. WAKE contradicts it against the supplied <code>not_proof</code> ledger value. The fixture is not a model discovery.</p></article></div><p><a href="https://github.com/howlcipher/howldream/tree/main/dogfood">Inspect original run artifacts</a> · <a href="https://github.com/howlcipher/howldream/blob/main/docs/dogfood.md">Read findings and limitations</a></p></section>
-<section><p class="eyebrow">Reliability / Dreambench</p><h2>Known failures. Grounded controls.</h2><div class="grid"><article class="card"><h3>Unsupported claims</h3><p>An answer asserts a fact absent from the supplied ledger.</p></article><article class="card"><h3>False premises</h3><p>A response accepts an assumption contradicted by known input.</p></article><article class="card"><h3>Lost qualifiers</h3><p>A transformed proposition changes “safe if tested” into “always safe.”</p></article><article class="card"><h3>Conflicting evidence</h3><p>An answer selects one side instead of recognizing incompatible records.</p></article><article class="card"><h3>Invented sources</h3><p>A fictional citation ID is absent from the supplied source set.</p></article><article class="card"><h3>Numerical errors</h3><p>A fixed arithmetic checker challenges a model's asserted result.</p></article></div><p>Dreambench has 14 authored fixtures: seven failures and seven controls. This is a regression suite for narrow checks, not a general hallucination detector. <a href="https://github.com/howlcipher/howldream/blob/main/docs/benchmarks.md">Benchmark scope</a></p></section>
-<section><div class="two"><div><p class="eyebrow">Evidence and reproducibility</p><h2>Keep the experimental record.</h2><p>Each run preserves its input snapshot, source and prompt hashes, candidate outputs, claims, checks, scores and report. New WAKE and replay runs retain lineage.</p><p>Mock output replay is deterministic. Real-provider replay repeats configuration; identical outputs are not guaranteed. Hosted private reasoning is never captured.</p></div><pre aria-label="Run artifact files">hd-TIMESTAMP-ID/
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Controlled divergent generation, hallucination experiments, failure analysis and scoped verification. Let AI dream. Decide what survives when it wakes.">
+    <link rel="canonical" href="https://howlcipher.github.io/howldream/">
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="HowlDream">
+    <meta property="og:title" content="HowlDream | Controlled Divergence for AI Systems">
+    <meta property="og:description" content="Let AI dream. Decide what survives when it wakes. An experimental lab for generation, failure analysis and evidence.">
+    <meta property="og:url" content="https://howlcipher.github.io/howldream/">
+
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="HowlDream | Controlled Divergence for AI Systems">
+    <meta name="twitter:description" content="Let AI dream. Decide what survives when it wakes. An experimental lab for generation, failure analysis and evidence.">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "HowlDream",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "POSIX, Linux, macOS",
+      "description": "Controlled divergent generation, hallucination experiments, failure analysis and scoped verification for AI systems.",
+      "url": "https://howlcipher.github.io/howldream/",
+      "softwareVersion": "0.1.0",
+      "author": {
+        "@type": "Person",
+        "name": "William Elias",
+        "url": "https://howlcipher.github.io/william_elias/"
+      },
+      "isPartOf": {
+        "@type": "SoftwareApplication",
+        "name": "Howl Autonomous Software Engineering Ecosystem",
+        "url": "https://howlcipher.github.io/howl/"
+      }
+    }
+    </script>
+
+    <title>HowlDream | Controlled Divergence for AI Systems</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Ecosystem Slide-out Drawer Overlay -->
+    <div id="eco-drawer-overlay" class="eco-drawer-overlay" aria-hidden="true"></div>
+
+    <!-- Ecosystem Slide-out Drawer Panel -->
+    <aside id="eco-drawer" class="eco-drawer" aria-label="Howl Ecosystem Directory" aria-hidden="true">
+        <div class="drawer-header">
+            <div class="drawer-title">HOWL // ECOSYSTEM DIRECTORY</div>
+            <button id="eco-drawer-close" class="btn-drawer-close" type="button" aria-label="Close ecosystem directory">[✕ CLOSE]</button>
+        </div>
+        <div class="drawer-body">
+            <a href="https://howlcipher.github.io/howl/" class="drawer-node-card">
+                <div class="node-card-top">
+                    <span class="node-card-name">HOWL // HUB</span>
+                    <span class="node-card-role">[PORTAL]</span>
+                </div>
+                <div class="node-card-desc">Central ecosystem portal, architectural blueprint, and cross-project governance map.</div>
+            </a>
+
+            <a href="https://howlcipher.github.io/howldream/" class="drawer-node-card active-hub">
+                <div class="node-card-top">
+                    <span class="node-card-name">HOWLDREAM</span>
+                    <span class="node-card-role" style="color: var(--color-khaki);">[CONTROLLED DIVERGENCE]</span>
+                </div>
+                <div class="node-card-desc">Controlled divergent experiments, hallucination testing, failure analysis, and scoped verification.</div>
+            </a>
+
+            <a href="https://howlcipher.github.io/howlcreate/" class="drawer-node-card">
+                <div class="node-card-top">
+                    <span class="node-card-name">HOWLCREATE</span>
+                    <span class="node-card-role" style="color: var(--color-amber);">[CREATIVE SEARCH]</span>
+                </div>
+                <div class="node-card-desc">Computational creativity, open-ended problem exploration, reframing, and concept lineage.</div>
+            </a>
+
+            <a href="https://howlcipher.github.io/howlframe/" class="drawer-node-card">
+                <div class="node-card-top">
+                    <span class="node-card-name">HOWLFRAME</span>
+                    <span class="node-card-role" style="color: var(--color-magenta);">[VM &amp; COMPILER]</span>
+                </div>
+                <div class="node-card-desc">AI-native reasoning language, typed intermediate representation, and sandboxed bytecode VM.</div>
+            </a>
+
+            <a href="https://howlcipher.github.io/howlplane/" class="drawer-node-card">
+                <div class="node-card-top">
+                    <span class="node-card-name">HOWLPLANE</span>
+                    <span class="node-card-role" style="color: var(--color-blue);">[CONTROL PLANE]</span>
+                </div>
+                <div class="node-card-desc">Engineering control plane with deterministic routing, adversarial falsification, and human gates.</div>
+            </a>
+
+            <a href="https://howlcipher.github.io/howlchangeops/" class="drawer-node-card">
+                <div class="node-card-top">
+                    <span class="node-card-name">HOWLCHANGEOPS</span>
+                    <span class="node-card-role" style="color: var(--color-red);">[AUTHORITY GATE]</span>
+                </div>
+                <div class="node-card-desc">Governed release controller enforcing cryptographic human approvals and bounded Git mutations.</div>
+            </a>
+
+            <a href="https://howlcipher.github.io/howlrelay/" class="drawer-node-card">
+                <div class="node-card-top">
+                    <span class="node-card-name">HOWLRELAY</span>
+                    <span class="node-card-role" style="color: var(--color-cyan);">[CONTINUITY]</span>
+                </div>
+                <div class="node-card-desc">Persistent asynchronous work coordination, durable journals, and resumable execution handoffs.</div>
+            </a>
+
+            <a href="https://howlcipher.github.io/howlnotes/" class="drawer-node-card">
+                <div class="node-card-top">
+                    <span class="node-card-name">HOWLNOTES</span>
+                    <span class="node-card-role" style="color: var(--color-cyan);">[KNOWLEDGE NOTEBOOK]</span>
+                </div>
+                <div class="node-card-desc">Engineering knowledge notebook &amp; full-stack dogfood consumer proving native persistent storage.</div>
+            </a>
+
+            <a href="https://howlcipher.github.io/howlboard/" class="drawer-node-card">
+                <div class="node-card-top">
+                    <span class="node-card-name">HOWLBOARD</span>
+                    <span class="node-card-role" style="color: var(--color-amber);">[EVALUATION SURFACE]</span>
+                </div>
+                <div class="node-card-desc">Observation console and full-stack deterministic task state machine application.</div>
+            </a>
+
+            <a href="https://howlcipher.github.io/howlwriter/" class="drawer-node-card">
+                <div class="node-card-top">
+                    <span class="node-card-name">HOWLWRITER</span>
+                    <span class="node-card-role" style="color: var(--color-magenta);">[WRITING CONTROL]</span>
+                </div>
+                <div class="node-card-desc">Writing control system for voice preservation, deterministic style linting, humanization, and review.</div>
+            </a>
+        </div>
+        <div class="drawer-footer">
+            <span>● 10 ECOSYSTEM NODES</span>
+            <span>AUTH // HOWL 2026</span>
+        </div>
+    </aside>
+
+    <div class="layout-container">
+        <!-- Site Header -->
+        <header class="site-header">
+            <div class="header-top">
+                <div class="header-brand">
+                    <a href="https://howlcipher.github.io/howldream/" class="brand-sig">HOWL <span>//</span> DREAM</a>
+                    <span class="subsystem-tag">SYS_ID: HD-DREAM-08</span>
+                </div>
+                <div class="header-actions">
+                    <button id="eco-menu-toggle" class="btn-eco-toggle" type="button" aria-expanded="false" aria-controls="eco-drawer" aria-label="Toggle Howl Ecosystem Directory">
+                        <span aria-hidden="true">☰</span> [ECOSYSTEM]
+                    </button>
+                    <button id="theme-toggle" class="btn-theme-toggle" type="button" aria-pressed="false">
+                        <span aria-hidden="true">☾</span> [DARK_MODE]
+                    </button>
+                    <a href="https://github.com/howlcipher/howldream" class="btn-tech btn-tech-primary" target="_blank" rel="noreferrer">
+                        [ GITHUB REPO ]
+                    </a>
+                </div>
+            </div>
+
+            <!-- In-Page Section Navigation -->
+            <nav class="section-nav" aria-label="Page sections">
+                <span class="section-nav-label">READ_PATH:</span>
+                <a href="#lifecycle">01_Lifecycle</a>
+                <a href="#idea">02_TheIdea</a>
+                <a href="#dogfood">03_Evidence</a>
+                <a href="#dreambench">04_Dreambench</a>
+                <a href="#boundary">05_Boundary</a>
+                <a href="#ecosystem">06_Ecosystem</a>
+                <a href="#getting-started">07_QuickStart</a>
+            </nav>
+        </header>
+
+        <!-- Main Content Surface -->
+        <main id="main-content">
+            <!-- Hero Panel -->
+            <section class="hero-panel" aria-labelledby="main-title">
+                <div class="hero-banner">
+                    <span>SPEC_VER // 0.1.0 (EXPERIMENTAL, PHASE 1)</span>
+                    <span>ARCHITECTURE: CONTROLLED DIVERGENT EXPLORATION &amp; SCOPED VERIFICATION</span>
+                </div>
+                <div class="hero-body">
+                    <div class="hero-header-block">
+                        <p class="hero-kicker">// controlled divergence / hallucination experiments / scoped verification</p>
+                        <h1 id="main-title" class="hero-title">HowlDream <span class="jp-sub">ハウルドリーム // 2026</span></h1>
+                        <p class="hero-lead">
+                            Controlled divergence for AI systems. Explore unusual possibilities, induce controlled failures, measure what changes, challenge assumptions, and keep speculation separate from evidence.
+                        </p>
+                    </div>
+
+                    <div class="axiom-card" role="region" aria-label="Governing Principle" style="border-left-color: var(--color-khaki);">
+                        <strong style="color: var(--color-khaki);">AXIOM // DREAM OUTPUT IS DATA, NOT AUTHORITY.</strong> Dreams can suggest. Dreams cannot authorize. No result deploys software, merges code, sends communications, or approves actions.
+                    </div>
+
+                    <div class="hero-actions">
+                        <a href="https://github.com/howlcipher/howldream#quick-start" class="btn-tech btn-tech-primary">
+                            [ RUN AN EXPERIMENT ]
+                        </a>
+                        <a href="#lifecycle" class="btn-tech">
+                            [ EXPLORE. CHALLENGE. VERIFY. ]
+                        </a>
+                        <a href="https://github.com/howlcipher/howldream" class="btn-tech" target="_blank" rel="noreferrer">
+                            [ VIEW ON GITHUB ]
+                        </a>
+                    </div>
+
+                    <!-- Divergence Signal Panel -->
+                    <div class="hero-diagram-wrap" aria-label="Possibilities remain unverified until scoped checks are applied">
+                        <div class="diagram-header">
+                            <span>SIGNAL // A LABORATORY FOR POSSIBILITIES</span>
+                            <span>STATUS: UNVERIFIED UNTIL CHECKED</span>
+                        </div>
+                        <div class="signal-branch">01 / alternative explanation<small>UNVERIFIED</small></div>
+                        <div class="signal-branch">02 / unsupported premise<small>REJECT</small></div>
+                        <div class="signal-branch offset">03 / unexpected approach<small>INVESTIGATE</small></div>
+                        <p class="signal-resolved">Evidence narrows the possibilities. It does not grant execution authority.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 01 Lifecycle -->
+            <section id="lifecycle" class="tech-panel">
+                <div class="tech-header">
+                    <h2><span class="sec-id">SECTION // 01</span> Explore. Challenge. Verify.</h2>
+                    <span class="subsystem-tag">HD-MOD-LIFECYCLE</span>
+                </div>
+                <div class="tech-body">
+                    <p>Three states. One trust boundary.</p>
+                    <div class="node-directory-grid">
+                        <div class="dir-card" style="border-top: 3px solid var(--color-khaki);">
+                            <div class="dir-card-header">
+                                <span class="dir-card-title">01 // DREAM</span>
+                                <span class="chip chip-khaki">EXPLORE</span>
+                            </div>
+                            <p class="dir-card-desc">Generate multiple divergent candidates against a conventional baseline. Every output begins UNVERIFIED.</p>
+                        </div>
+                        <div class="dir-card" style="border-top: 3px solid var(--color-red);">
+                            <div class="dir-card-header">
+                                <span class="dir-card-title">02 // NIGHTMARE</span>
+                                <span class="chip chip-red">STRESS</span>
+                            </div>
+                            <p class="dir-card-desc">Remove context, reverse evidence order, or inject a false premise. Preserve the original evidence for later checks.</p>
+                        </div>
+                        <div class="dir-card" style="border-top: 3px solid var(--color-cyan);">
+                            <div class="dir-card-header">
+                                <span class="dir-card-title">03 // WAKE</span>
+                                <span class="chip chip-cyan">VERIFY</span>
+                            </div>
+                            <p class="dir-card-desc">Check supplied facts, source IDs and arithmetic. Record contradictions and unresolved claims. Agreement is not proof.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 02 The Idea -->
+            <section id="idea" class="tech-panel">
+                <div class="tech-header">
+                    <h2><span class="sec-id">SECTION // 02</span> What Can Induced Failure Teach Us?</h2>
+                    <span class="subsystem-tag">HD-MOD-IDEA</span>
+                </div>
+                <div class="tech-body">
+                    <div class="grid-2col">
+                        <div>
+                            <h3>Traditional reliability vs. controlled failure</h3>
+                            <p>Traditional reliability work asks: how do we stop hallucination? HowlDream also asks what controlled failure can reveal about a system, and whether a speculative idea deserves investigation after challenge.</p>
+                        </div>
+                        <div>
+                            <h3>A strange answer is not a research result.</h3>
+                            <p>Experiments record an objective, hypothesis, baseline, condition, sources, outputs and measurements. Wrong ideas are experimental material. They never become trusted knowledge by being generated.</p>
+                            <p>HowlCreate invents intentionally. HowlDream explores speculatively through measured experiments.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 03 Evidence / Dogfood -->
+            <section id="dogfood" class="tech-panel">
+                <div class="tech-header">
+                    <h2><span class="sec-id">SECTION // 03</span> Baseline vs. DREAM — Observed Local Experiment</h2>
+                    <span class="subsystem-tag">HD-MOD-EVIDENCE</span>
+                </div>
+                <div class="tech-body">
+                    <p>Observed local experiment, 9 September 2026. Question: how could we detect hallucination without relying exclusively on one LLM judging another?</p>
+                    <div class="table-wrap">
+                        <table>
+                            <caption>One Ollama run using qwen2.5-coder:7b-instruct</caption>
+                            <thead>
+                                <tr>
+                                    <th>Condition</th>
+                                    <th>Outputs</th>
+                                    <th>Temperature</th>
+                                    <th>Lexical diversity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Conventional baseline</td>
+                                    <td>3</td>
+                                    <td>0.2</td>
+                                    <td>0.5824</td>
+                                </tr>
+                                <tr>
+                                    <td>Divergent + premise challenge</td>
+                                    <td>5</td>
+                                    <td>1.2</td>
+                                    <td>0.8510</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="small">Mean pairwise token Jaccard distance. A single small, confounded condition comparison; not semantic novelty, causal proof, or general model performance. All five proposals retained unresolved assumptions.</p>
+                    <div class="node-directory-grid">
+                        <div class="dir-card" style="border-top: 3px solid var(--color-cyan);">
+                            <div class="dir-card-header">
+                                <span class="dir-card-title">Candidate</span>
+                                <span class="chip chip-cyan">INVESTIGATE</span>
+                            </div>
+                            <p class="dir-card-desc"><strong>Arithmetic witnesses.</strong> The local model proposed an arithmetic challenge. Independent exact arithmetic can check numerical claims, while the relationship between the calculation and the real question remains an assumption.</p>
+                        </div>
+                        <div class="dir-card" style="border-top: 3px solid var(--color-red);">
+                            <div class="dir-card-header">
+                                <span class="dir-card-title">Authored control</span>
+                                <span class="chip chip-red">REJECT</span>
+                            </div>
+                            <p class="dir-card-desc"><strong>Consensus guarantees truth.</strong> The deterministic demo asserts <code>model_consensus=guarantees_truth</code>. WAKE contradicts it against the supplied <code>not_proof</code> ledger value. The fixture is not a model discovery.</p>
+                        </div>
+                    </div>
+                    <p><a href="https://github.com/howlcipher/howldream/tree/main/dogfood">Inspect original run artifacts</a> · <a href="https://github.com/howlcipher/howldream/blob/main/docs/dogfood.md">Read findings and limitations</a></p>
+                </div>
+            </section>
+
+            <!-- 04 Dreambench -->
+            <section id="dreambench" class="tech-panel">
+                <div class="tech-header">
+                    <h2><span class="sec-id">SECTION // 04</span> Known Failures, Grounded Controls</h2>
+                    <span class="subsystem-tag">HD-MOD-DREAMBENCH</span>
+                </div>
+                <div class="tech-body">
+                    <p>Reliability / Dreambench.</p>
+                    <div class="grid-2col">
+                        <div>
+                            <h3>Unsupported claims</h3>
+                            <p>An answer asserts a fact absent from the supplied ledger.</p>
+                        </div>
+                        <div>
+                            <h3>False premises</h3>
+                            <p>A response accepts an assumption contradicted by known input.</p>
+                        </div>
+                        <div>
+                            <h3>Lost qualifiers</h3>
+                            <p>A transformed proposition changes &ldquo;safe if tested&rdquo; into &ldquo;always safe.&rdquo;</p>
+                        </div>
+                        <div>
+                            <h3>Conflicting evidence</h3>
+                            <p>An answer selects one side instead of recognizing incompatible records.</p>
+                        </div>
+                        <div>
+                            <h3>Invented sources</h3>
+                            <p>A fictional citation ID is absent from the supplied source set.</p>
+                        </div>
+                        <div>
+                            <h3>Numerical errors</h3>
+                            <p>A fixed arithmetic checker challenges a model's asserted result.</p>
+                        </div>
+                    </div>
+                    <p>Dreambench has 14 authored fixtures: seven failures and seven controls. This is a regression suite for narrow checks, not a general hallucination detector. <a href="https://github.com/howlcipher/howldream/blob/main/docs/benchmarks.md">Benchmark scope</a></p>
+
+                    <h3>Keep the experimental record</h3>
+                    <p>Each run preserves its input snapshot, source and prompt hashes, candidate outputs, claims, checks, scores and report. New WAKE and replay runs retain lineage. Mock output replay is deterministic. Real-provider replay repeats configuration; identical outputs are not guaranteed. Hosted private reasoning is never captured.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">[RUN // ARTIFACT_FILES]</span>
+                            <span class="subsystem-tag">HD_ARTIFACTS</span>
+                        </div>
+                        <pre><code>hd-TIMESTAMP-ID/
   manifest.json
   experiment.json
   baseline.jsonl
@@ -27,15 +390,129 @@
   scores.json
   metrics.json
   handoff.json
-  report.md</pre></div></section>
-<section><div class="boundary"><p class="eyebrow">Authority boundary</p><strong>Dreams can suggest. Dreams cannot authorize.</strong><p>Dream output is data, not authority. No result deploys software, merges code, sends communications or approves actions. Supported means a named, limited check passed. Uncertainty stays visible.</p><a href="https://github.com/howlcipher/howldream/blob/main/docs/trust_privacy.md">Trust and privacy model</a></div></section>
-<section id="ecosystem"><p class="eyebrow">Part of Howl</p><h2>Clear responsibilities. Explicit handoffs.</h2><div class="flow"><div><strong>HowlPlane</strong><br>Orchestrates engineering work</div><div><strong>HowlCreate ↔ HowlDream</strong><br>Intentional invention and speculative experiments</div><div><strong>HowlFrame + HowlChangeOps</strong><br>Bounded runtime and governed execution</div></div><p>HowlRelay carries work state. HowlWriter communicates reviewed knowledge. Milestone one exports advisory files; native adapters remain future work. HowlFrame is a language and runtime, not a general fact oracle.</p><p><a href="https://howlcipher.github.io/howl/ecosystem.html">Explore the Howl ecosystem</a></p></section>
-<section><p class="eyebrow">Start locally</p><h2>A small, inspectable experiment.</h2><pre>git clone https://github.com/howlcipher/howldream.git
+  report.md</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 05 Authority Boundary -->
+            <section id="boundary" class="tech-panel">
+                <div class="tech-header">
+                    <h2><span class="sec-id">SECTION // 05</span> Authority Boundary</h2>
+                    <span class="subsystem-tag">HD-MOD-BOUNDARY</span>
+                </div>
+                <div class="tech-body">
+                    <div class="axiom-card" style="border-left-color: var(--color-khaki); margin-bottom: 0.75rem;">
+                        <strong style="color: var(--color-khaki);">DREAMS CAN SUGGEST. DREAMS CANNOT AUTHORIZE.</strong> Dream output is data, not authority. No result deploys software, merges code, sends communications or approves actions. Supported means a named, limited check passed. Uncertainty stays visible.
+                    </div>
+                    <p><a href="https://github.com/howlcipher/howldream/blob/main/docs/trust_privacy.md">Trust and privacy model</a></p>
+                </div>
+            </section>
+
+            <!-- 06 Ecosystem -->
+            <section id="ecosystem" class="tech-panel">
+                <div class="tech-header">
+                    <h2><span class="sec-id">SECTION // 06</span> Clear Responsibilities, Explicit Handoffs</h2>
+                    <span class="subsystem-tag">HD-MOD-ECOSYSTEM</span>
+                </div>
+                <div class="tech-body">
+                    <p>HowlDream is part of the Howl ecosystem. These are advisory relationships — HowlDream exports advisory artifacts only; no native execution path exists.</p>
+                    <div class="node-directory-grid">
+                        <div class="dir-card" style="border-top: 3px solid var(--color-blue);">
+                            <div class="dir-card-header">
+                                <span class="dir-card-title">HowlPlane</span>
+                            </div>
+                            <p class="dir-card-desc">Orchestrates engineering work. May evaluate an advisory run; no native adapter implemented.</p>
+                        </div>
+                        <div class="dir-card" style="border-top: 3px solid var(--color-amber);">
+                            <div class="dir-card-header">
+                                <span class="dir-card-title">HowlCreate</span>
+                            </div>
+                            <p class="dir-card-desc">Deliberate invention through creative search. HowlCreate invents intentionally; HowlDream explores speculatively.</p>
+                        </div>
+                        <div class="dir-card" style="border-top: 3px solid var(--color-magenta);">
+                            <div class="dir-card-header">
+                                <span class="dir-card-title">HowlFrame</span>
+                            </div>
+                            <p class="dir-card-desc">Capability-bounded language and runtime. Future bounded verification programs, not a general factual-truth service.</p>
+                        </div>
+                        <div class="dir-card" style="border-top: 3px solid var(--color-red);">
+                            <div class="dir-card-header">
+                                <span class="dir-card-title">HowlChangeOps</span>
+                            </div>
+                            <p class="dir-card-desc">Governed release execution. Sole relevant release boundary; no Dream-to-execution path.</p>
+                        </div>
+                        <div class="dir-card" style="border-top: 3px solid var(--color-cyan);">
+                            <div class="dir-card-header">
+                                <span class="dir-card-title">HowlRelay</span>
+                            </div>
+                            <p class="dir-card-desc">Carries work state and handoffs. May carry run pointers and unresolved work; not a Dream persistence dependency.</p>
+                        </div>
+                        <div class="dir-card" style="border-top: 3px solid var(--color-magenta);">
+                            <div class="dir-card-header">
+                                <span class="dir-card-title">HowlWriter</span>
+                            </div>
+                            <p class="dir-card-desc">Communicates reviewed knowledge. Claims begin unverified, as in its own domain model.</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem;">Milestone one exports advisory files; native adapters remain future work. HowlFrame is a language and runtime, not a general fact oracle. HowlDream is not included in the default Howl installer.</p>
+                    <p><a href="https://howlcipher.github.io/howl/ecosystem.html">Explore the Howl ecosystem</a></p>
+                </div>
+            </section>
+
+            <!-- 07 Getting Started -->
+            <section id="getting-started" class="tech-panel">
+                <div class="tech-header">
+                    <h2><span class="sec-id">SECTION // 07</span> Start Locally</h2>
+                    <span class="subsystem-tag">HD-MOD-SETUP</span>
+                </div>
+                <div class="tech-body">
+                    <p>A small, inspectable experiment. No API key required for the deterministic demo. Optional Ollama and compatible HTTP providers require explicit configuration.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-title">[BASH // HOWLDREAM_QUICKSTART]</span>
+                            <button class="btn-copy" type="button">[COPY]</button>
+                        </div>
+                        <pre><code>git clone https://github.com/howlcipher/howldream.git
 cd howldream
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e .
 howldream run examples/self_detection.yaml
-howldream benchmark</pre><p>No API key required for the deterministic demo. Optional Ollama and compatible HTTP providers require explicit configuration. HowlDream is not included in the default Howl installer.</p><p><a href="https://github.com/howlcipher/howldream/tree/main/examples">Examples</a> · <a href="https://github.com/howlcipher/howldream/blob/main/docs/experiments.md">CLI reference</a> · <a href="https://github.com/howlcipher/howldream/blob/main/ROADMAP.md">Roadmap</a></p></section>
-</main><footer>HOWL / Experimental engineering tools. <a href="https://github.com/howlcipher/howldream">Source and documentation</a> · MIT</footer>
-</body></html>
+howldream benchmark</code></pre>
+                    </div>
+                    <p><a href="https://github.com/howlcipher/howldream/tree/main/examples">Examples</a> · <a href="https://github.com/howlcipher/howldream/blob/main/docs/experiments.md">CLI reference</a> · <a href="https://github.com/howlcipher/howldream/blob/main/ROADMAP.md">Roadmap</a></p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Site Footer -->
+        <footer class="site-footer">
+            <div class="footer-telemetry">
+                <div class="status-indicator">
+                    <span class="status-dot" aria-hidden="true" style="background: var(--color-khaki); box-shadow: 0 0 6px var(--color-khaki);"></span>
+                    <span>SYS_STATUS: ACTIVE // HOWLDREAM-EXPERIMENTAL-NODE</span>
+                </div>
+                <div><a href="https://github.com/howlcipher/howldream/blob/main/LICENSE" style="color: var(--color-cyan); text-decoration: underline;">MIT LICENSE</a> // HOWL 2026</div>
+            </div>
+            <div class="footer-links">
+                <nav class="footer-nav" aria-label="Ecosystem Links">
+                    <a href="https://howlcipher.github.io/howl/">Howl Hub</a>
+                    <a href="https://howlcipher.github.io/howl/ecosystem.html">Ecosystem</a>
+                    <a href="https://howlcipher.github.io/howlcreate/">HowlCreate</a>
+                    <a href="https://howlcipher.github.io/howlframe/">HowlFrame</a>
+                    <a href="https://howlcipher.github.io/howlplane/">HowlPlane</a>
+                    <a href="https://howlcipher.github.io/howlchangeops/">HowlChangeOps</a>
+                    <a href="https://howlcipher.github.io/howlrelay/">HowlRelay</a>
+                    <a href="https://howlcipher.github.io/howlnotes/">HowlNotes</a>
+                    <a href="https://howlcipher.github.io/howlboard/">HowlBoard</a>
+                    <a href="https://howlcipher.github.io/howlwriter/">HowlWriter</a>
+                </nav>
+                <a href="#main-content">[ BACK TO TOP ]</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
