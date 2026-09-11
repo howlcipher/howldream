@@ -1,0 +1,67 @@
+{
+  "schema_version": "howl.candidate/v1",
+  "candidate_id": "hd-20260911-145551-873eea4f7922/candidates/0/2",
+  "source_run_id": "hd-20260911-145551-873eea4f7922",
+  "parent_request_id": "req-dogfood-a72d90577e",
+  "objective": "Identify one architectural weakness in the current Howl ecosystem that conventional inspection may overlook, challenge the idea, verify what can be verified, and determine whether it deserves a HowlCreate prototype.",
+  "text": "IDEA: Detect hallucination using executable arithmetic witnesses attached to numerical claims.\nCALC: 17 * 19 = 323\nASSUMPTION: the calculation models the intended quantity.",
+  "condition": "dream",
+  "trust": "UNVERIFIED",
+  "status": "LOCALLY_VERIFIED",
+  "authority": {
+    "type": "ADVISORY",
+    "executable": false
+  },
+  "claims": [
+    {
+      "id": "hd-20260911-145551-873eea4f7922/candidates/0/2/claim/1",
+      "candidate_id": "hd-20260911-145551-873eea4f7922/candidates/0/2",
+      "kind": "IDEA",
+      "text": "Detect hallucination using executable arithmetic witnesses attached to numerical claims.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20260911-145551-873eea4f7922/candidates/0/2/claim/2",
+      "candidate_id": "hd-20260911-145551-873eea4f7922/candidates/0/2",
+      "kind": "CALC",
+      "text": "17 * 19 = 323",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20260911-145551-873eea4f7922/candidates/0/2/claim/3",
+      "candidate_id": "hd-20260911-145551-873eea4f7922/candidates/0/2",
+      "kind": "ASSUMPTION",
+      "text": "the calculation models the intended quantity.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    }
+  ],
+  "evidence_refs": [
+    "howlframe_pure_capability",
+    "howlplane_human_gate",
+    "howlchangeops_receipts",
+    "howldream_speculative_boundary",
+    "howlcreate_sandbox_development"
+  ],
+  "assumptions": [
+    "the calculation models the intended quantity."
+  ],
+  "unresolved_issues": [
+    "the calculation models the intended quantity."
+  ],
+  "contradictions": [],
+  "verified_constraints": [],
+  "provenance": {
+    "request_id": "req-dogfood-a72d90577e",
+    "originating_component": "howlplane",
+    "run_id": "hd-20260911-145551-873eea4f7922",
+    "candidate_index": 2,
+    "trial": 0,
+    "model": "fixture-v1",
+    "prompt_hash": "78c9b1adcc845fa398780f7678743205af616fdf7d845f8de95a82871959f0e7",
+    "output_hash": "e3edc33032ea0a7c2a1e8b94d0c4096596b2688a31d241b2cf3306d2313e9eb8",
+    "timestamp": "2026-09-11T14:55:51.699523+00:00"
+  }
+}

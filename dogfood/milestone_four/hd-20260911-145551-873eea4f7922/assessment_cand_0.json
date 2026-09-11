@@ -1,0 +1,12 @@
+{
+  "schema_version": "howl.assessment/v1",
+  "assessment_id": "assess-hd-20260911-145551-873eea4f7922/candidates/0/0",
+  "candidate_id": "hd-20260911-145551-873eea4f7922/candidates/0/0",
+  "disposition": "UNRESOLVED",
+  "confidence": "LOW",
+  "reason": "unresolved assumptions require further evidence",
+  "authority": {
+    "type": "ADVISORY",
+    "executable": false
+  }
+}

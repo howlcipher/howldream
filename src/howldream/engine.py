@@ -5,12 +5,21 @@ import json
 import subprocess
 from datetime import UTC, datetime
 from pathlib import Path
+from typing import Literal
 from uuid import uuid4
 
 from howldream import __version__
 from howldream.artifacts import digest, load_run, save_run, scrub
+from howldream.contracts import (
+    CandidateHandoff,
+    DescentDAG,
+    DescentNode,
+    ExplorationAuthority,
+    ExplorationRequest,
+    ExplorationResult,
+)
 from howldream.providers import make_provider
-from howldream.schema import Experiment
+from howldream.schema import Evidence, Experiment, Generation, Perturbation, ProviderConfig
 from howldream.scoring import metrics, score_group
 from howldream.verification import extract, verify
 
@@ -354,3 +363,236 @@ def wake(path: Path, root: Path) -> Path:
     analyze(artifacts, experiment)
     persist(new, artifacts, True)
     return new
+
+
+def explore(request: ExplorationRequest, root: Path) -> tuple[Path, ExplorationResult]:
+    """Execute bounded exploration request and emit versioned result with DescentDAG."""
+    if request.authority.executable or request.authority.type != "ADVISORY":
+        raise ValueError(
+            "HowlDream strictly requires authority.type='ADVISORY' and authority.executable=False"
+        )
+
+    evidence_models = [Evidence(id=e.id, text=e.text, facts=e.facts) for e in request.evidence_refs]
+    if not evidence_models:
+        evidence_models = [Evidence(id="objective_context", text=request.objective, facts={})]
+
+    perturbations: list[Perturbation] = []
+    if request.requested_mode in ("nightmare", "paired"):
+        perturbations.extend(
+            [
+                Perturbation(kind="omit_context", text=""),
+                Perturbation(kind="contradict_context", text="simulated constraint failure"),
+            ]
+        )
+
+    exp_mode: Literal["dream", "nightmare"] = (
+        "nightmare" if request.requested_mode == "nightmare" else "dream"
+    )
+    base_count = max(1, min(3, request.budget.max_candidates // 2))
+    cand_count = max(1, min(request.budget.max_candidates, 50))
+    trials = max(1, min(request.budget.max_trials, 10))
+
+    provider_kind: Literal["mock", "ollama", "openai_compatible"] = "mock"
+    if "ollama" in request.budget.provider_allowlist and not request.budget.local_only:
+        provider_kind = "ollama"
+
+    experiment = Experiment(
+        schema_version=1,
+        name=f"exp-{request.request_id}",
+        objective=request.objective,
+        mode=exp_mode,
+        baseline=Generation(candidates=base_count, temperature=0.2),
+        generation=Generation(candidates=cand_count, temperature=1.1),
+        trials=trials,
+        seed=42,
+        evidence=evidence_models,
+        perturbations=perturbations,
+        provider=ProviderConfig(
+            kind=provider_kind,
+            model="fixture-v1",
+            timeout_seconds=request.budget.max_duration_seconds,
+            max_tokens=request.budget.max_tokens,
+        ),
+        retain_text=True,
+    )
+
+    run_dir = run(experiment, root, wake_now=True, parent=request.parent_run_id)
+    artifacts = load_run(run_dir)
+
+    dag = DescentDAG()
+    obj_node = DescentNode(
+        node_id=f"obj-{request.request_id}",
+        node_type="OBJECTIVE",
+        label=f"Objective: {request.objective[:80]}",
+        details={
+            "objective": request.objective,
+            "originating_component": request.originating_component,
+        },
+    )
+    dag.add_node(obj_node)
+
+    baseline_node = DescentNode(
+        node_id=f"{run_dir.name}/baseline",
+        node_type="BASELINE",
+        label="Baseline Generation",
+        details={"count": len(artifacts["baseline"])},
+    )
+    dag.add_node(baseline_node)
+    dag.add_edge(obj_node.node_id, baseline_node.node_id, "baseline_for")
+
+    dream_node = DescentNode(
+        node_id=f"{run_dir.name}/dream",
+        node_type="DREAM_RUN",
+        label=f"DREAM Run {run_dir.name}",
+        details={"mode": exp_mode, "run_id": run_dir.name},
+    )
+    dag.add_node(dream_node)
+    dag.add_edge(obj_node.node_id, dream_node.node_id, "explored_by")
+
+    candidates: list[CandidateHandoff] = []
+    unresolved_assumptions: list[str] = []
+    contradictions: list[str] = []
+
+    for c in artifacts["candidates"]:
+        cand_id = c["id"]
+        cand_node = DescentNode(
+            node_id=cand_id,
+            node_type="CANDIDATE",
+            label=f"Candidate {c['index']}: {c['text'][:60]}",
+            details={
+                "text_hash": c["output_hash"],
+                "trial": c["trial"],
+                "index": c["index"],
+            },
+        )
+        dag.add_node(cand_node)
+        dag.add_edge(dream_node.node_id, cand_node.node_id, "generated")
+
+        challenge_id = f"{cand_id}/challenge"
+        challenge_node = DescentNode(
+            node_id=challenge_id,
+            node_type="NIGHTMARE_CHALLENGE",
+            label=f"Nightmare Challenge for Candidate {c['index']}",
+            details={"perturbations": [p.kind for p in perturbations]},
+        )
+        dag.add_node(challenge_node)
+        dag.add_edge(cand_node.node_id, challenge_node.node_id, "challenged_by")
+
+        wake_id = f"{cand_id}/wake"
+        wake_node = DescentNode(
+            node_id=wake_id,
+            node_type="WAKE_VERIFICATION",
+            label=f"Wake Verification for Candidate {c['index']}",
+            details={"trust": "UNVERIFIED"},
+        )
+        dag.add_node(wake_node)
+        dag.add_edge(challenge_node.node_id, wake_node.node_id, "verified_at")
+
+        extracted = extract(c["text"], c["id"])
+        cand_assumptions = [cl["text"] for cl in extracted if cl.get("kind") == "ASSUMPTION"]
+        cand_contradictions = [cl["text"] for cl in extracted if cl.get("kind") == "CONFLICT"]
+        cand_ideas = [cl["text"] for cl in extracted if cl.get("kind") == "IDEA"]
+        cand_facts = [cl["text"] for cl in extracted if cl.get("kind") == "FACT"]
+
+        unresolved_assumptions.extend(cand_assumptions)
+        contradictions.extend(cand_contradictions)
+
+        cand_status: Literal[
+            "GENERATED",
+            "CHALLENGED",
+            "LOCALLY_VERIFIED",
+            "FRAME_REVIEWED",
+            "UNRESOLVED",
+            "REJECTED",
+        ]
+        if cand_contradictions or any(
+            "error" in cl["text"].lower() or "fail" in cl["text"].lower() for cl in extracted
+        ):
+            cand_status = "REJECTED"
+        elif cand_ideas and (cand_facts or [cl for cl in extracted if cl.get("kind") == "CALC"]):
+            cand_status = "LOCALLY_VERIFIED"
+        elif cand_assumptions:
+            cand_status = "UNRESOLVED"
+        else:
+            cand_status = "CHALLENGED"
+
+        handoff = CandidateHandoff(
+            schema_version="howl.candidate/v1",
+            candidate_id=cand_id,
+            source_run_id=run_dir.name,
+            parent_request_id=request.request_id,
+            objective=request.objective,
+            text=c["text"],
+            condition=c["condition"],
+            trust="UNVERIFIED",
+            status=cand_status,
+            authority=ExplorationAuthority(),
+            claims=extracted,
+            evidence_refs=[e.id for e in evidence_models],
+            assumptions=cand_assumptions,
+            unresolved_issues=cand_assumptions,
+            contradictions=cand_contradictions,
+            verified_constraints=[f for f in cand_facts],
+            provenance={
+                "request_id": request.request_id,
+                "originating_component": request.originating_component,
+                "run_id": run_dir.name,
+                "candidate_index": c["index"],
+                "trial": c["trial"],
+                "model": c.get("model", "fixture-v1"),
+                "prompt_hash": c["prompt_hash"],
+                "output_hash": c["output_hash"],
+                "timestamp": datetime.now(UTC).isoformat(),
+            },
+        )
+        candidates.append(handoff)
+
+    has_locally_verified = any(cand.status == "LOCALLY_VERIFIED" for cand in candidates)
+    has_unresolved = any(cand.status in ("UNRESOLVED", "CHALLENGED") for cand in candidates)
+    recommended: Literal["INVESTIGATE", "REJECT", "DEFER", "ACCEPT_FOR_DEVELOPMENT"]
+    if has_locally_verified:
+        recommended = "INVESTIGATE"
+    elif has_unresolved:
+        recommended = "DEFER"
+    else:
+        recommended = "REJECT"
+
+    result = ExplorationResult(
+        schema_version="howl.exploration_result/v1",
+        exploration_id=run_dir.name,
+        parent_request_id=request.request_id,
+        objective=request.objective,
+        originating_component=request.originating_component,
+        authority=ExplorationAuthority(),
+        candidates=candidates,
+        claims=[cl for cl in artifacts["claims"]],
+        evidence=[e.model_dump() for e in evidence_models],
+        unresolved_assumptions=list(dict.fromkeys(unresolved_assumptions)),
+        contradictions=list(dict.fromkeys(contradictions)),
+        scores=artifacts["scores"],
+        verification_status="LOCALLY_VERIFIED"
+        if has_locally_verified
+        else "REQUIRES_DOWNSTREAM_REVIEW",
+        recommended_disposition=recommended,
+        provenance={
+            "request_id": request.request_id,
+            "parent_run_id": request.parent_run_id,
+            "originating_component": request.originating_component,
+            "run_id": run_dir.name,
+            "timestamp": datetime.now(UTC).isoformat(),
+            "version": __version__,
+        },
+        descent_dag=dag,
+    )
+
+    envelope_path = run_dir / "exploration_envelope.json"
+    envelope_path.write_text(result.model_dump_json(indent=2) + "\n")
+    envelope_path.chmod(0o600)
+
+    manifest = artifacts["manifest"]
+    manifest["file_hashes"]["exploration_envelope.json"] = digest(envelope_path.read_text())
+    manifest_path = run_dir / "manifest.json"
+    manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n")
+    manifest_path.chmod(0o600)
+
+    return run_dir, result

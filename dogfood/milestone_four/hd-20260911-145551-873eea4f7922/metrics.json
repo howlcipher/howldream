@@ -1,0 +1,55 @@
+{
+  "baseline": {
+    "candidates": 2,
+    "lexical_diversity": 0.0,
+    "exact_unique": 1,
+    "claims": 4,
+    "unresolved_claims": 4,
+    "supported_claims": 0,
+    "failure_candidates": 0,
+    "failure_rate": 0.0,
+    "scorer_type": "deterministic",
+    "scope": "lexical distance and known-check failures only"
+  },
+  "experimental": {
+    "candidates": 4,
+    "lexical_diversity": 0.8520735020735021,
+    "exact_unique": 4,
+    "claims": 9,
+    "unresolved_claims": 8,
+    "supported_claims": 1,
+    "failure_candidates": 0,
+    "failure_rate": 0.0,
+    "scorer_type": "deterministic",
+    "scope": "lexical distance and known-check failures only"
+  },
+  "trials": [
+    {
+      "trial": 0,
+      "baseline": {
+        "candidates": 2,
+        "lexical_diversity": 0.0,
+        "exact_unique": 1,
+        "claims": 4,
+        "unresolved_claims": 4,
+        "supported_claims": 0,
+        "failure_candidates": 0,
+        "failure_rate": 0.0,
+        "scorer_type": "deterministic",
+        "scope": "lexical distance and known-check failures only"
+      },
+      "experimental": {
+        "candidates": 4,
+        "lexical_diversity": 0.8520735020735021,
+        "exact_unique": 4,
+        "claims": 9,
+        "unresolved_claims": 8,
+        "supported_claims": 1,
+        "failure_candidates": 0,
+        "failure_rate": 0.0,
+        "scorer_type": "deterministic",
+        "scope": "lexical distance and known-check failures only"
+      }
+    }
+  ]
+}

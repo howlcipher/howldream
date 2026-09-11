@@ -1,0 +1,59 @@
+{
+  "schema_version": "howl.candidate/v1",
+  "candidate_id": "hd-20260911-145551-873eea4f7922/candidates/0/0",
+  "source_run_id": "hd-20260911-145551-873eea4f7922",
+  "parent_request_id": "req-dogfood-a72d90577e",
+  "objective": "Identify one architectural weakness in the current Howl ecosystem that conventional inspection may overlook, challenge the idea, verify what can be verified, and determine whether it deserves a HowlCreate prototype.",
+  "text": "IDEA: Compare hallucination claims against a supplied source ledger.\nASSUMPTION: source ledger coverage is sufficient.",
+  "condition": "dream",
+  "trust": "UNVERIFIED",
+  "status": "UNRESOLVED",
+  "authority": {
+    "type": "ADVISORY",
+    "executable": false
+  },
+  "claims": [
+    {
+      "id": "hd-20260911-145551-873eea4f7922/candidates/0/0/claim/1",
+      "candidate_id": "hd-20260911-145551-873eea4f7922/candidates/0/0",
+      "kind": "IDEA",
+      "text": "Compare hallucination claims against a supplied source ledger.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20260911-145551-873eea4f7922/candidates/0/0/claim/2",
+      "candidate_id": "hd-20260911-145551-873eea4f7922/candidates/0/0",
+      "kind": "ASSUMPTION",
+      "text": "source ledger coverage is sufficient.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    }
+  ],
+  "evidence_refs": [
+    "howlframe_pure_capability",
+    "howlplane_human_gate",
+    "howlchangeops_receipts",
+    "howldream_speculative_boundary",
+    "howlcreate_sandbox_development"
+  ],
+  "assumptions": [
+    "source ledger coverage is sufficient."
+  ],
+  "unresolved_issues": [
+    "source ledger coverage is sufficient."
+  ],
+  "contradictions": [],
+  "verified_constraints": [],
+  "provenance": {
+    "request_id": "req-dogfood-a72d90577e",
+    "originating_component": "howlplane",
+    "run_id": "hd-20260911-145551-873eea4f7922",
+    "candidate_index": 0,
+    "trial": 0,
+    "model": "fixture-v1",
+    "prompt_hash": "eec21befc9fd79aba8b33f7e233caf66f75a0363f51983822ce6381c0a62bde9",
+    "output_hash": "e2043393fcb05cc05a40a11beb7c06c39b18d1c2ed09a06825b8620d15a6500d",
+    "timestamp": "2026-09-11T14:55:51.699339+00:00"
+  }
+}

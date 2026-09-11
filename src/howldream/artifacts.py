@@ -81,7 +81,9 @@ def load_run(path: Path) -> dict:
         "handoff.json",
         "report.md",
     }
-    if set(manifest.get("file_hashes", {})) != required:
+    optional = {"exploration_envelope.json"}
+    hashes = set(manifest.get("file_hashes", {}))
+    if not required.issubset(hashes) or not hashes.issubset(required | optional):
         raise ValueError("artifact integrity index is incomplete or contains unknown files")
     for name, expected in manifest["file_hashes"].items():
         if Path(name).name != name or (path / name).is_symlink():
@@ -91,6 +93,10 @@ def load_run(path: Path) -> dict:
     result = {"manifest": manifest}
     for name in ("experiment", "scores", "metrics", "handoff"):
         result[name] = json.loads((path / f"{name}.json").read_text())
+    if "exploration_envelope.json" in manifest["file_hashes"]:
+        result["exploration_envelope"] = json.loads(
+            (path / "exploration_envelope.json").read_text()
+        )
     for name in ("baseline", "candidates", "claims", "verification"):
         result[name] = [
             json.loads(line) for line in (path / f"{name}.jsonl").read_text().splitlines()

@@ -32,6 +32,7 @@ source .venv/bin/activate
 pip install -e .
 howldream validate examples/self_detection.yaml
 howldream run examples/self_detection.yaml
+howldream explore --goal "Design fault-tolerant cache" --budget-candidates 3
 howldream benchmark list
 howldream benchmark run dreambench --split development
 howldream evaluate dreamvalue
@@ -79,12 +80,42 @@ A local Ollama methodology audit challenged subtle unblinding, token budget
 leakage, and evaluator bias. See [dogfood findings](docs/dogfood.md) and the
 [raw evidence](dogfood/).
 
+## Controlled Ecosystem Integration (Milestone Four)
+
+HowlDream 0.4.0 provides controlled native integration with the Howl engineering ecosystem:
+
+```mermaid
+flowchart LR
+    HP[HowlPlane\nPolicy & Budget] --> HD[HowlDream\nDREAM / NIGHTMARE / WAKE]
+    HD --> HF[HowlFrame\nBytecode Evaluator]
+    HF --> HC[HowlCreate\nSandbox Development]
+    HC --> HP2[HowlPlane\nHALTS before execution]
+    style HP2 fill:#f96,stroke:#333,stroke-width:2px
+```
+
+* **Zero Execution Authority**: Speculative candidates and exploratory envelopes carry `EXECUTION_AUTHORITY: NONE`. They cannot self-approve, emit execution receipts, or authorize changes.
+* **Strict Segregation**: HowlChangeOps is downstream and isolated; speculative inputs and candidate IDs cannot be accepted as execution authority.
+* **Native Schemas**: Strict versioned schemas for ecosystem interoperability:
+  * `howl.exploration/v1`: Exploration requests specifying goals, budgets, and constraints.
+  * `howl.candidate/v1`: Immutable candidate representations with source provenance.
+  * `howl.assessment/v1`: Structured evaluation assessments with explicit rationale.
+  * `howl.exploration_result/v1`: Completed exploration envelopes with descent DAG lineage.
+  * `howl.development_result/v1`: Deliberate sandbox development specifications without execution authority.
+* **Descent DAG Lineage**: Bounded directed acyclic graph tracing exploration ancestry, branching factors, and parent-child candidate relationships (`howldream trace`).
+* **Adapters & Harnesses**:
+  * **HowlPlane**: Native `HowlDreamRunner` orchestrates bounded exploration, invokes HowlFrame verification, promotes viable candidates to HowlCreate, and asserts zero execution authority.
+  * **HowlFrame**: Native `candidate_evaluator.howl` app and compiled bytecode (`.hfbc`) for invariant verification.
+  * **HowlCreate**: Native `candidate_ingestion` module develops candidates into sandbox prototype designs.
+  * **HowlRelay**: Native `HowlDreamCollector` gathers exploration evidence into the relay state store.
+
 ## What exists
 
 Strict versioned YAML/JSON experiments, bounded trials, provider capability records,
 baseline/control runs, four context perturbations, claim grammar, extensible failure
 taxonomy, exact arithmetic and supplied-ledger checks, modular scorer interface,
-lexical diversity/novelty, duplicate grouping, reports, replay lineage, and advisory
+lexical diversity/novelty, duplicate grouping, reports, replay lineage, Descent DAG
+ancestry tracing, native ecosystem integration schemas (`howl.exploration/v1`,
+`howl.candidate/v1`, `howl.assessment/v1`, `howl.development_result/v1`), and advisory
 handoffs. No generated code execution or hidden reasoning capture.
 
 Final dogfood strengthened relevance triage: common function words no longer make

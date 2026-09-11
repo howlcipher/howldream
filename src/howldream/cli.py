@@ -5,14 +5,16 @@ import json
 import sys
 from pathlib import Path
 
+import yaml
 from pydantic import ValidationError
 from yaml import YAMLError
 
 from howldream import __version__
 from howldream.artifacts import load_run, scrub
 from howldream.benchmark import benchmark, list_benchmarks
+from howldream.contracts import DescentDAG, ExplorationRequest
 from howldream.dreamvalue import evaluate
-from howldream.engine import replay, run, wake
+from howldream.engine import explore, replay, run, wake
 from howldream.schema import read_experiment
 
 
@@ -54,8 +56,26 @@ def main() -> int:
     evaluate_parser.add_argument("--input", type=Path)
     evaluate_parser.add_argument("--output", type=Path, default=Path(".howldream/evaluations"))
     evaluate_parser.add_argument("--reviews", type=Path, help="annotated human review path")
-    evaluate_parser.add_argument("--unblind", type=Path, help="unblinding key path")
     commands.add_parser("compare").add_argument("targets", type=Path, nargs="+")
+
+    explore_parser = commands.add_parser("explore")
+    explore_parser.add_argument("target", type=Path, help="exploration request file (JSON or YAML)")
+    explore_parser.add_argument(
+        "--output", type=Path, default=Path(".howldream/runs"), help="artifact storage root"
+    )
+
+    trace_parser = commands.add_parser("trace")
+    trace_parser.add_argument("target_id", help="node or candidate ID to trace backwards")
+    trace_parser.add_argument(
+        "--run-dir",
+        type=Path,
+        default=None,
+        help="run directory containing exploration_envelope.json",
+    )
+    trace_parser.add_argument(
+        "--output", type=Path, default=Path(".howldream/runs"), help="runs root directory"
+    )
+
     args = parser.parse_args()
     result: dict | list
     try:
@@ -85,6 +105,36 @@ def main() -> int:
                 unblinding_path=getattr(args, "unblind", None),
             )
             print(json.dumps(result, indent=2))
+            return 0
+        if args.command == "explore":
+            raw_content = args.target.read_text()
+            data = yaml.safe_load(raw_content)
+            req = ExplorationRequest.model_validate(data)
+            _run_dir, exp_res = explore(req, args.output)
+            print(exp_res.model_dump_json(indent=2))
+            return 0
+        if args.command == "trace":
+            target_run_dir = args.run_dir
+            if target_run_dir is None and args.output.exists():
+                cand_id = args.target_id
+                prefix = cand_id.split("/")[0]
+                possible = args.output / prefix
+                if possible.is_dir() and (possible / "exploration_envelope.json").exists():
+                    target_run_dir = possible
+                else:
+                    for p in sorted(args.output.iterdir(), reverse=True):
+                        if p.is_dir() and (p / "exploration_envelope.json").exists():
+                            target_run_dir = p
+                            break
+            if (
+                target_run_dir is None
+                or not (target_run_dir / "exploration_envelope.json").exists()
+            ):
+                raise ValueError(f"cannot find exploration envelope for target '{args.target_id}'")
+            env_data = json.loads((target_run_dir / "exploration_envelope.json").read_text())
+            dag = DescentDAG.model_validate(env_data["descent_dag"])
+            chain = dag.trace(args.target_id)
+            print(json.dumps([n.model_dump() for n in chain], indent=2))
             return 0
         if args.command == "compare":
             result = [{"run_id": p.name, "metrics": load_run(p)["metrics"]} for p in args.targets]

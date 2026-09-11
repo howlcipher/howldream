@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.4.0
+
+Delivered HowlDream Milestone Four: Controlled Native Howl Ecosystem Integration.
+
+Implemented end-to-end controlled native integration across HowlPlane, HowlFrame, HowlCreate, and HowlRelay while enforcing zero execution authority and strict downstream segregation:
+* **Native Ecosystem Contracts**: Added strict schemas in `src/howldream/contracts.py` for `howl.exploration/v1` (request), `howl.candidate/v1` (immutable candidate with provenance), `howl.assessment/v1` (evaluation assessment), `howl.exploration_result/v1` (envelope and outcome), and `howl.development_result/v1` (sandbox prototype specification).
+* **Descent DAG Lineage**: Implemented `DescentDAG` capturing exploration trees, parent-child lineages, branching factors, cycle detection, and graph traversal. Added `howldream trace <run_id>` CLI subcommand for inspecting lineage.
+* **Exploration CLI Subcommand**: Added `howldream explore` CLI subcommand emitting `exploration_envelope.json` alongside standard run manifests.
+* **HowlFrame Integration**: Authored `apps/candidate_evaluator/candidate_evaluator.howl` and compiled bytecode (`.hfbc`) validating structural invariants, schema versions, and claim bounds.
+* **HowlCreate Integration**: Implemented deliberate candidate ingestion (`howlcreate.engine.candidate_ingestion`) and `howlcreate develop` CLI subcommand producing sandbox prototype designs without execution authority (`EXECUTION_AUTHORITY: NONE`).
+* **HowlPlane Integration**: Implemented `HowlDreamRunner` with exploration policies, token/candidate budgets, circuit breakers, and hard negative boundary checks preventing execution receipt issuance for speculative candidates. Added `explore` and `trace` CLI subcommands in HowlPlane.
+* **HowlRelay Integration**: Implemented native `HowlDreamCollector` adapter gathering `HOWLDREAM_EXPLORATION` evidence without altering authority.
+* **End-to-End Verification**: Validated three canonical end-to-end scenarios (Useful Candidate Flow, No-Valuable Result Flow, and Unsafe Authority Escalation Attempt).
+* **Testing Architecture**: Refactored test harness with contract-compatible adapters for standalone CI independence; eliminated developer workstation path assumptions.
+* **Lineage & Authority Hardening**: Enhanced `DescentDAG` with cycle detection, depth limits, and branching factor protections; added `DevelopmentResult` contract model.
+* **Dogfooding Evidence**: Completed dogfood exploration run `hd-20260911-145551-873eea4f7922` documenting lineage DAG, artifact verification, and ecosystem handoffs in `dogfood/milestone_four/SUMMARY.md`.
+
 ## 0.3.1
 
 Delivered HowlDream Milestone 3.1: Evidence Integrity Audit & Claim Reconciliation.

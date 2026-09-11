@@ -7,6 +7,7 @@ import sys
 import pytest
 from pydantic import ValidationError
 
+from howldream import __version__
 from howldream.artifacts import load_run, redact, scrub
 from howldream.benchmark import benchmark, load_dataset
 from howldream.engine import replay, run, wake
@@ -146,7 +147,7 @@ def test_wake_records_current_analysis_provenance(tmp_path):
     path = run(spec(), tmp_path)
     awake = load_run(wake(path, tmp_path))
     assert awake["manifest"]["analysis"]["implementation_hash"]
-    assert awake["manifest"]["analysis"]["version"] == "0.3.1"
+    assert awake["manifest"]["analysis"]["version"] == __version__
 
 
 def test_baseline_redaction_disables_replay(tmp_path, monkeypatch):

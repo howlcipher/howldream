@@ -1,6 +1,6 @@
 # Architecture
 
-Status: extended for experimental milestone two.
+Status: extended for experimental milestone four.
 
 HowlDream owns controlled divergent experiments, fault injection, comparative measurements,
 and inspectable evidence. HowlCreate already performs divergent/convergent creative search;
@@ -34,11 +34,12 @@ flowchart TD
   S --> A[Private artifacts and advisory handoff]
 ```
 
-`schema.py` owns input contracts; `providers.py` owns observable generation;
-`engine.py` owns bounded experiment order and snapshot replay; `verification.py` owns
+`schema.py` owns input contracts; `contracts.py` owns ecosystem interoperability schemas
+and the `DescentDAG`; `providers.py` owns observable generation; `engine.py` owns bounded
+experiment order, snapshot replay, and the `explore()` workflow; `verification.py` owns
 the claim grammar, taxonomy registry, and deterministic checks; `scoring.py` owns
-lexical comparison and triage; `artifacts.py` owns run persistence; `benchmark.py`
-owns split-aware reliability evaluation; `dreamvalue.py` owns conceptual-yield
+lexical comparison and triage; `artifacts.py` owns run persistence and envelope loading;
+`benchmark.py` owns split-aware reliability evaluation; `dreamvalue.py` owns conceptual-yield
 metrics and review packets; `cli.py` owns user interaction.
 
 Benchmark definitions are versioned package data. Run artifacts are canonical;
@@ -77,3 +78,56 @@ of both files and manifest. WAKE and replay create descendants; they do not over
 One experiment has at most 500 requests; each has a timeout and output limit. No automatic
 retries or background services. A provider failure is recorded and yields PARTIAL with
 nonzero CLI exit status. Interrupted processes may leave an incomplete directory.
+
+## Controlled Native Ecosystem Architecture
+
+In Milestone Four, HowlDream connects natively into the Howl engineering loop while maintaining
+an immutable zero execution authority boundary:
+
+```mermaid
+flowchart TD
+  subgraph Orchestration ["HowlPlane (Policy & Circuit Breakers)"]
+    HP_IN[Exploration Request] --> HP_BUDGET[Budget & Circuit Breaker Guard]
+  end
+
+  subgraph Exploration ["HowlDream (Divergent Engine)"]
+    HP_BUDGET --> HD_EXP[explore() Engine]
+    HD_EXP --> HD_DAG[Descent DAG Lineage]
+    HD_EXP --> HD_ENV[Exploration Envelope]
+  end
+
+  subgraph Verification ["HowlFrame (Bytecode Evaluator)"]
+    HD_ENV --> HF_APP[candidate_evaluator.hfbc]
+    HF_APP --> HF_ASSESS[howl.assessment/v1]
+  end
+
+  subgraph Prototyping ["HowlCreate (Sandbox Development)"]
+    HF_ASSESS -->|PURSUE candidates| HC_INGEST[develop_candidate()]
+    HC_INGEST --> HC_RES[howl.development_result/v1\nEXECUTION_AUTHORITY: NONE]
+  end
+
+  subgraph Terminal ["HowlPlane Final Halting"]
+    HC_RES --> HP_HALT[HALT / Human Review Required]
+  end
+
+  subgraph Isolated ["Isolated Downstream"]
+    H_OPS[HowlChangeOps]
+    HP_HALT -.->|HARD BOUNDARY\nNo Speculative Execution| H_OPS
+  end
+
+  style Isolated stroke:#f00,stroke-dasharray: 5 5
+  style H_OPS fill:#ffebee,stroke:#c62828
+  style HP_HALT fill:#fff3e0,stroke:#ef6c00
+```
+
+### Invariants and Boundaries
+
+1. **Zero Execution Authority**:
+   - `howl.exploration_result/v1` and `howl.development_result/v1` explicitly specify `EXECUTION_AUTHORITY: NONE`.
+   - HowlDream does not execute code, alter repositories, or issue change approvals.
+2. **Strict Downstream Segregation**:
+   - `HowlChangeOps` is strictly downstream from deliberate engineering; it rejects any attempt to register execution receipts from `howldream` or `howlcreate`.
+   - The loop terminates at HowlPlane with advisory status and requires out-of-band human review before any change operation can be created.
+3. **Descent DAG Lineage**:
+   - The `DescentDAG` structure enforces cycle detection, bounded branching factor, and depth limits.
+   - All speculative candidates retain lineage pointers (`parent_candidate_id`), enabling auditability of exploratory branches.
