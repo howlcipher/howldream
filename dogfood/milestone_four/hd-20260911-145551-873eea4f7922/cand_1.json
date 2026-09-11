@@ -1,0 +1,59 @@
+{
+  "schema_version": "howl.candidate/v1",
+  "candidate_id": "hd-20260911-145551-873eea4f7922/candidates/0/1",
+  "source_run_id": "hd-20260911-145551-873eea4f7922",
+  "parent_request_id": "req-dogfood-a72d90577e",
+  "objective": "Identify one architectural weakness in the current Howl ecosystem that conventional inspection may overlook, challenge the idea, verify what can be verified, and determine whether it deserves a HowlCreate prototype.",
+  "text": "IDEA: Detect hallucination with metamorphic source-order tests; flag answers that change when independent evidence is permuted.\nASSUMPTION: the question is invariant to source order.",
+  "condition": "dream",
+  "trust": "UNVERIFIED",
+  "status": "UNRESOLVED",
+  "authority": {
+    "type": "ADVISORY",
+    "executable": false
+  },
+  "claims": [
+    {
+      "id": "hd-20260911-145551-873eea4f7922/candidates/0/1/claim/1",
+      "candidate_id": "hd-20260911-145551-873eea4f7922/candidates/0/1",
+      "kind": "IDEA",
+      "text": "Detect hallucination with metamorphic source-order tests; flag answers that change when independent evidence is permuted.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20260911-145551-873eea4f7922/candidates/0/1/claim/2",
+      "candidate_id": "hd-20260911-145551-873eea4f7922/candidates/0/1",
+      "kind": "ASSUMPTION",
+      "text": "the question is invariant to source order.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    }
+  ],
+  "evidence_refs": [
+    "howlframe_pure_capability",
+    "howlplane_human_gate",
+    "howlchangeops_receipts",
+    "howldream_speculative_boundary",
+    "howlcreate_sandbox_development"
+  ],
+  "assumptions": [
+    "the question is invariant to source order."
+  ],
+  "unresolved_issues": [
+    "the question is invariant to source order."
+  ],
+  "contradictions": [],
+  "verified_constraints": [],
+  "provenance": {
+    "request_id": "req-dogfood-a72d90577e",
+    "originating_component": "howlplane",
+    "run_id": "hd-20260911-145551-873eea4f7922",
+    "candidate_index": 1,
+    "trial": 0,
+    "model": "fixture-v1",
+    "prompt_hash": "ac099b78f4b10cf117271dc2e160dda573b147b3d7533cdcc85234c5f29a3abd",
+    "output_hash": "767d290efef178f76546d9d2782168d9055ce2b31c6ed44c93812787097aa8c4",
+    "timestamp": "2026-09-11T14:55:51.699438+00:00"
+  }
+}

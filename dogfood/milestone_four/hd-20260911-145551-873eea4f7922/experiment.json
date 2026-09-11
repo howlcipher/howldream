@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "name": "exp-req-dogfood-a72d90577e",
+  "objective": "Identify one architectural weakness in the current Howl ecosystem that conventional inspection may overlook, challenge the idea, verify what can be verified, and determine whether it deserves a HowlCreate prototype.",
+  "hypothesis": "",
+  "mode": "dream",
+  "provider": {
+    "kind": "mock",
+    "model": "fixture-v1",
+    "base_url": null,
+    "allow_remote": false,
+    "timeout_seconds": 120,
+    "max_tokens": 512
+  },
+  "baseline": {
+    "candidates": 2,
+    "temperature": 0.2
+  },
+  "generation": {
+    "candidates": 4,
+    "temperature": 1.1
+  },
+  "trials": 1,
+  "seed": 42,
+  "evidence": [
+    {
+      "id": "howlframe_pure_capability",
+      "text": "HowlFrame evaluates policies and invariants under strictly declared capabilities. Pure evaluation uses no network egress and isolated capability sandboxes.",
+      "facts": {
+        "capability": "pure",
+        "network_egress": "false"
+      }
+    },
+    {
+      "id": "howlplane_human_gate",
+      "text": "HowlPlane enforces fail-closed human authority gates before consequential actions. Speculative proposals are not permitted to self-approve or mark actions complete.",
+      "facts": {
+        "authority_gate": "fail_closed",
+        "self_approval": "prohibited"
+      }
+    },
+    {
+      "id": "howlchangeops_receipts",
+      "text": "HowlChangeOps holds execution authority for infrastructure mutations and requires tamper-evident signed execution receipts before state transitions.",
+      "facts": {
+        "execution_authority": "changeops_only",
+        "receipts": "tamper_evident"
+      }
+    },
+    {
+      "id": "howldream_speculative_boundary",
+      "text": "HowlDream generates counterfactual and speculative proposals (DREAM/NIGHTMARE/WAKE). HowlDream artifacts carry zero execution authority.",
+      "facts": {
+        "authority": "ADVISORY_ONLY",
+        "executable": "false"
+      }
+    },
+    {
+      "id": "howlcreate_sandbox_development",
+      "text": "HowlCreate deliberately develops accepted ideas into prototypes in sandbox isolation. Prototypes are non-executable designs and tests, not live production mutations.",
+      "facts": {
+        "prototype_mode": "sandbox",
+        "execution": "none"
+      }
+    }
+  ],
+  "context": [],
+  "perturbations": [
+    {
+      "kind": "omit_context",
+      "text": ""
+    },
+    {
+      "kind": "contradict_context",
+      "text": "simulated constraint failure"
+    }
+  ],
+  "retain_text": true
+}

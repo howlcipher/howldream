@@ -475,37 +475,76 @@
                     <span class="subsystem-tag">HD-MOD-ECOSYSTEM</span>
                 </div>
                 <div class="tech-body">
-                    <p>HowlDream is part of the Howl ecosystem. These are advisory relationships — HowlDream exports advisory artifacts only; no native execution path exists.</p>
+                    <p>HowlDream participates in the Howl ecosystem via controlled native integration. Exploration output is data, not authority — speculative candidates can never trigger deployment or bypass human review.</p>
+                    <div class="code-container" style="margin-top: 1rem; margin-bottom: 1.25rem;">
+                        <div class="code-header">
+                            <span class="code-title">[ARCHITECTURE // NATIVE_ECOSYSTEM_LOOP]</span>
+                            <span class="subsystem-tag" style="color: var(--color-amber);">[EXPERIMENTAL INTEGRATION]</span>
+                        </div>
+                        <pre><code>┌─────────────────────────────────────────────────────────┐
+│                        HowlPlane                        │ ◄── Orchestrates exploration within budget
+│               (Policy &amp; Circuit Breakers)               │ ─── Enforces candidate &amp; token limits
+└───────────────────────────┬─────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────┐
+│                        HowlDream                        │ ◄── DREAM / NIGHTMARE / WAKE
+│                  (Exploration Engine)                   │ ─── Emits howl.exploration_result/v1 + DescentDAG
+└───────────────────────────┬─────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────┐
+│                        HowlFrame                        │ ◄── candidate_evaluator.hfbc bytecode
+│                  (Bytecode Evaluator)                   │ ─── Validates schema &amp; structural invariants
+└───────────────────────────┬─────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────┐
+│                       HowlCreate                        │ ◄── Deliberate candidate ingestion
+│                 (Sandbox Prototyping)                   │ ─── Emits prototype (EXECUTION_AUTHORITY: NONE)
+└───────────────────────────┬─────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────┐
+│                        HowlPlane                        │ ◄── Halts exploration loop; prompts human review
+│                   (Terminal Boundary)                   │
+└─────────────────────────────────────────────────────────┘
+                            ┆
+   ═════════════════════════╧═════════════════════════ [ HARD SECURITY &amp; AUTHORITY BOUNDARY ] ═════════════════════════
+                            ┆
+                   [ HowlChangeOps ]  ◄── STRICTLY ISOLATED: Rejects speculative inputs;
+                                          never accepts HowlDream or HowlCreate receipts.</code></pre>
+                    </div>
                     <div class="node-directory-grid">
                         <div class="dir-card" style="border-top: 3px solid var(--color-blue);">
                             <div class="dir-card-header">
                                 <span class="dir-card-title">HowlPlane</span>
                             </div>
-                            <p class="dir-card-desc">Orchestrates engineering work. May evaluate an advisory run; no native adapter implemented.</p>
+                            <p class="dir-card-desc">Orchestrates engineering work. Native HowlDreamRunner enforces policy, budgets, and halts before execution.</p>
                         </div>
                         <div class="dir-card" style="border-top: 3px solid var(--color-amber);">
                             <div class="dir-card-header">
                                 <span class="dir-card-title">HowlCreate</span>
                             </div>
-                            <p class="dir-card-desc">Deliberate invention through creative search. HowlCreate invents intentionally; HowlDream explores speculatively.</p>
+                            <p class="dir-card-desc">Deliberate invention through creative search. Native candidate ingestion produces sandbox prototypes without execution authority.</p>
                         </div>
                         <div class="dir-card" style="border-top: 3px solid var(--color-magenta);">
                             <div class="dir-card-header">
                                 <span class="dir-card-title">HowlFrame</span>
                             </div>
-                            <p class="dir-card-desc">Capability-bounded language and runtime. Future bounded verification programs, not a general factual-truth service.</p>
+                            <p class="dir-card-desc">Capability-bounded language and runtime. Native candidate_evaluator bytecode validates structural invariants and claims.</p>
                         </div>
                         <div class="dir-card" style="border-top: 3px solid var(--color-red);">
                             <div class="dir-card-header">
                                 <span class="dir-card-title">HowlChangeOps</span>
                             </div>
-                            <p class="dir-card-desc">Governed release execution. Sole relevant release boundary; no Dream-to-execution path.</p>
+                            <p class="dir-card-desc">Governed release execution. Sole relevant release boundary; hard negative check rejects speculative execution receipts.</p>
                         </div>
                         <div class="dir-card" style="border-top: 3px solid var(--color-cyan);">
                             <div class="dir-card-header">
                                 <span class="dir-card-title">HowlRelay</span>
                             </div>
-                            <p class="dir-card-desc">Carries work state and handoffs. May carry run pointers and unresolved work; not a Dream persistence dependency.</p>
+                            <p class="dir-card-desc">Carries work state and handoffs. Native HowlDreamCollector gathers exploration evidence into the relay store.</p>
                         </div>
                         <div class="dir-card" style="border-top: 3px solid var(--color-magenta);">
                             <div class="dir-card-header">
@@ -514,7 +553,7 @@
                             <p class="dir-card-desc">Communicates reviewed knowledge. Claims begin unverified, as in its own domain model.</p>
                         </div>
                     </div>
-                    <p style="margin-top: 1rem;">Milestone one exports advisory files; native adapters remain future work. HowlFrame is a language and runtime, not a general fact oracle. HowlDream is not included in the default Howl installer.</p>
+                    <p style="margin-top: 1rem;">Milestone Four provides controlled native adapters across HowlPlane, HowlFrame, HowlCreate, and HowlRelay while enforcing zero execution authority. HowlDream is not included in the default Howl installer.</p>
                     <p><a href="https://howlcipher.github.io/howl/ecosystem.html">Explore the Howl ecosystem</a></p>
                 </div>
             </section>

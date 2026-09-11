@@ -1,0 +1,59 @@
+{
+  "schema_version": "howl.candidate/v1",
+  "candidate_id": "hd-20260911-145551-873eea4f7922/candidates/0/3",
+  "source_run_id": "hd-20260911-145551-873eea4f7922",
+  "parent_request_id": "req-dogfood-a72d90577e",
+  "objective": "Identify one architectural weakness in the current Howl ecosystem that conventional inspection may overlook, challenge the idea, verify what can be verified, and determine whether it deserves a HowlCreate prototype.",
+  "text": "IDEA: Detect hallucination through source-deletion sensitivity; remove cited evidence and measure whether confidence falls.\nASSUMPTION: confidence wording reflects uncertainty.",
+  "condition": "dream",
+  "trust": "UNVERIFIED",
+  "status": "UNRESOLVED",
+  "authority": {
+    "type": "ADVISORY",
+    "executable": false
+  },
+  "claims": [
+    {
+      "id": "hd-20260911-145551-873eea4f7922/candidates/0/3/claim/1",
+      "candidate_id": "hd-20260911-145551-873eea4f7922/candidates/0/3",
+      "kind": "IDEA",
+      "text": "Detect hallucination through source-deletion sensitivity; remove cited evidence and measure whether confidence falls.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20260911-145551-873eea4f7922/candidates/0/3/claim/2",
+      "candidate_id": "hd-20260911-145551-873eea4f7922/candidates/0/3",
+      "kind": "ASSUMPTION",
+      "text": "confidence wording reflects uncertainty.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    }
+  ],
+  "evidence_refs": [
+    "howlframe_pure_capability",
+    "howlplane_human_gate",
+    "howlchangeops_receipts",
+    "howldream_speculative_boundary",
+    "howlcreate_sandbox_development"
+  ],
+  "assumptions": [
+    "confidence wording reflects uncertainty."
+  ],
+  "unresolved_issues": [
+    "confidence wording reflects uncertainty."
+  ],
+  "contradictions": [],
+  "verified_constraints": [],
+  "provenance": {
+    "request_id": "req-dogfood-a72d90577e",
+    "originating_component": "howlplane",
+    "run_id": "hd-20260911-145551-873eea4f7922",
+    "candidate_index": 3,
+    "trial": 0,
+    "model": "fixture-v1",
+    "prompt_hash": "0a946876515aea08c6e166e36a123f12038666052078dcb0771a2d195a8eaed6",
+    "output_hash": "68048119437dede917e6c0c63acf158cd0316010726588af273637162ce751cc",
+    "timestamp": "2026-09-11T14:55:51.699635+00:00"
+  }
+}

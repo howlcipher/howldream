@@ -1,0 +1,63 @@
+{
+  "schema": "howldream.run/v1",
+  "run_id": "hd-20260911-145551-873eea4f7922",
+  "experiment_id": "ce355d04d9ceb6652843ab7a6ff09243a64c50242728ef4e6e4f79a3936e2277",
+  "version": "0.4.0",
+  "git_commit": "bf830610b885cefe048c9f284d4263204a0cc37c",
+  "implementation_hash": "fab0157a130397e6765b95ed64a235f523bcad20b91b312d13d41df07ce560fe",
+  "mode": "dream",
+  "started_at": "2026-09-11T14:55:51.670827+00:00",
+  "provider": {
+    "kind": "mock",
+    "model": "fixture-v1",
+    "base_url": null,
+    "allow_remote": false,
+    "timeout_seconds": 120,
+    "max_tokens": 512
+  },
+  "capabilities": {
+    "supports_seed": true,
+    "supports_logprobs": false,
+    "supports_tool_calls": false,
+    "supports_structured_output": false,
+    "supports_token_usage": false,
+    "supports_local_instrumentation": false
+  },
+  "authority": "NONE",
+  "parent_run": null,
+  "status": "COMPLETE",
+  "errors": [],
+  "template_version": "line_experiment/v1",
+  "template_hash": "8096777d16cf15dcd68f34f709eeb4f81e1b983ba58fdda00c8008f2aa7add7b",
+  "source_hashes": {
+    "howlframe_pure_capability": "8e8571651122cf5265880b4d4d93ba943d76592e3d5d9f5b63ac3b5f3c9c3b58",
+    "howlplane_human_gate": "7d1f19c4742c57144d170f0c479d74434cb7cd2142fd63f5d0cf93e27af2fd28",
+    "howlchangeops_receipts": "6cadfaa7d2e666ca7ff0c788d2b98ed13f62fcf562e89fb1f4d75824e402fb60",
+    "howldream_speculative_boundary": "c50708b834a6ee4bf5ede8982ba4ed7867c95849911e7205d5a50e043c6341ea",
+    "howlcreate_sandbox_development": "b3bc618ce519bddb437eb13aa8988fb88b9e8e94d19767eb3280e867b9c2f17d"
+  },
+  "replay": "EXACT_OUTPUT_REPLAY",
+  "replay_available": true,
+  "warnings": [
+    "Verification is scoped to supplied evidence; generated text has no authority."
+  ],
+  "analysis": {
+    "version": "0.4.0",
+    "implementation_hash": "fab0157a130397e6765b95ed64a235f523bcad20b91b312d13d41df07ce560fe",
+    "analyzed_at": "2026-09-11T14:55:51.672206+00:00",
+    "git_commit": "bf830610b885cefe048c9f284d4263204a0cc37c"
+  },
+  "completed_at": "2026-09-11T14:55:51.678875+00:00",
+  "file_hashes": {
+    "baseline.jsonl": "96074acee8022547ec87e472e03469637ee5c1d6cd1100c01d9030de00ebb3da",
+    "candidates.jsonl": "f787f865e609cdd47f3325d644cdf5110c4f7581f8e57091f12a368fc54e19db",
+    "claims.jsonl": "071a71bd6bfd89d7f0d19624fa9441820fcd22c2ade65ad752b47c1488eb8f8f",
+    "experiment.json": "b7bd7690ddfa5f7dc713ecb6fbe324755b9d5d2f1f5a0df38682fb88de7005d9",
+    "handoff.json": "480c5b572300e51bc6cf91ef4e351b8da447367530fed00cd8c0cccbf7d60acf",
+    "metrics.json": "d054188879ece8181077b0d09fcfad00585fc1a8cb6394f78947e93186db97b8",
+    "report.md": "daa087af13fd2b1d627a57321432a39047659d5855171d983c4c416a99770ee3",
+    "scores.json": "61f47aaf3cd2d26b69f129c9411708375366ae2a3fdbe492abb538da1ffe917e",
+    "verification.jsonl": "6a67979ce5229ad7b2a0b900664789fb7fe518add4b71c88307877d2c58f9f2c",
+    "exploration_envelope.json": "cd4e5b38cdce180b4f4239787c8708f2fa21177f9d000a056a1270dd73fa472b"
+  }
+}
