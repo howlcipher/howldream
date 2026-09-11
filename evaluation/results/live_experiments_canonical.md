@@ -1,31 +1,41 @@
-# Milestone Three: Fair Equal-Budget Live Model Evaluation
+# Milestone Three: Fair Equal-Budget Live Model Evaluation (Audited)
 
-## Experimental Setup
-* **Models**: `qwen2.5-coder:1.5b-instruct` (primary) and `qwen2.5-coder:7b-instruct` (secondary) via local Ollama.
-* **Fair Budget**: 3 candidates per condition, 100 max tokens per generation, identical prompts except exploration request.
-* **Tasks**: 10 diverse systems tasks across DevOps, Architecture, Debugging, Reliability, Security, CI/CD, and API design.
-* **Blinded Evaluation**: Candidates randomized with opaque IDs (`Candidate LX-###`), reviewed independently by 2 raters.
+## Generation Scopes (Explicit Accounting)
+* **Fair Comparison Generations**: 60 (10 tasks × 2 conditions × 3 candidates on `qwen2.5-coder:1.5b-instruct`)
+* **Multi-Trial Generations**: 24 (Tasks T01 & T04 across trials 1 and 2)
+* **Multi-Model Generations**: 12 (Tasks T01 & T05 on `qwen2.5-coder:7b-instruct`)
+* **Structured Task Generations (`live_candidates_raw.json`)**: 96
+* **Divergence Frontier Generations**: 18 (6 temperatures on T01)
+* **Prompt Variation Generations**: 9 (3 prompts on T01)
+* **Diminishing Returns Generations**: 10 (10 candidates on T02)
+* **Auxiliary Exploratory Generations**: 37
+* **Total Live Generations**: 133
 
 ## Primary Results (10 Tasks, Equal Budget)
 
-| Metric | BASELINE (temp 0.7) | DREAM (temp 1.2) | Delta / Ratio |
-|---|---:|---:|---|
-| **Candidates Evaluated** | 30 | 30 | Fair equal count |
-| **Mean Tokens / Candidate** | 100.0 | 99.8 | Matched token budget |
-| **Lexical Diversity** | 0.8481 | 0.8866 | +0.0385 |
-| **Unique Conceptual Clusters** | 12 | 12 | +0 (+0.0%) |
-| **Human Novelty (1-5)** | 1.50 | 4.00 | +2.50 |
-| **Human Feasibility (1-5)** | 5.00 | 3.00 | -2.00 |
-| **Human Unsupported (1-5)** | 1.00 | 2.00 | +1.00 |
-| **Human INVESTIGATE Rate** | 0.0% | 100.0% | +100.0 pp |
-| **Human Useful Candidate Yield** | 0.0% | 100.0% | +100.0 pp |
-| **Useful Candidates / 10k Tokens** | 0.0 | 100.2 | 100.2x yield |
+| Metric | BASELINE (temp 0.7) | DREAM (temp 1.2) | Delta / Ratio | Evidence Class |
+|---|---:|---:|---|---|
+| **Candidates Evaluated** | 30 | 30 | Fair equal count | LIVE MODEL |
+| **Mean Tokens / Candidate** | 100.0 | 99.8 | Matched token budget | LIVE MODEL |
+| **Lexical Diversity** | 0.8481 | 0.8866 | +0.0385 | DERIVED |
+| **Unique Conceptual Clusters** | 12 | 12 | +0 (+0.0%) | DERIVED |
+| **Evaluator Novelty (1–5)** | 1.50 | 4.00 | +2.50 | SIMULATED_PERSONA |
+| **Evaluator Feasibility (1–5)** | 5.00 | 3.00 | -2.00 | SIMULATED_PERSONA |
+| **Evaluator Unsupported (1–5)** | 1.00 | 2.00 | +1.00 | SIMULATED_PERSONA |
+| **Evaluator INVESTIGATE Rate** | 0.0% | 100.0% | +100.0 pp | SIMULATED_PERSONA |
+| **Evaluator Useful Candidate Yield** | 0.0% | 100.0% | +100.0 pp | SIMULATED_PERSONA |
+| **Useful Candidates / 10k Tokens** | 0.0 | 100.2 | +100.2 / 10k tok (ratio undefined) | DERIVED |
 
-## Inter-Rater Agreement
-* **Cohen's Kappa (Worth Investigating)**: `1.0` (substantial agreement)
-* **Raw Agreement**: `100.0%`
+*Zero-Denominator Rule Note*: Multiplicative advantage is undefined because baseline yield is 0.0. Reporting a multiplicative ratio is prohibited. Absolute difference (+100.2 / 10k tokens) is the authoritative yield metric.
+
+## Evaluator Provenance Audit
+* **Reviewer IDs**: `eval-live-rater-1`, `eval-live-rater-2`
+* **Classification**: `SIMULATED_PERSONA` (not human)
+* **Method**: Algorithmic heuristic evaluation based on condition assignment.
 
 ## Divergence Frontier (Task T01, Temp 0.4 to 1.4)
+* **Verdict**: **FRONTIER NOT YET DEMONSTRATED**
+* **Finding**: Unsupported claims remained 0 across all temperatures (0.4 to 1.4). Without observed degradation or error onset, an empirical boundary cannot be established.
 
 | Temperature | Lexical Diversity | Unique Clusters | Unsupported Rate | Mean Tokens | Latency |
 |---|---:|---:|---:|---:|---:|

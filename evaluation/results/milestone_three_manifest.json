@@ -1,0 +1,221 @@
+{
+  "schema": "howldream.milestone_manifest/v1",
+  "milestone": "3.1",
+  "mission": "Evidence Integrity Audit & Claim Reconciliation",
+  "generated_at": "2026-09-11T14:16:01Z",
+  "code_sha": "d6b5372416c823ca6ca97bbae485d9de3ab9874b",
+  "promotion_decision": "PROMOTE WITH CONDITIONS",
+  "promotion_conditions": [
+    "Independent Blinded Human Evaluation Gate: Obtain genuine independent blinded human review before publishing or relying on claims of human-validated superiority or human preference.",
+    "Divergence Frontier Claim Withheld: Frontier remains NOT YET DEMONSTRATED until stress tests exhibit actual error onset.",
+    "Zero-Denominator Multiplicative Ratio Prohibition: Absolute yield (+100.2 / 10k tokens) must be reported instead of undefined ratios (e.g., 3.37x).",
+    "Controlled Ecosystem Integration Scope: Authorize preliminary integrations (HowlPlane exploratory divergence policy, HowlCreate advisory candidate handoff, HowlFrame typed IR verification contracts) under strict advisory boundaries."
+  ],
+  "evidence_classes_legend": {
+    "DETERMINISTIC": "Derived entirely from deterministic fixtures/checks against supplied evidence and arithmetic.",
+    "LIVE MODEL": "Generated through actual local model inference (Ollama).",
+    "HUMAN REVIEW": "Produced by actual humans (None currently in Milestone Three).",
+    "MODEL REVIEW": "Produced by an AI model evaluator.",
+    "SIMULATED / CALIBRATION": "Authored or synthesized via heuristic evaluator personas.",
+    "DERIVED": "Calculated deterministically from other immutable artifacts."
+  },
+  "artifacts": [
+    {
+      "artifact_id": "dreambench_0_2_0_regression",
+      "experiment_name": "DreamBench 0.2.0 Legacy Regression Protection",
+      "evidence_class": "DETERMINISTIC",
+      "source_files": [
+        "src/howldream/fixtures/dreambench_v0_2_0.json",
+        "evaluation/results/dreambench_0.2.0_all.json"
+      ],
+      "cases_count": 156,
+      "claims_count": 312,
+      "metrics": {
+        "tp": 52,
+        "fp": 0,
+        "tn": 234,
+        "fn": 26,
+        "recall": 0.6667,
+        "precision": 1.0,
+        "f1": 0.8,
+        "regressions": 0
+      },
+      "human_evaluated": false
+    },
+    {
+      "artifact_id": "dreambench_0_3_0_pre_improvement",
+      "experiment_name": "DreamBench 0.3.0 Pre-Improvement Baseline (Legacy Line Grammar)",
+      "evidence_class": "DETERMINISTIC / DERIVED",
+      "source_files": [
+        "src/howldream/fixtures/dreambench_v0_3_0.json",
+        "evaluation/results/dreambench_0.3.0_baseline_pre_improvement.json"
+      ],
+      "cases_count": 84,
+      "claims_count": 186,
+      "splits": {
+        "overall_all": {
+          "cases": 84,
+          "claims": 186,
+          "tp": 9,
+          "fp": 1,
+          "tn": 143,
+          "fn": 33,
+          "recall": 0.2143,
+          "precision": 0.9,
+          "f1": 0.3462
+        },
+        "development": {
+          "cases": 36,
+          "claims": 80,
+          "tp": 4,
+          "fp": 1,
+          "tn": 61,
+          "fn": 14,
+          "recall": 0.2222,
+          "precision": 0.8,
+          "f1": 0.3478
+        }
+      },
+      "human_evaluated": false
+    },
+    {
+      "artifact_id": "dreambench_0_3_0_generalized",
+      "experiment_name": "DreamBench 0.3.0 Independent Natural-Language Prose Generalization",
+      "evidence_class": "DETERMINISTIC / DERIVED",
+      "source_files": [
+        "src/howldream/fixtures/dreambench_v0_3_0.json",
+        "evaluation/results/dreambench_0.3.0_all.json"
+      ],
+      "cases_count": 84,
+      "claims_count": 186,
+      "metrics": {
+        "tp": 36,
+        "fp": 9,
+        "tn": 135,
+        "fn": 6,
+        "recall": 0.8571,
+        "precision": 0.8,
+        "f1": 0.8276,
+        "extraction_misses": 3,
+        "normalization_errors": 3,
+        "verifier_misses": 0,
+        "classifier_errors": 0
+      },
+      "human_evaluated": false
+    },
+    {
+      "artifact_id": "dreamvalue_simulated_evaluation",
+      "experiment_name": "DreamValue 0.1.0 Blinded Multi-Rater Evaluator Study",
+      "evidence_class": "SIMULATED / CALIBRATION",
+      "source_files": [
+        "src/howldream/fixtures/dreamvalue_suite_v0_1_0.json",
+        "evaluation/results/dreamvalue_human_reviews.json",
+        "evaluation/results/dreamvalue_results.json"
+      ],
+      "candidates_count": 480,
+      "tasks_count": 24,
+      "reviews_count": 1060,
+      "reviewer_provenance": "SIMULATED_PERSONA",
+      "human_evaluated": false,
+      "metrics": {
+        "baseline_investigate_rate": 0.1208,
+        "dream_investigate_rate": 0.7208,
+        "mean_cohen_kappa": 0.6154,
+        "raw_agreement": 0.7497,
+        "fleiss_kappa": 0.5558
+      }
+    },
+    {
+      "artifact_id": "live_fair_comparison",
+      "experiment_name": "Fair Equal-Budget Live Model Experiment (Ollama 1.5B)",
+      "evidence_class": "LIVE MODEL (Generations) / SIMULATED_PERSONA (Evaluation)",
+      "source_files": [
+        "evaluation/results/live_candidates_raw.json",
+        "evaluation/results/live_blind_reviews.json",
+        "evaluation/results/live_experiments_canonical.json"
+      ],
+      "model": "qwen2.5-coder:1.5b-instruct",
+      "tasks_count": 10,
+      "candidates_count": 60,
+      "human_evaluated": false,
+      "metrics": {
+        "baseline_candidates": 30,
+        "dream_candidates": 30,
+        "baseline_mean_tokens": 100.0,
+        "dream_mean_tokens": 99.8,
+        "baseline_lexical_diversity": 0.8481,
+        "dream_lexical_diversity": 0.8866,
+        "baseline_conceptual_clusters": 12,
+        "dream_conceptual_clusters": 12,
+        "cluster_delta": 0,
+        "cluster_percentage_delta": 0.0,
+        "baseline_investigate_rate": 0.0,
+        "dream_investigate_rate": 1.0,
+        "baseline_useful_candidates_per_10k_tokens": 0.0,
+        "dream_useful_candidates_per_10k_tokens": 100.2,
+        "useful_yield_per_10k_tokens_delta": 100.2,
+        "useful_yield_multiplicative_ratio": null
+      }
+    },
+    {
+      "artifact_id": "live_temperature_sweep",
+      "experiment_name": "One-Variable-at-a-Time Temperature Sweep (Frontier Audit)",
+      "evidence_class": "LIVE MODEL",
+      "source_files": [
+        "evaluation/results/.live_cache.json",
+        "evaluation/results/live_experiments_canonical.json"
+      ],
+      "model": "qwen2.5-coder:1.5b-instruct",
+      "task_id": "T01_db_migration",
+      "temperatures": [
+        0.4,
+        0.6,
+        0.8,
+        1.0,
+        1.2,
+        1.4
+      ],
+      "candidates_count": 18,
+      "frontier_verdict": "FRONTIER NOT YET DEMONSTRATED",
+      "unsupported_rate_across_all_temps": 0.0,
+      "human_evaluated": false
+    },
+    {
+      "artifact_id": "live_diminishing_returns",
+      "experiment_name": "Candidate-Count Diminishing Returns Sweep",
+      "evidence_class": "LIVE MODEL",
+      "source_files": [
+        "evaluation/results/.live_cache.json",
+        "evaluation/results/live_experiments_canonical.json"
+      ],
+      "model": "qwen2.5-coder:1.5b-instruct",
+      "task_id": "T02_cross_dc",
+      "pool_sizes": [
+        3,
+        5,
+        8,
+        10
+      ],
+      "marginal_yields": [
+        1.0,
+        0.8,
+        0.75,
+        0.7
+      ],
+      "human_evaluated": false
+    },
+    {
+      "artifact_id": "milestone_three_dogfood_audit",
+      "experiment_name": "Milestone Three Methodological Self-Audit (DREAM/NIGHTMARE/WAKE)",
+      "evidence_class": "LIVE MODEL / DETERMINISTIC (WAKE)",
+      "source_files": [
+        "dogfood/milestone_three/hd-20260911-133938-46b01c0d3a79",
+        "dogfood/milestone_three/hd-20260911-133947-9f7fb3e42e1a",
+        "dogfood/milestone_three/hd-20260911-140943-2051d2df78c6",
+        "dogfood/milestone_three/hd-20260911-140957-c0e39d85cfd0"
+      ],
+      "model": "qwen2.5-coder:1.5b-instruct",
+      "human_evaluated": false
+    }
+  ]
+}

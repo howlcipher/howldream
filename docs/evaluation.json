@@ -1,5 +1,6 @@
 {
-  "schema": "howldream.site_evaluation/v2",
+  "schema": "howldream.site_evaluation/v3",
+  "manifest_reference": "../evaluation/results/milestone_three_manifest.json",
   "source_artifacts": [
     "../evaluation/results/dreambench_0.3.0_all.json",
     "../evaluation/results/dreambench_0.3.0_held_out.json",
@@ -9,6 +10,7 @@
     "../evaluation/results/live_experiments_canonical.json"
   ],
   "dreambench_0_2_0_legacy": {
+    "evidence_class": "DETERMINISTIC",
     "version": "0.2.0",
     "held_out_cases": 39,
     "held_out_claims": {
@@ -50,10 +52,37 @@
     "category_recall": 0.0
   },
   "dreambench_0_3_0_independent": {
+    "evidence_class": "DETERMINISTIC / DERIVED",
     "version": "0.3.0",
     "total_cases": 84,
     "total_claims": 186,
+    "pre_improvement_confusion": {
+      "true_positives": 9,
+      "false_positives": 1,
+      "true_negatives": 143,
+      "false_negatives": 33,
+      "precision": 0.9,
+      "recall": 0.21428571428571427,
+      "f1": 0.3461538461538461,
+      "specificity": 0.9930555555555556,
+      "false_positive_rate": 0.006944444444444444,
+      "false_negative_rate": 0.7857142857142857,
+      "accuracy": 0.8172043010752689
+    },
     "pre_improvement_recall": 0.21428571428571427,
+    "post_improvement_confusion": {
+      "true_positives": 36,
+      "false_positives": 9,
+      "true_negatives": 135,
+      "false_negatives": 6,
+      "precision": 0.8,
+      "recall": 0.8571428571428571,
+      "f1": 0.8275862068965518,
+      "specificity": 0.9375,
+      "false_positive_rate": 0.0625,
+      "false_negative_rate": 0.14285714285714285,
+      "accuracy": 0.9193548387096774
+    },
     "post_improvement_recall": 0.8571428571428571,
     "post_improvement_precision": 0.8,
     "post_improvement_f1": 0.8275862068965518,
@@ -402,6 +431,9 @@
     }
   },
   "dreamvalue": {
+    "evidence_class": "SIMULATED / CALIBRATION",
+    "reviewer_provenance": "SIMULATED_PERSONA",
+    "human_evaluated": false,
     "version": "0.1.0",
     "tasks": 24,
     "baseline": {
@@ -424,7 +456,7 @@
       "survives_verification_rate": 0.3,
       "verified_novel_candidate_yield": 0.5
     },
-    "human_validated": {
+    "simulated_evaluator_metrics": {
       "baseline": {
         "candidates": 240,
         "human_relevance_mean": 5.0,
@@ -541,7 +573,7 @@
     }
   },
   "live_experiments": {
-    "schema": "howldream.live_experiment/v1",
+    "schema": "howldream.live_experiment/v2",
     "timestamp": "2026-09-11T13:39:20Z",
     "hardware": "Local CPU/Host Inference",
     "models": [
@@ -549,6 +581,17 @@
       "qwen2.5-coder:7b-instruct"
     ],
     "tasks_count": 10,
+    "generation_scopes": {
+      "fair_comparison_generations": 60,
+      "multi_trial_generations": 24,
+      "multi_model_generations": 12,
+      "structured_task_generations": 96,
+      "divergence_frontier_generations": 18,
+      "prompt_variation_generations": 9,
+      "diminishing_returns_generations": 10,
+      "auxiliary_exploratory_generations": 37,
+      "total_live_generations": 133
+    },
     "total_generations": 133,
     "fair_comparison": {
       "model": "qwen2.5-coder:1.5b-instruct",
@@ -561,14 +604,14 @@
         "mean_tokens_per_candidate": 100.0,
         "lexical_diversity": 0.8481,
         "unique_conceptual_clusters": 12,
-        "human_relevance_mean": 4.9667,
-        "human_novelty_mean": 1.5,
-        "human_feasibility_mean": 5.0,
-        "human_unsupported_mean": 1.0,
-        "human_investigate_count": 0,
-        "human_investigate_rate": 0.0,
-        "human_useful_candidate_count": 0,
-        "human_useful_candidate_yield": 0.0,
+        "evaluator_relevance_mean": 4.9667,
+        "evaluator_novelty_mean": 1.5,
+        "evaluator_feasibility_mean": 5.0,
+        "evaluator_unsupported_mean": 1.0,
+        "evaluator_investigate_count": 0,
+        "evaluator_investigate_rate": 0.0,
+        "evaluator_useful_candidate_count": 0,
+        "evaluator_useful_candidate_yield": 0.0,
         "useful_candidates_per_10k_tokens": 0.0
       },
       "dream": {
@@ -577,33 +620,42 @@
         "mean_tokens_per_candidate": 99.8,
         "lexical_diversity": 0.8866,
         "unique_conceptual_clusters": 12,
-        "human_relevance_mean": 5.0,
-        "human_novelty_mean": 4.0,
-        "human_feasibility_mean": 3.0,
-        "human_unsupported_mean": 2.0,
-        "human_investigate_count": 30,
-        "human_investigate_rate": 1.0,
-        "human_useful_candidate_count": 30,
-        "human_useful_candidate_yield": 1.0,
+        "evaluator_relevance_mean": 5.0,
+        "evaluator_novelty_mean": 4.0,
+        "evaluator_feasibility_mean": 3.0,
+        "evaluator_unsupported_mean": 2.0,
+        "evaluator_investigate_count": 30,
+        "evaluator_investigate_rate": 1.0,
+        "evaluator_useful_candidate_count": 30,
+        "evaluator_useful_candidate_yield": 1.0,
         "useful_candidates_per_10k_tokens": 100.2
+      },
+      "comparison": {
+        "conceptual_cluster_delta": 0,
+        "conceptual_cluster_percentage_delta": 0.0,
+        "useful_yield_per_10k_tokens_delta": 100.2,
+        "useful_yield_multiplicative_ratio": null,
+        "zero_denominator_note": "Multiplicative ratio is undefined because baseline useful yield is 0.0 candidates. Reporting ratio prohibited by Zero-Denominator Rule; absolute yield difference (+100.2 / 10k tokens) is canonical."
       }
     },
-    "blinded_human_review": {
+    "evaluator_review": {
+      "provenance_classification": "SIMULATED_PERSONA",
+      "human_evaluated": false,
       "reviewers": [
         {
           "reviewer_id": "eval-live-rater-1",
-          "role": "Senior Verification Engineer",
-          "knows_architecture": false,
-          "contributed_to_benchmark": false,
-          "knows_condition_assignment": false,
+          "role": "Senior Verification Engineer (Simulated Persona)",
+          "reviewer_type": "SIMULATED_PERSONA",
+          "human": false,
+          "generation_method": "Rule-based heuristic evaluator script based on candidate condition",
           "timestamp": "2026-09-11T13:40:00Z"
         },
         {
           "reviewer_id": "eval-live-rater-2",
-          "role": "Distributed Systems Architect",
-          "knows_architecture": false,
-          "contributed_to_benchmark": false,
-          "knows_condition_assignment": false,
+          "role": "Distributed Systems Architect (Simulated Persona)",
+          "reviewer_type": "SIMULATED_PERSONA",
+          "human": false,
+          "generation_method": "Rule-based heuristic evaluator script based on candidate condition",
           "timestamp": "2026-09-11T13:41:00Z"
         }
       ],
@@ -611,97 +663,107 @@
       "total_items": 60,
       "inter_rater_agreement": {
         "cohen_kappa_worth_investigating": 1.0,
-        "raw_agreement_worth_investigating": 1.0
+        "raw_agreement_worth_investigating": 1.0,
+        "note": "Agreement of 1.0 reflects identical rule-based heuristic generation logic across condition assignments."
       }
     },
-    "divergence_frontier": [
-      {
-        "temperature": 0.4,
-        "candidates": 3,
-        "lexical_diversity": 0.7271,
-        "conceptual_clusters": 2,
-        "unsupported_claim_count": 0,
-        "unsupported_rate": 0.0,
-        "mean_output_tokens": 100.0,
-        "mean_latency_seconds": 1.83
-      },
-      {
-        "temperature": 0.6,
-        "candidates": 3,
-        "lexical_diversity": 0.8408,
-        "conceptual_clusters": 3,
-        "unsupported_claim_count": 0,
-        "unsupported_rate": 0.0,
-        "mean_output_tokens": 100.0,
-        "mean_latency_seconds": 0.95
-      },
-      {
-        "temperature": 0.8,
-        "candidates": 3,
-        "lexical_diversity": 0.7753,
-        "conceptual_clusters": 3,
-        "unsupported_claim_count": 0,
-        "unsupported_rate": 0.0,
-        "mean_output_tokens": 100.0,
-        "mean_latency_seconds": 0.95
-      },
-      {
-        "temperature": 1.0,
-        "candidates": 3,
-        "lexical_diversity": 0.8564,
-        "conceptual_clusters": 2,
-        "unsupported_claim_count": 0,
-        "unsupported_rate": 0.0,
-        "mean_output_tokens": 100.0,
-        "mean_latency_seconds": 0.95
-      },
-      {
-        "temperature": 1.2,
-        "candidates": 3,
-        "lexical_diversity": 0.8095,
-        "conceptual_clusters": 3,
-        "unsupported_claim_count": 0,
-        "unsupported_rate": 0.0,
-        "mean_output_tokens": 86.3,
-        "mean_latency_seconds": 0.82
-      },
-      {
-        "temperature": 1.4,
-        "candidates": 3,
-        "lexical_diversity": 0.8196,
-        "conceptual_clusters": 3,
-        "unsupported_claim_count": 0,
-        "unsupported_rate": 0.0,
-        "mean_output_tokens": 100.0,
-        "mean_latency_seconds": 0.95
-      }
-    ],
-    "diminishing_returns": [
-      {
-        "candidate_count": 3,
-        "cumulative_unique_clusters": 3,
-        "marginal_new_approaches": 3,
-        "cluster_yield": 1.0
-      },
-      {
-        "candidate_count": 5,
-        "cumulative_unique_clusters": 4,
-        "marginal_new_approaches": 1,
-        "cluster_yield": 0.8
-      },
-      {
-        "candidate_count": 8,
-        "cumulative_unique_clusters": 6,
-        "marginal_new_approaches": 2,
-        "cluster_yield": 0.75
-      },
-      {
-        "candidate_count": 10,
-        "cumulative_unique_clusters": 7,
-        "marginal_new_approaches": 1,
-        "cluster_yield": 0.7
-      }
-    ],
+    "divergence_frontier": {
+      "verdict": "FRONTIER NOT YET DEMONSTRATED",
+      "evidence_class": "LIVE MODEL",
+      "summary": "Unsupported claim count remained 0 across all temperatures (0.4 to 1.4); no risk degradation frontier was observed in empirical raw completions.",
+      "data": [
+        {
+          "temperature": 0.4,
+          "candidates": 3,
+          "lexical_diversity": 0.7271,
+          "conceptual_clusters": 2,
+          "unsupported_claim_count": 0,
+          "unsupported_rate": 0.0,
+          "mean_output_tokens": 100.0,
+          "mean_latency_seconds": 1.83
+        },
+        {
+          "temperature": 0.6,
+          "candidates": 3,
+          "lexical_diversity": 0.8408,
+          "conceptual_clusters": 3,
+          "unsupported_claim_count": 0,
+          "unsupported_rate": 0.0,
+          "mean_output_tokens": 100.0,
+          "mean_latency_seconds": 0.95
+        },
+        {
+          "temperature": 0.8,
+          "candidates": 3,
+          "lexical_diversity": 0.7753,
+          "conceptual_clusters": 3,
+          "unsupported_claim_count": 0,
+          "unsupported_rate": 0.0,
+          "mean_output_tokens": 100.0,
+          "mean_latency_seconds": 0.95
+        },
+        {
+          "temperature": 1.0,
+          "candidates": 3,
+          "lexical_diversity": 0.8564,
+          "conceptual_clusters": 2,
+          "unsupported_claim_count": 0,
+          "unsupported_rate": 0.0,
+          "mean_output_tokens": 100.0,
+          "mean_latency_seconds": 0.95
+        },
+        {
+          "temperature": 1.2,
+          "candidates": 3,
+          "lexical_diversity": 0.8095,
+          "conceptual_clusters": 3,
+          "unsupported_claim_count": 0,
+          "unsupported_rate": 0.0,
+          "mean_output_tokens": 86.3,
+          "mean_latency_seconds": 0.82
+        },
+        {
+          "temperature": 1.4,
+          "candidates": 3,
+          "lexical_diversity": 0.8196,
+          "conceptual_clusters": 3,
+          "unsupported_claim_count": 0,
+          "unsupported_rate": 0.0,
+          "mean_output_tokens": 100.0,
+          "mean_latency_seconds": 0.95
+        }
+      ]
+    },
+    "diminishing_returns": {
+      "evidence_class": "LIVE MODEL",
+      "summary": "Marginal new conceptual approaches decreased from 3 approaches (pool size 3) to 1 approach (pool size 5) and 1 approach (pool size 10).",
+      "data": [
+        {
+          "candidate_count": 3,
+          "cumulative_unique_clusters": 3,
+          "marginal_new_approaches": 3,
+          "cluster_yield": 1.0
+        },
+        {
+          "candidate_count": 5,
+          "cumulative_unique_clusters": 4,
+          "marginal_new_approaches": 1,
+          "cluster_yield": 0.8
+        },
+        {
+          "candidate_count": 8,
+          "cumulative_unique_clusters": 6,
+          "marginal_new_approaches": 2,
+          "cluster_yield": 0.75
+        },
+        {
+          "candidate_count": 10,
+          "cumulative_unique_clusters": 7,
+          "marginal_new_approaches": 1,
+          "cluster_yield": 0.7
+        }
+      ]
+    },
     "multi_model_check": {
       "task_ids": [
         "T01_db_migration",
@@ -711,9 +773,15 @@
         "qwen2.5-coder:1.5b-instruct",
         "qwen2.5-coder:7b-instruct"
       ],
-      "findings": "Both 1.5B and 7B showed increased conceptual clusters under DREAM condition (+66% on 1.5B, +50% on 7B) with equivalent output token budgets."
+      "findings": "On tasks T01 and T05, 1.5B showed increased conceptual clusters under DREAM condition (3 baseline vs 5 DREAM, +66.7%), while 7B showed equal cluster counts (3 baseline vs 3 DREAM, +0.0%) under matched token budgets."
     }
   },
-  "promotion_decision": "PROMOTE",
-  "promotion_recommendation": "Earned deeper ecosystem experimentation: HowlPlane exploration policy, HowlCreate candidate handoff, and HowlFrame verification contract."
+  "promotion_decision": "PROMOTE WITH CONDITIONS",
+  "promotion_conditions": [
+    "Independent Blinded Human Evaluation Gate: Obtain genuine independent blinded human review before publishing or relying on claims of human-validated superiority or human preference.",
+    "Divergence Frontier Claim Withheld: Frontier remains NOT YET DEMONSTRATED until stress tests exhibit actual error onset.",
+    "Zero-Denominator Multiplicative Ratio Prohibition: Absolute yield (+100.2 / 10k tokens) must be reported instead of undefined ratios (e.g., 3.37x).",
+    "Controlled Ecosystem Integration Scope: Authorize preliminary integrations (HowlPlane exploratory divergence policy, HowlCreate advisory candidate handoff, HowlFrame typed IR verification contracts) under strict advisory boundaries."
+  ],
+  "promotion_recommendation": "Earned controlled ecosystem experimentation with conditions: HowlPlane exploratory divergence policy, HowlCreate advisory candidate handoff, and HowlFrame typed IR verification contracts. Conditions: Genuine independent blinded human review required before claiming human-validated superiority; withhold frontier claim until degradation onset is demonstrated; report absolute yields without zero-denominator ratios."
 }
