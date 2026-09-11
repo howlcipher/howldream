@@ -8,7 +8,18 @@ import pytest
 from pydantic import ValidationError
 
 from howldream.benchmark import BenchmarkDataset, benchmark, confusion, load_dataset
-from howldream.dreamvalue import ValueCandidate, condition_metrics, evaluate, load_suite
+from howldream.dreamvalue import (
+    ReviewRecord,
+    ValueCandidate,
+    cohen_kappa,
+    compute_inter_rater_agreement,
+    condition_metrics,
+    evaluate,
+    fleiss_kappa,
+    human_condition_metrics,
+    load_suite,
+)
+from howldream.verification import extract_natural
 
 
 def test_dreambench_schema_version_splits_and_provenance():
@@ -147,3 +158,122 @@ def test_evaluation_cli(arguments, tmp_path):
     )
     assert result.returncode == 0, result.stderr
     assert json.loads(result.stdout)
+
+
+def test_dreambench_0_3_0_schema_spans_modality_and_confidence():
+    dataset, digest = load_dataset(version="0.3.0")
+    assert dataset.version == "0.3.0"
+    assert len(dataset.cases) == 84
+    assert len(digest) == 64
+    all_claims = [claim for case in dataset.cases for claim in case.claims]
+    assert len(all_claims) == 186
+    # Verify splits
+    splits = {c.split for c in dataset.cases}
+    assert splits == {"development", "validation", "held_out", "confirmation"}
+    # Verify source span mapping and modality
+    for claim in all_claims:
+        if claim.source_span is not None:
+            start, end = claim.source_span
+            assert isinstance(start, int) and isinstance(end, int)
+            assert start <= end
+        if claim.modality is not None:
+            assert claim.modality in {
+                "asserted",
+                "probable",
+                "possible",
+                "uncertain",
+                "denied",
+                "hypothetical",
+                "conditional",
+            }
+        assert isinstance(claim.disputed, bool)
+
+
+def test_pipeline_error_attribution_and_breakdown_metrics(tmp_path):
+    dev = benchmark("development", tmp_path, version="0.3.0")
+    assert dev["benchmark_version"] == "0.3.0"
+    assert "pipeline_error_attribution" in dev
+    attr = dev["pipeline_error_attribution"]
+    for key in (
+        "extraction_miss",
+        "normalization_error",
+        "verifier_miss",
+        "classifier_error",
+        "annotation_issue",
+    ):
+        assert key in attr
+    assert "pipeline_metrics" in dev
+    pm = dev["pipeline_metrics"]
+    assert "extraction_recall" in pm
+    assert "verifier_recall_given_extraction" in pm
+    assert "end_to_end_recall" in pm
+    assert "by_claim_form" in dev
+    assert len(dev["by_claim_form"]) > 0
+
+
+def test_extract_natural_span_and_modality():
+    text = "The system might fail under high load. However, the cache was verified."
+    extracted = extract_natural(text, "test-cand-01")
+    assert len(extracted) >= 2
+    modalities = {c["modality"] for c in extracted}
+    assert "possible" in modalities or "probable" in modalities or "uncertain" in modalities
+    for c in extracted:
+        assert c.get("source_span") is not None
+        start, end = c["source_span"]
+        assert 0 <= start <= end <= len(text)
+        assert c.get("source_text") is not None
+
+
+def test_inter_rater_agreement_cohen_and_fleiss_kappa():
+    # Perfect agreement
+    r1 = ["YES", "NO", "UNSURE", "YES"]
+    r2 = ["YES", "NO", "UNSURE", "YES"]
+    assert cohen_kappa(r1, r2) == 1.0
+
+    # Disagreement
+    r3 = ["NO", "YES", "YES", "NO"]
+    assert cohen_kappa(r1, r3) < 0.0
+
+    # Fleiss kappa
+    ratings = [["YES", "YES", "YES"], ["NO", "NO", "NO"], ["UNSURE", "UNSURE", "UNSURE"]]
+    assert fleiss_kappa(ratings, ["YES", "NO", "UNSURE"]) == 1.0
+
+
+def test_dreamvalue_unblinding_and_human_metrics(tmp_path):
+    evaluate(review_output=tmp_path)
+    assert (tmp_path / "dreamvalue_unblinding_key.json").exists()
+    unblind = json.loads((tmp_path / "dreamvalue_unblinding_key.json").read_text())
+    assert len(unblind) == 480
+    assert "DV-01-R01" in unblind
+    assert "condition" in unblind["DV-01-R01"]
+
+    # Mock reviews
+    mock_reviews = [
+        ReviewRecord(
+            review_id="DV-01-R01",
+            reviewer_id="rater-1",
+            relevance=5,
+            novelty=4,
+            feasibility=4,
+            unsupported_assumptions=1,
+            worth_investigating="YES",
+        ),
+        ReviewRecord(
+            review_id="DV-01-R01",
+            reviewer_id="rater-2",
+            relevance=4,
+            novelty=4,
+            feasibility=4,
+            unsupported_assumptions=2,
+            worth_investigating="YES",
+        ),
+    ]
+    agreement = compute_inter_rater_agreement(mock_reviews)
+    assert agreement["total_raters"] == 2
+    assert agreement["mean_raw_agreement"] == 1.0
+
+    human_metrics = human_condition_metrics(mock_reviews, unblind)
+    cond = unblind["DV-01-R01"]["condition"]
+    assert human_metrics[cond] is not None
+    assert human_metrics[cond]["candidates"] == 1
+    assert human_metrics[cond]["human_investigate_rate"] == 1.0

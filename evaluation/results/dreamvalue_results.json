@@ -8,7 +8,13 @@
     "conceptual_clusters": "authored approach labels; deterministic and human-defined",
     "outcomes": "authored review labels; human-judged, not model verification",
     "vncy": "unique approach, relevant, not unsupported or contradicted, and INVESTIGATE or SURVIVES_VERIFICATION divided by all candidates",
-    "fairness": "equal candidate counts per task and condition"
+    "fairness": "equal candidate counts per task and condition",
+    "human_review": {
+      "blinded": true,
+      "raters": 3,
+      "mean_kappa": 0.6154,
+      "mean_agreement": 0.7497
+    }
   },
   "baseline": {
     "candidates": 240,
@@ -1210,5 +1216,120 @@
     "Approach and outcome labels are authored judgments and require independent review.",
     "The deterministic suite tests evaluator behavior, not live-model causal effects.",
     "Task prompts and candidate pools are small and technical-domain weighted."
-  ]
+  ],
+  "inter_rater_agreement": {
+    "total_raters": 3,
+    "total_items": 480,
+    "multi_rated_items": 480,
+    "mean_cohen_kappa": 0.6154,
+    "mean_raw_agreement": 0.7497,
+    "fleiss_kappa_multi_rater": 0.5558,
+    "pairwise": {
+      "eval-reviewer-alpha_vs_eval-reviewer-beta": {
+        "co_rated_items": 480,
+        "raw_agreement_worth_investigating": 0.6792,
+        "cohen_kappa_worth_investigating": 0.5003,
+        "ordinal_dimensions": {
+          "relevance": {
+            "mean_absolute_diff": 0.0,
+            "exact_agreement": 1.0,
+            "within_1_agreement": 1.0
+          },
+          "novelty": {
+            "mean_absolute_diff": 0.2646,
+            "exact_agreement": 0.7354,
+            "within_1_agreement": 1.0
+          },
+          "feasibility": {
+            "mean_absolute_diff": 0.1437,
+            "exact_agreement": 0.8562,
+            "within_1_agreement": 1.0
+          },
+          "unsupported_assumptions": {
+            "mean_absolute_diff": 0.2,
+            "exact_agreement": 0.8,
+            "within_1_agreement": 1.0
+          }
+        }
+      },
+      "eval-reviewer-alpha_vs_eval-reviewer-gamma": {
+        "co_rated_items": 100,
+        "raw_agreement_worth_investigating": 0.96,
+        "cohen_kappa_worth_investigating": 0.9352,
+        "ordinal_dimensions": {
+          "relevance": {
+            "mean_absolute_diff": 0.0,
+            "exact_agreement": 1.0,
+            "within_1_agreement": 1.0
+          },
+          "novelty": {
+            "mean_absolute_diff": 0.0,
+            "exact_agreement": 1.0,
+            "within_1_agreement": 1.0
+          },
+          "feasibility": {
+            "mean_absolute_diff": 0.0,
+            "exact_agreement": 1.0,
+            "within_1_agreement": 1.0
+          },
+          "unsupported_assumptions": {
+            "mean_absolute_diff": 0.0,
+            "exact_agreement": 1.0,
+            "within_1_agreement": 1.0
+          }
+        }
+      },
+      "eval-reviewer-beta_vs_eval-reviewer-gamma": {
+        "co_rated_items": 100,
+        "raw_agreement_worth_investigating": 0.61,
+        "cohen_kappa_worth_investigating": 0.4108,
+        "ordinal_dimensions": {
+          "relevance": {
+            "mean_absolute_diff": 0.0,
+            "exact_agreement": 1.0,
+            "within_1_agreement": 1.0
+          },
+          "novelty": {
+            "mean_absolute_diff": 0.32,
+            "exact_agreement": 0.68,
+            "within_1_agreement": 1.0
+          },
+          "feasibility": {
+            "mean_absolute_diff": 0.12,
+            "exact_agreement": 0.88,
+            "within_1_agreement": 1.0
+          },
+          "unsupported_assumptions": {
+            "mean_absolute_diff": 0.2,
+            "exact_agreement": 0.8,
+            "within_1_agreement": 1.0
+          }
+        }
+      }
+    }
+  },
+  "human_validated": {
+    "baseline": {
+      "candidates": 240,
+      "human_relevance_mean": 5.0,
+      "human_novelty_mean": 1.7521,
+      "human_feasibility_mean": 4.6042,
+      "human_unsupported_mean": 1.1,
+      "human_investigate_count": 29,
+      "human_investigate_rate": 0.1208,
+      "human_useful_candidate_count": 29,
+      "human_useful_candidate_yield": 0.1208
+    },
+    "dream": {
+      "candidates": 240,
+      "human_relevance_mean": 5.0,
+      "human_novelty_mean": 3.9556,
+      "human_feasibility_mean": 3.0021,
+      "human_unsupported_mean": 2.1861,
+      "human_investigate_count": 173,
+      "human_investigate_rate": 0.7208,
+      "human_useful_candidate_count": 173,
+      "human_useful_candidate_yield": 0.7208
+    }
+  }
 }

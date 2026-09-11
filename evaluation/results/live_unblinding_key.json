@@ -1,0 +1,542 @@
+{
+  "Candidate LX-001": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T02_cross_dc-baseline-t0-i0",
+    "task_id": "T02_cross_dc",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-002": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T03_async_504-baseline-t0-i2",
+    "task_id": "T03_async_504",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-003": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T01_db_migration-baseline-t0-i2",
+    "task_id": "T01_db_migration",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-004": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T10_k8s_drain-baseline-t0-i1",
+    "task_id": "T10_k8s_drain",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-005": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T09_doc_verification-dream-t0-i1",
+    "task_id": "T09_doc_verification",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-006": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T07_api_evolution-dream-t0-i2",
+    "task_id": "T07_api_evolution",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-007": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T02_cross_dc-dream-t0-i1",
+    "task_id": "T02_cross_dc",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-008": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T10_k8s_drain-dream-t0-i0",
+    "task_id": "T10_k8s_drain",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-009": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T08_workstation_build-dream-t0-i0",
+    "task_id": "T08_workstation_build",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-010": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T06_flaky_test-dream-t0-i0",
+    "task_id": "T06_flaky_test",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-011": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T04_proxy_partition-baseline-t0-i1",
+    "task_id": "T04_proxy_partition",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-012": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T03_async_504-dream-t0-i0",
+    "task_id": "T03_async_504",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-013": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T02_cross_dc-dream-t0-i0",
+    "task_id": "T02_cross_dc",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-014": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T04_proxy_partition-dream-t0-i1",
+    "task_id": "T04_proxy_partition",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-015": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T04_proxy_partition-dream-t0-i0",
+    "task_id": "T04_proxy_partition",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-016": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T08_workstation_build-dream-t0-i2",
+    "task_id": "T08_workstation_build",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-017": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T06_flaky_test-dream-t0-i2",
+    "task_id": "T06_flaky_test",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-018": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T07_api_evolution-dream-t0-i0",
+    "task_id": "T07_api_evolution",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-019": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T08_workstation_build-baseline-t0-i2",
+    "task_id": "T08_workstation_build",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-020": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T01_db_migration-baseline-t0-i1",
+    "task_id": "T01_db_migration",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-021": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T08_workstation_build-dream-t0-i1",
+    "task_id": "T08_workstation_build",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-022": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T10_k8s_drain-baseline-t0-i2",
+    "task_id": "T10_k8s_drain",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-023": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T03_async_504-baseline-t0-i0",
+    "task_id": "T03_async_504",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-024": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T04_proxy_partition-baseline-t0-i0",
+    "task_id": "T04_proxy_partition",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-025": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T01_db_migration-dream-t0-i1",
+    "task_id": "T01_db_migration",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 94
+  },
+  "Candidate LX-026": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T03_async_504-baseline-t0-i1",
+    "task_id": "T03_async_504",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-027": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T09_doc_verification-dream-t0-i2",
+    "task_id": "T09_doc_verification",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-028": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T06_flaky_test-baseline-t0-i0",
+    "task_id": "T06_flaky_test",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-029": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T05_secret_detection-baseline-t0-i1",
+    "task_id": "T05_secret_detection",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-030": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T10_k8s_drain-dream-t0-i1",
+    "task_id": "T10_k8s_drain",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-031": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T07_api_evolution-dream-t0-i1",
+    "task_id": "T07_api_evolution",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-032": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T09_doc_verification-baseline-t0-i2",
+    "task_id": "T09_doc_verification",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-033": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T01_db_migration-dream-t0-i0",
+    "task_id": "T01_db_migration",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-034": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T05_secret_detection-dream-t0-i2",
+    "task_id": "T05_secret_detection",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-035": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T09_doc_verification-baseline-t0-i1",
+    "task_id": "T09_doc_verification",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-036": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T09_doc_verification-baseline-t0-i0",
+    "task_id": "T09_doc_verification",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-037": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T08_workstation_build-baseline-t0-i1",
+    "task_id": "T08_workstation_build",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-038": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T06_flaky_test-dream-t0-i1",
+    "task_id": "T06_flaky_test",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-039": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T07_api_evolution-baseline-t0-i1",
+    "task_id": "T07_api_evolution",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-040": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T02_cross_dc-baseline-t0-i1",
+    "task_id": "T02_cross_dc",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-041": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T05_secret_detection-baseline-t0-i0",
+    "task_id": "T05_secret_detection",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-042": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T05_secret_detection-dream-t0-i0",
+    "task_id": "T05_secret_detection",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-043": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T10_k8s_drain-baseline-t0-i0",
+    "task_id": "T10_k8s_drain",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-044": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T10_k8s_drain-dream-t0-i2",
+    "task_id": "T10_k8s_drain",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-045": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T03_async_504-dream-t0-i2",
+    "task_id": "T03_async_504",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-046": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T07_api_evolution-baseline-t0-i0",
+    "task_id": "T07_api_evolution",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-047": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T02_cross_dc-baseline-t0-i2",
+    "task_id": "T02_cross_dc",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-048": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T03_async_504-dream-t0-i1",
+    "task_id": "T03_async_504",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-049": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T06_flaky_test-baseline-t0-i1",
+    "task_id": "T06_flaky_test",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-050": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T04_proxy_partition-baseline-t0-i2",
+    "task_id": "T04_proxy_partition",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-051": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T05_secret_detection-baseline-t0-i2",
+    "task_id": "T05_secret_detection",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-052": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T06_flaky_test-baseline-t0-i2",
+    "task_id": "T06_flaky_test",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-053": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T02_cross_dc-dream-t0-i2",
+    "task_id": "T02_cross_dc",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-054": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T08_workstation_build-baseline-t0-i0",
+    "task_id": "T08_workstation_build",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-055": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T01_db_migration-dream-t0-i2",
+    "task_id": "T01_db_migration",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-056": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T05_secret_detection-dream-t0-i1",
+    "task_id": "T05_secret_detection",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-057": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T01_db_migration-baseline-t0-i0",
+    "task_id": "T01_db_migration",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-058": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T04_proxy_partition-dream-t0-i2",
+    "task_id": "T04_proxy_partition",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-059": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T07_api_evolution-baseline-t0-i2",
+    "task_id": "T07_api_evolution",
+    "condition": "baseline",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 0.7,
+    "trial": 0,
+    "output_tokens": 100
+  },
+  "Candidate LX-060": {
+    "original_id": "live-qwen2.5-coder:1.5b-instruct-T09_doc_verification-dream-t0-i0",
+    "task_id": "T09_doc_verification",
+    "condition": "dream",
+    "model": "qwen2.5-coder:1.5b-instruct",
+    "temperature": 1.2,
+    "trial": 0,
+    "output_tokens": 100
+  }
+}

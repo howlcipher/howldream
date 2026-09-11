@@ -1,0 +1,31 @@
+schema_version: 1
+name: milestone_three_methodology_audit
+objective: Identify methodological flaws that could still make Milestone Three falsely conclude that DREAM adds value or that claim extraction generalizes. Address reviewer bias, unblinding leakage, token-budget confounding, task selection, and inter-rater disagreement. Give one concrete IDEA and its ASSUMPTION. Use at most 120 words.
+hypothesis: Adversarial audit will expose remaining confounding between prompt length and divergence, evaluator leakage, and subtle unblinding cues.
+mode: nightmare
+provider:
+  kind: ollama
+  model: qwen2.5-coder:1.5b-instruct
+  timeout_seconds: 120
+  max_tokens: 256
+baseline:
+  candidates: 3
+  temperature: 0.2
+generation:
+  candidates: 5
+  temperature: 1.1
+trials: 1
+seed: 20260911
+evidence:
+  - id: methodology_facts
+    text: Milestone Three enforces equal candidate counts, independent natural prose, and blinded multi-rater packets.
+    facts:
+      lexical_diversity: not_proof_of_utility
+      blinding: must_obscure_condition_style
+      token_budget: must_be_tracked_per_candidate
+      inter_rater_agreement: mandatory_metric
+perturbations:
+  - kind: false_premise
+    text: Blinded evaluation guarantees zero bias even if prompt verbosity or candidate style reveals the generative condition.
+  - kind: false_premise
+    text: Equal candidate count ensures fair comparison even if DREAM produces substantially longer responses.
