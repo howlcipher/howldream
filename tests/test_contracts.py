@@ -8,7 +8,7 @@ import pytest
 from pydantic import ValidationError
 
 from howldream.artifacts import load_run, redact, scrub
-from howldream.benchmark import benchmark
+from howldream.benchmark import benchmark, load_dataset
 from howldream.engine import replay, run, wake
 from howldream.providers import MockProvider, make_provider
 from howldream.schema import Experiment
@@ -146,7 +146,7 @@ def test_wake_records_current_analysis_provenance(tmp_path):
     path = run(spec(), tmp_path)
     awake = load_run(wake(path, tmp_path))
     assert awake["manifest"]["analysis"]["implementation_hash"]
-    assert awake["manifest"]["analysis"]["version"] == "0.1.0"
+    assert awake["manifest"]["analysis"]["version"] == "0.2.0"
 
 
 def test_baseline_redaction_disables_replay(tmp_path, monkeypatch):
@@ -246,12 +246,12 @@ def test_common_words_do_not_make_noise_relevant():
     assert result[0]["decision"] == "REJECT"
 
 
-def test_benchmark_balanced_and_exact():
+def test_benchmark_is_larger_and_reports_observed_errors():
     result = benchmark()
-    assert result["fixtures"] >= 14
-    assert result["true_positives"] >= 7
-    assert result["true_negatives"] >= 7
-    assert result["false_positives"] == result["false_negatives"] == 0
+    assert len(load_dataset()[0].cases) >= 100
+    assert result["binary_confusion_matrix"]["true_positives"] > 0
+    assert result["binary_confusion_matrix"]["true_negatives"] > 0
+    assert result["claim_metrics"]["missed_claims"] > 0
 
 
 def test_cli_happy_path(tmp_path):

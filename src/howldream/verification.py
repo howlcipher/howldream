@@ -50,6 +50,61 @@ def extract(text: str, candidate_id: str) -> list[dict]:
     return claims
 
 
+def extract_natural(text: str, candidate_id: str) -> list[dict]:
+    """Extract a small observable subset of prose without consulting annotations."""
+    sentences = [part.strip() for part in re.split(r"(?<=[.!?])\s+|\n+", text) if part.strip()]
+    claims: list[dict] = []
+    for sentence in sentences:
+        kind, value = "PROSE", sentence
+        citation = re.search(r"\bcites\s+([a-zA-Z0-9_./-]+)", sentence)
+        calculation = re.search(
+            r"(-?\d+(?:\.\d+)?)\s*([+*\-/])\s*(-?\d+(?:\.\d+)?)\s*=\s*(-?\d+(?:\.\d+)?)",
+            sentence,
+        )
+        unknown = re.search(
+            r"\bthe\s+([a-z][a-z ]+?)\s+cannot be determined\b",
+            sentence,
+            re.IGNORECASE,
+        )
+        assertion = re.search(
+            r"\bthat\s+([a-z][a-z ]+?)\s+is\s+([a-z0-9][a-z0-9 ]+?)[.,]?(?:\s+and\b|$)",
+            sentence,
+            re.IGNORECASE,
+        )
+        if assertion is None:
+            assertion = re.search(
+                r"^The\s+([a-z][a-z ]+?)\s+is\s+([a-z0-9][a-z0-9 ]+?)[.]?$",
+                sentence,
+                re.IGNORECASE,
+            )
+        if citation:
+            kind, value = "CITE", citation.group(1)
+        elif calculation:
+            kind = "CALC"
+            value = (
+                f"{calculation.group(1)} {calculation.group(2)} "
+                f"{calculation.group(3)} = {calculation.group(4)}"
+            )
+        elif unknown:
+            kind, value = "UNKNOWN", unknown.group(1).strip().replace(" ", "_")
+        elif assertion:
+            key = assertion.group(1).strip().replace(" ", "_")
+            answer = assertion.group(2).strip().replace(" ", "_")
+            kind, value = "FACT", f"{key}={answer}"
+        claims.append(
+            {
+                "id": f"{candidate_id}/claim/{len(claims) + 1}",
+                "candidate_id": candidate_id,
+                "kind": kind,
+                "text": value,
+                "surface": sentence,
+                "status": "UNVERIFIED",
+                "extractor": "sentence_patterns/v1",
+            }
+        )
+    return claims
+
+
 def verify(claims: list[dict], evidence: list[Evidence]) -> list[dict]:
     facts: dict[str, list[tuple[str, str]]] = {}
     for source in evidence:

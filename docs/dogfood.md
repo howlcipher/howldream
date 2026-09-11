@@ -79,3 +79,18 @@ descendant rechecks the original outputs with separate analysis provenance.
 No original generated text was edited. Manual dispositions here do not replace
 historical automatic scores. The highest-value next milestone is better claim
 extraction and a held-out natural-language benchmark with coverage metrics.
+
+## Milestone Two methodology audit
+
+Run `hd-20260910-195223-a11255804e0a` used local
+`qwen2.5-coder:7b-instruct` for three baseline and five NIGHTMARE candidates.
+Lexical diversity was 0.4721 and 0.7772 respectively. Forty of 42 experimental
+claims remained unresolved, and two experimental candidates triggered narrow
+failures. The model raised lexical-proxy failure, held-out compliance, subjective
+labels, and external validity. It also misused the claim grammar, showing how
+grammar compliance can dominate verification results. An earlier sandboxed
+attempt is retained as a PARTIAL run with eight provider failures.
+
+The audit led to an explicit confirmation split, coverage and category-agreement
+metrics, transparent labels, and blinded review packets. It did not establish
+useful novelty or independent benchmark validity.

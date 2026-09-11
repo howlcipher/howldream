@@ -28,7 +28,7 @@
       "operatingSystem": "POSIX, Linux, macOS",
       "description": "Controlled divergent generation, hallucination experiments, failure analysis and scoped verification for AI systems.",
       "url": "https://howlcipher.github.io/howldream/",
-      "softwareVersion": "0.1.0",
+      "softwareVersion": "0.2.0",
       "author": {
         "@type": "Person",
         "name": "William Elias",
@@ -172,7 +172,7 @@
                 <a href="#lifecycle">01_Lifecycle</a>
                 <a href="#idea">02_TheIdea</a>
                 <a href="#dogfood">03_Evidence</a>
-                <a href="#dreambench">04_Dreambench</a>
+                <a href="#dreambench">04_Evaluation</a>
                 <a href="#boundary">05_Boundary</a>
                 <a href="#ecosystem">06_Ecosystem</a>
                 <a href="#getting-started">07_QuickStart</a>
@@ -184,7 +184,7 @@
             <!-- Hero Panel -->
             <section class="hero-panel" aria-labelledby="main-title">
                 <div class="hero-banner">
-                    <span>SPEC_VER // 0.1.0 (EXPERIMENTAL, PHASE 1)</span>
+                    <span>SPEC_VER // 0.2.0 (EXPERIMENTAL, PHASE 2)</span>
                     <span>ARCHITECTURE: CONTROLLED DIVERGENT EXPLORATION &amp; SCOPED VERIFICATION</span>
                 </div>
                 <div class="hero-body">
@@ -337,14 +337,42 @@
                 </div>
             </section>
 
-            <!-- 04 Dreambench -->
+            <!-- 04 Evaluation -->
             <section id="dreambench" class="tech-panel">
                 <div class="tech-header">
-                    <h2><span class="sec-id">SECTION // 04</span> Known Failures, Grounded Controls</h2>
+                    <h2><span class="sec-id">SECTION // 04</span> Evaluation: Decision HOLD</h2>
                     <span class="subsystem-tag">HD-MOD-DREAMBENCH</span>
                 </div>
                 <div class="tech-body">
-                    <p>Reliability / Dreambench.</p>
+                    <p>DreamBench 0.2.0 exposed a brittle extraction boundary. The primary
+                    held-out split produced 0 TP, 0 FP, 65 TN, and 13 FN across 39 cases:
+                    recall was 0 and claim coverage was 0.6667.</p>
+                    <div class="table-wrap">
+                        <table>
+                            <caption>DreamBench primary held-out claim results</caption>
+                            <thead><tr><th>Cases</th><th>TP</th><th>FP</th><th>TN</th><th>FN</th><th>Recall</th><th>Coverage</th></tr></thead>
+                            <tbody><tr><td>39</td><td>0</td><td>0</td><td>65</td><td>13</td><td>0</td><td>0.6667</td></tr></tbody>
+                        </table>
+                    </div>
+                    <p>An untouched 26-case confirmation split scored perfectly on binary
+                    detection but only 0.3846 on exact category recall. The partition gap
+                    shows phrasing sensitivity, not general reliability.</p>
+                    <div class="table-wrap">
+                        <table>
+                            <caption>DreamValue authored calibration, 240 candidates per condition</caption>
+                            <thead><tr><th>Condition</th><th>Lexical diversity</th><th>Clusters</th><th>Duplicate rate</th><th>Unsupported rate</th><th>VNCY</th></tr></thead>
+                            <tbody>
+                                <tr><td>Baseline</td><td>0.6416</td><td>120</td><td>0.50</td><td>0</td><td>0.10</td></tr>
+                                <tr><td>DREAM</td><td>0.6862</td><td>216</td><td>0.10</td><td>0.30</td><td>0.50</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>DreamValue labels calibrate the evaluator and have not received
+                    independent blinded review. They do not demonstrate a live-model
+                    advantage. Values derive from <a href="evaluation.json">generated site
+                    data</a> and <a href="https://github.com/howlcipher/howldream/tree/main/evaluation/results">canonical artifacts</a>.</p>
+                    <p><a href="https://github.com/howlcipher/howldream/blob/main/docs/milestone_two_report.md">Read the research report and threats to validity</a></p>
+                    <h3>Known failures and grounded controls</h3>
                     <div class="grid-2col">
                         <div>
                             <h3>Unsupported claims</h3>
@@ -371,7 +399,9 @@
                             <p>A fixed arithmetic checker challenges a model's asserted result.</p>
                         </div>
                     </div>
-                    <p>Dreambench has 14 authored fixtures: seven failures and seven controls. This is a regression suite for narrow checks, not a general hallucination detector. <a href="https://github.com/howlcipher/howldream/blob/main/docs/benchmarks.md">Benchmark scope</a></p>
+                    <p>DreamBench has 156 authored, template-derived cases with explicit
+                    splits and claim-level annotations. Results remain specific to narrow
+                    supplied-evidence checks. <a href="https://github.com/howlcipher/howldream/blob/main/docs/benchmarks.md">Benchmark methodology</a></p>
 
                     <h3>Keep the experimental record</h3>
                     <p>Each run preserves its input snapshot, source and prompt hashes, candidate outputs, claims, checks, scores and report. New WAKE and replay runs retain lineage. Mock output replay is deterministic. Real-provider replay repeats configuration; identical outputs are not guaranteed. Hosted private reasoning is never captured.</p>

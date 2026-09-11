@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "name": "milestone_two_methodology_audit",
+  "objective": "Identify methodological flaws that could make DreamBench or DreamValue appear successful even if HowlDream provides little real value.",
+  "hypothesis": "Controlled divergence will surface benchmark leakage, subjective labeling, metric gaming, and provider confounding beyond conservative repeated sampling.",
+  "mode": "nightmare",
+  "provider": {
+    "kind": "ollama",
+    "model": "qwen2.5-coder:7b-instruct",
+    "base_url": "http://127.0.0.1:11434",
+    "allow_remote": false,
+    "timeout_seconds": 120,
+    "max_tokens": 512
+  },
+  "baseline": {
+    "candidates": 3,
+    "temperature": 0.2
+  },
+  "generation": {
+    "candidates": 5,
+    "temperature": 1.0
+  },
+  "trials": 1,
+  "seed": 20260910,
+  "evidence": [
+    {
+      "id": "methodology",
+      "text": "",
+      "facts": {
+        "lexical_diversity": "not_useful_novelty",
+        "model_agreement": "not_verification",
+        "held_out_policy": "explicit",
+        "human_labels": "subjective"
+      }
+    }
+  ],
+  "context": [],
+  "perturbations": [
+    {
+      "kind": "false_premise",
+      "text": "Higher lexical diversity proves that DREAM is more useful."
+    }
+  ],
+  "retain_text": true
+}

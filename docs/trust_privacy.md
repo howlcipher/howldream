@@ -17,6 +17,11 @@ checks numerical equality, not modeling assumptions. Unstructured claims are unr
 No accepted-truth state exists. Heuristic INVESTIGATE is permission to consider further
 work only in prose; it is not executable permission in any downstream system.
 
+DreamBench annotations are authored ground truth for supplied scenarios, not
+open-world truth. DreamValue clusters and outcomes are human judgments.
+SURVIVES_VERIFICATION means only that declared limited criteria passed; it grants
+no authority and does not establish feasibility.
+
 ## Storage and egress
 
 Artifact location is printed by the CLI and configurable with `--output`. Default:

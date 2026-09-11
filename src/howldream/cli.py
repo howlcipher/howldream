@@ -10,7 +10,8 @@ from yaml import YAMLError
 
 from howldream import __version__
 from howldream.artifacts import load_run, scrub
-from howldream.benchmark import benchmark
+from howldream.benchmark import benchmark, list_benchmarks
+from howldream.dreamvalue import evaluate
 from howldream.engine import replay, run, wake
 from howldream.schema import read_experiment
 
@@ -31,17 +32,47 @@ def main() -> int:
         sub.add_argument(
             "--output", type=Path, default=Path(".howldream/runs"), help="artifact storage root"
         )
-    commands.add_parser("benchmark").add_argument(
-        "suite", nargs="?", choices=["dreambench"], default="dreambench"
+    benchmark_parser = commands.add_parser("benchmark")
+    benchmark_parser.add_argument(
+        "action", nargs="?", choices=["list", "run", "report", "dreambench"]
     )
+    benchmark_parser.add_argument("suite_or_run", nargs="?", type=Path)
+    benchmark_parser.add_argument(
+        "--split",
+        choices=["development", "validation", "held_out", "confirmation", "all"],
+        default="development",
+    )
+    benchmark_parser.add_argument("--output", type=Path, default=Path(".howldream/benchmarks"))
+    evaluate_parser = commands.add_parser("evaluate")
+    evaluate_parser.add_argument("suite", choices=["dreamvalue"])
+    evaluate_parser.add_argument("--input", type=Path)
+    evaluate_parser.add_argument("--output", type=Path, default=Path(".howldream/evaluations"))
     commands.add_parser("compare").add_argument("targets", type=Path, nargs="+")
     args = parser.parse_args()
     result: dict | list
     try:
         if args.command == "benchmark":
-            result = benchmark()
+            if args.action == "list":
+                result = list_benchmarks()
+                print(json.dumps(result, indent=2))
+                return 0
+            if args.action == "report":
+                if args.suite_or_run is None:
+                    raise ValueError("benchmark report requires a result path")
+                result = json.loads(args.suite_or_run.read_text())
+                print(json.dumps(result, indent=2))
+                return 0
+            if args.action == "run" and (
+                args.suite_or_run is None or args.suite_or_run.name != "dreambench"
+            ):
+                raise ValueError("benchmark run requires suite dreambench")
+            result = benchmark(split=args.split, output=args.output)
             print(json.dumps(result, indent=2))
             return 0 if result["passed"] else 1
+        if args.command == "evaluate":
+            result = evaluate(args.input, args.output)
+            print(json.dumps(result, indent=2))
+            return 0
         if args.command == "compare":
             result = [{"run_id": p.name, "metrics": load_run(p)["metrics"]} for p in args.targets]
         elif args.command in {"inspect", "report"}:

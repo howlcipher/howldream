@@ -1,36 +1,30 @@
 # Milestone verification evidence
 
-Final local Python suite: 43 passed, zero failures, zero skips (Python 3.14.4).
-Ruff formatting/check, flake8 with README flags, and mypy pass. Wheel and source
-distribution build. Dreambench: 14 fixtures, 7 TP, 7 TN, 0 FP, 0 FN, precision/recall
-1.0 on these authored fixtures only. Artifact: dogfood/benchmark.json.
+Milestone Two local suite: 53 passed, zero failures and zero skips on Python
+3.14.4. Ruff formatting/check, Flake8 with README flags, mypy, wheel and source
+distribution build, Bandit, and dependency audit pass. The historical Milestone
+One 14-fixture result remains in `dogfood/benchmark.json`.
 
-CLI exercised: help, version, validate, run, nightmare, wake, replay, inspect,
-compare and report. Contract tests also cover generation-only DREAM and
-end-to-end generation/verification. The final mock run and replay in dogfood/final
-and dogfood/final_replay have identical candidate texts and metrics. NIGHTMARE
-and its WAKE descendant are retained separately. Original local model output and
-later re-analysis remain under dogfood/local and dogfood/wake.
+DreamBench 0.2.0 has 156 cases and 312 claims. Overall: 52 TP, 0 FP, 234 TN,
+26 FN, precision 1.0, recall 0.6667, and F1 0.8. Primary held-out recall is 0;
+confirmation recall is 1.0. DreamValue evaluates 24 tasks with equal 240-candidate
+pools. Canonical evidence is under `evaluation/results/`.
 
-Pages rendered at 375, 768 and 1440 pixels: title, description, landmarks,
-keyboard skip link, fragment navigation and no document overflow pass. Desktop
-and mobile screenshots inspected. The canonical hub's existing suite passes
-30/30 responsive/interaction checks across nine viewport sizes; its SEO checks,
-Go tests and Go vet pass. The new Ecosystem page has a dedicated CI browser check.
+CLI coverage includes validation, generation, DREAM, NIGHTMARE, WAKE, replay,
+inspection, comparison, reports, benchmark listing and split execution, DreamValue,
+malformed inputs, split isolation, zero denominators, claim matching, duplicate
+groups, curves, blind packets, and annotation-oracle isolation.
 
-Dependency audit passes after updating the virtual environment's pip. Initial
-GitHub Python 3.11 CI found a vulnerable preinstalled setuptools; CI now upgrades
-both pip and setuptools before auditing. Audit thresholds were not lowered.
-Bandit reports zero medium/high findings and four low findings for fixed
-subprocess/HTTP primitives. These use fixed Git arguments, validated HTTP(S)
-endpoints, disabled redirects/proxies, and bounded timeouts. No generated command
-or arbitrary URL verifier is executed.
+Pages renders at 375, 768 and 1440 pixels with title, description, landmarks,
+keyboard skip link, fragment navigation, and no document overflow. Site evaluation
+JSON is generated from canonical artifacts.
 
-Secret scan findings were inspected: SHA-256 provenance values and fake negative
-test credentials. No actual credentials identified. This is not a guarantee
-that redaction detects every possible sensitive string.
+Bandit reports zero medium/high findings. Dependency audit reports no known
+vulnerabilities; the unpublished local package itself is skipped. A local Ollama
+audit completed with retained provider settings, usage, latency, outputs, and
+limitations. The earlier sandbox-blocked attempt remains as PARTIAL evidence.
 
-Commits are SSH-signed with the existing local signing key. GitHub reports
-unknown_key for that key rather than Verified; no account key registrations or
-security settings were changed. See GitHub Actions and merged PRs for live CI
-and deployment status; these may run after the evidence document is committed.
+The independent delegated reviewers exhausted their service quota before returning
+findings. A primary-agent falsification review found and removed annotation-oracle
+leakage; a regression proves predictions derive from observed response extraction.
+No independent human DreamValue ratings are claimed.
