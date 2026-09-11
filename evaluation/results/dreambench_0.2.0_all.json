@@ -5,10 +5,10 @@
   "split": "all",
   "held_out_execution": true,
   "dataset_hash": "d26c869082a941b1aefe569fb12462f95fb7a461cdde6f5f58ba38a657547332",
-  "code_sha": "5672350699631ebbc910dbc6aa9c739c632a0afd",
-  "code_dirty": true,
+  "code_sha": "27a434594680b4d032c42254d693b18031ba9515",
+  "code_dirty": false,
   "implementation_hash": "b6ab044d491b54219f8c9abce8884d0fdb4589a8098b81b098fdbc16c047e9c7",
-  "timestamp": "2026-09-11T00:59:00.288276+00:00",
+  "timestamp": "2026-09-11T00:59:37.777394+00:00",
   "scorers": [
     {
       "scorer": "token_set_claim_match",
@@ -5329,7 +5329,7 @@
   ],
   "errors": [],
   "excluded_cases": [],
-  "elapsed_seconds": 0.0343058540020138,
+  "elapsed_seconds": 0.030411210958845913,
   "limitations": [
     "Authored and template-derived cases evaluate narrow supplied-evidence checks.",
     "Sentence extraction matching is heuristic and is not semantic entailment.",
