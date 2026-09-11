@@ -29,6 +29,23 @@ class ExpectedClaim(BenchmarkModel):
     verification_input: str = Field(min_length=1, max_length=2_000)
     label: Literal["ACCEPTABLE", "PROBLEMATIC"]
     category: str | None = None
+    claim_form: str | None = None
+    modality: (
+        Literal[
+            "asserted",
+            "probable",
+            "possible",
+            "uncertain",
+            "denied",
+            "hypothetical",
+            "conditional",
+        ]
+        | None
+    ) = None
+    source_span: list[int] | tuple[int, int] | None = None
+    source_text: str | None = None
+    disputed: bool = False
+    dispute_details: dict[str, Any] | None = None
 
     @model_validator(mode="after")
     def category_matches_label(self):
@@ -40,7 +57,7 @@ class ExpectedClaim(BenchmarkModel):
 
 
 class BenchmarkCase(BenchmarkModel):
-    id: str = Field(pattern=r"^DB2-[0-9]{4}$")
+    id: str = Field(pattern=r"^DB[23]-[0-9]{4}$")
     split: Literal["development", "validation", "held_out", "confirmation"]
     category: str
     severity: Literal["LOW", "MEDIUM", "HIGH"]
@@ -55,6 +72,7 @@ class BenchmarkCase(BenchmarkModel):
     difficulty: Literal["easy", "medium", "hard"]
     notes: str
     claims: list[ExpectedClaim] = Field(min_length=1)
+    provenance_details: dict[str, Any] | None = None
 
     @model_validator(mode="after")
     def classification_matches_claims(self):
@@ -85,12 +103,13 @@ class BenchmarkDataset(BenchmarkModel):
         return self
 
 
-def dataset_path() -> Path:
-    return Path(str(files("howldream").joinpath("fixtures/dreambench_v0_2_0.json")))
+def dataset_path(version: str = "0.2.0") -> Path:
+    normalized = version.replace(".", "_")
+    return Path(str(files("howldream").joinpath(f"fixtures/dreambench_v{normalized}.json")))
 
 
-def load_dataset(path: Path | None = None) -> tuple[BenchmarkDataset, str]:
-    target = path or dataset_path()
+def load_dataset(path: Path | None = None, version: str = "0.2.0") -> tuple[BenchmarkDataset, str]:
+    target = path or dataset_path(version)
     raw = target.read_bytes()
     if len(raw) > 5_000_000:
         raise ValueError("benchmark dataset exceeds 5 MB")
@@ -171,11 +190,14 @@ def _implementation_hash() -> str:
 
 
 def benchmark(
-    split: str = "development", output: Path | None = None, dataset: Path | None = None
+    split: str = "development",
+    output: Path | None = None,
+    dataset: Path | None = None,
+    version: str = "0.2.0",
 ) -> dict:
     """Run one deterministic split; development is intentionally the default."""
     started = time.monotonic()
-    definition, dataset_hash = load_dataset(dataset)
+    definition, dataset_hash = load_dataset(dataset, version=version)
     if split not in {"development", "validation", "held_out", "confirmation", "all"}:
         raise ValueError("split must be development, validation, held_out, confirmation, or all")
     cases = [case for case in definition.cases if split == "all" or case.split == split]
@@ -209,6 +231,9 @@ def benchmark(
                 "case_id": case.id,
                 "claim_id": expected.id,
                 "category": expected.category or "CONTROL",
+                "claim_form": expected.claim_form or "explicit",
+                "modality": expected.modality or "asserted",
+                "disputed": expected.disputed,
                 "expected_problematic": expected.label == "PROBLEMATIC",
                 "predicted_problematic": predicted,
                 "extracted": expected.id in matches,
@@ -229,6 +254,44 @@ def benchmark(
             }
         )
     ground_truth = len(claim_rows)
+    by_form: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for r in claim_rows:
+        by_form[r["claim_form"]].append(r)
+
+    prob_total = sum(row["expected_problematic"] for row in claim_rows)
+    prob_extracted = sum(row["expected_problematic"] and row["extracted"] for row in claim_rows)
+    prob_detected = sum(
+        row["expected_problematic"] and row["predicted_problematic"] for row in claim_rows
+    )
+    ext_miss = sum(row["expected_problematic"] and not row["extracted"] for row in claim_rows)
+    norm_err = sum(
+        row["expected_problematic"]
+        and row["extracted"]
+        and not row["predicted_problematic"]
+        and row["verification_outcome"] == "UNCERTAIN"
+        for row in claim_rows
+    )
+    ver_miss = sum(
+        row["expected_problematic"]
+        and row["extracted"]
+        and not row["predicted_problematic"]
+        and row["verification_outcome"] != "UNCERTAIN"
+        for row in claim_rows
+    )
+    class_err = sum(
+        not row["expected_problematic"] and row["predicted_problematic"] for row in claim_rows
+    )
+    annot_issue = sum(
+        (row["expected_problematic"] != row["predicted_problematic"]) and row.get("disputed", False)
+        for row in claim_rows
+    )
+    coverage_val = _ratio(matched_total, ground_truth)
+    cov_warning = (
+        "Verification is incomplete because claim extraction may be incomplete."
+        if (coverage_val is not None and coverage_val < 0.85)
+        else None
+    )
+
     report = {
         "schema": "howldream.dreambench_run/v2",
         "suite": "dreambench",
@@ -261,12 +324,48 @@ def benchmark(
             "extracted_relevant_claims": matched_total,
             "missed_claims": ground_truth - matched_total,
             "spurious_extractions": spurious_total,
-            "coverage": _ratio(matched_total, ground_truth),
+            "coverage": coverage_val,
             "approximate_precision": _ratio(matched_total, extracted_total),
             "matching_is_heuristic": True,
+            "coverage_warning": cov_warning,
+        },
+        "pipeline_metrics": {
+            "problematic_claims": prob_total,
+            "extracted_problematic_claims": prob_extracted,
+            "detected_problematic_claims": prob_detected,
+            "extraction_recall": _ratio(prob_extracted, prob_total),
+            "verifier_recall_given_extraction": _ratio(prob_detected, prob_extracted),
+            "end_to_end_recall": _ratio(prob_detected, prob_total),
+        },
+        "error_attribution": {
+            "total_failures": (prob_total - prob_detected) + class_err,
+            "extraction_miss": ext_miss,
+            "extraction_distortion": 0,
+            "normalization_error": norm_err,
+            "verifier_miss": ver_miss,
+            "classifier_error": class_err,
+            "annotation_issue": annot_issue,
+        },
+        "pipeline_error_attribution": {
+            "total_failures": (prob_total - prob_detected) + class_err,
+            "extraction_miss": ext_miss,
+            "extraction_distortion": 0,
+            "normalization_error": norm_err,
+            "verifier_miss": ver_miss,
+            "classifier_error": class_err,
+            "annotation_issue": annot_issue,
         },
         "binary_confusion_matrix": confusion(claim_rows),
         "by_category": {name: confusion(rows) for name, rows in sorted(by_category.items())},
+        "by_claim_form": {
+            form: {
+                "ground_truth": len(rows),
+                "extracted": sum(r["extracted"] for r in rows),
+                "coverage": _ratio(sum(r["extracted"] for r in rows), len(rows)),
+                "confusion": confusion(rows),
+            }
+            for form, rows in sorted(by_form.items())
+        },
         "category_confusion": {
             category: confusion(
                 [
@@ -342,17 +441,25 @@ def benchmark(
 
 
 def list_benchmarks() -> dict:
-    definition, digest = load_dataset()
+    benchmarks = []
     names = ("development", "validation", "held_out", "confirmation")
-    splits = {name: sum(case.split == name for case in definition.cases) for name in names}
-    return {
-        "benchmarks": [
-            {
-                "name": definition.name,
-                "version": definition.version,
-                "cases": len(definition.cases),
-                "splits": splits,
-                "dataset_hash": digest,
-            }
-        ]
-    }
+    for ver in ("0.2.0", "0.3.0"):
+        try:
+            p = dataset_path(ver)
+            if p.exists():
+                definition, digest = load_dataset(version=ver)
+                splits = {
+                    name: sum(case.split == name for case in definition.cases) for name in names
+                }
+                benchmarks.append(
+                    {
+                        "name": definition.name,
+                        "version": definition.version,
+                        "cases": len(definition.cases),
+                        "splits": splits,
+                        "dataset_hash": digest,
+                    }
+                )
+        except (FileNotFoundError, ValueError):
+            continue
+    return {"benchmarks": benchmarks}

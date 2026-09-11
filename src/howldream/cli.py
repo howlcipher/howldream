@@ -42,11 +42,19 @@ def main() -> int:
         choices=["development", "validation", "held_out", "confirmation", "all"],
         default="development",
     )
+    benchmark_parser.add_argument(
+        "--benchmark-version",
+        choices=["0.2.0", "0.3.0"],
+        default="0.2.0",
+        help="benchmark dataset version to evaluate",
+    )
     benchmark_parser.add_argument("--output", type=Path, default=Path(".howldream/benchmarks"))
     evaluate_parser = commands.add_parser("evaluate")
     evaluate_parser.add_argument("suite", choices=["dreamvalue"])
     evaluate_parser.add_argument("--input", type=Path)
     evaluate_parser.add_argument("--output", type=Path, default=Path(".howldream/evaluations"))
+    evaluate_parser.add_argument("--reviews", type=Path, help="annotated human review path")
+    evaluate_parser.add_argument("--unblind", type=Path, help="unblinding key path")
     commands.add_parser("compare").add_argument("targets", type=Path, nargs="+")
     args = parser.parse_args()
     result: dict | list
@@ -66,11 +74,16 @@ def main() -> int:
                 args.suite_or_run is None or args.suite_or_run.name != "dreambench"
             ):
                 raise ValueError("benchmark run requires suite dreambench")
-            result = benchmark(split=args.split, output=args.output)
+            result = benchmark(split=args.split, output=args.output, version=args.benchmark_version)
             print(json.dumps(result, indent=2))
             return 0 if result["passed"] else 1
         if args.command == "evaluate":
-            result = evaluate(args.input, args.output)
+            result = evaluate(
+                args.input,
+                args.output,
+                reviews_path=getattr(args, "reviews", None),
+                unblinding_path=getattr(args, "unblind", None),
+            )
             print(json.dumps(result, indent=2))
             return 0
         if args.command == "compare":

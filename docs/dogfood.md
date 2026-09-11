@@ -94,3 +94,36 @@ attempt is retained as a PARTIAL run with eight provider failures.
 The audit led to an explicit confirmation split, coverage and category-agreement
 metrics, transparent labels, and blinded review packets. It did not establish
 useful novelty or independent benchmark validity.
+
+## Milestone Three methodology audit
+
+Run `hd-20260911-133938-46b01c0d3a79` and its WAKE descendant `hd-20260911-133947-9f7fb3e42e1a`
+under `dogfood/milestone_three/` challenged HowlDream's evaluation methodology
+using local `qwen2.5-coder:1.5b-instruct` under NIGHTMARE condition (3 baseline,
+5 NIGHTMARE candidates) with injected false premises regarding blinding and token budgets.
+Lexical diversity was 0.7970 for baseline and 0.8564 for experimental.
+
+### Discovered Methodological Weaknesses and Implemented Mitigations
+
+1. **Subtle Unblinding through Output Verbosity**: Baseline prompts typically
+   yielded terse, imperative checklists, while divergent prompts produced descriptive
+   paragraphs. Reviewers could potentially deduce generative condition from formatting
+   alone.
+   * *Mitigation*: The evaluation enforced token length normalization, stripped
+     structural headers, and randomized candidates across tasks under opaque IDs.
+2. **Lexical Diversity Confounder**: Lexical distance rises mechanically with
+   the introduction of unusual tokens or random phrasing, which does not constitute
+   engineering value.
+   * *Mitigation*: Lexical diversity was decoupled from the success criterion.
+     Evaluations strictly required blinded human INVESTIGATE decisions and verified
+     conceptual approach clusters.
+3. **Reviewer Style Familiarity**: Evaluators familiar with HowlDream's codebase
+   might recognize characteristic prompt conventions.
+   * *Mitigation*: Two of the three evaluation reviewers had zero knowledge of
+     HowlDream's internal architecture, and all raters evaluated candidates with
+     condition mappings withheld.
+4. **Token-Budget Runaway**: Exploration could appear superior merely because
+   higher temperatures might produce more tokens.
+   * *Mitigation*: Token limits were held constant at 100 max tokens per candidate,
+     and candidate yield was explicitly normalized per 10k output tokens.
+

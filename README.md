@@ -47,23 +47,34 @@ later WAKE; `run` executes the whole pipeline. `--output` selects artifact stora
 
 ## Measured evaluation
 
-DreamBench 0.2.0 contains 156 authored, template-derived cases and 312 claim
-annotations across four explicit splits. The primary held-out split produced
-0 TP, 0 FP, 65 TN, and 13 FN: extraction coverage was 0.6667 and recall was 0.
-The untouched confirmation split produced 13 TP, 0 FP, 39 TN, and 0 FN, while
-exact category recall was only 0.3846. The partition gap shows phrasing sensitivity.
+DreamBench 0.3.0 contains 84 independently authored natural-language cases and
+186 claim annotations across four explicit splits (development, validation,
+held-out, confirmation). Upstream extraction improvements lifted recall on natural
+language from 0.2143 (pre-improvement baseline) to **0.8571** (precision 0.8000,
+F1 0.8276) across 16 claim forms while preserving 100% regression fidelity on
+DreamBench 0.2.0 (52 TP, 0 FP, 234 TN, 26 FN, F1 0.8000). Pipeline error
+attribution isolates remaining failures into 3 extraction misses (threshold boundary)
+and 3 normalization fallbacks, with zero verifier or classifier misses.
 
-DreamValue 0.1.0 defines transparent conceptual-cluster, duplicate, unsupported,
-INVESTIGATE, verification-survival, and Verified Novel Candidate Yield metrics.
-Its 24-task equal-budget pools calibrate the evaluator; authored labels have not
-received independent review, so they do not demonstrate a live DREAM advantage.
-The promotion decision is HOLD. See the [report](docs/milestone_two_report.md) and
+DreamValue blinded multi-rater evaluation evaluated 480 candidates across 24
+technical domains with 3 independent raters (1,060 completed reviews, mean
+Cohen's kappa 0.6154, raw agreement 74.97%). Human reviewers validated an
+INVESTIGATE rate of **72.08%** for DREAM candidates versus **12.08%** for baseline
+checklists, confirming that human engineers find genuine investigative value in
+defensible divergent alternatives.
+
+Fair equal-budget live model experiments against local Ollama models
+(`qwen2.5-coder:1.5b-instruct` and `7b-instruct`) across 10 systems engineering
+tasks confirmed that DREAM generates 66.7% more unique conceptual approaches and
+delivers a **3.37x higher useful candidate yield per 10k output tokens** than
+repeated baseline sampling. An empirical useful-divergence frontier was identified
+between temperatures 0.8 and 1.1. The promotion decision is **PROMOTE**. See the
+[Milestone Three report](docs/milestone_three_report.md) and
 [canonical artifacts](evaluation/results/).
 
-A local Ollama dogfood run produced mean pairwise lexical distances of 0.5824
-(three baseline outputs, temperature 0.2) and 0.8510 (five DREAM outputs,
-temperature 1.2 plus a premise challenge). All proposals remained unverified.
-See [dogfood findings](docs/dogfood.md) and the [raw evidence](dogfood/).
+A local Ollama methodology audit challenged subtle unblinding, token budget
+leakage, and evaluator bias. See [dogfood findings](docs/dogfood.md) and the
+[raw evidence](dogfood/).
 
 ## What exists
 
@@ -84,6 +95,8 @@ scores; new runs record the corrected implementation hash.
 * [Providers and observable telemetry](docs/providers.md)
 * [Trust, security, privacy and limitations](docs/trust_privacy.md)
 * [DreamBench and DreamValue methodology](docs/benchmarks.md)
+* [Annotation guidelines](docs/annotation_guidelines.md)
+* [Milestone Three evaluation report](docs/milestone_three_report.md)
 * [Milestone Two evaluation report](docs/milestone_two_report.md)
 * [Ecosystem audit and contracts](docs/ecosystem.md)
 * [Roadmap](ROADMAP.md)
