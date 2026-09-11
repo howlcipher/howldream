@@ -57,20 +57,23 @@ attribution isolates remaining failures into 3 extraction misses (threshold boun
 and 3 normalization fallbacks, with zero verifier or classifier misses.
 
 DreamValue blinded multi-rater evaluation evaluated 480 candidates across 24
-technical domains with 3 independent raters (1,060 completed reviews, mean
-Cohen's kappa 0.6154, raw agreement 74.97%). Human reviewers validated an
+technical domains with 3 blinded simulated reviewer personas (1,060 completed reviews, mean
+Cohen's kappa 0.6154, raw agreement 74.97%). The simulated evaluator study validated an
 INVESTIGATE rate of **72.08%** for DREAM candidates versus **12.08%** for baseline
-checklists, confirming that human engineers find genuine investigative value in
-defensible divergent alternatives.
+checklists. An evidence integrity audit confirmed these raters were algorithmic simulated
+personas rather than independent human engineers.
 
 Fair equal-budget live model experiments against local Ollama models
 (`qwen2.5-coder:1.5b-instruct` and `7b-instruct`) across 10 systems engineering
-tasks confirmed that DREAM generates 66.7% more unique conceptual approaches and
-delivers a **3.37x higher useful candidate yield per 10k output tokens** than
-repeated baseline sampling. An empirical useful-divergence frontier was identified
-between temperatures 0.8 and 1.1. The promotion decision is **PROMOTE**. See the
-[Milestone Three report](docs/milestone_three_report.md) and
-[canonical artifacts](evaluation/results/).
+tasks (60 fair comparison generations, 96 structured task candidates, 133 total generations across sweeps)
+confirmed that DREAM matches baseline conceptual cluster count (12 vs 12) while
+delivering an absolute useful candidate yield advantage of **+100.2 candidates per 10k output tokens**
+over zero-yield baseline checklists (multiplicative ratio undefined per the zero-denominator rule).
+An empirical useful-divergence frontier remains **not yet demonstrated** due to zero observed
+unsupported claims across tested temperatures (0.4–1.4). The promotion decision is
+**PROMOTE WITH CONDITIONS** (requiring independent blinded human review before claiming human-validated
+superiority). See the [Milestone Three report](docs/milestone_three_report.md) and
+[canonical manifest](evaluation/results/milestone_three_manifest.json).
 
 A local Ollama methodology audit challenged subtle unblinding, token budget
 leakage, and evaluator bias. See [dogfood findings](docs/dogfood.md) and the

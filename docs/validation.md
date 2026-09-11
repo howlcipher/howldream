@@ -28,3 +28,32 @@ The independent delegated reviewers exhausted their service quota before returni
 findings. A primary-agent falsification review found and removed annotation-oracle
 leakage; a regression proves predictions derive from observed response extraction.
 No independent human DreamValue ratings are claimed.
+
+## Milestone 3.1 evidence integrity verification
+
+Milestone 3.1 local suite: 67 passed, zero failures and zero skips on Python 3.14.4.
+Ruff format/check, Flake8 with README flags, mypy, wheel and source distribution build,
+Bandit, and pip-audit pass cleanly.
+
+DreamBench 0.3.0 contains 84 cases and 186 claims. Pre-improvement overall baseline:
+9 TP, 1 FP, 143 TN, 33 FN (recall 0.2143, precision 0.9000, F1 0.3462). Post-improvement:
+36 TP, 9 FP, 135 TN, 6 FN (recall 0.8571, precision 0.8000, F1 0.8276), preserving 100%
+regression fidelity on DreamBench 0.2.0 (F1 0.8000).
+
+DreamValue blinded multi-rater evaluation evaluated 480 candidates across 24 tasks
+(1,060 completed reviews, Cohen's kappa 0.6154, raw agreement 74.97%). Evaluators
+`eval-reviewer-alpha`, `beta`, and `gamma` were classified as `SIMULATED_PERSONA`
+(algorithmic heuristic personas); no human evaluation is claimed.
+
+Live model experiments on local Ollama (`qwen2.5-coder:1.5b-instruct` and `7b-instruct`):
+60 fair-comparison generations (133 total live generations across sweeps). Conceptual
+clusters on fair comparison were equal (12 vs 12). Baseline useful yield was 0.0;
+DREAM useful yield was 100.2 / 10k tokens (+100.2 / 10k tokens absolute difference;
+multiplicative ratio undefined per Zero-Denominator Rule). Empirical divergence frontier
+is reclassified to FRONTIER NOT YET DEMONSTRATED due to 0% unsupported claims across
+temperatures 0.4 to 1.4.
+
+Automated consistency regression tests (`tests/test_evidence_integrity.py`) enforce that
+all presentation surfaces match canonical JSON and manifest records.
+Decision: PROMOTE WITH CONDITIONS.
+

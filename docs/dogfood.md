@@ -127,3 +127,29 @@ Lexical diversity was 0.7970 for baseline and 0.8564 for experimental.
    * *Mitigation*: Token limits were held constant at 100 max tokens per candidate,
      and candidate yield was explicitly normalized per 10k output tokens.
 
+## Milestone 3.1 evidence integrity audit
+
+Run `hd-20260911-140943-2051d2df78c6` and WAKE descendant `hd-20260911-140957-c0e39d85cfd0`
+under `dogfood/milestone_three/` audited Milestone Three claims against canonical raw
+evidence using local `qwen2.5-coder:1.5b-instruct` under NIGHTMARE condition with injected
+false premises regarding zero-denominator ratios, simulated evaluators, cluster advantages,
+and temperature frontiers.
+
+### Audit Findings and Evidence Reconciliations
+
+1. **Zero-Denominator Rule**: Where baseline yield is 0.0, reporting multiplicative
+   advantages (e.g. 3.37x) is mathematically undefined. Reconciled to absolute token yield
+   (+100.2 / 10k output tokens).
+2. **Evaluator Provenance**: Reviews in DreamValue and live experiments were generated
+   via algorithmic heuristic personas (`SIMULATED_PERSONA`), not independent humans.
+   Withdrew unsupported claims of human validation.
+3. **Conceptual Clusters on Fair Comparison**: On the 10-task fair comparison, baseline
+   and DREAM each produced 12 unique conceptual clusters (+0.0%). The +66.7% claim belonged
+   to a subset two-task run and was removed from the core fair comparison.
+4. **Divergence Frontier Reclassification**: With zero unsupported claims across all
+   tested temperatures (0.4 to 1.4), no risk degradation frontier was observed. Reclassified
+   to **FRONTIER NOT YET DEMONSTRATED**.
+5. **Promotion Reassessment**: Reassessed Milestone Three to **PROMOTE WITH CONDITIONS**
+   pending independent human review.
+
+

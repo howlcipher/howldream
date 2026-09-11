@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.3.1
+
+Delivered HowlDream Milestone 3.1: Evidence Integrity Audit & Claim Reconciliation.
+
+Reconciled every published Milestone Three claim against canonical raw evidence:
+* **Generation Scopes**: Explicitly resolved generation counts into 60 fair-comparison, 24 multi-trial, 12 multi-model (96 structured task candidates), 18 frontier, 9 prompt-variation, and 10 diminishing-returns (37 auxiliary exploratory), establishing 133 total live generations across all sweeps.
+* **Reviewer Provenance Audit**: Classified all evaluators (`eval-reviewer-alpha`, `beta`, `gamma`, and live raters 1 & 2) as `SIMULATED_PERSONA` generated via algorithmic heuristics. Formally withdrew unsupported claims of "human-validated" superiority.
+* **Fair Baseline vs. DREAM Reconciliation**: Corrected core 10-task fair comparison to canonical values (12 baseline vs. 12 DREAM clusters, +0.0%; baseline useful yield 0.0 vs. DREAM 100.2 / 10k tokens).
+* **Zero-Denominator Rule**: Formally withdrew undefined multiplicative yield ratios (e.g. 3.37x) over zero baselines; established absolute yield difference (+100.2 / 10k tokens) as authoritative.
+* **Useful-Divergence Frontier**: Reclassified frontier status to **FRONTIER NOT YET DEMONSTRATED** due to zero observed unsupported claims across tested temperatures (0.4 to 1.4).
+* **Pre-Improvement Confusion Matrix**: Reconciled canonical DreamBench 0.3.0 pre-improvement confusion matrix across all 186 annotated claims (9 TP, 1 FP, 143 TN, 33 FN; recall 0.2143, precision 0.9000, F1 0.3462).
+* **Unified Canonical Builder & Manifest**: Added `scripts/build_milestone_three_results.py` and `evaluation/results/milestone_three_manifest.json` establishing a single calculation path.
+* **Automated Regression Test**: Added `tests/test_evidence_integrity.py` preventing report/result drift.
+* **Promotion Reassessment**: Reassessed Milestone Three promotion decision from PROMOTE to **PROMOTE WITH CONDITIONS**.
+
 ## 0.3.0
 
 Delivered HowlDream Milestone Three: generalization beyond self-authored constraints.

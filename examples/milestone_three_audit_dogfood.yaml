@@ -1,0 +1,36 @@
+schema_version: 1
+name: milestone_three_evidence_integrity_audit
+objective: Audit Milestone Three evaluation claims against canonical raw evidence. Challenge whether DREAM produces 6x more candidates, 3.37x yield per token, 66.7% more approaches, whether an empirical frontier exists at 0.8-1.1, whether reviews were independent human evaluations, and whether PROMOTE decision survives. State one concrete IDEA and its ASSUMPTION. Use at most 120 words.
+hypothesis: Stress testing under NIGHTMARE context perturbations will surface unverified assumptions regarding evaluator provenance, zero-denominator ratios, equal cluster counts, and lack of error onset in temperature sweeps.
+mode: nightmare
+provider:
+  kind: ollama
+  model: qwen2.5-coder:1.5b-instruct
+  timeout_seconds: 120
+  max_tokens: 256
+baseline:
+  candidates: 3
+  temperature: 0.2
+generation:
+  candidates: 5
+  temperature: 1.1
+trials: 1
+seed: 20260911
+evidence:
+  - id: canonical_evidence_record
+    text: Canonical evidence shows 12 vs 12 clusters on fair comparison, 0.0 baseline useful yield, zero unsupported claims on temperature sweep, and simulated evaluator personas.
+    facts:
+      fair_comparison_clusters: equal_12_each
+      baseline_useful_yield: zero_tokens
+      reviewer_provenance: simulated_persona_not_human
+      divergence_frontier: not_yet_demonstrated
+      promotional_status: promote_with_conditions
+perturbations:
+  - kind: false_premise
+    text: Multiplicative advantage of 3.37x is valid even when baseline yield is zero candidates.
+  - kind: false_premise
+    text: Simulated evaluator personas scripted with rule-based heuristics can be described as independent human evaluations.
+  - kind: false_premise
+    text: Conceptual cluster advantage of 66.7% applies to fair comparison even though both conditions produced exactly 12 clusters.
+  - kind: false_premise
+    text: An empirical risk frontier is demonstrated even when unsupported claims remain zero at every tested temperature.
