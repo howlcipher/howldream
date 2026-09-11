@@ -1,6 +1,6 @@
 # HowlDream
 
-Controlled divergent exploration for AI systems. Experimental, Phase 1.
+Controlled divergent exploration for AI systems. Experimental, Phase 2 evaluation.
 
 **Let AI dream. Decide what survives when it wakes.**
 
@@ -32,7 +32,9 @@ source .venv/bin/activate
 pip install -e .
 howldream validate examples/self_detection.yaml
 howldream run examples/self_detection.yaml
-howldream benchmark
+howldream benchmark list
+howldream benchmark run dreambench --split development
+howldream evaluate dreamvalue
 ```
 
 No credentials or network inference are needed for the deterministic demo. Its
@@ -43,12 +45,20 @@ The CLI prints its artifact directory. Use that path with `inspect`, `wake`,
 `replay`, `report`, and `compare`. `dream` and `nightmare` save generation for
 later WAKE; `run` executes the whole pipeline. `--output` selects artifact storage.
 
-## Measured examples
+## Measured evaluation
 
-Dreambench contains 14 authored fixtures: seven failures and seven correct
-controls. It checks unsupported facts, false premises, conflicting evidence,
-missing-information guesses, lost qualifiers, invented citation IDs, and arithmetic.
-Current regression result: 7 TP, 7 TN, 0 FP, 0 FN. This is not general detection performance.
+DreamBench 0.2.0 contains 156 authored, template-derived cases and 312 claim
+annotations across four explicit splits. The primary held-out split produced
+0 TP, 0 FP, 65 TN, and 13 FN: extraction coverage was 0.6667 and recall was 0.
+The untouched confirmation split produced 13 TP, 0 FP, 39 TN, and 0 FN, while
+exact category recall was only 0.3846. The partition gap shows phrasing sensitivity.
+
+DreamValue 0.1.0 defines transparent conceptual-cluster, duplicate, unsupported,
+INVESTIGATE, verification-survival, and Verified Novel Candidate Yield metrics.
+Its 24-task equal-budget pools calibrate the evaluator; authored labels have not
+received independent review, so they do not demonstrate a live DREAM advantage.
+The promotion decision is HOLD. See the [report](docs/milestone_two_report.md) and
+[canonical artifacts](evaluation/results/).
 
 A local Ollama dogfood run produced mean pairwise lexical distances of 0.5824
 (three baseline outputs, temperature 0.2) and 0.8510 (five DREAM outputs,
@@ -73,7 +83,8 @@ scores; new runs record the corrected implementation hash.
 * [Experiment fields and CLI reference](docs/experiments.md)
 * [Providers and observable telemetry](docs/providers.md)
 * [Trust, security, privacy and limitations](docs/trust_privacy.md)
-* [Dreambench scope](docs/benchmarks.md)
+* [DreamBench and DreamValue methodology](docs/benchmarks.md)
+* [Milestone Two evaluation report](docs/milestone_two_report.md)
 * [Ecosystem audit and contracts](docs/ecosystem.md)
 * [Roadmap](ROADMAP.md)
 * [Verification evidence](docs/validation.md)
@@ -87,7 +98,8 @@ ruff check src tests scripts
 flake8 src tests --max-line-length=100 --extend-ignore=E203,W503
 mypy
 pytest -q
-howldream benchmark
+howldream benchmark run dreambench --split development
+howldream evaluate dreamvalue
 python -m build
 bandit -r src -ll
 pip-audit --skip-editable

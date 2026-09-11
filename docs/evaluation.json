@@ -1,0 +1,75 @@
+{
+  "schema": "howldream.site_evaluation/v1",
+  "source_artifacts": [
+    "../evaluation/results/dreambench_0.2.0_held_out.json",
+    "../evaluation/results/dreambench_0.2.0_confirmation.json",
+    "../evaluation/results/dreamvalue_results.json"
+  ],
+  "dreambench": {
+    "version": "0.2.0",
+    "held_out_cases": 39,
+    "held_out_claims": {
+      "ground_truth_claims": 78,
+      "extracted_relevant_claims": 52,
+      "missed_claims": 26,
+      "spurious_extractions": 13,
+      "coverage": 0.6666666666666666,
+      "approximate_precision": 0.8,
+      "matching_is_heuristic": true
+    },
+    "held_out_confusion": {
+      "true_positives": 0,
+      "false_positives": 0,
+      "true_negatives": 65,
+      "false_negatives": 13,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "specificity": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 1.0,
+      "accuracy": 0.8333333333333334
+    },
+    "confirmation_cases": 26,
+    "confirmation_confusion": {
+      "true_positives": 13,
+      "false_positives": 0,
+      "true_negatives": 39,
+      "false_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "specificity": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.0,
+      "accuracy": 1.0
+    },
+    "category_recall": 0.0
+  },
+  "dreamvalue": {
+    "version": "0.1.0",
+    "tasks": 24,
+    "baseline": {
+      "candidates": 240,
+      "lexical_diversity": 0.6415915094351633,
+      "unique_conceptual_clusters": 120,
+      "duplicate_rate": 0.5,
+      "unsupported_claim_rate": 0.0,
+      "investigate_rate": 1.0,
+      "survives_verification_rate": 0.0,
+      "verified_novel_candidate_yield": 0.1
+    },
+    "dream": {
+      "candidates": 240,
+      "lexical_diversity": 0.6862148674402792,
+      "unique_conceptual_clusters": 216,
+      "duplicate_rate": 0.1,
+      "unsupported_claim_rate": 0.3,
+      "investigate_rate": 0.7,
+      "survives_verification_rate": 0.3,
+      "verified_novel_candidate_yield": 0.5
+    },
+    "status": "authored evaluator calibration; independent human labels pending"
+  },
+  "promotion_decision": "HOLD"
+}

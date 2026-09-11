@@ -40,7 +40,11 @@ howldream inspect .howldream/runs/hd-REPLACE_WITH_RUN_ID
 howldream replay .howldream/runs/hd-REPLACE_WITH_RUN_ID
 howldream compare .howldream/runs/hd-FIRST .howldream/runs/hd-SECOND
 howldream report .howldream/runs/hd-REPLACE_WITH_RUN_ID
-howldream benchmark dreambench
+howldream benchmark list
+howldream benchmark run dreambench --split development
+howldream benchmark run dreambench --split held_out
+howldream benchmark report .howldream/benchmarks/dreambench_0.2.0_held_out.json
+howldream evaluate dreamvalue --output .howldream/evaluations
 ```
 
 `run` executes baseline, generation, and WAKE. `dream` and `nightmare` establish a
@@ -48,6 +52,9 @@ baseline and save unverified generation for a later `wake`. `wake` reads retaine
 outputs without calling the provider and writes a new run. `replay` generates again
 from the stored snapshot and creates a lineage link. `compare` returns each run's
 baseline and experimental metrics. Paths are explicit; run IDs are not globally resolved.
+Benchmark development is the default. Held-out and confirmation execution require
+an explicit split and record that fact in the artifact. DreamValue writes its
+machine-readable result and a blinded human-review packet.
 
 ## Claim grammar
 

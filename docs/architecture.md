@@ -1,6 +1,6 @@
 # Architecture
 
-Status: accepted for experimental milestone one.
+Status: extended for experimental milestone two.
 
 HowlDream owns controlled divergent experiments, fault injection, comparative measurements,
 and inspectable evidence. HowlCreate already performs divergent/convergent creative search;
@@ -37,8 +37,15 @@ flowchart TD
 `schema.py` owns input contracts; `providers.py` owns observable generation;
 `engine.py` owns bounded experiment order and snapshot replay; `verification.py` owns
 the claim grammar, taxonomy registry, and deterministic checks; `scoring.py` owns
-the scorer protocol, lexical comparison, and triage; `artifacts.py` owns redaction
-and persistence; `benchmark.py` owns fixture evaluation; `cli.py` owns user interaction.
+lexical comparison and triage; `artifacts.py` owns run persistence; `benchmark.py`
+owns split-aware reliability evaluation; `dreamvalue.py` owns conceptual-yield
+metrics and review packets; `cli.py` owns user interaction.
+
+Benchmark definitions are versioned package data. Run artifacts are canonical;
+`scripts/build_site_evaluation.py` derives Pages data from them. Deterministic
+authored approach identifiers provide reproducible clusters. Embeddings could
+improve paraphrase grouping but add model drift and opaque thresholds, so they
+remain deferred and must be labeled heuristic if added.
 
 There is no model-driven execution, tool dispatch, dynamic code loading, `eval`, shell
 command interpreter, or external verifier in the experiment engine. Arithmetic uses

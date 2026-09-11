@@ -8,16 +8,17 @@ balanced deterministic fixtures, and dogfood. Experimental, not production-ready
 
 ## Phase 2: Reliability Lab
 
-Highest-value next direction: improve natural-language claim coverage with a labeled,
-held-out benchmark that measures missed claims and false positives. Add calibration,
-retrieval perturbation, model disagreement, evidence graphs, and stronger drift
-analysis only as grounded evaluation needs justify them.
+Completed measurement foundation: versioned split-aware DreamBench, claim coverage,
+binary and category metrics, DreamValue calibration, fair budgets, conceptual
+clusters, curves, blind review packets, canonical artifacts, and research reporting.
+Decision: HOLD. Held-out extraction failed and independent value ratings are pending.
 
 ## Phase 3: Local Model Instrumentation
 
-Optional logits, token entropy, decoding traces, representation probes and activations
-where open-weight tooling exposes them legitimately. Hosted private reasoning remains
-outside the observability contract.
+Highest-value next step: collect independently authored natural-language cases and
+blinded multi-rater value judgments, then run equal-budget live baseline and DREAM
+comparisons across several tasks. Optional instrumentation follows only if those
+results justify it. Hosted private reasoning remains outside the contract.
 
 ## Phase 4: Ecosystem Intelligence
 

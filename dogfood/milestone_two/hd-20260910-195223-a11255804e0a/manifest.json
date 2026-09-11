@@ -1,0 +1,58 @@
+{
+  "schema": "howldream.run/v1",
+  "run_id": "hd-20260910-195223-a11255804e0a",
+  "experiment_id": "637e2b9b8ba405aa16012f0f17cc94249ff4c930caf1b841987d54d76988b0e5",
+  "version": "0.1.0",
+  "git_commit": "5672350699631ebbc910dbc6aa9c739c632a0afd",
+  "implementation_hash": "db7464bd866dfbd503df0e4bb364f016e45dc2f2b91916b65966309286410760",
+  "mode": "nightmare",
+  "started_at": "2026-09-10T19:52:23.338793+00:00",
+  "provider": {
+    "kind": "ollama",
+    "model": "qwen2.5-coder:7b-instruct",
+    "base_url": "http://127.0.0.1:11434",
+    "allow_remote": false,
+    "timeout_seconds": 120,
+    "max_tokens": 512
+  },
+  "capabilities": {
+    "supports_seed": true,
+    "supports_logprobs": false,
+    "supports_tool_calls": false,
+    "supports_structured_output": false,
+    "supports_token_usage": true,
+    "supports_local_instrumentation": false
+  },
+  "authority": "NONE",
+  "parent_run": null,
+  "status": "COMPLETE",
+  "errors": [],
+  "template_version": "line_experiment/v1",
+  "template_hash": "8096777d16cf15dcd68f34f709eeb4f81e1b983ba58fdda00c8008f2aa7add7b",
+  "source_hashes": {
+    "methodology": "9eba4e8a0c71c5be40cccc1b3ac87a1565bc05e90c3642de0ce71cdf838c3af5"
+  },
+  "replay": "CONFIGURATION_REPLAY_NOT_GUARANTEED",
+  "replay_available": true,
+  "warnings": [
+    "Verification is scoped to supplied evidence; generated text has no authority."
+  ],
+  "analysis": {
+    "version": "0.1.0",
+    "implementation_hash": "db7464bd866dfbd503df0e4bb364f016e45dc2f2b91916b65966309286410760",
+    "analyzed_at": "2026-09-10T19:53:51.508300+00:00",
+    "git_commit": "5672350699631ebbc910dbc6aa9c739c632a0afd"
+  },
+  "completed_at": "2026-09-10T19:53:51.524748+00:00",
+  "file_hashes": {
+    "baseline.jsonl": "d9ba77691e032573bef9c81cbb5bfb56e2a6b517f6ca0e2159f3e0c7c281effe",
+    "candidates.jsonl": "5069dad874a80f93bf689050f02adf11b04ea504ae770c568e48345540a3d893",
+    "claims.jsonl": "aa22c192ccbc66dcbb61393e3ea5fe34dfa43d791749c0738de3442a606aa87f",
+    "experiment.json": "3a0adc39fc815138357fae065c97039c0c36c76ca7b93494b44ab73a985f2ef7",
+    "handoff.json": "2140c80aeae96b7ce93387e8fb8fc1a7b369f363d9e401b7bf9fb2e38c4f9b42",
+    "metrics.json": "b76c328783c51ec655a7282ebbc9638d47896fff2958b2536c1b0e3016b71c3b",
+    "report.md": "e3a4b820a74352d38d2795624b3cf77b03442f07776fb1b4804ac37b2341bcde",
+    "scores.json": "9793dc78d135c7324eed83d55f61d542eae4db620aa5f50b8713bbcb510e01d2",
+    "verification.jsonl": "a340ca73e2635902ee6cd16c939127fc11cd08e5d8269c921fe382bb356f61e1"
+  }
+}

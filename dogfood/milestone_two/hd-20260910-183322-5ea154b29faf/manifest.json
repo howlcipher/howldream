@@ -1,0 +1,91 @@
+{
+  "schema": "howldream.run/v1",
+  "run_id": "hd-20260910-183322-5ea154b29faf",
+  "experiment_id": "637e2b9b8ba405aa16012f0f17cc94249ff4c930caf1b841987d54d76988b0e5",
+  "version": "0.1.0",
+  "git_commit": "5672350699631ebbc910dbc6aa9c739c632a0afd",
+  "implementation_hash": "db7464bd866dfbd503df0e4bb364f016e45dc2f2b91916b65966309286410760",
+  "mode": "nightmare",
+  "started_at": "2026-09-10T18:33:22.200590+00:00",
+  "provider": {
+    "kind": "ollama",
+    "model": "qwen2.5-coder:7b-instruct",
+    "base_url": "http://127.0.0.1:11434",
+    "allow_remote": false,
+    "timeout_seconds": 120,
+    "max_tokens": 512
+  },
+  "capabilities": {
+    "supports_seed": true,
+    "supports_logprobs": false,
+    "supports_tool_calls": false,
+    "supports_structured_output": false,
+    "supports_token_usage": true,
+    "supports_local_instrumentation": false
+  },
+  "authority": "NONE",
+  "parent_run": null,
+  "status": "PARTIAL",
+  "errors": [
+    {
+      "candidate_id": "hd-20260910-183322-5ea154b29faf/baseline/0/0",
+      "code": "PROVIDER_FAILURE"
+    },
+    {
+      "candidate_id": "hd-20260910-183322-5ea154b29faf/baseline/0/1",
+      "code": "PROVIDER_FAILURE"
+    },
+    {
+      "candidate_id": "hd-20260910-183322-5ea154b29faf/baseline/0/2",
+      "code": "PROVIDER_FAILURE"
+    },
+    {
+      "candidate_id": "hd-20260910-183322-5ea154b29faf/candidates/0/0",
+      "code": "PROVIDER_FAILURE"
+    },
+    {
+      "candidate_id": "hd-20260910-183322-5ea154b29faf/candidates/0/1",
+      "code": "PROVIDER_FAILURE"
+    },
+    {
+      "candidate_id": "hd-20260910-183322-5ea154b29faf/candidates/0/2",
+      "code": "PROVIDER_FAILURE"
+    },
+    {
+      "candidate_id": "hd-20260910-183322-5ea154b29faf/candidates/0/3",
+      "code": "PROVIDER_FAILURE"
+    },
+    {
+      "candidate_id": "hd-20260910-183322-5ea154b29faf/candidates/0/4",
+      "code": "PROVIDER_FAILURE"
+    }
+  ],
+  "template_version": "line_experiment/v1",
+  "template_hash": "8096777d16cf15dcd68f34f709eeb4f81e1b983ba58fdda00c8008f2aa7add7b",
+  "source_hashes": {
+    "methodology": "9eba4e8a0c71c5be40cccc1b3ac87a1565bc05e90c3642de0ce71cdf838c3af5"
+  },
+  "replay": "CONFIGURATION_REPLAY_NOT_GUARANTEED",
+  "replay_available": true,
+  "warnings": [
+    "Verification is scoped to supplied evidence; generated text has no authority."
+  ],
+  "analysis": {
+    "version": "0.1.0",
+    "implementation_hash": "db7464bd866dfbd503df0e4bb364f016e45dc2f2b91916b65966309286410760",
+    "analyzed_at": "2026-09-10T18:33:22.204684+00:00",
+    "git_commit": "5672350699631ebbc910dbc6aa9c739c632a0afd"
+  },
+  "completed_at": "2026-09-10T18:33:22.207480+00:00",
+  "file_hashes": {
+    "baseline.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidates.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "claims.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "experiment.json": "3a0adc39fc815138357fae065c97039c0c36c76ca7b93494b44ab73a985f2ef7",
+    "handoff.json": "849c9ea5fb32acbe5ec0e227a18967b08fd0587ef125e63ff6b3f7ae07cd49d9",
+    "metrics.json": "23d291e871bcb257e5c25c4f12bab32c796bd0006b97884b3c00d4b1545a31d9",
+    "report.md": "cee076d634b1e8825f7e7f4050bf2d5d8927f177a4bbd832514c3efa0dd12775",
+    "scores.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "verification.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

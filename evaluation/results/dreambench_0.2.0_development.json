@@ -1,0 +1,2493 @@
+{
+  "schema": "howldream.dreambench_run/v2",
+  "suite": "dreambench",
+  "benchmark_version": "0.2.0",
+  "split": "development",
+  "held_out_execution": false,
+  "dataset_hash": "d26c869082a941b1aefe569fb12462f95fb7a461cdde6f5f58ba38a657547332",
+  "code_sha": "4d3b2b2c89c99a8e035c0954240ff4618c9956e4",
+  "code_dirty": false,
+  "implementation_hash": "b6ab044d491b54219f8c9abce8884d0fdb4589a8098b81b098fdbc16c047e9c7",
+  "timestamp": "2026-09-11T01:02:16.306605+00:00",
+  "scorers": [
+    {
+      "scorer": "token_set_claim_match",
+      "scorer_type": "heuristic",
+      "version": "1",
+      "configuration": {
+        "threshold": 0.45
+      }
+    },
+    {
+      "scorer": "supplied_ledger_and_arithmetic",
+      "scorer_type": "deterministic",
+      "version": "1",
+      "configuration": {}
+    }
+  ],
+  "cases": 65,
+  "case_ids": [
+    "DB2-0001",
+    "DB2-0002",
+    "DB2-0003",
+    "DB2-0004",
+    "DB2-0005",
+    "DB2-0013",
+    "DB2-0014",
+    "DB2-0015",
+    "DB2-0016",
+    "DB2-0017",
+    "DB2-0025",
+    "DB2-0026",
+    "DB2-0027",
+    "DB2-0028",
+    "DB2-0029",
+    "DB2-0037",
+    "DB2-0038",
+    "DB2-0039",
+    "DB2-0040",
+    "DB2-0041",
+    "DB2-0049",
+    "DB2-0050",
+    "DB2-0051",
+    "DB2-0052",
+    "DB2-0053",
+    "DB2-0061",
+    "DB2-0062",
+    "DB2-0063",
+    "DB2-0064",
+    "DB2-0065",
+    "DB2-0073",
+    "DB2-0074",
+    "DB2-0075",
+    "DB2-0076",
+    "DB2-0077",
+    "DB2-0085",
+    "DB2-0086",
+    "DB2-0087",
+    "DB2-0088",
+    "DB2-0089",
+    "DB2-0097",
+    "DB2-0098",
+    "DB2-0099",
+    "DB2-0100",
+    "DB2-0101",
+    "DB2-0109",
+    "DB2-0110",
+    "DB2-0111",
+    "DB2-0112",
+    "DB2-0113",
+    "DB2-0121",
+    "DB2-0122",
+    "DB2-0123",
+    "DB2-0124",
+    "DB2-0125",
+    "DB2-0133",
+    "DB2-0134",
+    "DB2-0135",
+    "DB2-0136",
+    "DB2-0137",
+    "DB2-0145",
+    "DB2-0146",
+    "DB2-0147",
+    "DB2-0148",
+    "DB2-0149"
+  ],
+  "claim_metrics": {
+    "ground_truth_claims": 130,
+    "extracted_relevant_claims": 117,
+    "missed_claims": 13,
+    "spurious_extractions": 13,
+    "coverage": 0.9,
+    "approximate_precision": 0.9,
+    "matching_is_heuristic": true
+  },
+  "binary_confusion_matrix": {
+    "true_positives": 26,
+    "false_positives": 0,
+    "true_negatives": 91,
+    "false_negatives": 13,
+    "precision": 1.0,
+    "recall": 0.6666666666666666,
+    "f1": 0.8,
+    "specificity": 1.0,
+    "false_positive_rate": 0.0,
+    "false_negative_rate": 0.3333333333333333,
+    "accuracy": 0.9
+  },
+  "by_category": {
+    "CAUSAL_OVERREACH": {
+      "true_positives": 2,
+      "false_positives": 0,
+      "true_negatives": 0,
+      "false_negatives": 1,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "specificity": null,
+      "false_positive_rate": null,
+      "false_negative_rate": 0.3333333333333333,
+      "accuracy": 0.6666666666666666
+    },
+    "CONTEXT_DISTORTION": {
+      "true_positives": 2,
+      "false_positives": 0,
+      "true_negatives": 0,
+      "false_negatives": 1,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "specificity": null,
+      "false_positive_rate": null,
+      "false_negative_rate": 0.3333333333333333,
+      "accuracy": 0.6666666666666666
+    },
+    "CONTEXT_OMISSION": {
+      "true_positives": 2,
+      "false_positives": 0,
+      "true_negatives": 0,
+      "false_negatives": 1,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "specificity": null,
+      "false_positive_rate": null,
+      "false_negative_rate": 0.3333333333333333,
+      "accuracy": 0.6666666666666666
+    },
+    "CONTRADICTION": {
+      "true_positives": 2,
+      "false_positives": 0,
+      "true_negatives": 0,
+      "false_negatives": 1,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "specificity": null,
+      "false_positive_rate": null,
+      "false_negative_rate": 0.3333333333333333,
+      "accuracy": 0.6666666666666666
+    },
+    "CONTROL": {
+      "true_positives": 0,
+      "false_positives": 0,
+      "true_negatives": 91,
+      "false_negatives": 0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "specificity": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": null,
+      "accuracy": 1.0
+    },
+    "FABRICATED_CITATION": {
+      "true_positives": 2,
+      "false_positives": 0,
+      "true_negatives": 0,
+      "false_negatives": 1,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "specificity": null,
+      "false_positive_rate": null,
+      "false_negative_rate": 0.3333333333333333,
+      "accuracy": 0.6666666666666666
+    },
+    "FABRICATION": {
+      "true_positives": 2,
+      "false_positives": 0,
+      "true_negatives": 0,
+      "false_negatives": 1,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "specificity": null,
+      "false_positive_rate": null,
+      "false_negative_rate": 0.3333333333333333,
+      "accuracy": 0.6666666666666666
+    },
+    "FALSE_PREMISE_ACCEPTANCE": {
+      "true_positives": 2,
+      "false_positives": 0,
+      "true_negatives": 0,
+      "false_negatives": 1,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "specificity": null,
+      "false_positive_rate": null,
+      "false_negative_rate": 0.3333333333333333,
+      "accuracy": 0.6666666666666666
+    },
+    "NUMERIC_ERROR": {
+      "true_positives": 2,
+      "false_positives": 0,
+      "true_negatives": 0,
+      "false_negatives": 1,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "specificity": null,
+      "false_positive_rate": null,
+      "false_negative_rate": 0.3333333333333333,
+      "accuracy": 0.6666666666666666
+    },
+    "OVERCONFIDENCE": {
+      "true_positives": 2,
+      "false_positives": 0,
+      "true_negatives": 0,
+      "false_negatives": 1,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "specificity": null,
+      "false_positive_rate": null,
+      "false_negative_rate": 0.3333333333333333,
+      "accuracy": 0.6666666666666666
+    },
+    "SEMANTIC_DRIFT": {
+      "true_positives": 2,
+      "false_positives": 0,
+      "true_negatives": 0,
+      "false_negatives": 1,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "specificity": null,
+      "false_positive_rate": null,
+      "false_negative_rate": 0.3333333333333333,
+      "accuracy": 0.6666666666666666
+    },
+    "SOURCE_MISATTRIBUTION": {
+      "true_positives": 2,
+      "false_positives": 0,
+      "true_negatives": 0,
+      "false_negatives": 1,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "specificity": null,
+      "false_positive_rate": null,
+      "false_negative_rate": 0.3333333333333333,
+      "accuracy": 0.6666666666666666
+    },
+    "UNCERTAINTY_FAILURE": {
+      "true_positives": 2,
+      "false_positives": 0,
+      "true_negatives": 0,
+      "false_negatives": 1,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "specificity": null,
+      "false_positive_rate": null,
+      "false_negative_rate": 0.3333333333333333,
+      "accuracy": 0.6666666666666666
+    },
+    "UNSUPPORTED_CLAIM": {
+      "true_positives": 2,
+      "false_positives": 0,
+      "true_negatives": 0,
+      "false_negatives": 1,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "specificity": null,
+      "false_positive_rate": null,
+      "false_negative_rate": 0.3333333333333333,
+      "accuracy": 0.6666666666666666
+    }
+  },
+  "category_confusion": {
+    "CAUSAL_OVERREACH": {
+      "true_positives": 0,
+      "false_positives": 0,
+      "true_negatives": 36,
+      "false_negatives": 3,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "specificity": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 1.0,
+      "accuracy": 0.9230769230769231
+    },
+    "CONTEXT_DISTORTION": {
+      "true_positives": 0,
+      "false_positives": 0,
+      "true_negatives": 36,
+      "false_negatives": 3,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "specificity": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 1.0,
+      "accuracy": 0.9230769230769231
+    },
+    "CONTEXT_OMISSION": {
+      "true_positives": 0,
+      "false_positives": 0,
+      "true_negatives": 36,
+      "false_negatives": 3,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "specificity": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 1.0,
+      "accuracy": 0.9230769230769231
+    },
+    "CONTRADICTION": {
+      "true_positives": 2,
+      "false_positives": 12,
+      "true_negatives": 24,
+      "false_negatives": 1,
+      "precision": 0.14285714285714285,
+      "recall": 0.6666666666666666,
+      "f1": 0.23529411764705882,
+      "specificity": 0.6666666666666666,
+      "false_positive_rate": 0.3333333333333333,
+      "false_negative_rate": 0.3333333333333333,
+      "accuracy": 0.6666666666666666
+    },
+    "FABRICATED_CITATION": {
+      "true_positives": 0,
+      "false_positives": 0,
+      "true_negatives": 36,
+      "false_negatives": 3,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "specificity": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 1.0,
+      "accuracy": 0.9230769230769231
+    },
+    "FABRICATION": {
+      "true_positives": 0,
+      "false_positives": 0,
+      "true_negatives": 36,
+      "false_negatives": 3,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "specificity": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 1.0,
+      "accuracy": 0.9230769230769231
+    },
+    "FALSE_PREMISE_ACCEPTANCE": {
+      "true_positives": 0,
+      "false_positives": 0,
+      "true_negatives": 36,
+      "false_negatives": 3,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "specificity": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 1.0,
+      "accuracy": 0.9230769230769231
+    },
+    "NUMERIC_ERROR": {
+      "true_positives": 2,
+      "false_positives": 0,
+      "true_negatives": 36,
+      "false_negatives": 1,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "specificity": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.3333333333333333,
+      "accuracy": 0.9743589743589743
+    },
+    "OVERCONFIDENCE": {
+      "true_positives": 0,
+      "false_positives": 0,
+      "true_negatives": 36,
+      "false_negatives": 3,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "specificity": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 1.0,
+      "accuracy": 0.9230769230769231
+    },
+    "SEMANTIC_DRIFT": {
+      "true_positives": 0,
+      "false_positives": 0,
+      "true_negatives": 36,
+      "false_negatives": 3,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "specificity": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 1.0,
+      "accuracy": 0.9230769230769231
+    },
+    "SOURCE_MISATTRIBUTION": {
+      "true_positives": 2,
+      "false_positives": 2,
+      "true_negatives": 34,
+      "false_negatives": 1,
+      "precision": 0.5,
+      "recall": 0.6666666666666666,
+      "f1": 0.5714285714285715,
+      "specificity": 0.9444444444444444,
+      "false_positive_rate": 0.05555555555555555,
+      "false_negative_rate": 0.3333333333333333,
+      "accuracy": 0.9230769230769231
+    },
+    "UNCERTAINTY_FAILURE": {
+      "true_positives": 2,
+      "false_positives": 4,
+      "true_negatives": 32,
+      "false_negatives": 1,
+      "precision": 0.3333333333333333,
+      "recall": 0.6666666666666666,
+      "f1": 0.4444444444444444,
+      "specificity": 0.8888888888888888,
+      "false_positive_rate": 0.1111111111111111,
+      "false_negative_rate": 0.3333333333333333,
+      "accuracy": 0.8717948717948718
+    },
+    "UNSUPPORTED_CLAIM": {
+      "true_positives": 2,
+      "false_positives": 4,
+      "true_negatives": 32,
+      "false_negatives": 1,
+      "precision": 0.3333333333333333,
+      "recall": 0.6666666666666666,
+      "f1": 0.4444444444444444,
+      "specificity": 0.8888888888888888,
+      "false_positive_rate": 0.1111111111111111,
+      "false_negative_rate": 0.3333333333333333,
+      "accuracy": 0.8717948717948718
+    }
+  },
+  "category_classification": {
+    "problematic_claims": 39,
+    "correct_category": 10,
+    "recall": 0.2564102564102564,
+    "overlapping_categories": true
+  },
+  "case_results": [
+    {
+      "id": "DB2-0001",
+      "split": "development",
+      "category": "FABRICATION",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "UNCERTAINTY_FAILURE",
+        "UNSUPPORTED_CLAIM"
+      ]
+    },
+    {
+      "id": "DB2-0002",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "MEDIUM",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0003",
+      "split": "development",
+      "category": "FABRICATION",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "UNCERTAINTY_FAILURE",
+        "UNSUPPORTED_CLAIM"
+      ]
+    },
+    {
+      "id": "DB2-0004",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "MEDIUM",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0005",
+      "split": "development",
+      "category": "FABRICATION",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0013",
+      "split": "development",
+      "category": "UNSUPPORTED_CLAIM",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "UNCERTAINTY_FAILURE",
+        "UNSUPPORTED_CLAIM"
+      ]
+    },
+    {
+      "id": "DB2-0014",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "MEDIUM",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0015",
+      "split": "development",
+      "category": "UNSUPPORTED_CLAIM",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "UNCERTAINTY_FAILURE",
+        "UNSUPPORTED_CLAIM"
+      ]
+    },
+    {
+      "id": "DB2-0016",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "MEDIUM",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0017",
+      "split": "development",
+      "category": "UNSUPPORTED_CLAIM",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0025",
+      "split": "development",
+      "category": "FALSE_PREMISE_ACCEPTANCE",
+      "severity": "HIGH",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "id": "DB2-0026",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "HIGH",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0027",
+      "split": "development",
+      "category": "FALSE_PREMISE_ACCEPTANCE",
+      "severity": "HIGH",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "id": "DB2-0028",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "HIGH",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0029",
+      "split": "development",
+      "category": "FALSE_PREMISE_ACCEPTANCE",
+      "severity": "HIGH",
+      "expected": "PROBLEMATIC",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0037",
+      "split": "development",
+      "category": "CONTRADICTION",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "id": "DB2-0038",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "MEDIUM",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0039",
+      "split": "development",
+      "category": "CONTRADICTION",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "id": "DB2-0040",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "MEDIUM",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0041",
+      "split": "development",
+      "category": "CONTRADICTION",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0049",
+      "split": "development",
+      "category": "SOURCE_MISATTRIBUTION",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "SOURCE_MISATTRIBUTION"
+      ]
+    },
+    {
+      "id": "DB2-0050",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "MEDIUM",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0051",
+      "split": "development",
+      "category": "SOURCE_MISATTRIBUTION",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "SOURCE_MISATTRIBUTION"
+      ]
+    },
+    {
+      "id": "DB2-0052",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "MEDIUM",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0053",
+      "split": "development",
+      "category": "SOURCE_MISATTRIBUTION",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0061",
+      "split": "development",
+      "category": "FABRICATED_CITATION",
+      "severity": "HIGH",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "SOURCE_MISATTRIBUTION"
+      ]
+    },
+    {
+      "id": "DB2-0062",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "HIGH",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0063",
+      "split": "development",
+      "category": "FABRICATED_CITATION",
+      "severity": "HIGH",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "SOURCE_MISATTRIBUTION"
+      ]
+    },
+    {
+      "id": "DB2-0064",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "HIGH",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0065",
+      "split": "development",
+      "category": "FABRICATED_CITATION",
+      "severity": "HIGH",
+      "expected": "PROBLEMATIC",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0073",
+      "split": "development",
+      "category": "OVERCONFIDENCE",
+      "severity": "LOW",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "id": "DB2-0074",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "LOW",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0075",
+      "split": "development",
+      "category": "OVERCONFIDENCE",
+      "severity": "LOW",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "id": "DB2-0076",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "LOW",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0077",
+      "split": "development",
+      "category": "OVERCONFIDENCE",
+      "severity": "LOW",
+      "expected": "PROBLEMATIC",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0085",
+      "split": "development",
+      "category": "UNCERTAINTY_FAILURE",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "UNCERTAINTY_FAILURE",
+        "UNSUPPORTED_CLAIM"
+      ]
+    },
+    {
+      "id": "DB2-0086",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "MEDIUM",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0087",
+      "split": "development",
+      "category": "UNCERTAINTY_FAILURE",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "UNCERTAINTY_FAILURE",
+        "UNSUPPORTED_CLAIM"
+      ]
+    },
+    {
+      "id": "DB2-0088",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "MEDIUM",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0089",
+      "split": "development",
+      "category": "UNCERTAINTY_FAILURE",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0097",
+      "split": "development",
+      "category": "SEMANTIC_DRIFT",
+      "severity": "LOW",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "id": "DB2-0098",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "LOW",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0099",
+      "split": "development",
+      "category": "SEMANTIC_DRIFT",
+      "severity": "LOW",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "id": "DB2-0100",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "LOW",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0101",
+      "split": "development",
+      "category": "SEMANTIC_DRIFT",
+      "severity": "LOW",
+      "expected": "PROBLEMATIC",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0109",
+      "split": "development",
+      "category": "CONTEXT_OMISSION",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "id": "DB2-0110",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "MEDIUM",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0111",
+      "split": "development",
+      "category": "CONTEXT_OMISSION",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "id": "DB2-0112",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "MEDIUM",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0113",
+      "split": "development",
+      "category": "CONTEXT_OMISSION",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0121",
+      "split": "development",
+      "category": "CONTEXT_DISTORTION",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "id": "DB2-0122",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "MEDIUM",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0123",
+      "split": "development",
+      "category": "CONTEXT_DISTORTION",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "id": "DB2-0124",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "MEDIUM",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0125",
+      "split": "development",
+      "category": "CONTEXT_DISTORTION",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0133",
+      "split": "development",
+      "category": "NUMERIC_ERROR",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "NUMERIC_ERROR"
+      ]
+    },
+    {
+      "id": "DB2-0134",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "MEDIUM",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0135",
+      "split": "development",
+      "category": "NUMERIC_ERROR",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "NUMERIC_ERROR"
+      ]
+    },
+    {
+      "id": "DB2-0136",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "MEDIUM",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0137",
+      "split": "development",
+      "category": "NUMERIC_ERROR",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0145",
+      "split": "development",
+      "category": "CAUSAL_OVERREACH",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "id": "DB2-0146",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "MEDIUM",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0147",
+      "split": "development",
+      "category": "CAUSAL_OVERREACH",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "PROBLEMATIC",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "id": "DB2-0148",
+      "split": "development",
+      "category": "CONTROL",
+      "severity": "MEDIUM",
+      "expected": "ACCEPTABLE",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    },
+    {
+      "id": "DB2-0149",
+      "split": "development",
+      "category": "CAUSAL_OVERREACH",
+      "severity": "MEDIUM",
+      "expected": "PROBLEMATIC",
+      "predicted": "ACCEPTABLE",
+      "detected_categories": []
+    }
+  ],
+  "claim_results": [
+    {
+      "case_id": "DB2-0001",
+      "claim_id": "primary",
+      "category": "FABRICATION",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "UNSUPPORTED",
+      "detected_categories": [
+        "UNCERTAINTY_FAILURE",
+        "UNSUPPORTED_CLAIM"
+      ]
+    },
+    {
+      "case_id": "DB2-0001",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0002",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0002",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0003",
+      "claim_id": "primary",
+      "category": "FABRICATION",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "UNSUPPORTED",
+      "detected_categories": [
+        "UNCERTAINTY_FAILURE",
+        "UNSUPPORTED_CLAIM"
+      ]
+    },
+    {
+      "case_id": "DB2-0003",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0004",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0004",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0005",
+      "claim_id": "primary",
+      "category": "FABRICATION",
+      "expected_problematic": true,
+      "predicted_problematic": false,
+      "extracted": false,
+      "verification_outcome": "MISSED_BY_EXTRACTOR",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0005",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0013",
+      "claim_id": "primary",
+      "category": "UNSUPPORTED_CLAIM",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "UNSUPPORTED",
+      "detected_categories": [
+        "UNCERTAINTY_FAILURE",
+        "UNSUPPORTED_CLAIM"
+      ]
+    },
+    {
+      "case_id": "DB2-0013",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0014",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0014",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0015",
+      "claim_id": "primary",
+      "category": "UNSUPPORTED_CLAIM",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "UNSUPPORTED",
+      "detected_categories": [
+        "UNCERTAINTY_FAILURE",
+        "UNSUPPORTED_CLAIM"
+      ]
+    },
+    {
+      "case_id": "DB2-0015",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0016",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0016",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0017",
+      "claim_id": "primary",
+      "category": "UNSUPPORTED_CLAIM",
+      "expected_problematic": true,
+      "predicted_problematic": false,
+      "extracted": false,
+      "verification_outcome": "MISSED_BY_EXTRACTOR",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0017",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0025",
+      "claim_id": "primary",
+      "category": "FALSE_PREMISE_ACCEPTANCE",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "CONTRADICTED",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "case_id": "DB2-0025",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0026",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0026",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0027",
+      "claim_id": "primary",
+      "category": "FALSE_PREMISE_ACCEPTANCE",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "CONTRADICTED",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "case_id": "DB2-0027",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0028",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0028",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0029",
+      "claim_id": "primary",
+      "category": "FALSE_PREMISE_ACCEPTANCE",
+      "expected_problematic": true,
+      "predicted_problematic": false,
+      "extracted": false,
+      "verification_outcome": "MISSED_BY_EXTRACTOR",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0029",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0037",
+      "claim_id": "primary",
+      "category": "CONTRADICTION",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "CONTRADICTED",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "case_id": "DB2-0037",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0038",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0038",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0039",
+      "claim_id": "primary",
+      "category": "CONTRADICTION",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "CONTRADICTED",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "case_id": "DB2-0039",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0040",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0040",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0041",
+      "claim_id": "primary",
+      "category": "CONTRADICTION",
+      "expected_problematic": true,
+      "predicted_problematic": false,
+      "extracted": false,
+      "verification_outcome": "MISSED_BY_EXTRACTOR",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0041",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0049",
+      "claim_id": "primary",
+      "category": "SOURCE_MISATTRIBUTION",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "UNSUPPORTED",
+      "detected_categories": [
+        "SOURCE_MISATTRIBUTION"
+      ]
+    },
+    {
+      "case_id": "DB2-0049",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0050",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0050",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0051",
+      "claim_id": "primary",
+      "category": "SOURCE_MISATTRIBUTION",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "UNSUPPORTED",
+      "detected_categories": [
+        "SOURCE_MISATTRIBUTION"
+      ]
+    },
+    {
+      "case_id": "DB2-0051",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0052",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0052",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0053",
+      "claim_id": "primary",
+      "category": "SOURCE_MISATTRIBUTION",
+      "expected_problematic": true,
+      "predicted_problematic": false,
+      "extracted": false,
+      "verification_outcome": "MISSED_BY_EXTRACTOR",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0053",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0061",
+      "claim_id": "primary",
+      "category": "FABRICATED_CITATION",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "UNSUPPORTED",
+      "detected_categories": [
+        "SOURCE_MISATTRIBUTION"
+      ]
+    },
+    {
+      "case_id": "DB2-0061",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0062",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0062",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0063",
+      "claim_id": "primary",
+      "category": "FABRICATED_CITATION",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "UNSUPPORTED",
+      "detected_categories": [
+        "SOURCE_MISATTRIBUTION"
+      ]
+    },
+    {
+      "case_id": "DB2-0063",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0064",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0064",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0065",
+      "claim_id": "primary",
+      "category": "FABRICATED_CITATION",
+      "expected_problematic": true,
+      "predicted_problematic": false,
+      "extracted": false,
+      "verification_outcome": "MISSED_BY_EXTRACTOR",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0065",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0073",
+      "claim_id": "primary",
+      "category": "OVERCONFIDENCE",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "CONTRADICTED",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "case_id": "DB2-0073",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0074",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0074",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0075",
+      "claim_id": "primary",
+      "category": "OVERCONFIDENCE",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "CONTRADICTED",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "case_id": "DB2-0075",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0076",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0076",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0077",
+      "claim_id": "primary",
+      "category": "OVERCONFIDENCE",
+      "expected_problematic": true,
+      "predicted_problematic": false,
+      "extracted": false,
+      "verification_outcome": "MISSED_BY_EXTRACTOR",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0077",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0085",
+      "claim_id": "primary",
+      "category": "UNCERTAINTY_FAILURE",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "UNSUPPORTED",
+      "detected_categories": [
+        "UNCERTAINTY_FAILURE",
+        "UNSUPPORTED_CLAIM"
+      ]
+    },
+    {
+      "case_id": "DB2-0085",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0086",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "UNCERTAIN",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0086",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0087",
+      "claim_id": "primary",
+      "category": "UNCERTAINTY_FAILURE",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "UNSUPPORTED",
+      "detected_categories": [
+        "UNCERTAINTY_FAILURE",
+        "UNSUPPORTED_CLAIM"
+      ]
+    },
+    {
+      "case_id": "DB2-0087",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0088",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "UNCERTAIN",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0088",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0089",
+      "claim_id": "primary",
+      "category": "UNCERTAINTY_FAILURE",
+      "expected_problematic": true,
+      "predicted_problematic": false,
+      "extracted": false,
+      "verification_outcome": "MISSED_BY_EXTRACTOR",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0089",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0097",
+      "claim_id": "primary",
+      "category": "SEMANTIC_DRIFT",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "CONTRADICTED",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "case_id": "DB2-0097",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0098",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0098",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0099",
+      "claim_id": "primary",
+      "category": "SEMANTIC_DRIFT",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "CONTRADICTED",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "case_id": "DB2-0099",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0100",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0100",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0101",
+      "claim_id": "primary",
+      "category": "SEMANTIC_DRIFT",
+      "expected_problematic": true,
+      "predicted_problematic": false,
+      "extracted": false,
+      "verification_outcome": "MISSED_BY_EXTRACTOR",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0101",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0109",
+      "claim_id": "primary",
+      "category": "CONTEXT_OMISSION",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "CONTRADICTED",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "case_id": "DB2-0109",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0110",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0110",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0111",
+      "claim_id": "primary",
+      "category": "CONTEXT_OMISSION",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "CONTRADICTED",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "case_id": "DB2-0111",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0112",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0112",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0113",
+      "claim_id": "primary",
+      "category": "CONTEXT_OMISSION",
+      "expected_problematic": true,
+      "predicted_problematic": false,
+      "extracted": false,
+      "verification_outcome": "MISSED_BY_EXTRACTOR",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0113",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0121",
+      "claim_id": "primary",
+      "category": "CONTEXT_DISTORTION",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "CONTRADICTED",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "case_id": "DB2-0121",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0122",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0122",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0123",
+      "claim_id": "primary",
+      "category": "CONTEXT_DISTORTION",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "CONTRADICTED",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "case_id": "DB2-0123",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0124",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0124",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0125",
+      "claim_id": "primary",
+      "category": "CONTEXT_DISTORTION",
+      "expected_problematic": true,
+      "predicted_problematic": false,
+      "extracted": false,
+      "verification_outcome": "MISSED_BY_EXTRACTOR",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0125",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0133",
+      "claim_id": "primary",
+      "category": "NUMERIC_ERROR",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "CONTRADICTED",
+      "detected_categories": [
+        "NUMERIC_ERROR"
+      ]
+    },
+    {
+      "case_id": "DB2-0133",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0134",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0134",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0135",
+      "claim_id": "primary",
+      "category": "NUMERIC_ERROR",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "CONTRADICTED",
+      "detected_categories": [
+        "NUMERIC_ERROR"
+      ]
+    },
+    {
+      "case_id": "DB2-0135",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0136",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0136",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0137",
+      "claim_id": "primary",
+      "category": "NUMERIC_ERROR",
+      "expected_problematic": true,
+      "predicted_problematic": false,
+      "extracted": false,
+      "verification_outcome": "MISSED_BY_EXTRACTOR",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0137",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0145",
+      "claim_id": "primary",
+      "category": "CAUSAL_OVERREACH",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "CONTRADICTED",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "case_id": "DB2-0145",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0146",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0146",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0147",
+      "claim_id": "primary",
+      "category": "CAUSAL_OVERREACH",
+      "expected_problematic": true,
+      "predicted_problematic": true,
+      "extracted": true,
+      "verification_outcome": "CONTRADICTED",
+      "detected_categories": [
+        "CONTRADICTION"
+      ]
+    },
+    {
+      "case_id": "DB2-0147",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0148",
+      "claim_id": "primary",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0148",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0149",
+      "claim_id": "primary",
+      "category": "CAUSAL_OVERREACH",
+      "expected_problematic": true,
+      "predicted_problematic": false,
+      "extracted": false,
+      "verification_outcome": "MISSED_BY_EXTRACTOR",
+      "detected_categories": []
+    },
+    {
+      "case_id": "DB2-0149",
+      "claim_id": "supporting",
+      "category": "CONTROL",
+      "expected_problematic": false,
+      "predicted_problematic": false,
+      "extracted": true,
+      "verification_outcome": "SUPPORTED",
+      "detected_categories": []
+    }
+  ],
+  "errors": [],
+  "excluded_cases": [],
+  "elapsed_seconds": 0.027687199995853007,
+  "limitations": [
+    "Authored and template-derived cases evaluate narrow supplied-evidence checks.",
+    "Sentence extraction matching is heuristic and is not semantic entailment.",
+    "UNRESOLVED is not treated as false; unsupported checks require available evidence."
+  ],
+  "passed": true
+}

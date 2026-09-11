@@ -1,0 +1,10 @@
+{
+  "schema": "howldream.handoff/v1",
+  "authority": "NONE",
+  "run_id": "hd-20260910-183322-5ea154b29faf",
+  "outcome": "DEFER",
+  "outcome_namespace": "howldream.advisory",
+  "confidence": null,
+  "candidates": [],
+  "verification_status": "REQUIRES_DOWNSTREAM_REVIEW"
+}

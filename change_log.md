@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.2.0
+
+Added DreamBench 0.2.0 with 156 split-aware cases, 312 claim annotations,
+provenance, extraction coverage, binary and category metrics, machine-readable
+artifacts, and human-readable confusion reports.
+
+Added DreamValue 0.1.0 with 24 technical tasks, fair candidate budgets,
+conceptual clusters, duplicate and unsupported rates, Verified Novel Candidate
+Yield, divergence and candidate-count curves, and blinded human-review packets.
+
+Recorded a local methodology audit, generated research and Pages result data from
+canonical artifacts, and chose HOLD because held-out extraction failed and
+independent DreamValue ratings remain pending.
+
 ## 0.1.0
 
 Initial experimental CLI with controlled baseline/DREAM/NIGHTMARE conditions, scoped
