@@ -11,6 +11,7 @@ from pydantic import ValidationError
 from howldream.contracts import (
     DescentDAG,
     DescentNode,
+    DevelopmentResult,
     ExplorationRequest,
 )
 from howldream.engine import explore
@@ -152,3 +153,84 @@ def test_cli_explore_and_trace(tmp_path: Path):
     trace_data = json.loads(res_trace.stdout)
     assert len(trace_data) >= 3
     assert any(n["node_type"] == "OBJECTIVE" for n in trace_data)
+
+
+def test_development_result_contract_validation():
+    valid = {
+        "schema_version": "howl.development_result/v1",
+        "development_id": "dev-cand-001",
+        "source_candidate_id": "cand-001",
+        "parent_request_id": "req-001",
+        "origin": "howldream",
+        "epistemic_status": "IMAGINED_POSSIBILITY",
+        "authority": {"type": "ADVISORY", "executable": False},
+        "execution_authority": "NONE",
+        "idea": {"id": "idea-01"},
+        "sandbox_prototype_design": {"target_sandbox_environment": "isolated_local_testbed"},
+        "test_specification": [{"test_id": "t1"}],
+        "architecture_proposal": "Proposal text",
+        "provenance": {"system": "howlcreate"},
+    }
+    dev_model = DevelopmentResult.model_validate(valid)
+    assert dev_model.schema_version == "howl.development_result/v1"
+    assert dev_model.execution_authority == "NONE"
+    assert dev_model.authority.executable is False
+
+    # Fail closed on executable authority
+    with pytest.raises(ValidationError):
+        invalid = dict(valid)
+        invalid["authority"] = {"type": "ADVISORY", "executable": True}
+        DevelopmentResult.model_validate(invalid)
+
+    # Fail closed on execution authority not NONE
+    with pytest.raises(ValidationError):
+        invalid = dict(valid)
+        invalid["execution_authority"] = "EXECUTIVE"  # type: ignore[assignment]
+        DevelopmentResult.model_validate(invalid)
+
+
+def test_descent_dag_cycle_detection():
+    dag = DescentDAG()
+    dag.add_node(DescentNode(node_id="A", node_type="OBJECTIVE", label="A"))
+    dag.add_node(DescentNode(node_id="B", node_type="CANDIDATE", label="B"))
+    dag.add_node(DescentNode(node_id="C", node_type="CANDIDATE", label="C"))
+
+    dag.add_edge("A", "B", "generates")
+    dag.add_edge("B", "C", "generates")
+
+    # Self loop rejected
+    with pytest.raises(ValueError, match="cycle"):
+        dag.add_edge("A", "A", "self")
+
+    # Cycle A -> B -> C -> A rejected
+    with pytest.raises(ValueError, match="cycle"):
+        dag.add_edge("C", "A", "loop")
+
+
+def test_descent_dag_branching_overflow():
+    dag = DescentDAG(max_branching_factor=3)
+    dag.add_node(DescentNode(node_id="root", node_type="OBJECTIVE", label="root"))
+    for i in range(3):
+        child = f"child_{i}"
+        dag.add_node(DescentNode(node_id=child, node_type="CANDIDATE", label=child))
+        dag.add_edge("root", child, "branch")
+
+    # 4th edge exceeds max branching factor 3
+    dag.add_node(DescentNode(node_id="child_3", node_type="CANDIDATE", label="child_3"))
+    with pytest.raises(ValueError, match="branching overflow"):
+        dag.add_edge("root", "child_3", "overflow")
+
+
+def test_descent_dag_depth_overflow():
+    dag = DescentDAG(max_depth=3)
+    dag.add_node(DescentNode(node_id="n1", node_type="OBJECTIVE", label="n1"))
+    dag.add_node(DescentNode(node_id="n2", node_type="CANDIDATE", label="n2"))
+    dag.add_node(DescentNode(node_id="n3", node_type="CANDIDATE", label="n3"))
+    dag.add_node(DescentNode(node_id="n4", node_type="CANDIDATE", label="n4"))
+
+    dag.add_edge("n1", "n2", "next")
+    dag.add_edge("n2", "n3", "next")
+
+    # Depth reaches 4 which exceeds max_depth=3
+    with pytest.raises(ValueError, match="depth overflow"):
+        dag.add_edge("n3", "n4", "overflow")

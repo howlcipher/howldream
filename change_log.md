@@ -13,6 +13,8 @@ Implemented end-to-end controlled native integration across HowlPlane, HowlFrame
 * **HowlPlane Integration**: Implemented `HowlDreamRunner` with exploration policies, token/candidate budgets, circuit breakers, and hard negative boundary checks preventing execution receipt issuance for speculative candidates. Added `explore` and `trace` CLI subcommands in HowlPlane.
 * **HowlRelay Integration**: Implemented native `HowlDreamCollector` adapter gathering `HOWLDREAM_EXPLORATION` evidence without altering authority.
 * **End-to-End Verification**: Validated three canonical end-to-end scenarios (Useful Candidate Flow, No-Valuable Result Flow, and Unsafe Authority Escalation Attempt).
+* **Testing Architecture**: Refactored test harness with contract-compatible adapters for standalone CI independence; eliminated developer workstation path assumptions.
+* **Lineage & Authority Hardening**: Enhanced `DescentDAG` with cycle detection, depth limits, and branching factor protections; added `DevelopmentResult` contract model.
 * **Dogfooding Evidence**: Completed dogfood exploration run `hd-20260911-145551-873eea4f7922` documenting lineage DAG, artifact verification, and ecosystem handoffs in `dogfood/milestone_four/SUMMARY.md`.
 
 ## 0.3.1

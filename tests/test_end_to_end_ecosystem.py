@@ -11,6 +11,7 @@ Milestone Four Canonical Ecosystem End-to-End Scenarios:
 """
 
 import json
+import os
 import shutil
 import subprocess
 from pathlib import Path
@@ -18,8 +19,82 @@ from typing import Any
 from uuid import uuid4
 
 import pytest
-from howlcreate.engine.candidate_ingestion import IngestionError, develop_candidate
 from pydantic import ValidationError
+
+try:
+    from howlcreate.engine.candidate_ingestion import IngestionError, develop_candidate
+except ImportError:
+    # Contract-compatible fallback adapter when howlcreate is not installed in the environment
+    class IngestionError(Exception):  # type: ignore[no-redef]
+        """Raised when candidate ingestion or authority validation fails."""
+
+    def develop_candidate(  # type: ignore[no-redef]
+        cand: dict[str, Any], assessment: dict[str, Any]
+    ) -> dict[str, Any]:
+        auth = cand.get("authority", {})
+        if auth.get("executable") is True or auth.get("type") != "ADVISORY":
+            raise IngestionError(
+                "Authority escalation prohibited: speculative candidate cannot claim authority"
+            )
+        assess_auth = assessment.get("authority", {})
+        if assess_auth.get("executable") is True or assess_auth.get("type") != "ADVISORY":
+            raise IngestionError(
+                "Authority escalation prohibited: assessment cannot claim execution authority"
+            )
+        disposition = assessment.get("disposition")
+        if disposition != "ACCEPT_FOR_DEVELOPMENT":
+            raise IngestionError(
+                f"Candidate cannot be developed: disposition is {disposition!r}, "
+                "must be 'ACCEPT_FOR_DEVELOPMENT'"
+            )
+        candidate_id = cand.get("candidate_id", "unknown_candidate")
+        clean_id = candidate_id.replace("/", "-")
+        idea_id = f"create-{clean_id}"
+        return {
+            "schema_version": "howl.development_result/v1",
+            "development_id": f"dev-{clean_id}",
+            "source_candidate_id": candidate_id,
+            "parent_request_id": cand.get("parent_request_id", ""),
+            "origin": "howldream",
+            "epistemic_status": "IMAGINED_POSSIBILITY",
+            "authority": {"type": "ADVISORY", "executable": False},
+            "execution_authority": "NONE",
+            "idea": {
+                "id": idea_id,
+                "title": f"Sandbox Prototype for {clean_id}",
+                "description": cand.get("text", ""),
+                "problem_framing": cand.get("objective", ""),
+                "origin": "howldream",
+            },
+            "sandbox_prototype_design": {
+                "prototype_id": f"proto-{idea_id}",
+                "target_sandbox_environment": "isolated_local_testbed",
+                "isolation_controls": [
+                    "NO_PRODUCTION_DEPLOYMENT",
+                    "NO_IMPLICIT_NETWORK_EGRESS",
+                    "READ_ONLY_ACCESS_ONLY",
+                ],
+            },
+            "test_specification": [
+                {
+                    "test_id": "test_sandbox_diagnostic_activation",
+                    "assertion": "Diagnostic captures failure metrics",
+                    "expected_outcome": "PASS",
+                }
+            ],
+            "architecture_proposal": (
+                f"# Deliberate Sandbox Architecture Proposal for {idea_id}\n\n"
+                "## Authority Boundary\n"
+                "This proposal represents deliberate design in sandbox isolation. "
+                "It carries NO EXECUTION OR DEPLOYMENT AUTHORITY in HowlPlane or HowlChangeOps."
+            ),
+            "provenance": {
+                "candidate_id": candidate_id,
+                "assessment_id": assessment.get("assessment_id"),
+                "system": "howlcreate",
+            },
+        }
+
 
 from howldream.contracts import (
     CandidateHandoff,
@@ -37,23 +112,11 @@ def _find_howlframe_bin() -> str | None:
 
 
 def _find_evaluator_hfbc() -> Path | None:
-    candidates = [
-        Path(
-            "/run/media/system/tallgeese/dev/worktrees/howlframe-milestone-four"
-            "/apps/candidate_evaluator/candidate_evaluator.hfbc"
-        ),
-        Path(
-            "/run/media/system/tallgeese/dev/worktrees/howlplane-milestone-four"
-            "/integrations/howlframe/candidate_evaluator.hfbc"
-        ),
-        Path(
-            "/run/media/system/tallgeese/dev/howlframe"
-            "/apps/candidate_evaluator/candidate_evaluator.hfbc"
-        ),
-    ]
-    for c in candidates:
-        if c.is_file():
-            return c
+    env_path = os.environ.get("HOWLFRAME_CANDIDATE_EVALUATOR_BC")
+    if env_path:
+        p = Path(env_path).expanduser().resolve()
+        if p.is_file():
+            return p
     return None
 
 

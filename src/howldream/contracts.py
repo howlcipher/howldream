@@ -117,6 +117,25 @@ class CandidateAssessment(StrictModel):
     provenance: dict[str, Any] = Field(default_factory=dict)
 
 
+class DevelopmentResult(StrictModel):
+    """Deliberate sandbox prototype specification from HowlCreate: howl.development_result/v1."""
+
+    schema_version: Literal["howl.development_result/v1"] = "howl.development_result/v1"
+    development_id: str = Field(min_length=1, max_length=200)
+    source_candidate_id: str = Field(min_length=1, max_length=200)
+    parent_request_id: str = Field(min_length=1, max_length=100)
+    origin: str = Field(default="howldream", min_length=1, max_length=100)
+    epistemic_status: str = Field(min_length=1, max_length=100)
+    authority: ExplorationAuthority = Field(default_factory=ExplorationAuthority)
+    execution_authority: Literal["NONE"] = "NONE"
+    idea: dict[str, Any] = Field(default_factory=dict)
+    lineage: dict[str, Any] = Field(default_factory=dict)
+    sandbox_prototype_design: dict[str, Any] = Field(default_factory=dict)
+    test_specification: list[dict[str, Any]] = Field(default_factory=list)
+    architecture_proposal: str = Field(default="", max_length=100000)
+    provenance: dict[str, Any] = Field(default_factory=dict)
+
+
 class DescentNode(StrictModel):
     """Single node in the durable descent DAG."""
 
@@ -149,15 +168,81 @@ class DescentDAG(StrictModel):
 
     nodes: dict[str, DescentNode] = Field(default_factory=dict)
     edges: list[DescentEdge] = Field(default_factory=list)
+    max_depth: int = Field(default=20, ge=1, le=100)
+    max_branching_factor: int = Field(default=50, ge=1, le=200)
+
+    def is_reachable(self, start: str, target: str) -> bool:
+        """Check if target is reachable from start via directed edges."""
+        visited: set[str] = set()
+        queue = [start]
+        while queue:
+            curr = queue.pop(0)
+            if curr == target:
+                return True
+            if curr in visited:
+                continue
+            visited.add(curr)
+            for edge in self.edges:
+                if edge.source == curr and edge.target not in visited:
+                    queue.append(edge.target)
+        return False
 
     def add_node(self, node: DescentNode) -> None:
         self.nodes[node.node_id] = node
 
     def add_edge(self, source: str, target: str, relation: str) -> None:
+        if source == target:
+            raise ValueError(f"Lineage cycle detected: self-loop on node '{source}'")
+
+        # Idempotency check: if edge already exists, no-op
         for edge in self.edges:
             if edge.source == source and edge.target == target and edge.relation == relation:
                 return
+
+        # Cycle check: adding source -> target creates cycle if source is reachable from target
+        if self.is_reachable(target, source):
+            raise ValueError(
+                f"Lineage cycle detected: edge '{source}' -> '{target}' would create a cycle"
+            )
+
+        # Branching factor check: out-degree of source
+        out_degree = sum(1 for e in self.edges if e.source == source)
+        if out_degree >= self.max_branching_factor:
+            raise ValueError(
+                f"Lineage branching overflow: node '{source}' "
+                f"exceeds max branching factor {self.max_branching_factor}"
+            )
+
+        # Depth check: compute max depth from any root to target
         self.edges.append(DescentEdge(source=source, target=target, relation=relation))
+        depth = self._compute_max_depth(target)
+        if depth > self.max_depth:
+            self.edges.pop()
+            raise ValueError(
+                f"Lineage depth overflow: target '{target}' "
+                f"reaches depth {depth} > max_depth {self.max_depth}"
+            )
+
+    def _compute_max_depth(self, node_id: str) -> int:
+        """Calculates the longest path from any root ancestor to node_id."""
+        memo: dict[str, int] = {}
+
+        def _get_depth(curr: str, path: set[str]) -> int:
+            if curr in memo:
+                return memo[curr]
+            if curr in path:
+                return 0
+            path.add(curr)
+            incoming = [e.source for e in self.edges if e.target == curr]
+            if not incoming:
+                max_d = 1
+            else:
+                max_d = 1 + max((_get_depth(src, path) for src in incoming), default=0)
+            path.remove(curr)
+            memo[curr] = max_d
+            return max_d
+
+        return _get_depth(node_id, set())
 
     def trace(self, start_id: str) -> list[DescentNode]:
         """Traverse backwards from start_id to the root objective node."""
