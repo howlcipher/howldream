@@ -1,5 +1,39 @@
 # Changelog
 
+## 0.4.3
+
+Closes `issues.md` items 1–3 with cross-repo evidence, and corrects a stale claim
+this session initially repeated before re-verifying it live:
+
+* **Item 1 closed**: howlframe (PR #41, merged) vendored the `schemas/` generated in
+  0.4.2 into `contracts/howl/` and added a pure-Go `contract_test.go` validating a
+  real `howl.exploration_result/v1` envelope and rejecting forged/malformed ones —
+  the cross-language consumer test this item's acceptance criterion required, with no
+  Python, no `howldream` import, and no network access at test time.
+* **Item 2 closed**: howlplane (PR #101, merged) added
+  `tests/test_howldream_live_integration.py`, driving `NativeHowlDreamProvider`
+  against a real `howldream` install pinned to this repo's `bd10b18` commit, gated
+  behind the pre-existing `HOWLPLANE_LIVE_PROVIDERS`/`HOWLPLANE_RUN_LIVE_TESTS`
+  scaffolding. Verified in a real GitHub Actions run (not just locally): the pinned
+  commit was cloned and installed fresh and all 3 live tests passed.
+* **Item 3 closed — and a stale claim caught mid-session**: this session's initial
+  recon repeated the prior report's claim that HowlFrame's `candidate_evaluator`
+  branch was unmerged. Re-checking directly against `howlframe`'s actual `origin/main`
+  found it had already been merged (PR #40, 2026-09-11T19:02:48Z) before this session
+  began. Rather than trust that discovery either, independently re-verified it: fetched
+  `howlframe` `main` fresh and ran `go test ./apps/candidate_evaluator/...` directly
+  (5/5 subtests pass, including both authority-escalation rejections) before updating
+  any documentation. `README.md`, `docs/ecosystem.md`, and `docs/architecture.md`'s
+  "what actually runs today" tables are updated accordingly — this is the discipline
+  the 0.4.1 correction established: verify live state, don't restate the last report.
+* **Item 4 remains open**, and is explicitly *not* claimed as done here: HowlFrame's
+  evaluator being merged does not by itself make the Milestone Four dogfood portable —
+  neither HowlDream's nor HowlPlane's pipeline builds/invokes the compiled `.hfbc`
+  automatically; both still require `HOWLFRAME_HFBC_PATH`/
+  `HOWLFRAME_CANDIDATE_EVALUATOR_BC` pointed at a manually-built artifact. A
+  reproducible run through the real bytecode from a fresh clone is the next
+  highest-value gap.
+
 ## 0.4.2
 
 Machine-readable `howl.*` contracts (issues.md item 1, in progress) and a real

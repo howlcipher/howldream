@@ -120,35 +120,46 @@ flowchart TD
   style HP_HALT fill:#fff3e0,stroke:#ef6c00
 ```
 
-### Verified status (corrected 2026-09-11)
+### Verified status (corrected 2026-09-11, updated 2026-09-12)
 
-The diagram above shows the designed loop; it does not all run end-to-end automatically
-today. Cross-checked directly against the sibling repositories on 2026-09-11:
+The diagram above shows the designed loop. Cross-checked directly against the sibling
+repositories, most recently on 2026-09-12 (do not trust this snapshot indefinitely —
+re-verify against live repo state before relying on it):
 
-* `HD_ENV --> HF_APP[candidate_evaluator.hfbc]`: **not real on any `main` branch.**
-  `apps/candidate_evaluator/candidate_evaluator.howl` exists only on an unmerged
-  howlframe branch (`feat/milestone-four-candidate-evaluator`). HowlDream's
-  `tests/test_end_to_end_ecosystem.py` substitutes an in-process Python
-  reimplementation of the same rules; that is what actually runs.
+* `HD_ENV --> HF_APP[candidate_evaluator.hfbc]`: **real, merged to `main`.** This
+  report previously said `apps/candidate_evaluator/candidate_evaluator.howl` existed
+  only on an unmerged howlframe branch; that had already changed by the time it was
+  re-checked (howlframe PR #40, merged 2026-09-11) and was independently re-verified
+  rather than trusted (`go test ./apps/candidate_evaluator/...` on a fresh
+  `main`, 5/5 pass). Neither HowlDream's nor HowlPlane's pipeline builds/invokes the
+  compiled `.hfbc` automatically yet, though — both use it only when
+  `HOWLFRAME_HFBC_PATH`/`HOWLFRAME_CANDIDATE_EVALUATOR_BC` points at one, falling back
+  to an in-process Python reimplementation of the same rules otherwise. `issues.md`
+  item 3 (the merge) is closed; item 4 (a portable, reproducible run through the real
+  bytecode, not a manual env var) is still open.
 * `HF_ASSESS --> HC_INGEST[develop_candidate()]`: the HowlCreate side is real and
   merged (`howlcreate/src/howlcreate/engine/candidate_ingestion.py`, unit-tested
   there). As of 0.4.1, HowlDream's CI (`ecosystem-integration` job) installs a
   pinned `howlcreate` commit and exercises the real import rather than the
   same-file `except ImportError` fallback.
-* `HP_BUDGET`/orchestration: `HowlDreamRunner` is real and merged in howlplane, but
-  `howldream` is not a declared dependency there and its CI substitutes a
-  deterministic fake exploration provider rather than importing this package.
-* HowlRelay's collector (not shown in this diagram) is the one adapter that is both
-  merged and genuinely exercised end-to-end without qualification.
+* `HP_BUDGET`/orchestration: `HowlDreamRunner` is real and merged in howlplane.
+  `howldream` is still not a declared dependency there (by design — see
+  `schemas/README.md`), but as of 2026-09-12 howlplane's own CI installs it pinned to
+  a specific commit and runs a real-import (`live`-marked) test against it, verified
+  in an actual GitHub Actions run (`issues.md` item 2, closed).
+* HowlRelay's collector (not shown in this diagram) remains merged and genuinely
+  exercised end-to-end without qualification.
 
-See `docs/ecosystem.md` and `change_log.md` (0.4.1) for the full correction.
+See `docs/ecosystem.md` and `change_log.md` (0.4.1, 0.4.2) for the full correction
+history.
 
-**Update 2026-09-12**: `howl.exploration/v1`, `howl.candidate/v1`, `howl.assessment/v1`,
+**2026-09-12**: `howl.exploration/v1`, `howl.candidate/v1`, `howl.assessment/v1`,
 `howl.exploration_result/v1`, and `howl.development_result/v1` (every envelope named in
 this diagram) now have generated, drift-checked JSON Schema in `schemas/` — see
-`schemas/README.md` and `AUTHORITY_INVARIANT.md`. This makes the envelope *shapes* above
-independently verifiable without importing `howldream`; it does not by itself change
-which of the arrows above run for real in CI (see `issues.md` items 1–2, still open).
+`schemas/README.md` and `AUTHORITY_INVARIANT.md`. howlframe vendored these schemas and
+added a pure-Go test validating a real envelope and rejecting forged ones, without
+importing `howldream` (`issues.md` item 1, closed). The only remaining open item is 4
+(portable dogfood reproduction).
 
 ### Invariants and Boundaries
 
