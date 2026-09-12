@@ -82,7 +82,7 @@ leakage, and evaluator bias. See [dogfood findings](docs/dogfood.md) and the
 
 ## Controlled Ecosystem Integration (Milestone Four)
 
-HowlDream 0.4.1 provides controlled contracts and partial integration with the Howl
+HowlDream 0.4.3 provides controlled contracts and partial integration with the Howl
 engineering ecosystem. **Corrected 2026-09-11** (see [change log](change_log.md#041)):
 the 0.4.0 entry overstated this milestone as fully "native" across all four systems.
 Verified status per integration, cross-checked against the sibling repositories rather
@@ -90,19 +90,20 @@ than restated from memory:
 
 | Target | What actually runs today |
 | --- | --- |
-| HowlPlane | Real `HowlDreamRunner`/`NativeHowlDreamProvider` merged in howlplane, but `howldream` is not a declared dependency there and HowlPlane's own CI tests it with a deterministic fake provider, not a real import. |
+| HowlPlane | Real `HowlDreamRunner`/`NativeHowlDreamProvider`, merged in howlplane. **Update 2026-09-12**: howlplane's CI now also installs a pinned `howldream` commit and runs a real-import (`live`-marked) test against it (howlplane PR #101) — verified in a real GitHub Actions run, not just locally. `howldream` remains an optional install, never a `pyproject.toml` dependency. |
 | HowlCreate | Real `candidate_ingestion.develop_candidate()` merged and unit-tested in howlcreate. As of 0.4.1, HowlDream's CI (`ecosystem-integration` job) installs a pinned `howlcreate` commit and confirms the real import before running `tests/test_end_to_end_ecosystem.py`, so the real module is now genuinely exercised, not just the local `except ImportError` fallback. |
-| HowlFrame | `candidate_evaluator.howl`/`.hfbc` exists only on an **unmerged** howlframe branch (`feat/milestone-four-candidate-evaluator`). Nothing on `main` in either repo ships this evaluator; HowlDream's own tests reimplement the same rules in Python as a stand-in. |
+| HowlFrame | **Update 2026-09-12**: `candidate_evaluator.howl` and its Go integration test merged to howlframe `main` on 2026-09-11 (PR #40) — this session found that report stale and re-verified directly: `go test ./apps/candidate_evaluator/...` passes fresh from howlframe `main` (5/5 subtests, including both authority-escalation rejections). HowlDream's own in-process Python reimplementation remains as a fallback path, not the sole implementation. |
 | HowlRelay | Real, tested, and self-contained: `HowlDreamCollector` reads exploration envelopes off disk with no package dependency on HowlDream. This one is accurately described below. |
 
-**Update 2026-09-12** (see `issues.md` items 1–2, still tracked as in progress, not
-closed): generated, drift-checked JSON Schema for all five `howl.*` envelopes now
-exists in `schemas/` (see `schemas/README.md` for the generation/versioning/vendoring
-policy, and `AUTHORITY_INVARIANT.md` for exactly which authority claims schema
-validation enforces on its own vs. which require a runtime control). A cross-language
-(Go) consumer test in howlframe validating a real envelope against a vendored copy —
-without importing `howldream` — is in progress; the HowlPlane and HowlCreate/HowlRelay
-CI-exercise rows above are **not yet updated** because those gaps are not yet closed.
+**Update 2026-09-12** (see `issues.md` items 1–3, now closed): generated,
+drift-checked JSON Schema for all five `howl.*` envelopes exists in `schemas/` (see
+`schemas/README.md` for the generation/versioning/vendoring policy, and
+`AUTHORITY_INVARIANT.md` for exactly which authority claims schema validation
+enforces on its own vs. which require a runtime control). howlframe vendored these
+schemas and added a pure-Go contract test validating a real envelope and rejecting
+forged ones — no Python, no `howldream` import (howlframe PR #41). Item 4 (portable
+dogfood reproduction) remains open and is now unblocked by HowlFrame's merge, but is
+not itself done — see that item.
 
 ```mermaid
 flowchart LR
@@ -123,8 +124,8 @@ flowchart LR
   * `howl.development_result/v1`: Deliberate sandbox development specifications without execution authority.
 * **Descent DAG Lineage**: Bounded directed acyclic graph tracing exploration ancestry, branching factors, and parent-child candidate relationships (`howldream trace`).
 * **Adapters & Harnesses** (see status table above for what each side's CI actually exercises):
-  * **HowlPlane**: `HowlDreamRunner` orchestrates bounded exploration, invokes HowlFrame verification, promotes viable candidates to HowlCreate, and asserts zero execution authority. Merged in howlplane; real cross-repo import untested in either repo's CI.
-  * **HowlFrame**: `candidate_evaluator.howl` app and compiled bytecode (`.hfbc`) for invariant verification exists only on an unmerged howlframe branch. HowlDream falls back to an in-process Python evaluator on `main`.
+  * **HowlPlane**: `HowlDreamRunner` orchestrates bounded exploration, invokes HowlFrame verification, promotes viable candidates to HowlCreate, and asserts zero execution authority. Merged in howlplane; as of 2026-09-12, howlplane's own CI also exercises the real cross-repo import via a pinned, `live`-marked test.
+  * **HowlFrame**: `candidate_evaluator.howl` app and compiled bytecode (`.hfbc`) for invariant verification merged to howlframe `main` 2026-09-11 (PR #40), independently re-verified 2026-09-12. HowlDream's in-process Python evaluator remains available as a fallback when the compiled evaluator isn't provisioned.
   * **HowlCreate**: `candidate_ingestion` module develops candidates into sandbox prototype designs. Merged in howlcreate; as of 0.4.1, HowlDream's CI installs a pinned `howlcreate` commit and exercises this real module rather than the local fallback stub.
   * **HowlRelay**: Native `HowlDreamCollector` gathers exploration evidence into the relay state store. Merged, tested, and self-contained (no package dependency on HowlDream).
 

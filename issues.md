@@ -11,9 +11,9 @@ against the live repos before starting — this audit is a point-in-time snapsho
 
 | # | Item | Status | Owner repo(s) |
 | --- | --- | --- | --- |
-| 1 | [Publish JSON Schema for the `howl.*` contracts](#1-publish-json-schema-for-the-howl-contracts) | In progress | howldream (+ vendor into howlframe; howlplane, howlcreate, howlrelay next) |
-| 2 | [Close the HowlPlane-side CI-exercise gap for `howldream`](#2-close-the-howlplane-side-ci-exercise-gap-for-howldream) | In progress | howlplane |
-| 3 | [Merge the HowlFrame candidate_evaluator branch](#3-merge-the-howlframe-candidate_evaluator-branch) | Open | howlframe |
+| 1 | [Publish JSON Schema for the `howl.*` contracts](#1-publish-json-schema-for-the-howl-contracts) | Closed (2026-09-12) | howldream, howlframe |
+| 2 | [Close the HowlPlane-side CI-exercise gap for `howldream`](#2-close-the-howlplane-side-ci-exercise-gap-for-howldream) | Closed (2026-09-12) | howlplane |
+| 3 | [Merge the HowlFrame candidate_evaluator branch](#3-merge-the-howlframe-candidate_evaluator-branch) | Closed (2026-09-11) | howlframe |
 | 4 | [Replace the one-off dogfood run with a repeatable, path-agnostic reproduction](#4-replace-the-one-off-dogfood-run-with-a-repeatable-path-agnostic-reproduction) | Open | howldream |
 
 ## Details
@@ -47,7 +47,7 @@ add a Python dependency on `howldream`.
 and at least one sibling repo validates an envelope against the vendored copy in its
 own test suite without importing `howldream`.
 
-**Progress (2026-09-12):** `scripts/generate_schemas.py` now generates all five
+**Closed (2026-09-12):** `scripts/generate_schemas.py` generates all five
 `schemas/howl.*.v1.schema.json` files from `src/howldream/contracts.py`
 (`model_json_schema()`), with `--check` drift detection wired into `.github/workflows/ci.yml`.
 `schemas/README.md` documents the authoritative source, the vendoring architecture
@@ -55,13 +55,18 @@ decision (vendored copies pinned to a commit — see that file for the full comp
 and the versioning/evolution policy. The previously-untyped `provenance: dict[str, Any]`
 field on all five envelopes was replaced with a typed (but deliberately
 `additionalProperties: true`) `Provenance` model — see `AUTHORITY_INVARIANT.md` for why
-that field alone stays open while the rest of each envelope stays closed. New
+that field alone stays open while the rest of each envelope stays closed.
 `tests/test_authority_invariants.py` proves the authority/trust/execution-authority/
 disposition/verification-status/schema-version invariants at both the Pydantic layer
-and the generated-schema layer (100 tests). Still open: the HowlFrame Go consumer test
-(in progress, tracked as part of this item since it's the acceptance bar) and vendoring
-into howlplane/howlcreate/howlrelay. Not closing this item until a sibling repo's own
-test suite actually validates against the vendored schema.
+and the generated-schema layer (100 tests, this repo). Acceptance criterion met:
+`howlframe` (PR #41, merged) vendored the schemas (`contracts/howl/`, pinned to
+`howldream@bd10b18`) and added a pure-Go `contract_test.go` that validates a real
+envelope and rejects forged/malformed ones — no Python, no `howldream` import, no
+network access at test time. `howlplane` also vendored `howl.exploration_result.v1`
+(see item 2) as a second consumer. `howlcreate`/`howlrelay` are not yet vendored
+consumers — lower priority now that the acceptance bar (at least one real,
+independent consumer) is met; revisit if either repo needs schema validation for its
+own reasons.
 
 ### 2. Close the HowlPlane-side CI-exercise gap for `howldream`
 
@@ -84,6 +89,19 @@ before running its integration test suite.
 **Acceptance:** HowlPlane's CI fails if the real `howldream` import breaks, not just
 if the fake provider's contract shape changes.
 
+**Closed (2026-09-12):** howlplane PR #101 (merged) added
+`tests/test_howldream_live_integration.py`, marked `live` (deselected by default per
+the pre-existing `HOWLPLANE_LIVE_PROVIDERS` gate in `tests/conftest.py`), driving
+`NativeHowlDreamProvider.explore()` against a real `howldream` install and validating
+the envelope against a vendored `howl.exploration_result/v1` schema copy. The
+`nightly-python` job in `.github/workflows/test.yml` installs `howldream` pinned to
+`bd10b18b7182e5216b494d728d015dbbba9b32d0` only in that step (never a `pyproject.toml`
+dependency), gated behind the `HOWLPLANE_RUN_LIVE_TESTS` repo variable (now set to
+`true`). Verified for real, not just locally: manually dispatched the workflow after
+enabling the variable — GitHub Actions cloned and installed the pinned commit fresh
+and all 3 live tests passed (run
+https://github.com/howlcipher/howlplane/actions/runs/34676543712).
+
 ### 3. Merge the HowlFrame candidate_evaluator branch
 
 **Symptom:** `apps/candidate_evaluator/candidate_evaluator.howl` and its compiled
@@ -101,6 +119,17 @@ once it does merge (the docs should flip back to describing it as real at that p
 
 **Acceptance:** `candidate_evaluator.hfbc` is reachable from a fresh `howlframe`
 clone's `main` branch; this repo's docs are updated to reflect it.
+
+**Closed (2026-09-11, discovered 2026-09-12):** this session's recon initially
+repeated the stale claim that this branch was unmerged — re-checking directly found
+howlframe PR #40 (`feat/milestone-four-candidate-evaluator`) was already merged to
+`main` on 2026-09-11T19:02:48Z, before this session began. Independently re-verified
+rather than trusted: fetched `howlframe`'s current `main` (`55d4b15`) fresh and ran
+`go test ./apps/candidate_evaluator/...` directly — all 5 subtests pass, including
+`AuthorityEscalationAttemptRejected` and `ExecutiveAuthorityTypeRejected`. The
+evaluator, its `.howl` source, and its test are reachable from a fresh clone of
+`main`. `docs/architecture.md`, `docs/ecosystem.md`, and `README.md`'s "what actually
+runs today" tables are updated accordingly in this same change.
 
 ### 4. Replace the one-off dogfood run with a repeatable, path-agnostic reproduction
 

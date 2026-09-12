@@ -8,9 +8,9 @@ CI configurations, repository branches/status, and current GitHub metadata.
 
 | Component | Current role | Relationship to HowlDream |
 | --- | --- | --- |
-| HowlPlane | Operational AI engineering orchestration and authority gates | `HowlDreamRunner` merged in howlplane (policy, budget, HowlFrame dispatch, HowlCreate handoff; HALTS before execution), but `howldream` is not installable in howlplane's CI — its tests use a deterministic fake exploration provider, not a real import |
+| HowlPlane | Operational AI engineering orchestration and authority gates | `HowlDreamRunner` merged in howlplane (policy, budget, HowlFrame dispatch, HowlCreate handoff; HALTS before execution). As of 2026-09-12, howlplane's own CI also installs a pinned `howldream` commit and runs a real-import `live` test against it (verified in a real Actions run, not just locally) |
 | HowlCreate | Experimental creative search, mutation, challenge, concept lineage | `candidate_ingestion.py` merged and unit-tested in howlcreate. As of 0.4.1, HowlDream's CI installs a pinned `howlcreate` commit and its end-to-end test exercises the real module instead of the same-file fallback stub |
-| HowlFrame | Experimental language, compiler, capability-bounded VM | `candidate_evaluator.howl` / `.hfbc` exists only on an **unmerged** howlframe branch (`feat/milestone-four-candidate-evaluator`); not present on any `main` branch. HowlDream substitutes an in-process Python reimplementation |
+| HowlFrame | Experimental language, compiler, capability-bounded VM | `candidate_evaluator.howl` / `.hfbc` merged to howlframe `main` 2026-09-11 (PR #40); independently re-verified 2026-09-12 (`go test ./apps/candidate_evaluator/...`, 5/5 pass fresh from `main`). HowlDream's in-process Python reimplementation remains as a fallback |
 | HowlChangeOps | Governed change execution, HowlFrame policy, human approvals | Sole relevant release boundary; hard negative boundary rejects speculative candidate execution |
 | HowlRelay | Experimental async work-state and handoff system | Native adapter (`HowlDreamCollector`): collects `HOWLDREAM_EXPLORATION` evidence into relay store |
 | HowlWriter | Writing, citation/provenance and verification workflows | May communicate reviewed conclusions; claims begin unverified, as in its domain model |
@@ -32,16 +32,20 @@ merely because of age. Repository existence alone is not a maturity guarantee.
 
 ## Native Ecosystem Integration (Milestone Four)
 
-**Corrected 2026-09-11**: Milestone Four delivers native *contracts* for a bounded
-ecosystem exploration loop, and real, merged harness code on the HowlPlane, HowlCreate,
-and HowlRelay side. It does not yet deliver a genuinely cross-repo-exercised loop on
-every leg — see the table above for exactly what each side's CI actually runs today.
-As of 0.4.1, HowlDream's own CI genuinely exercises the real HowlCreate import; the
-HowlPlane side remains merged-but-untested-via-real-import in HowlPlane's own CI
-(tracked in `issues.md`, owned by that repo), and HowlFrame's evaluator is not yet
-merged at all. HowlRelay is merged and exercised end-to-end without qualification.
-The diagram below shows the designed loop, not a claim that every arrow in it
-currently executes across real process/package boundaries in CI:
+**Corrected 2026-09-11, updated 2026-09-12**: Milestone Four delivers native
+*contracts* for a bounded ecosystem exploration loop, and real, merged harness code
+on all four sides. As of 2026-09-12: HowlDream's own CI genuinely exercises the real
+HowlCreate import; HowlPlane's own CI now also genuinely exercises the real HowlDream
+import via a pinned, `live`-marked test (`issues.md` item 2, closed); and HowlFrame's
+evaluator, found merged to `main` mid-session and independently re-verified rather
+than trusted from a stale report, is real (`issues.md` item 3, closed). HowlRelay
+remains merged and exercised end-to-end without qualification. All five `howl.*`
+envelope families now also have generated, drift-checked JSON Schema (`issues.md`
+item 1, closed), with a real cross-language (Go) consumer in howlframe. The diagram
+below shows the designed loop; every arrow in it now has at least one side's CI
+genuinely exercising it, though not necessarily as a single unbroken run across all
+four repos in one CI job — that end-to-end reproduction is `issues.md` item 4,
+still open:
 
 ```mermaid
 flowchart LR
@@ -89,7 +93,7 @@ The exploration lineage is recorded in a bounded Directed Acyclic Graph (`Descen
 The native exploration loop is strictly bounded:
 1. **HowlPlane** dispatches exploration requests within strict token/candidate budgets and circuit breakers.
 2. **HowlDream** explores divergent options (DREAM/NIGHTMARE/WAKE) and outputs an exploration envelope.
-3. **HowlFrame** runs compiled bytecode (`candidate_evaluator.hfbc`) to verify structural invariants and claim bounds — this artifact exists only on an unmerged howlframe branch today; HowlDream substitutes an in-process Python evaluator implementing the same rules until it merges.
+3. **HowlFrame** runs compiled bytecode (`candidate_evaluator.hfbc`) to verify structural invariants and claim bounds — the `.howl` source and its Go test are merged to howlframe `main` (verified 2026-09-12; see `issues.md` item 3), but neither HowlDream nor HowlPlane build/exercise the compiled `.hfbc` automatically today: both still use it only when a build is provided out-of-band (e.g. `HOWLFRAME_HFBC_PATH`/`HOWLFRAME_CANDIDATE_EVALUATOR_BC`), falling back to an in-process Python evaluator implementing the same rules otherwise. Making that a portable, reproducible step (not a manual env var pointing at a locally-built artifact) is `issues.md` item 4, still open.
 4. **HowlCreate** ingests evaluated candidates with outcome `PURSUE` and synthesizes sandbox prototype specifications.
 5. **HowlPlane** receives the development result and **HALTS**.
 
