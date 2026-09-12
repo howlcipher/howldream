@@ -8,9 +8,9 @@ CI configurations, repository branches/status, and current GitHub metadata.
 
 | Component | Current role | Relationship to HowlDream |
 | --- | --- | --- |
-| HowlPlane | Operational AI engineering orchestration and authority gates | Native integration (`HowlDreamRunner`): policy, budget, HowlFrame dispatch, HowlCreate handoff; HALTS before execution |
-| HowlCreate | Experimental creative search, mutation, challenge, concept lineage | Native integration (`candidate_ingestion.py`): sandbox prototype development (`EXECUTION_AUTHORITY: NONE`) |
-| HowlFrame | Experimental language, compiler, capability-bounded VM | Native bytecode evaluator (`candidate_evaluator.howl` / `.hfbc`): deterministic invariant & schema checks |
+| HowlPlane | Operational AI engineering orchestration and authority gates | `HowlDreamRunner` merged in howlplane (policy, budget, HowlFrame dispatch, HowlCreate handoff; HALTS before execution), but `howldream` is not installable in howlplane's CI — its tests use a deterministic fake exploration provider, not a real import |
+| HowlCreate | Experimental creative search, mutation, challenge, concept lineage | `candidate_ingestion.py` merged and unit-tested in howlcreate. As of 0.4.1, HowlDream's CI installs a pinned `howlcreate` commit and its end-to-end test exercises the real module instead of the same-file fallback stub |
+| HowlFrame | Experimental language, compiler, capability-bounded VM | `candidate_evaluator.howl` / `.hfbc` exists only on an **unmerged** howlframe branch (`feat/milestone-four-candidate-evaluator`); not present on any `main` branch. HowlDream substitutes an in-process Python reimplementation |
 | HowlChangeOps | Governed change execution, HowlFrame policy, human approvals | Sole relevant release boundary; hard negative boundary rejects speculative candidate execution |
 | HowlRelay | Experimental async work-state and handoff system | Native adapter (`HowlDreamCollector`): collects `HOWLDREAM_EXPLORATION` evidence into relay store |
 | HowlWriter | Writing, citation/provenance and verification workflows | May communicate reviewed conclusions; claims begin unverified, as in its domain model |
@@ -32,9 +32,16 @@ merely because of age. Repository existence alone is not a maturity guarantee.
 
 ## Native Ecosystem Integration (Milestone Four)
 
-Milestone Four delivers native contracts and cross-repository integration harnesses
-that allow HowlDream to participate in a bounded ecosystem exploration loop without
-conferring execution authority:
+**Corrected 2026-09-11**: Milestone Four delivers native *contracts* for a bounded
+ecosystem exploration loop, and real, merged harness code on the HowlPlane, HowlCreate,
+and HowlRelay side. It does not yet deliver a genuinely cross-repo-exercised loop on
+every leg — see the table above for exactly what each side's CI actually runs today.
+As of 0.4.1, HowlDream's own CI genuinely exercises the real HowlCreate import; the
+HowlPlane side remains merged-but-untested-via-real-import in HowlPlane's own CI
+(tracked in `issues.md`, owned by that repo), and HowlFrame's evaluator is not yet
+merged at all. HowlRelay is merged and exercised end-to-end without qualification.
+The diagram below shows the designed loop, not a claim that every arrow in it
+currently executes across real process/package boundaries in CI:
 
 ```mermaid
 flowchart LR
@@ -70,7 +77,7 @@ The exploration lineage is recorded in a bounded Directed Acyclic Graph (`Descen
 The native exploration loop is strictly bounded:
 1. **HowlPlane** dispatches exploration requests within strict token/candidate budgets and circuit breakers.
 2. **HowlDream** explores divergent options (DREAM/NIGHTMARE/WAKE) and outputs an exploration envelope.
-3. **HowlFrame** runs compiled bytecode (`candidate_evaluator.hfbc`) to verify structural invariants and claim bounds.
+3. **HowlFrame** runs compiled bytecode (`candidate_evaluator.hfbc`) to verify structural invariants and claim bounds — this artifact exists only on an unmerged howlframe branch today; HowlDream substitutes an in-process Python evaluator implementing the same rules until it merges.
 4. **HowlCreate** ingests evaluated candidates with outcome `PURSUE` and synthesizes sandbox prototype specifications.
 5. **HowlPlane** receives the development result and **HALTS**.
 

@@ -1,3 +1,3 @@
 """Controlled experiments. Dream output is data, not authority."""
 
-__version__ = "0.4.0"
+__version__ = "0.4.1"

@@ -14,9 +14,17 @@ Pipeline:
 4. HowlCreate deliberate sandbox development for accepted candidates.
 5. Verification of fail-closed boundaries (no HowlChangeOps or execution capability).
 6. Preservation of raw artifacts and descent lineage DAG in dogfood/milestone_four/.
+
+This is a manual, local reproducibility aid, not a CI-gated integration test: it
+depends on optional sibling checkouts of howlframe and howlcreate that are not
+guaranteed to exist on any given machine, and degrades to in-process fallbacks
+when they don't. Set HOWLFRAME_HFBC_PATH to point at a locally built
+candidate_evaluator.hfbc to exercise the real HowlFrame evaluator; otherwise this
+script runs the same in-process Python fallback the automated test suite uses.
 """
 
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -118,26 +126,12 @@ def main() -> int:
     # 2. Evaluate with HowlFrame
     print("\n2. Evaluating candidates with HowlFrame invariant auditor...")
     h_bin = shutil.which("howlframe") or (Path.home() / ".local" / "bin" / "howlframe")
-    hfbc_paths = [
-        repo_root.parents[0]
-        / "worktrees"
-        / "howlframe-milestone-four"
-        / "apps"
-        / "candidate_evaluator"
-        / "candidate_evaluator.hfbc",
-        repo_root.parents[0]
-        / "worktrees"
-        / "howlplane-milestone-four"
-        / "integrations"
-        / "howlframe"
-        / "candidate_evaluator.hfbc",
-        repo_root.parents[0]
-        / "howlframe"
-        / "apps"
-        / "candidate_evaluator"
-        / "candidate_evaluator.hfbc",
-    ]
-    hfbc_file = next((p for p in hfbc_paths if p.is_file()), None)
+    # No sibling-checkout layout is assumed. Point HOWLFRAME_HFBC_PATH at a locally
+    # built candidate_evaluator.hfbc to exercise the real HowlFrame evaluator; if
+    # unset (or the file doesn't exist), this run falls back to the in-process
+    # Python evaluator below, exactly like the automated test suite does.
+    env_hfbc_path = os.environ.get("HOWLFRAME_HFBC_PATH")
+    hfbc_file = Path(env_hfbc_path) if env_hfbc_path and Path(env_hfbc_path).is_file() else None
 
     evaluations: list[dict] = []
     for i, cand in enumerate(exp_result.candidates):
