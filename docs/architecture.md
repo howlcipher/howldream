@@ -120,6 +120,29 @@ flowchart TD
   style HP_HALT fill:#fff3e0,stroke:#ef6c00
 ```
 
+### Verified status (corrected 2026-09-11)
+
+The diagram above shows the designed loop; it does not all run end-to-end automatically
+today. Cross-checked directly against the sibling repositories on 2026-09-11:
+
+* `HD_ENV --> HF_APP[candidate_evaluator.hfbc]`: **not real on any `main` branch.**
+  `apps/candidate_evaluator/candidate_evaluator.howl` exists only on an unmerged
+  howlframe branch (`feat/milestone-four-candidate-evaluator`). HowlDream's
+  `tests/test_end_to_end_ecosystem.py` substitutes an in-process Python
+  reimplementation of the same rules; that is what actually runs.
+* `HF_ASSESS --> HC_INGEST[develop_candidate()]`: the HowlCreate side is real and
+  merged (`howlcreate/src/howlcreate/engine/candidate_ingestion.py`, unit-tested
+  there). As of 0.4.1, HowlDream's CI (`ecosystem-integration` job) installs a
+  pinned `howlcreate` commit and exercises the real import rather than the
+  same-file `except ImportError` fallback.
+* `HP_BUDGET`/orchestration: `HowlDreamRunner` is real and merged in howlplane, but
+  `howldream` is not a declared dependency there and its CI substitutes a
+  deterministic fake exploration provider rather than importing this package.
+* HowlRelay's collector (not shown in this diagram) is the one adapter that is both
+  merged and genuinely exercised end-to-end without qualification.
+
+See `docs/ecosystem.md` and `change_log.md` (0.4.1) for the full correction.
+
 ### Invariants and Boundaries
 
 1. **Zero Execution Authority**:

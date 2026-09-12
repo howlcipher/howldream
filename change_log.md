@@ -1,5 +1,49 @@
 # Changelog
 
+## 0.4.1
+
+Milestone Four Evidence Integrity Correction. Reconciled the 0.4.0 "controlled native
+integration" claims against the actual state of the sibling repositories rather than
+restating the original entry, following the same discipline as the 0.3.1 audit:
+
+* **HowlFrame claim withdrawn**: 0.4.0 stated HowlDream "authored
+  `apps/candidate_evaluator/candidate_evaluator.howl` and compiled bytecode." This file
+  exists only on an **unmerged** howlframe branch (`feat/milestone-four-candidate-evaluator`)
+  and is not present on `main` in howlframe or anywhere in this repo. HowlDream's own
+  `tests/test_end_to_end_ecosystem.py` runs an in-process Python reimplementation of the
+  same rules as a stand-in; that is what actually executes today. Reclassified from
+  "native integration" to "prototype pending merge in howlframe."
+* **HowlCreate and HowlPlane claims qualified**: both `candidate_ingestion.develop_candidate()`
+  (howlcreate) and `HowlDreamRunner`/`NativeHowlDreamProvider` (howlplane) are real, merged
+  code, confirmed present and unit-tested in their own repos. However, neither cross-repo
+  import path is exercised in either side's CI: HowlDream's CI never installs `howlcreate`
+  (`tests/test_end_to_end_ecosystem.py` runs its `except ImportError` fallback stub
+  unconditionally), and HowlPlane's CI never installs `howldream` (its tests inject a
+  `DeterministicTestExplorationProvider` fake). Reclassified from "native integration" to
+  "merged, CI-unverified via real import."
+* **HowlRelay claim confirmed accurate**: `HowlDreamCollector` is real, merged, and
+  genuinely exercised end-to-end without qualification — it is a pure file-contract
+  reader with no package dependency on HowlDream, so it needed no correction.
+* **"Eliminated developer workstation path assumptions" claim withdrawn**: 0.4.0 stated
+  this outright. `scripts/run_milestone_four_dogfood.py` locates the HowlFrame bytecode
+  via hardcoded, machine-specific relative paths
+  (`repo_root.parents[0] / "worktrees" / "howlframe-milestone-four" / ...`), so the
+  dogfood evidence backing this milestone (`dogfood/milestone_four/SUMMARY.md`) was a
+  one-off run tied to this workstation's exact sibling-checkout layout, not something
+  another clone or CI could reproduce. Replaced the hardcoded paths with a
+  `HOWLFRAME_HFBC_PATH` environment variable and documented the script as a manual,
+  local reproducibility aid rather than a CI-gated integration test.
+* **HowlCreate CI-exercise gap closed**: added an `ecosystem-integration` CI job that
+  installs a pinned `howlcreate` commit and asserts the real
+  `howlcreate.engine.candidate_ingestion.develop_candidate` import succeeds before
+  running `tests/test_end_to_end_ecosystem.py`, so this suite is now genuinely proven
+  against the real module in addition to the existing in-repo fallback path. The
+  equivalent gap on the HowlPlane side (installing `howldream` in HowlPlane's own CI)
+  is tracked in `issues.md`, owned by that repo.
+* See `docs/architecture.md` ("Verified status" note), `docs/ecosystem.md`
+  (corrected integration table), and `README.md` (corrected adapter status table) for
+  the full per-integration breakdown.
+
 ## 0.4.0
 
 Delivered HowlDream Milestone Four: Controlled Native Howl Ecosystem Integration.

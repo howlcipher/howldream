@@ -82,7 +82,18 @@ leakage, and evaluator bias. See [dogfood findings](docs/dogfood.md) and the
 
 ## Controlled Ecosystem Integration (Milestone Four)
 
-HowlDream 0.4.0 provides controlled native integration with the Howl engineering ecosystem:
+HowlDream 0.4.1 provides controlled contracts and partial integration with the Howl
+engineering ecosystem. **Corrected 2026-09-11** (see [change log](change_log.md#041)):
+the 0.4.0 entry overstated this milestone as fully "native" across all four systems.
+Verified status per integration, cross-checked against the sibling repositories rather
+than restated from memory:
+
+| Target | What actually runs today |
+| --- | --- |
+| HowlPlane | Real `HowlDreamRunner`/`NativeHowlDreamProvider` merged in howlplane, but `howldream` is not a declared dependency there and HowlPlane's own CI tests it with a deterministic fake provider, not a real import. |
+| HowlCreate | Real `candidate_ingestion.develop_candidate()` merged and unit-tested in howlcreate. As of 0.4.1, HowlDream's CI (`ecosystem-integration` job) installs a pinned `howlcreate` commit and confirms the real import before running `tests/test_end_to_end_ecosystem.py`, so the real module is now genuinely exercised, not just the local `except ImportError` fallback. |
+| HowlFrame | `candidate_evaluator.howl`/`.hfbc` exists only on an **unmerged** howlframe branch (`feat/milestone-four-candidate-evaluator`). Nothing on `main` in either repo ships this evaluator; HowlDream's own tests reimplement the same rules in Python as a stand-in. |
+| HowlRelay | Real, tested, and self-contained: `HowlDreamCollector` reads exploration envelopes off disk with no package dependency on HowlDream. This one is accurately described below. |
 
 ```mermaid
 flowchart LR
@@ -102,11 +113,11 @@ flowchart LR
   * `howl.exploration_result/v1`: Completed exploration envelopes with descent DAG lineage.
   * `howl.development_result/v1`: Deliberate sandbox development specifications without execution authority.
 * **Descent DAG Lineage**: Bounded directed acyclic graph tracing exploration ancestry, branching factors, and parent-child candidate relationships (`howldream trace`).
-* **Adapters & Harnesses**:
-  * **HowlPlane**: Native `HowlDreamRunner` orchestrates bounded exploration, invokes HowlFrame verification, promotes viable candidates to HowlCreate, and asserts zero execution authority.
-  * **HowlFrame**: Native `candidate_evaluator.howl` app and compiled bytecode (`.hfbc`) for invariant verification.
-  * **HowlCreate**: Native `candidate_ingestion` module develops candidates into sandbox prototype designs.
-  * **HowlRelay**: Native `HowlDreamCollector` gathers exploration evidence into the relay state store.
+* **Adapters & Harnesses** (see status table above for what each side's CI actually exercises):
+  * **HowlPlane**: `HowlDreamRunner` orchestrates bounded exploration, invokes HowlFrame verification, promotes viable candidates to HowlCreate, and asserts zero execution authority. Merged in howlplane; real cross-repo import untested in either repo's CI.
+  * **HowlFrame**: `candidate_evaluator.howl` app and compiled bytecode (`.hfbc`) for invariant verification exists only on an unmerged howlframe branch. HowlDream falls back to an in-process Python evaluator on `main`.
+  * **HowlCreate**: `candidate_ingestion` module develops candidates into sandbox prototype designs. Merged in howlcreate; as of 0.4.1, HowlDream's CI installs a pinned `howlcreate` commit and exercises this real module rather than the local fallback stub.
+  * **HowlRelay**: Native `HowlDreamCollector` gathers exploration evidence into the relay state store. Merged, tested, and self-contained (no package dependency on HowlDream).
 
 ## What exists
 
@@ -135,6 +146,7 @@ scores; new runs record the corrected implementation hash.
 * [Ecosystem audit and contracts](docs/ecosystem.md)
 * [Roadmap](ROADMAP.md)
 * [Verification evidence](docs/validation.md)
+* [Open backlog](issues.md)
 
 ## Development
 
