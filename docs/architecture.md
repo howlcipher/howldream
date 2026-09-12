@@ -143,6 +143,13 @@ today. Cross-checked directly against the sibling repositories on 2026-09-11:
 
 See `docs/ecosystem.md` and `change_log.md` (0.4.1) for the full correction.
 
+**Update 2026-09-12**: `howl.exploration/v1`, `howl.candidate/v1`, `howl.assessment/v1`,
+`howl.exploration_result/v1`, and `howl.development_result/v1` (every envelope named in
+this diagram) now have generated, drift-checked JSON Schema in `schemas/` — see
+`schemas/README.md` and `AUTHORITY_INVARIANT.md`. This makes the envelope *shapes* above
+independently verifiable without importing `howldream`; it does not by itself change
+which of the arrows above run for real in CI (see `issues.md` items 1–2, still open).
+
 ### Invariants and Boundaries
 
 1. **Zero Execution Authority**:

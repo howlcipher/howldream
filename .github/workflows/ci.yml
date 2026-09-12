@@ -22,6 +22,8 @@ jobs:
       - run: flake8 src tests --max-line-length=100 --extend-ignore=E203,W503
       - run: mypy
       - run: pytest -q
+      - name: Fail if schemas/ has drifted from contracts.py
+        run: python scripts/generate_schemas.py --check
       - run: howldream benchmark run dreambench --split development
       - run: howldream evaluate dreamvalue --output /tmp/howldream-evaluation
       - run: howldream validate examples/self_detection.yaml

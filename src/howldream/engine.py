@@ -17,6 +17,7 @@ from howldream.contracts import (
     ExplorationAuthority,
     ExplorationRequest,
     ExplorationResult,
+    Provenance,
 )
 from howldream.providers import make_provider
 from howldream.schema import Evidence, Experiment, Generation, Perturbation, ProviderConfig
@@ -533,17 +534,24 @@ def explore(request: ExplorationRequest, root: Path) -> tuple[Path, ExplorationR
             unresolved_issues=cand_assumptions,
             contradictions=cand_contradictions,
             verified_constraints=[f for f in cand_facts],
-            provenance={
-                "request_id": request.request_id,
-                "originating_component": request.originating_component,
-                "run_id": run_dir.name,
-                "candidate_index": c["index"],
-                "trial": c["trial"],
-                "model": c.get("model", "fixture-v1"),
-                "prompt_hash": c["prompt_hash"],
-                "output_hash": c["output_hash"],
-                "timestamp": datetime.now(UTC).isoformat(),
-            },
+            provenance=Provenance.model_validate(
+                {
+                    "run_id": run_dir.name,
+                    "producer_component": "howldream",
+                    "producer_version": __version__,
+                    "model_or_provider": c.get("model", provider_kind),
+                    "observation_kind": "SIMULATED" if provider_kind == "mock" else "LIVE",
+                    "created_at": datetime.now(UTC).isoformat(),
+                    "transformations": ["generated"],
+                    # legacy/context keys, retained as unvalidated extras
+                    "request_id": request.request_id,
+                    "originating_component": request.originating_component,
+                    "candidate_index": c["index"],
+                    "trial": c["trial"],
+                    "prompt_hash": c["prompt_hash"],
+                    "output_hash": c["output_hash"],
+                }
+            ),
         )
         candidates.append(handoff)
 
@@ -574,14 +582,20 @@ def explore(request: ExplorationRequest, root: Path) -> tuple[Path, ExplorationR
         if has_locally_verified
         else "REQUIRES_DOWNSTREAM_REVIEW",
         recommended_disposition=recommended,
-        provenance={
-            "request_id": request.request_id,
-            "parent_run_id": request.parent_run_id,
-            "originating_component": request.originating_component,
-            "run_id": run_dir.name,
-            "timestamp": datetime.now(UTC).isoformat(),
-            "version": __version__,
-        },
+        provenance=Provenance.model_validate(
+            {
+                "run_id": run_dir.name,
+                "producer_component": "howldream",
+                "producer_version": __version__,
+                "observation_kind": "SIMULATED" if provider_kind == "mock" else "LIVE",
+                "created_at": datetime.now(UTC).isoformat(),
+                "transformations": ["explored"],
+                # legacy/context keys, retained as unvalidated extras
+                "request_id": request.request_id,
+                "parent_run_id": request.parent_run_id,
+                "originating_component": request.originating_component,
+            }
+        ),
         descent_dag=dag,
     )
 
