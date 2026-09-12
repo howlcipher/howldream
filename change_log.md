@@ -1,5 +1,51 @@
 # Changelog
 
+## 0.4.2
+
+Machine-readable `howl.*` contracts (issues.md item 1, in progress) and a real
+`Provenance` model, in place of an untyped `dict[str, Any]`, on every envelope:
+
+* **Generated JSON Schema**: `scripts/generate_schemas.py` generates
+  `schemas/howl.{exploration,candidate,assessment,exploration_result,development_result}.v1.schema.json`
+  from `src/howldream/contracts.py` via Pydantic `model_json_schema()`. Never
+  hand-authored. `--check` mode regenerates into a temp dir and diffs against
+  `schemas/`, wired into `.github/workflows/ci.yml` as drift detection.
+* **`schemas/README.md`**: documents the authoritative source, the versioning/evolution
+  policy (additive changes stay within `v1`; breaking changes get a new
+  `schema_version` literal and file), and the contract distribution architecture
+  decision (vendored copies pinned to a commit, evaluated against three alternatives).
+* **Typed `Provenance` model**: replaced `provenance: dict[str, Any]` (no guarantees,
+  every producer inventing its own ad hoc keys — confirmed by inspecting real usage in
+  `engine.py`, `run_milestone_four_dogfood.py`, and downstream repos before making this
+  change) with a `Provenance` model carrying the cross-cutting fields a downstream
+  consumer actually needs (`run_id`, `producer_component`, `producer_version`,
+  `model_or_provider`, `observation_kind`, `created_at`, `transformations`).
+  Deliberately `additionalProperties: true` (unlike every other structural model in this
+  file) since it's audit metadata, not an authority boundary — existing free-form
+  provenance dicts from any producer remain valid. `engine.py`'s two producers now
+  populate the canonical fields, including `observation_kind` derived from the real
+  `provider_kind` selection (`SIMULATED` for the mock provider, `LIVE` otherwise).
+* **`AUTHORITY_INVARIANT.md`**: states precisely which authority claims (`authority.
+  executable`, `authority.type`, `trust`, `execution_authority`, `disposition`,
+  `verification_status`, `schema_version`, any unknown/privileged field) are rejected
+  by schema shape alone — provable without importing `howldream` — versus which require
+  a runtime control (nested-payload authority smuggling, provenance forgery, forged
+  HowlProof verdicts embedded in free-form fields).
+* **`tests/test_authority_invariants.py`** (100 tests): proves every claim in
+  `AUTHORITY_INVARIANT.md` at both the Pydantic layer and the generated-schema layer,
+  across all five envelope families.
+* **Documentation drift correction**: `docs/ecosystem.md`'s "Native Schemas" section
+  previously hand-described field names (`goal`, `budget_candidates`, `seed_proposals`,
+  `parent_candidate_id`, `state`, `run_dir`, `prototype_design`, `test_spec`, ...) that
+  did not match the actual `contracts.py` fields (`objective`, `budget.max_candidates`,
+  `trust`, `sandbox_prototype_design`, `test_specification`, ...). Replaced with a
+  pointer to the generated schema files instead of a second hand-written copy that
+  would only drift again.
+* **Not yet closed**: issues.md item 1's acceptance bar requires a sibling repo to
+  validate against the vendored schema in its own test suite without importing
+  `howldream` — that consumer (HowlFrame, Go) is tracked separately and not yet merged
+  as of this entry. Item 2 (HowlPlane CI gap) is unaffected by this change.
+
 ## 0.4.1
 
 Milestone Four Evidence Integrity Correction. Reconciled the 0.4.0 "controlled native

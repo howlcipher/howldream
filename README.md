@@ -95,6 +95,15 @@ than restated from memory:
 | HowlFrame | `candidate_evaluator.howl`/`.hfbc` exists only on an **unmerged** howlframe branch (`feat/milestone-four-candidate-evaluator`). Nothing on `main` in either repo ships this evaluator; HowlDream's own tests reimplement the same rules in Python as a stand-in. |
 | HowlRelay | Real, tested, and self-contained: `HowlDreamCollector` reads exploration envelopes off disk with no package dependency on HowlDream. This one is accurately described below. |
 
+**Update 2026-09-12** (see `issues.md` items 1–2, still tracked as in progress, not
+closed): generated, drift-checked JSON Schema for all five `howl.*` envelopes now
+exists in `schemas/` (see `schemas/README.md` for the generation/versioning/vendoring
+policy, and `AUTHORITY_INVARIANT.md` for exactly which authority claims schema
+validation enforces on its own vs. which require a runtime control). A cross-language
+(Go) consumer test in howlframe validating a real envelope against a vendored copy —
+without importing `howldream` — is in progress; the HowlPlane and HowlCreate/HowlRelay
+CI-exercise rows above are **not yet updated** because those gaps are not yet closed.
+
 ```mermaid
 flowchart LR
     HP[HowlPlane\nPolicy & Budget] --> HD[HowlDream\nDREAM / NIGHTMARE / WAKE]

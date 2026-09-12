@@ -47,6 +47,38 @@ class EvidenceRef(StrictModel):
     facts: dict[str, str] = Field(default_factory=dict)
 
 
+class Provenance(BaseModel):
+    """Shared audit-trail metadata attached to every howl.* envelope.
+
+    Deliberately open (extra="allow"), unlike StrictModel: provenance is
+    descriptive audit metadata, not an authority or structural boundary, and
+    producers have historically attached ad hoc extra keys (e.g. request-
+    specific hashes). The named fields below are the canonical, cross-cutting
+    concepts every producer should populate; anything else stays as an
+    unvalidated extra key rather than failing validation.
+
+    Concepts deliberately NOT duplicated here because a dedicated top-level
+    field already covers them on the envelopes that need them: authority
+    state (`authority`), schema identity (`schema_version`), candidate/run
+    lineage (`parent_request_id`, `source_run_id`, `candidate_id`,
+    `descent_dag`), and per-envelope evaluation/verification state
+    (`CandidateHandoff.status`, `CandidateAssessment.disposition`,
+    `ExplorationResult.verification_status`).
+    """
+
+    model_config = ConfigDict(extra="allow")
+
+    run_id: str | None = None
+    producer_component: str | None = None
+    producer_version: str | None = None
+    model_or_provider: str | None = None
+    observation_kind: (
+        Literal["SIMULATED", "DETERMINISTIC", "LIVE", "EXTERNALLY_OBSERVED"] | None
+    ) = None
+    created_at: str = Field(default_factory=lambda: datetime.now(UTC).isoformat())
+    transformations: list[str] = Field(default_factory=list)
+
+
 class ExplorationRequest(StrictModel):
     """Standardized machine-readable exploration envelope: howl.exploration/v1."""
 
@@ -62,7 +94,7 @@ class ExplorationRequest(StrictModel):
     risk_class: str = Field(default="EXPLORATORY", max_length=50)
     authority: ExplorationAuthority = Field(default_factory=ExplorationAuthority)
     budget: ExplorationBudget = Field(default_factory=ExplorationBudget)
-    provenance: dict[str, Any] = Field(default_factory=dict)
+    provenance: Provenance = Field(default_factory=Provenance)
 
     @field_validator("request_id")
     @classmethod
@@ -98,7 +130,7 @@ class CandidateHandoff(StrictModel):
     unresolved_issues: list[str] = Field(default_factory=list)
     contradictions: list[str] = Field(default_factory=list)
     verified_constraints: list[str] = Field(default_factory=list)
-    provenance: dict[str, Any] = Field(default_factory=dict)
+    provenance: Provenance = Field(default_factory=Provenance)
 
 
 class CandidateAssessment(StrictModel):
@@ -114,7 +146,7 @@ class CandidateAssessment(StrictModel):
     confidence: Literal["LOW", "MEDIUM", "HIGH", "UNKNOWN"] = "LOW"
     limitations: list[str] = Field(default_factory=list)
     authority: ExplorationAuthority = Field(default_factory=ExplorationAuthority)
-    provenance: dict[str, Any] = Field(default_factory=dict)
+    provenance: Provenance = Field(default_factory=Provenance)
 
 
 class DevelopmentResult(StrictModel):
@@ -133,7 +165,7 @@ class DevelopmentResult(StrictModel):
     sandbox_prototype_design: dict[str, Any] = Field(default_factory=dict)
     test_specification: list[dict[str, Any]] = Field(default_factory=list)
     architecture_proposal: str = Field(default="", max_length=100000)
-    provenance: dict[str, Any] = Field(default_factory=dict)
+    provenance: Provenance = Field(default_factory=Provenance)
 
 
 class DescentNode(StrictModel):
@@ -283,7 +315,7 @@ class ExplorationResult(StrictModel):
     recommended_disposition: Literal["INVESTIGATE", "REJECT", "DEFER", "ACCEPT_FOR_DEVELOPMENT"] = (
         "DEFER"
     )
-    provenance: dict[str, Any] = Field(default_factory=dict)
+    provenance: Provenance = Field(default_factory=Provenance)
     descent_dag: DescentDAG = Field(default_factory=DescentDAG)
 
 
