@@ -86,10 +86,7 @@ def test_structured_claims_candidate_review_preservation():
     assert reviewed.claims[0]["evidence_needs"] == [
         "Measure CAS latency under 100 concurrent nodes"
     ]
-    assert (
-        reviewed.provenance.model_dump()["review"]["claims_origin"]
-        == "SOURCE_STRUCTURED"
-    )
+    assert reviewed.provenance.model_dump()["review"]["claims_origin"] == "SOURCE_STRUCTURED"
 
 
 def test_wake_false_premise_rejection_credited():
@@ -232,7 +229,9 @@ def test_natural_language_claim_extraction_edge_cases():
 
     # 2. "The service does not require wall-clock time." -> modality: denied
     assert detect_modality("The service does not require wall-clock time.") == "denied"
-    claims_no_clock = extract_natural("The service does not require wall-clock time.", "cand-noclock")
+    claims_no_clock = extract_natural(
+        "The service does not require wall-clock time.", "cand-noclock"
+    )
     assert len(claims_no_clock) == 1
     assert claims_no_clock[0]["modality"] == "denied"
 
@@ -280,4 +279,3 @@ def test_dogfood_attribution_guide_taxonomy():
     # Assert Chronology Precedence Rule is documented
     assert "Chronology Precedence Rule" in content
     assert "MUST NOT later become `HOWL_ORIGINATED`" in content
-

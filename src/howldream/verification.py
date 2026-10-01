@@ -202,9 +202,8 @@ def normalize_proposition(text: str) -> tuple[str, str, str]:
     if mod == "suggestion":
         return "SUGGESTION", text.strip(), "LOW"
     stripped = text.strip()
-    if (
-        stripped.startswith(("def ", "class ", "import ", "from "))
-        or (stripped.startswith("{") and stripped.endswith("}"))
+    if stripped.startswith(("def ", "class ", "import ", "from ")) or (
+        stripped.startswith("{") and stripped.endswith("}")
     ):
         return "CODE", stripped, "LOW"
 
@@ -620,8 +619,7 @@ def verify(claims: list[dict], evidence: list[Evidence]) -> list[dict]:
                     status = "UNCERTAIN"
                     failures = []
                     note = (
-                        f"False premise ({key}={value.strip()}) left unresolved "
-                        "without acceptance."
+                        f"False premise ({key}={value.strip()}) left unresolved without acceptance."
                     )
         elif kind in {"FACT", "DRIFT"}:
             key, separator, value = text.partition("=")
@@ -641,9 +639,7 @@ def verify(claims: list[dict], evidence: list[Evidence]) -> list[dict]:
                 note = "Exact match to supplied fact ledger, not independent external verification."
             else:
                 status = "CONTRADICTED"
-                failures = [
-                    {"DRIFT": "SEMANTIC_DRIFT"}.get(kind, "CONTRADICTION")
-                ]
+                failures = [{"DRIFT": "SEMANTIC_DRIFT"}.get(kind, "CONTRADICTION")]
                 note = "Value differs from supplied fact ledger."
         elif kind == "CITE":
             sources = [s.id for s in evidence if s.id == text]

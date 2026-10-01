@@ -137,9 +137,7 @@ def metrics(candidates: list[dict], verification: list[dict]) -> dict:
     return {
         "candidates": len(candidates),
         "lexical_diversity": (
-            sum(distance(a["text"], b["text"]) for a, b in pairs) / len(pairs)
-            if pairs
-            else 0.0
+            sum(distance(a["text"], b["text"]) for a, b in pairs) / len(pairs) if pairs else 0.0
         ),
         "exact_unique": len({c["text"] for c in candidates}),
         "claims": len(checks),
@@ -151,9 +149,7 @@ def metrics(candidates: list[dict], verification: list[dict]) -> dict:
         ),
         "failure_candidates": sum(c["id"] in failures for c in candidates),
         "failure_rate": (
-            sum(c["id"] in failures for c in candidates) / len(candidates)
-            if candidates
-            else None
+            sum(c["id"] in failures for c in candidates) / len(candidates) if candidates else None
         ),
         "scorer_type": "deterministic",
         "scope": "lexical distance and known-check failures only",
