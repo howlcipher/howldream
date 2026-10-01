@@ -189,3 +189,6 @@ explicit providers and unverified source candidates; exports/reviews preserve id
 and scoped checks. Unsupported generated facts no longer become verified constraints.
 See [provider policy and typed handoffs](docs/providers.md). Historical reports above
 retain their original dates and do not establish current end-to-end Plane compatibility.
+
+Verification CI sets `HOWL_FORBID_LOCAL_INFERENCE=1`. The shared provider dependency
+is pinned to its final reviewed commit, including portable command-provider tests.

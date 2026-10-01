@@ -15,12 +15,13 @@ from howldream.schema import Experiment, ProviderConfig
 @pytest.mark.parametrize(
     "body", [b"{}", b"{", b'{"choices":[]}', b'{"choices":[{"message":{"content":null}}]}']
 )
-def test_malformed_response(body):
+def test_malformed_response(body, monkeypatch):
+    monkeypatch.setenv("HOWLDREAM_API_KEY", "fixture-secret")
     provider = HTTPProvider(
         ProviderConfig(
             kind="openai_compatible",
-            base_url="http://127.0.0.1:1234/v1",
-            allow_local_inference=True,
+            base_url="https://provider.example/v1",
+            allow_remote=True,
         )
     )
     provider.opener.open = lambda *a, **k: io.BytesIO(body)
@@ -29,11 +30,14 @@ def test_malformed_response(body):
 
 
 def test_truncated_http_response_preserves_run(tmp_path, monkeypatch):
+    monkeypatch.setenv("HOWLDREAM_API_KEY", "fixture-secret")
     experiment = Experiment(
         schema_version=1,
         name="partial",
         objective="test",
-        provider=ProviderConfig(kind="ollama", allow_local_inference=True),
+        provider=ProviderConfig(
+            kind="openai_compatible", base_url="https://provider.example/v1", allow_remote=True
+        ),
     )
     provider = HTTPProvider(experiment.provider)
     count = 0
@@ -42,7 +46,8 @@ def test_truncated_http_response_preserves_run(tmp_path, monkeypatch):
         nonlocal count
         count += 1
         if count == 1:
-            return io.BytesIO(json.dumps({"response": "IDEA: test proposal"}).encode())
+            body = {"choices": [{"message": {"content": "IDEA: test proposal"}}]}
+            return io.BytesIO(json.dumps(body).encode())
         raise http.client.IncompleteRead(b"partial")
 
     provider.opener.open = response

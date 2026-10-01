@@ -9,7 +9,7 @@ description = "Controlled divergence, hallucination experiments, and evidence-pr
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
-dependencies = ["howl-provider-core @ git+https://github.com/howlcipher/howl-provider-core.git@cce46e21b56d2c5e4ce4930e9960fbcefb47b1eb", "pydantic>=2.10,<3", "PyYAML>=6.0.2,<7"]
+dependencies = ["howl-provider-core @ git+https://github.com/howlcipher/howl-provider-core.git@a3ddc665399f9c4adc5af7ae7c91efd90422838a", "pydantic>=2.10,<3", "PyYAML>=6.0.2,<7"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<10", "pytest-cov>=6", "ruff>=0.11", "flake8>=7", "mypy>=1.15", "types-PyYAML", "build>=1.2", "pip-audit>=2.9", "bandit>=1.8", "playwright>=1.50", "jsonschema>=4.20,<5"]

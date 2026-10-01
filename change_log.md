@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+Pinned the final reviewed provider core with portable command tests. CI preserves
+`HOWL_FORBID_LOCAL_INFERENCE=1` for all verification commands.
+HTTP fixtures use mocked remote-shaped endpoints; cached local-provider rejection
+is tested without lifting the local-inference prohibition.
+
 ## 0.4.3
 
 Closes `issues.md` items 1–3 with cross-repo evidence, and corrects a stale claim

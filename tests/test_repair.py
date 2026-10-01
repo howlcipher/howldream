@@ -22,7 +22,15 @@ def test_forbidden_local_selection(monkeypatch):
 
 
 def test_policy_rechecked_for_cached_provider(monkeypatch):
-    provider = HTTPProvider(ProviderConfig(kind="ollama", allow_local_inference=True))
+    monkeypatch.setenv("HOWLDREAM_API_KEY", "fixture-secret")
+    provider = HTTPProvider(
+        ProviderConfig(
+            kind="openai_compatible", base_url="https://provider.example/v1", allow_remote=True
+        )
+    )
+    # Represent an old cached local adapter without ever lifting the prohibition.
+    provider.config = ProviderConfig(kind="ollama", allow_local_inference=True)
+    provider.base = "http://127.0.0.1:11434"
     provider.opener.open = lambda *args, **kwargs: (_ for _ in ()).throw(AssertionError("no HTTP"))
     monkeypatch.setenv("HOWL_FORBID_LOCAL_INFERENCE", "1")
     with pytest.raises(ProviderError):

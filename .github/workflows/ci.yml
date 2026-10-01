@@ -4,6 +4,8 @@ on:
   pull_request:
 permissions:
   contents: read
+env:
+  HOWL_FORBID_LOCAL_INFERENCE: '1'
 jobs:
   verify:
     runs-on: ubuntu-latest
@@ -52,7 +54,7 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install --upgrade pip setuptools
       - run: pip install -e '.[dev]'
-      - run: pip install "git+https://github.com/howlcipher/howlcreate.git@25f3a4f4489ce62ea1b94e5f73c8b3010100833e"
+      - run: pip install "git+https://github.com/howlcipher/howlcreate.git@2bf9f584a84dc8026bcc76dc9786e52cbd7f0917"
       - name: Confirm real howlcreate import
         run: python -c "from howlcreate.engine.candidate_ingestion import scaffold_candidate; print('real howlcreate.engine.candidate_ingestion import OK')"
       - run: pytest tests/test_end_to_end_ecosystem.py tests/test_repair.py -q
