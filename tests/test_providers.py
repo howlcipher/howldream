@@ -17,7 +17,11 @@ from howldream.schema import Experiment, ProviderConfig
 )
 def test_malformed_response(body):
     provider = HTTPProvider(
-        ProviderConfig(kind="openai_compatible", base_url="http://127.0.0.1:1234/v1")
+        ProviderConfig(
+            kind="openai_compatible",
+            base_url="http://127.0.0.1:1234/v1",
+            allow_local_inference=True,
+        )
     )
     provider.opener.open = lambda *a, **k: io.BytesIO(body)
     with pytest.raises(ValueError):
@@ -26,7 +30,10 @@ def test_malformed_response(body):
 
 def test_truncated_http_response_preserves_run(tmp_path, monkeypatch):
     experiment = Experiment(
-        schema_version=1, name="partial", objective="test", provider=ProviderConfig(kind="ollama")
+        schema_version=1,
+        name="partial",
+        objective="test",
+        provider=ProviderConfig(kind="ollama", allow_local_inference=True),
     )
     provider = HTTPProvider(experiment.provider)
     count = 0

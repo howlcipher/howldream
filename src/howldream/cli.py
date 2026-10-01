@@ -6,15 +6,18 @@ import sys
 from pathlib import Path
 
 import yaml
+from howl_provider_core import CommandConfig
 from pydantic import ValidationError
 from yaml import YAMLError
 
 from howldream import __version__
 from howldream.artifacts import load_run, scrub
 from howldream.benchmark import benchmark, list_benchmarks
-from howldream.contracts import DescentDAG, ExplorationRequest
+from howldream.contracts import CandidateHandoff, DescentDAG, ExplorationRequest
 from howldream.dreamvalue import evaluate
 from howldream.engine import explore, replay, run, wake
+from howldream.interop import export_candidate, review_candidate
+from howldream.providers import RemoteCommandProvider
 from howldream.schema import read_experiment
 
 
@@ -76,9 +79,41 @@ def main() -> int:
         "--output", type=Path, default=Path(".howldream/runs"), help="runs root directory"
     )
 
+    export_parser = commands.add_parser("export")
+    export_parser.add_argument("target", type=Path)
+    export_parser.add_argument("--candidate-id", required=True)
+    export_parser.add_argument(
+        "--format", choices=["howl.candidate/v1"], default="howl.candidate/v1"
+    )
+    review_parser = commands.add_parser("review")
+    review_parser.add_argument("target", type=Path)
+    review_parser.add_argument("--evidence", type=Path)
+    for name in ("run", "dream", "nightmare", "explore"):
+        commands.choices[name].add_argument("--max-calls", type=int)
+        commands.choices[name].add_argument("--command-config", type=Path)
+        commands.choices[name].add_argument("--allow-remote", action="store_true")
     args = parser.parse_args()
     result: dict | list
     try:
+        provider_override = None
+        if getattr(args, "command_config", None):
+            if not args.allow_remote:
+                raise ValueError("command requires --allow-remote after reviewing the profile")
+            provider_override = RemoteCommandProvider(CommandConfig.read(args.command_config))
+        if args.command == "export":
+            print(export_candidate(args.target, args.candidate_id).model_dump_json(indent=2))
+            return 0
+        if args.command == "review":
+            from howldream.schema import Evidence
+
+            candidate = CandidateHandoff.model_validate(json.loads(args.target.read_text()))
+            evidence = (
+                [Evidence.model_validate(x) for x in json.loads(args.evidence.read_text())]
+                if args.evidence
+                else []
+            )
+            print(review_candidate(candidate, evidence).model_dump_json(indent=2))
+            return 0
         if args.command == "benchmark":
             if args.action == "list":
                 result = list_benchmarks()
@@ -110,7 +145,16 @@ def main() -> int:
             raw_content = args.target.read_text()
             data = yaml.safe_load(raw_content)
             req = ExplorationRequest.model_validate(data)
-            _run_dir, exp_res = explore(req, args.output)
+            if args.max_calls is not None:
+                req.budget.max_calls = args.max_calls
+                req = ExplorationRequest.model_validate(req.model_dump())
+            if provider_override:
+                if req.budget.local_only or "command" not in req.budget.provider_allowlist:
+                    raise ValueError(
+                        "command requires remote budget permission and command allowlist"
+                    )
+                req.provider = {"kind": "command", "allow_remote": True}
+            _run_dir, exp_res = explore(req, args.output, provider_override=provider_override)
             print(exp_res.model_dump_json(indent=2))
             return 0
         if args.command == "trace":
@@ -158,7 +202,18 @@ def main() -> int:
                     return 0
                 if args.command in {"dream", "nightmare"}:
                     experiment.mode = args.command
-                path = run(experiment, args.output, wake_now=args.command == "run")
+                if args.max_calls is not None:
+                    experiment.max_calls = args.max_calls
+                    experiment = type(experiment).model_validate(experiment.model_dump())
+                if provider_override:
+                    experiment.provider.kind = "command"
+                    experiment.provider.allow_remote = True
+                path = run(
+                    experiment,
+                    args.output,
+                    wake_now=args.command == "run",
+                    provider_override=provider_override,
+                )
             artifacts = load_run(path)
             result = {
                 "run_id": path.name,

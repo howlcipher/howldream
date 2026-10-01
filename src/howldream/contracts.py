@@ -31,12 +31,15 @@ class ExplorationAuthority(StrictModel):
 class ExplorationBudget(StrictModel):
     """Finite bounded resource budget for speculative exploration."""
 
+    max_calls: int = Field(default=500, ge=0, le=500)
     max_candidates: int = Field(default=6, ge=1, le=50)
     max_trials: int = Field(default=1, ge=1, le=10)
     max_tokens: int = Field(default=512, ge=32, le=4096)
     max_duration_seconds: int = Field(default=120, ge=1, le=600)
     provider_allowlist: list[str] = Field(default_factory=lambda: ["mock", "ollama"])
     local_only: bool = True
+    allow_local_inference: bool = False
+    forbid_local_inference: bool = False
 
 
 class EvidenceRef(StrictModel):
@@ -94,6 +97,8 @@ class ExplorationRequest(StrictModel):
     risk_class: str = Field(default="EXPLORATORY", max_length=50)
     authority: ExplorationAuthority = Field(default_factory=ExplorationAuthority)
     budget: ExplorationBudget = Field(default_factory=ExplorationBudget)
+    provider: dict[str, Any] | None = None
+    source_candidates: list[CandidateHandoff] = Field(default_factory=list)
     provenance: Provenance = Field(default_factory=Provenance)
 
     @field_validator("request_id")
@@ -321,3 +326,6 @@ class ExplorationResult(StrictModel):
 
 def create_request_id() -> str:
     return f"req-{datetime.now(UTC):%Y%m%d-%H%M%S}-{uuid4().hex[:8]}"
+
+
+ExplorationRequest.model_rebuild()

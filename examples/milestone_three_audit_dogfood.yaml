@@ -5,6 +5,7 @@ hypothesis: Stress testing under NIGHTMARE context perturbations will surface un
 mode: nightmare
 provider:
   kind: ollama
+  allow_local_inference: true
   model: qwen2.5-coder:1.5b-instruct
   timeout_seconds: 120
   max_tokens: 256

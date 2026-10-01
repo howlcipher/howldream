@@ -180,3 +180,12 @@ Artifacts can contain sensitive source material. Storage is local plaintext,
 redaction is best effort, and text retention can be disabled. Real-provider
 replay repeats configuration, not guaranteed output. HowlDream is not included
 in the default Howl installer. MIT licensed; experimental, not production-ready.
+
+## Evidence-driven repair (0.4.4)
+
+Local inference requires explicit opt-in and respects `HOWL_FORBID_LOCAL_INFERENCE=1`.
+Remote command adapters use explicitly reviewed operator profiles. Exploration accepts
+explicit providers and unverified source candidates; exports/reviews preserve identity
+and scoped checks. Unsupported generated facts no longer become verified constraints.
+See [provider policy and typed handoffs](docs/providers.md). Historical reports above
+retain their original dates and do not establish current end-to-end Plane compatibility.

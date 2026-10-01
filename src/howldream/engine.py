@@ -19,7 +19,7 @@ from howldream.contracts import (
     ExplorationResult,
     Provenance,
 )
-from howldream.providers import make_provider
+from howldream.providers import Provider, make_provider
 from howldream.schema import Evidence, Experiment, Generation, Perturbation, ProviderConfig
 from howldream.scoring import metrics, score_group
 from howldream.verification import extract, verify
@@ -64,6 +64,23 @@ def prompt_for(experiment: Experiment, condition: str, index: int) -> str:
             "candidate_index": index,
             "request": request,
             "evidence": context,
+            "unverified_candidate_context": [
+                {
+                    key: value.get(key)
+                    for key in (
+                        "candidate_id",
+                        "objective",
+                        "text",
+                        "trust",
+                        "claims",
+                        "assumptions",
+                        "unresolved_issues",
+                        "contradictions",
+                        "verified_constraints",
+                    )
+                }
+                for value in experiment.speculative_candidates
+            ],
             "injected_material": notes,
         },
         ensure_ascii=False,
@@ -90,6 +107,16 @@ def report(artifacts: dict) -> str:
         "Dream output is data, not authority.",
         "",
         f"Run: {artifacts['manifest']['run_id']}",
+        "Actual providers: "
+        + str(
+            sorted(
+                {
+                    (row.get("execution") or {}).get("actual_provider", "unknown")
+                    for row in artifacts["baseline"] + artifacts["candidates"]
+                }
+            )
+        ),
+        f"Calls: {artifacts['manifest'].get('call_count', 'unknown')}",
         (
             f"Provider: {artifacts['manifest']['provider']['kind']}; "
             f"status: {artifacts['manifest']['status']}"
@@ -227,9 +254,13 @@ def current_commit() -> str | None:
 
 
 def run(
-    experiment: Experiment, root: Path, wake_now: bool = True, parent: str | None = None
+    experiment: Experiment,
+    root: Path,
+    wake_now: bool = True,
+    parent: str | None = None,
+    provider_override: Provider | None = None,
 ) -> Path:
-    provider = make_provider(experiment.provider)
+    provider = provider_override or make_provider(experiment.provider)
     path = new_path(root)
     commit = current_commit()
     snapshot = experiment.model_dump()
@@ -274,16 +305,23 @@ def run(
         artifacts["manifest"]["warnings"].append(
             "Redaction changed input; original configuration replay is unavailable."
         )
+    call_count = 0
     for trial in range(experiment.trials):
         for group, config, condition in (
             ("baseline", experiment.baseline, "baseline"),
             ("candidates", experiment.generation, experiment.mode),
         ):
             for index in range(config.candidates):
+                if call_count >= experiment.max_calls:
+                    if artifacts["manifest"].get("stop_reason") != "BUDGET_EXHAUSTED":
+                        artifacts["manifest"]["stop_reason"] = "BUDGET_EXHAUSTED"
+                        artifacts["manifest"]["errors"].append({"code": "BUDGET_EXHAUSTED"})
+                    break
                 candidate_id = f"{path.name}/{group}/{trial}/{index}"
                 prompt = prompt_for(experiment, condition, index)
                 seed = experiment.seed + trial * 100 + index
                 try:
+                    call_count += 1
                     response = provider.generate(prompt, condition, index, config.temperature, seed)
                     artifacts[group].append(
                         {
@@ -297,6 +335,7 @@ def run(
                             "prompt_hash": digest(prompt),
                             "output_hash": digest(response.text),
                             "model": response.model,
+                            "execution": response.execution,
                             "model_version": None,
                             "temperature": config.temperature,
                             "seed": seed if provider.capabilities["supports_seed"] else None,
@@ -309,6 +348,7 @@ def run(
                     artifacts["manifest"]["errors"].append(
                         {"candidate_id": candidate_id, "code": "PROVIDER_FAILURE"}
                     )
+    artifacts["manifest"]["call_count"] = call_count
     analyze(artifacts, experiment)
     if not wake_now:
         artifacts["claims"], artifacts["verification"], artifacts["scores"] = [], [], []
@@ -366,7 +406,9 @@ def wake(path: Path, root: Path) -> Path:
     return new
 
 
-def explore(request: ExplorationRequest, root: Path) -> tuple[Path, ExplorationResult]:
+def explore(
+    request: ExplorationRequest, root: Path, provider_override: Provider | None = None
+) -> tuple[Path, ExplorationResult]:
     """Execute bounded exploration request and emit versioned result with DescentDAG."""
     if request.authority.executable or request.authority.type != "ADVISORY":
         raise ValueError(
@@ -393,9 +435,19 @@ def explore(request: ExplorationRequest, root: Path) -> tuple[Path, ExplorationR
     cand_count = max(1, min(request.budget.max_candidates, 50))
     trials = max(1, min(request.budget.max_trials, 10))
 
-    provider_kind: Literal["mock", "ollama", "openai_compatible"] = "mock"
-    if "ollama" in request.budget.provider_allowlist and not request.budget.local_only:
-        provider_kind = "ollama"
+    provider_config = ProviderConfig.model_validate(request.provider or {"kind": "mock"})
+    if request.budget.forbid_local_inference:
+        provider_config.forbid_local_inference = True
+    provider_config.allow_local_inference = (
+        provider_config.allow_local_inference and request.budget.allow_local_inference
+    )
+    provider_kind = provider_config.kind
+    if provider_kind not in request.budget.provider_allowlist:
+        raise ValueError("requested provider is not in exploration provider_allowlist")
+    if request.budget.local_only and provider_kind in {"openai_compatible", "command"}:
+        raise ValueError("local_only budget forbids remote inference")
+    provider_config.timeout_seconds = request.budget.max_duration_seconds
+    provider_config.max_tokens = request.budget.max_tokens
 
     experiment = Experiment(
         schema_version=1,
@@ -404,20 +456,23 @@ def explore(request: ExplorationRequest, root: Path) -> tuple[Path, ExplorationR
         mode=exp_mode,
         baseline=Generation(candidates=base_count, temperature=0.2),
         generation=Generation(candidates=cand_count, temperature=1.1),
+        max_calls=request.budget.max_calls,
         trials=trials,
         seed=42,
         evidence=evidence_models,
+        speculative_candidates=[x.model_dump() for x in request.source_candidates],
         perturbations=perturbations,
-        provider=ProviderConfig(
-            kind=provider_kind,
-            model="fixture-v1",
-            timeout_seconds=request.budget.max_duration_seconds,
-            max_tokens=request.budget.max_tokens,
-        ),
+        provider=provider_config,
         retain_text=True,
     )
 
-    run_dir = run(experiment, root, wake_now=True, parent=request.parent_run_id)
+    run_dir = run(
+        experiment,
+        root,
+        wake_now=True,
+        parent=request.parent_run_id,
+        provider_override=provider_override,
+    )
     artifacts = load_run(run_dir)
 
     dag = DescentDAG()
@@ -492,8 +547,6 @@ def explore(request: ExplorationRequest, root: Path) -> tuple[Path, ExplorationR
         extracted = extract(c["text"], c["id"])
         cand_assumptions = [cl["text"] for cl in extracted if cl.get("kind") == "ASSUMPTION"]
         cand_contradictions = [cl["text"] for cl in extracted if cl.get("kind") == "CONFLICT"]
-        cand_ideas = [cl["text"] for cl in extracted if cl.get("kind") == "IDEA"]
-        cand_facts = [cl["text"] for cl in extracted if cl.get("kind") == "FACT"]
 
         unresolved_assumptions.extend(cand_assumptions)
         contradictions.extend(cand_contradictions)
@@ -506,13 +559,28 @@ def explore(request: ExplorationRequest, root: Path) -> tuple[Path, ExplorationR
             "UNRESOLVED",
             "REJECTED",
         ]
-        if cand_contradictions or any(
-            "error" in cl["text"].lower() or "fail" in cl["text"].lower() for cl in extracted
-        ):
+        checks = [v for v in artifacts["verification"] if v["candidate_id"] == c["id"]]
+        supported_ids = {v["claim_id"] for v in checks if v["status"] == "SUPPORTED"}
+        verified = [
+            cl["text"]
+            for cl in extracted
+            if cl["id"] in supported_ids and cl.get("kind") in {"FACT", "CALC"}
+        ]
+        contradicted_ids = {v["claim_id"] for v in checks if v["status"] == "CONTRADICTED"}
+        cand_contradictions.extend(cl["text"] for cl in extracted if cl["id"] in contradicted_ids)
+        contradictions.extend(cand_contradictions)
+        unresolved_ids = {v["claim_id"] for v in checks if v["status"] != "SUPPORTED"}
+        unresolved_issues = list(
+            dict.fromkeys(
+                cand_assumptions + [cl["text"] for cl in extracted if cl["id"] in unresolved_ids]
+            )
+        )
+        failed = any(v["status"] == "CONTRADICTED" for v in checks)
+        if failed or cand_contradictions:
             cand_status = "REJECTED"
-        elif cand_ideas and (cand_facts or [cl for cl in extracted if cl.get("kind") == "CALC"]):
+        elif verified and all(v["status"] == "SUPPORTED" for v in checks):
             cand_status = "LOCALLY_VERIFIED"
-        elif cand_assumptions:
+        elif checks or cand_assumptions:
             cand_status = "UNRESOLVED"
         else:
             cand_status = "CHALLENGED"
@@ -531,21 +599,28 @@ def explore(request: ExplorationRequest, root: Path) -> tuple[Path, ExplorationR
             claims=extracted,
             evidence_refs=[e.id for e in evidence_models],
             assumptions=cand_assumptions,
-            unresolved_issues=cand_assumptions,
+            unresolved_issues=unresolved_issues,
             contradictions=cand_contradictions,
-            verified_constraints=[f for f in cand_facts],
+            verified_constraints=verified,
             provenance=Provenance.model_validate(
                 {
                     "run_id": run_dir.name,
                     "producer_component": "howldream",
                     "producer_version": __version__,
                     "model_or_provider": c.get("model", provider_kind),
-                    "observation_kind": "SIMULATED" if provider_kind == "mock" else "LIVE",
+                    "observation_kind": "SIMULATED"
+                    if (c.get("execution") or {}).get("mocked")
+                    else "DETERMINISTIC"
+                    if (c.get("execution") or {}).get("deterministic")
+                    else "EXTERNALLY_OBSERVED",
                     "created_at": datetime.now(UTC).isoformat(),
                     "transformations": ["generated"],
                     # legacy/context keys, retained as unvalidated extras
                     "request_id": request.request_id,
                     "originating_component": request.originating_component,
+                    "execution": c.get("execution"),
+                    "source_candidates": [x.model_dump() for x in request.source_candidates],
+                    "verification": checks,
                     "candidate_index": c["index"],
                     "trial": c["trial"],
                     "prompt_hash": c["prompt_hash"],
@@ -587,7 +662,10 @@ def explore(request: ExplorationRequest, root: Path) -> tuple[Path, ExplorationR
                 "run_id": run_dir.name,
                 "producer_component": "howldream",
                 "producer_version": __version__,
-                "observation_kind": "SIMULATED" if provider_kind == "mock" else "LIVE",
+                "observation_kind": "SIMULATED"
+                if all((c.get("execution") or {}).get("mocked") for c in artifacts["candidates"])
+                and artifacts["candidates"]
+                else "EXTERNALLY_OBSERVED",
                 "created_at": datetime.now(UTC).isoformat(),
                 "transformations": ["explored"],
                 # legacy/context keys, retained as unvalidated extras

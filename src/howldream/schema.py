@@ -17,10 +17,12 @@ class Generation(StrictModel):
 
 
 class ProviderConfig(StrictModel):
-    kind: Literal["mock", "ollama", "openai_compatible"] = "mock"
+    kind: Literal["mock", "ollama", "openai_compatible", "command"] = "mock"
     model: str = Field(default="fixture-v1", min_length=1, max_length=200)
     base_url: str | None = None
     allow_remote: bool = False
+    allow_local_inference: bool = False
+    forbid_local_inference: bool = False
     timeout_seconds: int = Field(default=120, ge=1, le=600)
     max_tokens: int = Field(default=512, ge=32, le=4096)
 
@@ -45,10 +47,12 @@ class Experiment(StrictModel):
     provider: ProviderConfig = Field(default_factory=ProviderConfig)
     baseline: Generation = Field(default_factory=lambda: Generation(candidates=3, temperature=0.2))
     generation: Generation = Field(default_factory=Generation)
+    max_calls: int = Field(default=500, ge=0, le=500)
     trials: int = Field(default=1, ge=1, le=20)
     seed: int = Field(default=42, ge=0, le=2**31 - 1)
     evidence: list[Evidence] = Field(default_factory=list, max_length=100)
     context: list[str] = Field(default_factory=list, max_length=20)
+    speculative_candidates: list[dict] = Field(default_factory=list, max_length=50)
     perturbations: list[Perturbation] = Field(default_factory=list, max_length=10)
     retain_text: bool = True
 

@@ -1,6 +1,7 @@
 """Observable provider seam; no tools or private reasoning are requested."""
 
 import http.client
+import ipaddress
 import json
 import os
 import time
@@ -9,6 +10,8 @@ import urllib.request
 from dataclasses import dataclass
 from typing import Protocol
 from urllib.parse import urlsplit
+
+from howl_provider_core import CommandConfig, CommandProvider, Execution, Policy, guarded_opener
 
 from howldream.schema import ProviderConfig
 
@@ -19,6 +22,7 @@ class Response:
     model: str
     latency_seconds: float = 0.0
     usage: dict | None = None
+    execution: dict | None = None
 
 
 class Provider(Protocol):
@@ -81,7 +85,21 @@ class MockProvider:
         text = IDEAS[0] if condition == "baseline" else IDEAS[index % len(IDEAS)]
         if condition == "nightmare":
             text += "\nFACT: invented_fact=unsupported"
-        return Response(text=text, model="fixture-v1")
+        return Response(
+            text=text,
+            model="fixture-v1",
+            execution=Execution(
+                "mock",
+                "mock",
+                "mock",
+                "fixture",
+                model="fixture-v1",
+                deterministic=True,
+                mocked=True,
+                inference_occurred=False,
+                remote=False,
+            ).to_dict(),
+        )
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -92,9 +110,12 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
 class HTTPProvider:
     def __init__(self, config: ProviderConfig):
         self.config = config
+        self.policy = Policy(config.allow_local_inference, config.forbid_local_inference)
+        self.policy.check_provider(config.kind)
         self.base = config.base_url or (
             "http://127.0.0.1:11434" if config.kind == "ollama" else "https://api.openai.com/v1"
         )
+        self.policy.check_url(self.base)
         parsed = urlsplit(self.base)
         local = parsed.hostname in {"127.0.0.1", "::1", "localhost"}
         if parsed.username or parsed.password or parsed.query or parsed.fragment:
@@ -116,10 +137,12 @@ class HTTPProvider:
             "supports_token_usage": True,
         }
         # Ignore ambient HTTP proxies: local-only experiments stay on loopback.
-        self.opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), NoRedirect())
+        self.opener = guarded_opener(self.policy)
 
     def generate(self, prompt, condition, index, temperature, seed):
         config = self.config
+        self.policy.check_provider(config.kind)
+        self.policy.check_url(self.base)
         if config.kind == "ollama":
             endpoint = "/api/generate"
             payload = {
@@ -165,10 +188,29 @@ class HTTPProvider:
                 raise ValueError("empty or non-text response")
             if usage is not None and not isinstance(usage, dict):
                 raise ValueError("invalid token usage")
-            model = data.get("model", config.model)
+            model = data.get("model") or "unknown"
             if not isinstance(model, str):
                 raise TypeError("invalid model metadata")
-            return Response(text, model, time.monotonic() - started, usage)
+            return Response(
+                text,
+                model,
+                time.monotonic() - started,
+                usage,
+                Execution(
+                    config.kind,
+                    config.kind,
+                    config.kind,
+                    "http",
+                    model=data.get("model"),
+                    requested_model=config.model,
+                    remote=not local_endpoint(self.base),
+                    deterministic=data.get("deterministic", False),
+                    mocked=data.get("mocked", False),
+                    inference_occurred=data.get("inference_occurred"),
+                    elapsed_seconds=time.monotonic() - started,
+                    usage=usage,
+                ).to_dict(),
+            )
         except (urllib.error.URLError, TimeoutError, OSError, http.client.HTTPException) as error:
             # Never persist exception bodies, URLs, headers, or server echoes.
             raise ValueError(
@@ -180,5 +222,30 @@ class HTTPProvider:
             ) from error
 
 
+def local_endpoint(url: str) -> bool:
+    host = urlsplit(url).hostname or ""
+    try:
+        return not ipaddress.ip_address(host).is_global
+    except ValueError:
+        return host == "localhost" or host.endswith((".local", ".localhost"))
+
+
+class RemoteCommandProvider:
+    def __init__(self, config: CommandConfig, policy: Policy | None = None):
+        self.adapter = CommandProvider(config, policy)
+        self.capabilities = dict(CAPABILITIES)
+
+    def generate(self, prompt, condition, index, temperature, seed):
+        text, execution = self.adapter.generate(prompt)
+        return Response(
+            text,
+            execution.model or "unknown",
+            execution.elapsed_seconds,
+            execution=execution.to_dict(),
+        )
+
+
 def make_provider(config: ProviderConfig) -> Provider:
+    if config.kind == "command":
+        raise ValueError("command requires explicit operator --command-config; not artifact config")
     return MockProvider() if config.kind == "mock" else HTTPProvider(config)

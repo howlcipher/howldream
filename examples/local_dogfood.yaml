@@ -4,6 +4,7 @@ objective: Generate unconventional methods for detecting hallucination that do n
 hypothesis: Divergent prompts and sampling produce greater lexical diversity than a conventional baseline.
 provider:
   kind: ollama
+  allow_local_inference: true
   model: qwen2.5-coder:7b-instruct
   timeout_seconds: 180
   max_tokens: 256
