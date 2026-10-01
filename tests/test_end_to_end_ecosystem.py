@@ -21,86 +21,17 @@ from uuid import uuid4
 import pytest
 from pydantic import ValidationError
 
-try:
-    from howlcreate.engine.candidate_ingestion import IngestionError, develop_candidate
-except ImportError:
-    # Contract-compatible fallback adapter when howlcreate is not installed in the environment
-    class IngestionError(Exception):  # type: ignore[no-redef]
-        """Raised when candidate ingestion or authority validation fails."""
-
-    def develop_candidate(  # type: ignore[no-redef]
-        cand: dict[str, Any], assessment: dict[str, Any]
-    ) -> dict[str, Any]:
-        auth = cand.get("authority", {})
-        if auth.get("executable") is True or auth.get("type") != "ADVISORY":
-            raise IngestionError(
-                "Authority escalation prohibited: speculative candidate cannot claim authority"
-            )
-        assess_auth = assessment.get("authority", {})
-        if assess_auth.get("executable") is True or assess_auth.get("type") != "ADVISORY":
-            raise IngestionError(
-                "Authority escalation prohibited: assessment cannot claim execution authority"
-            )
-        disposition = assessment.get("disposition")
-        if disposition != "ACCEPT_FOR_DEVELOPMENT":
-            raise IngestionError(
-                f"Candidate cannot be developed: disposition is {disposition!r}, "
-                "must be 'ACCEPT_FOR_DEVELOPMENT'"
-            )
-        candidate_id = cand.get("candidate_id", "unknown_candidate")
-        clean_id = candidate_id.replace("/", "-")
-        idea_id = f"create-{clean_id}"
-        return {
-            "schema_version": "howl.development_result/v1",
-            "development_id": f"dev-{clean_id}",
-            "source_candidate_id": candidate_id,
-            "parent_request_id": cand.get("parent_request_id", ""),
-            "origin": "howldream",
-            "epistemic_status": "IMAGINED_POSSIBILITY",
-            "authority": {"type": "ADVISORY", "executable": False},
-            "execution_authority": "NONE",
-            "idea": {
-                "id": idea_id,
-                "title": f"Sandbox Prototype for {clean_id}",
-                "description": cand.get("text", ""),
-                "problem_framing": cand.get("objective", ""),
-                "origin": "howldream",
-            },
-            "sandbox_prototype_design": {
-                "prototype_id": f"proto-{idea_id}",
-                "target_sandbox_environment": "isolated_local_testbed",
-                "isolation_controls": [
-                    "NO_PRODUCTION_DEPLOYMENT",
-                    "NO_IMPLICIT_NETWORK_EGRESS",
-                    "READ_ONLY_ACCESS_ONLY",
-                ],
-            },
-            "test_specification": [
-                {
-                    "test_id": "test_sandbox_diagnostic_activation",
-                    "assertion": "Diagnostic captures failure metrics",
-                    "expected_outcome": "PASS",
-                }
-            ],
-            "architecture_proposal": (
-                f"# Deliberate Sandbox Architecture Proposal for {idea_id}\n\n"
-                "## Authority Boundary\n"
-                "This proposal represents deliberate design in sandbox isolation. "
-                "It carries NO EXECUTION OR DEPLOYMENT AUTHORITY in HowlPlane or HowlChangeOps."
-            ),
-            "provenance": {
-                "candidate_id": candidate_id,
-                "assessment_id": assessment.get("assessment_id"),
-                "system": "howlcreate",
-            },
-        }
-
-
 from howldream.contracts import (
     CandidateHandoff,
     ExplorationRequest,
 )
 from howldream.engine import explore
+
+# Cross-repository integration requires the real package. Ordinary Dream-only
+# installations skip explicitly; the dedicated CI job installs a pinned Create.
+ingestion = pytest.importorskip("howlcreate.engine.candidate_ingestion")
+IngestionError = ingestion.IngestionError
+develop_candidate = ingestion.scaffold_candidate
 
 
 def _find_howlframe_bin() -> str | None:
@@ -146,9 +77,12 @@ def run_howlframe_evaluator(cand_dict: dict[str, Any], tmp_path: Path) -> dict[s
         return {
             "schema_version": "howl.assessment/v1",
             "candidate_id": cand.get("candidate_id", ""),
-            "parent_dream_id": cand.get("source_run_id", ""),
+            "assessment_id": "fixture-" + uuid4().hex,
+            "provenance": {"producer_component": "test_fixture", "observation_kind": "SIMULATED"},
             "disposition": "REJECT",
-            "explanation": "Security violation: speculative candidate claimed execution authority",
+            "limitations": [
+                "Security violation: speculative candidate claimed execution authority"
+            ],
             "authority": {"type": "ADVISORY", "executable": False},
         }
 
@@ -158,27 +92,30 @@ def run_howlframe_evaluator(cand_dict: dict[str, Any], tmp_path: Path) -> dict[s
         return {
             "schema_version": "howl.assessment/v1",
             "candidate_id": cand.get("candidate_id", ""),
-            "parent_dream_id": cand.get("source_run_id", ""),
+            "assessment_id": "fixture-" + uuid4().hex,
+            "provenance": {"producer_component": "test_fixture", "observation_kind": "SIMULATED"},
             "disposition": "REJECT",
-            "explanation": f"Contradictions identified: {len(contradictions)}",
+            "limitations": [f"Contradictions identified: {len(contradictions)}"],
             "authority": {"type": "ADVISORY", "executable": False},
         }
     elif status == "LOCALLY_VERIFIED":
         return {
             "schema_version": "howl.assessment/v1",
             "candidate_id": cand.get("candidate_id", ""),
-            "parent_dream_id": cand.get("source_run_id", ""),
+            "assessment_id": "fixture-" + uuid4().hex,
+            "provenance": {"producer_component": "test_fixture", "observation_kind": "SIMULATED"},
             "disposition": "ACCEPT_FOR_DEVELOPMENT",
-            "explanation": "Candidate verified invariants in local context",
+            "limitations": ["Candidate verified invariants in local context"],
             "authority": {"type": "ADVISORY", "executable": False},
         }
     else:
         return {
             "schema_version": "howl.assessment/v1",
             "candidate_id": cand.get("candidate_id", ""),
-            "parent_dream_id": cand.get("source_run_id", ""),
+            "assessment_id": "fixture-" + uuid4().hex,
+            "provenance": {"producer_component": "test_fixture", "observation_kind": "SIMULATED"},
             "disposition": "UNRESOLVED",
-            "explanation": "Evidence inconclusive; candidate deferred",
+            "limitations": ["Evidence inconclusive; candidate deferred"],
             "authority": {"type": "ADVISORY", "executable": False},
         }
 
@@ -246,9 +183,10 @@ def test_scenario_1_useful_candidate_flow(tmp_path: Path):
         test_assessment = {
             "schema_version": "howl.assessment/v1",
             "candidate_id": accepted_cand.candidate_id,
-            "parent_dream_id": accepted_cand.source_run_id,
+            "assessment_id": "operator-" + uuid4().hex,
+            "provenance": {"producer_component": "operator"},
             "disposition": "ACCEPT_FOR_DEVELOPMENT",
-            "explanation": "Invariants verified for deliberate development",
+            "limitations": ["Invariants verified for deliberate development"],
             "authority": {"type": "ADVISORY", "executable": False},
         }
     else:
@@ -319,7 +257,7 @@ def test_scenario_2_no_valuable_result_flow(tmp_path: Path):
 
     # Verify HowlCreate is NEVER called for REJECT dispositions
     for c, a in zip(contradicted_cands, assessments):
-        with pytest.raises(IngestionError, match="disposition is 'REJECT'"):
+        with pytest.raises(IngestionError, match="must be 'ACCEPT_FOR_DEVELOPMENT'"):
             develop_candidate(c, a)
 
 
@@ -365,7 +303,7 @@ def test_scenario_3_unsafe_authority_escalation_attempt(tmp_path: Path):
     # 2. HowlFrame candidate evaluator rejects with security violation
     assessment = run_howlframe_evaluator(malicious_candidate, tmp_path)
     assert assessment["disposition"] == "REJECT"
-    reason = assessment.get("reason") or assessment.get("explanation", "")
+    reason = " ".join(assessment.get("limitations", []))
     assert "authority escalation" in reason.lower() or "security violation" in reason.lower()
     assert assessment["authority"]["executable"] is False
 

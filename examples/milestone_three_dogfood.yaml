@@ -5,6 +5,7 @@ hypothesis: Adversarial audit will expose remaining confounding between prompt l
 mode: nightmare
 provider:
   kind: ollama
+  allow_local_inference: true
   model: qwen2.5-coder:1.5b-instruct
   timeout_seconds: 120
   max_tokens: 256

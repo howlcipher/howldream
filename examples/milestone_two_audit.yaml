@@ -9,6 +9,7 @@ hypothesis: >-
 mode: nightmare
 provider:
   kind: ollama
+  allow_local_inference: true
   model: qwen2.5-coder:7b-instruct
   base_url: http://127.0.0.1:11434
   allow_remote: false
