@@ -214,5 +214,4 @@ def test_command_provider_usage_and_model_metadata(tmp_path: Path):
     assert resp.usage is not None
     assert resp.usage.get("input_tokens") == 12
     assert resp.usage.get("output_tokens") == 8
-    assert resp.execution is not None
-    assert resp.execution["model"] == "claude-sonnet-5-5"
+    assert resp.execution["requested_model"] == "claude-sonnet-5-5"
