@@ -77,13 +77,15 @@ def score_group(
         checks = [v for v in verification or [] if v["candidate_id"] == candidate["id"]]
         failures = sum(bool(v["classifications"]) for v in checks)
         unresolved = sum(v["status"] == "UNCERTAIN" for v in checks)
+        supported = sum(v["status"] == "SUPPORTED" for v in checks)
+        false_premise_rejections = sum(bool(v.get("false_premise_rejected")) for v in checks)
         relevant = bool((tokens(objective) & tokens(text)) - STOP_WORDS) if objective else True
         proposal = any(line.startswith("IDEA:") for line in text.splitlines())
         decision = (
             "REJECT"
             if failures or duplicate or not relevant
             else "INVESTIGATE"
-            if proposal
+            if proposal or false_premise_rejections > 0
             else "UNCERTAIN"
         )
         scores.append(
@@ -102,15 +104,25 @@ def score_group(
                 },
                 "failure_count": failures,
                 "unresolved_count": unresolved,
-                "supported_count": sum(v["status"] == "SUPPORTED" for v in checks),
+                "supported_count": supported,
+                "false_premise_rejection_count": false_premise_rejections,
                 "measurement_type": "deterministic",
                 "decision": decision,
                 "decision_type": "heuristic",
-                "reason": "Failure, duplicate, or missing lexical relevance."
-                if decision == "REJECT"
-                else (
-                    "Proposal merits investigation only; "
-                    "feasibility and assumptions remain unverified."
+                "reason": (
+                    "Failure, duplicate, or missing lexical relevance."
+                    if decision == "REJECT"
+                    else (
+                        (
+                            f"Proposal merits investigation; successfully rejected "
+                            f"{false_premise_rejections} false premise(s)."
+                        )
+                        if false_premise_rejections > 0
+                        else (
+                            "Proposal merits investigation only; "
+                            "feasibility and assumptions remain unverified."
+                        )
+                    )
                 ),
             }
         )
@@ -124,17 +136,21 @@ def metrics(candidates: list[dict], verification: list[dict]) -> dict:
     checks = [v for v in verification if v["candidate_id"] in ids]
     return {
         "candidates": len(candidates),
-        "lexical_diversity": sum(distance(a["text"], b["text"]) for a, b in pairs) / len(pairs)
-        if pairs
-        else 0.0,
+        "lexical_diversity": (
+            sum(distance(a["text"], b["text"]) for a, b in pairs) / len(pairs) if pairs else 0.0
+        ),
         "exact_unique": len({c["text"] for c in candidates}),
         "claims": len(checks),
         "unresolved_claims": sum(v["status"] == "UNCERTAIN" for v in checks),
         "supported_claims": sum(v["status"] == "SUPPORTED" for v in checks),
+        "false_premise_rejection_count": sum(bool(v.get("false_premise_rejected")) for v in checks),
+        "false_premise_acceptance_count": sum(
+            "FALSE_PREMISE_ACCEPTANCE" in v.get("classifications", []) for v in checks
+        ),
         "failure_candidates": sum(c["id"] in failures for c in candidates),
-        "failure_rate": sum(c["id"] in failures for c in candidates) / len(candidates)
-        if candidates
-        else None,
+        "failure_rate": (
+            sum(c["id"] in failures for c in candidates) / len(candidates) if candidates else None
+        ),
         "scorer_type": "deterministic",
         "scope": "lexical distance and known-check failures only",
     }

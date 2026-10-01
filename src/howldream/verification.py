@@ -3,6 +3,7 @@
 import operator
 import re
 from fractions import Fraction
+from typing import Any
 
 from howldream.schema import Evidence
 
@@ -51,20 +52,121 @@ def extract(text: str, candidate_id: str) -> list[dict]:
 
 
 def detect_modality(text: str) -> str:
-    lower = text.lower()
-    if any(h in lower for h in ["probably", "likely", "in all likelihood", "suggests", "seems to"]):
-        return "probable"
-    if any(p in lower for p in ["might", "may", "could", "possibly"]):
-        return "possible"
-    if any(u in lower for u in ["cannot be determined", "unknown", "uncertain", "unclear"]):
-        return "uncertain"
-    if any(d in lower for d in ["not ", "never", "failed to", "no ", "without "]):
-        return "denied"
+    lower = text.lower().strip()
+    # 1. Questions and inquiries
+    if lower.endswith("?") or any(
+        lower.startswith(q)
+        for q in [
+            "does ",
+            "do ",
+            "can ",
+            "is ",
+            "are ",
+            "will ",
+            "would ",
+            "should ",
+            "could ",
+            "how ",
+            "why ",
+            "what ",
+            "when ",
+            "where ",
+        ]
+    ):
+        return "inquiry"
+
+    # 2. Suggestions and recommendations
+    if any(
+        lower.startswith(s)
+        for s in [
+            "consider ",
+            "suggest ",
+            "recommend ",
+            "we could consider ",
+            "one option is ",
+            "it is recommended to ",
+        ]
+    ):
+        return "suggestion"
+
+    # 3. Hypothetical statements
+    if any(hyp in lower for hyp in ["would have", "supposing", "assuming", "what if"]):
+        return "hypothetical"
+
+    # 4. Conditional statements (checked before 'possible' so 'if ... could ...' is conditional)
     if any(c in lower for c in ["if ", "unless ", "provided that ", "when "]):
         return "conditional"
-    if any(hyp in lower for hyp in ["would have", "supposing", "assuming"]):
-        return "hypothetical"
+
+    # 5. Uncertainty
+    if any(u in lower for u in ["cannot be determined", "unknown", "uncertain", "unclear"]):
+        return "uncertain"
+
+    # 6. Denied / Negated
+    if any(
+        d in lower
+        for d in [
+            "not ",
+            "never",
+            "failed to",
+            "no ",
+            "without ",
+            "reject",
+            "rejects",
+            "rejected",
+            "is false",
+            "false premise",
+            "incorrect",
+            "denies",
+            "denied",
+            "unsupported",
+            "refuted",
+        ]
+    ):
+        return "denied"
+
+    # 7. Probable
+    if any(h in lower for h in ["probably", "likely", "in all likelihood", "suggests", "seems to"]):
+        return "probable"
+
+    # 8. Possible
+    if any(p in lower for p in ["might", "may", "could", "possibly"]):
+        return "possible"
+
     return "asserted"
+
+
+def determine_premise_stance(claim: dict) -> str:
+    """Determine candidate stance towards a premise:
+    PREMISE_ACCEPTED, PREMISE_REJECTED, PREMISE_UNRESOLVED, or PREMISE_IGNORED.
+    """
+    if claim.get("stance"):
+        return claim["stance"]
+    modality = claim.get("modality") or detect_modality(
+        claim.get("surface") or claim.get("source_text") or claim.get("text", "")
+    )
+    text = (claim.get("surface") or claim.get("source_text") or claim.get("text", "")).lower()
+
+    if modality == "denied" or any(
+        w in text
+        for w in [
+            "reject",
+            "rejects",
+            "rejected",
+            "is false",
+            "false premise",
+            "incorrect",
+            "denies",
+            "denied",
+            "unsupported",
+            "refuted",
+        ]
+    ):
+        return "PREMISE_REJECTED"
+
+    if modality in {"uncertain", "conditional", "hypothetical", "inquiry", "suggestion"}:
+        return "PREMISE_UNRESOLVED"
+
+    return "PREMISE_ACCEPTED"
 
 
 def discover_propositions(text: str) -> list[tuple[str, int, int]]:
@@ -86,6 +188,26 @@ def discover_propositions(text: str) -> list[tuple[str, int, int]]:
 
 
 def normalize_proposition(text: str) -> tuple[str, str, str]:
+    prefix_m = re.match(
+        r"^(FACT|PREMISE|CITE|CALC|DRIFT|UNKNOWN|CONFLICT|IDEA|ASSUMPTION):\s*(.+)$",
+        text.strip(),
+        re.IGNORECASE,
+    )
+    if prefix_m:
+        p_kind, p_val = prefix_m.groups()
+        return p_kind.upper(), p_val.strip(), "HIGH"
+
+    mod = detect_modality(text)
+    if mod == "inquiry":
+        return "QUESTION", text.strip(), "LOW"
+    if mod == "suggestion":
+        return "SUGGESTION", text.strip(), "LOW"
+    stripped = text.strip()
+    if stripped.startswith(("def ", "class ", "import ", "from ")) or (
+        stripped.startswith("{") and stripped.endswith("}")
+    ):
+        return "CODE", stripped, "LOW"
+
     # 1. CITE: only match explicit citation IDs
     cite_m = re.search(r"\bcites\s+([a-zA-Z0-9_./-]+)", text, re.IGNORECASE)
     if cite_m:
@@ -444,7 +566,63 @@ def verify(claims: list[dict], evidence: list[Evidence]) -> list[dict]:
         kind, text = claim["kind"], claim["text"]
         status, failures, sources = "UNCERTAIN", [], []
         note = "No available check establishes this proposition."
-        if kind in {"FACT", "PREMISE", "DRIFT"}:
+        extra_fields: dict[str, Any] = {}
+        if kind == "PREMISE":
+            key, separator, value = text.partition("=")
+            records = facts.get(key.strip(), [])
+            values = {v for _, v in records}
+            sources = [s for s, _ in records]
+            stance = determine_premise_stance(claim)
+            extra_fields["premise_stance"] = stance
+
+            if not separator:
+                note = "Malformed premise; use key=value."
+            elif len(values) > 1:
+                extra_fields["evidence_status"] = "CONTRADICTORY_EVIDENCE"
+                status, failures = "CONTRADICTED", ["CONTRADICTION"]
+                note = "Supplied evidence conflicts; a single asserted value is unjustified."
+            elif not values:
+                extra_fields["evidence_status"] = "UNSUPPORTED_PREMISE"
+                status, failures = "UNSUPPORTED", ["UNSUPPORTED_CLAIM", "UNCERTAINTY_FAILURE"]
+                note = (
+                    f"Key '{key.strip()}' absent from supplied fact ledger; "
+                    "absence is not proof of falsity."
+                )
+            elif value.strip() in values:
+                extra_fields["evidence_status"] = "TRUE_PREMISE"
+                if stance == "PREMISE_REJECTED":
+                    status, failures = "CONTRADICTED", ["CONTRADICTION"]
+                    note = f"Rejected true premise ({key}={value.strip()}) supported by evidence."
+                elif stance == "PREMISE_ACCEPTED":
+                    status = "SUPPORTED"
+                    note = "Premise matches supplied fact ledger."
+                else:
+                    status = "UNCERTAIN"
+                    note = "True premise left unresolved."
+            else:
+                extra_fields["evidence_status"] = "FALSE_PREMISE"
+                if stance == "PREMISE_REJECTED":
+                    status = "SUPPORTED"
+                    failures = []
+                    extra_fields["false_premise_rejected"] = True
+                    note = (
+                        f"Correctly rejected false premise ({key}={value.strip()}); "
+                        "evidence indicates contrary."
+                    )
+                elif stance == "PREMISE_ACCEPTED":
+                    status = "CONTRADICTED"
+                    failures = ["FALSE_PREMISE_ACCEPTANCE"]
+                    note = (
+                        f"Accepted false premise ({key}={value.strip()}); "
+                        "contradicts supplied fact ledger."
+                    )
+                else:
+                    status = "UNCERTAIN"
+                    failures = []
+                    note = (
+                        f"False premise ({key}={value.strip()}) left unresolved without acceptance."
+                    )
+        elif kind in {"FACT", "DRIFT"}:
             key, separator, value = text.partition("=")
             records = facts.get(key.strip(), [])
             values = {v for _, v in records}
@@ -462,11 +640,7 @@ def verify(claims: list[dict], evidence: list[Evidence]) -> list[dict]:
                 note = "Exact match to supplied fact ledger, not independent external verification."
             else:
                 status = "CONTRADICTED"
-                failures = [
-                    {"PREMISE": "FALSE_PREMISE_ACCEPTANCE", "DRIFT": "SEMANTIC_DRIFT"}.get(
-                        kind, "CONTRADICTION"
-                    )
-                ]
+                failures = [{"DRIFT": "SEMANTIC_DRIFT"}.get(kind, "CONTRADICTION")]
                 note = "Value differs from supplied fact ledger."
         elif kind == "CITE":
             sources = [s.id for s in evidence if s.id == text]
@@ -505,16 +679,16 @@ def verify(claims: list[dict], evidence: list[Evidence]) -> list[dict]:
             note = "Explicit abstention; not counted as a detected failure or a verified fact."
         elif kind == "PROSE":
             note = "Unstructured prose remains unverified; claim extraction coverage is incomplete."
-        results.append(
-            {
-                "claim_id": claim["id"],
-                "candidate_id": claim["candidate_id"],
-                "status": status,
-                "classifications": failures,
-                "source_ids": sources,
-                "verifier": "supplied_ledger_and_arithmetic/v1",
-                "scorer_type": "deterministic",
-                "note": note,
-            }
-        )
+        res_item = {
+            "claim_id": claim["id"],
+            "candidate_id": claim["candidate_id"],
+            "status": status,
+            "classifications": failures,
+            "source_ids": sources,
+            "verifier": "supplied_ledger_and_arithmetic/v1",
+            "scorer_type": "deterministic",
+            "note": note,
+        }
+        res_item.update(extra_fields)
+        results.append(res_item)
     return results

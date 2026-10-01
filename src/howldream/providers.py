@@ -239,8 +239,9 @@ class RemoteCommandProvider:
         text, execution = self.adapter.generate(prompt)
         return Response(
             text,
-            execution.model or "unknown",
+            execution.model or self.adapter.config.model or "unknown",
             execution.elapsed_seconds,
+            usage=execution.usage,
             execution=execution.to_dict(),
         )
 
