@@ -3,6 +3,7 @@
 import operator
 import re
 from fractions import Fraction
+from typing import Any
 
 from howldream.schema import Evidence
 
@@ -565,7 +566,7 @@ def verify(claims: list[dict], evidence: list[Evidence]) -> list[dict]:
         kind, text = claim["kind"], claim["text"]
         status, failures, sources = "UNCERTAIN", [], []
         note = "No available check establishes this proposition."
-        extra_fields = {}
+        extra_fields: dict[str, Any] = {}
         if kind == "PREMISE":
             key, separator, value = text.partition("=")
             records = facts.get(key.strip(), [])
