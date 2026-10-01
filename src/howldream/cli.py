@@ -153,7 +153,11 @@ def main() -> int:
                     raise ValueError(
                         "command requires remote budget permission and command allowlist"
                     )
-                req.provider = {"kind": "command", "allow_remote": True}
+                req.provider = {
+                    "kind": "command",
+                    "allow_remote": True,
+                    "model": getattr(provider_override.adapter.config, "model", None) or "command",
+                }
             _run_dir, exp_res = explore(req, args.output, provider_override=provider_override)
             print(exp_res.model_dump_json(indent=2))
             return 0
@@ -208,6 +212,9 @@ def main() -> int:
                 if provider_override:
                     experiment.provider.kind = "command"
                     experiment.provider.allow_remote = True
+                    experiment.provider.model = (
+                        getattr(provider_override.adapter.config, "model", None) or "command"
+                    )
                 path = run(
                     experiment,
                     args.output,

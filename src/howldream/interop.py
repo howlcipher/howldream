@@ -58,14 +58,38 @@ def export_candidate(run_path: Path, candidate_id: str) -> CandidateHandoff:
 
 def review_candidate(candidate: CandidateHandoff, evidence):
     """Return a descendant review with scoped checks, preserving the complete original."""
-    from howldream.verification import extract, verify
+    from howldream.verification import extract, extract_natural, verify
 
     original = candidate.model_dump()
-    claims = extract(candidate.text, candidate.candidate_id)
+
+    # 1. Consume structured claims if present,
+    # otherwise extract reviewable claims from natural language
+    if candidate.claims:
+        claims = deepcopy(candidate.claims)
+        claims_origin = "SOURCE_STRUCTURED"
+    else:
+        claims = extract_natural(candidate.text, candidate.candidate_id)
+        if not claims:
+            claims = extract(candidate.text, candidate.candidate_id)
+        for cl in claims:
+            cl["origin"] = "NATURAL_EXTRACTED"
+            cl.setdefault("extractor", "claim_pipeline/v2")
+        claims_origin = "NATURAL_EXTRACTED"
+
+    # 2. Scoped verification against supplied evidence only
     checks = verify(claims, evidence)
+
+    # 3. Descendant review envelope with provenance
     value = deepcopy(original)
-    value["provenance"]["transformations"].append("howldream_scoped_review")
-    value["provenance"]["source_candidate"] = original
-    value["provenance"]["review"] = {"producer_component": "howldream", "checks": checks}
+    prov = value.setdefault("provenance", {})
+    transformations = prov.setdefault("transformations", [])
+    transformations.append("howldream_scoped_review")
+    prov["source_candidate"] = original
+    prov["review"] = {
+        "producer_component": "howldream",
+        "checks": checks,
+        "claims_origin": claims_origin,
+    }
+    value["claims"] = claims
     # Review is not authorship and does not replace source claims or verification metadata.
     return CandidateHandoff.model_validate(value)
