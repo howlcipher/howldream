@@ -51,13 +51,56 @@ def extract(text: str, candidate_id: str) -> list[dict]:
 
 
 def detect_modality(text: str) -> str:
-    lower = text.lower()
-    if any(h in lower for h in ["probably", "likely", "in all likelihood", "suggests", "seems to"]):
-        return "probable"
-    if any(p in lower for p in ["might", "may", "could", "possibly"]):
-        return "possible"
+    lower = text.lower().strip()
+    # 1. Questions and inquiries
+    if lower.endswith("?") or any(
+        lower.startswith(q)
+        for q in [
+            "does ",
+            "do ",
+            "can ",
+            "is ",
+            "are ",
+            "will ",
+            "would ",
+            "should ",
+            "could ",
+            "how ",
+            "why ",
+            "what ",
+            "when ",
+            "where ",
+        ]
+    ):
+        return "inquiry"
+
+    # 2. Suggestions and recommendations
+    if any(
+        lower.startswith(s)
+        for s in [
+            "consider ",
+            "suggest ",
+            "recommend ",
+            "we could consider ",
+            "one option is ",
+            "it is recommended to ",
+        ]
+    ):
+        return "suggestion"
+
+    # 3. Hypothetical statements
+    if any(hyp in lower for hyp in ["would have", "supposing", "assuming", "what if"]):
+        return "hypothetical"
+
+    # 4. Conditional statements (checked before 'possible' so 'if ... could ...' is conditional)
+    if any(c in lower for c in ["if ", "unless ", "provided that ", "when "]):
+        return "conditional"
+
+    # 5. Uncertainty
     if any(u in lower for u in ["cannot be determined", "unknown", "uncertain", "unclear"]):
         return "uncertain"
+
+    # 6. Denied / Negated
     if any(
         d in lower
         for d in [
@@ -79,10 +122,15 @@ def detect_modality(text: str) -> str:
         ]
     ):
         return "denied"
-    if any(c in lower for c in ["if ", "unless ", "provided that ", "when "]):
-        return "conditional"
-    if any(hyp in lower for hyp in ["would have", "supposing", "assuming"]):
-        return "hypothetical"
+
+    # 7. Probable
+    if any(h in lower for h in ["probably", "likely", "in all likelihood", "suggests", "seems to"]):
+        return "probable"
+
+    # 8. Possible
+    if any(p in lower for p in ["might", "may", "could", "possibly"]):
+        return "possible"
+
     return "asserted"
 
 
@@ -114,7 +162,7 @@ def determine_premise_stance(claim: dict) -> str:
     ):
         return "PREMISE_REJECTED"
 
-    if modality in {"uncertain", "conditional", "hypothetical"}:
+    if modality in {"uncertain", "conditional", "hypothetical", "inquiry", "suggestion"}:
         return "PREMISE_UNRESOLVED"
 
     return "PREMISE_ACCEPTED"
@@ -147,6 +195,18 @@ def normalize_proposition(text: str) -> tuple[str, str, str]:
     if prefix_m:
         p_kind, p_val = prefix_m.groups()
         return p_kind.upper(), p_val.strip(), "HIGH"
+
+    mod = detect_modality(text)
+    if mod == "inquiry":
+        return "QUESTION", text.strip(), "LOW"
+    if mod == "suggestion":
+        return "SUGGESTION", text.strip(), "LOW"
+    stripped = text.strip()
+    if (
+        stripped.startswith(("def ", "class ", "import ", "from "))
+        or (stripped.startswith("{") and stripped.endswith("}"))
+    ):
+        return "CODE", stripped, "LOW"
 
     # 1. CITE: only match explicit citation IDs
     cite_m = re.search(r"\bcites\s+([a-zA-Z0-9_./-]+)", text, re.IGNORECASE)

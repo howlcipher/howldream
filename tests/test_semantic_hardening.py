@@ -215,3 +215,69 @@ def test_command_provider_usage_and_model_metadata(tmp_path: Path):
     assert resp.usage.get("input_tokens") == 12
     assert resp.usage.get("output_tokens") == 8
     assert resp.execution["requested_model"] == "claude-sonnet-5-5"
+
+
+def test_natural_language_claim_extraction_edge_cases():
+    """Verify claim extraction correctly classifies questions, suggestions, conditionals,
+    negations, and uncertainty without treating them as asserted facts.
+    """
+    from howldream.verification import detect_modality, extract_natural, normalize_proposition
+
+    # 1. "This may fail under clock skew." -> modality: possible
+    assert detect_modality("This may fail under clock skew.") == "possible"
+    claims_skew = extract_natural("This may fail under clock skew.", "cand-skew")
+    assert len(claims_skew) == 1
+    assert claims_skew[0]["modality"] == "possible"
+    assert claims_skew[0]["status"] == "UNVERIFIED"
+
+    # 2. "The service does not require wall-clock time." -> modality: denied
+    assert detect_modality("The service does not require wall-clock time.") == "denied"
+    claims_no_clock = extract_natural("The service does not require wall-clock time.", "cand-noclock")
+    assert len(claims_no_clock) == 1
+    assert claims_no_clock[0]["modality"] == "denied"
+
+    # 3. "If network latency exceeds X, the approach could degrade." -> modality: conditional
+    assert (
+        detect_modality("If network latency exceeds X, the approach could degrade.")
+        == "conditional"
+    )
+
+    # 4. "Consider using Redis." -> modality: suggestion, kind: SUGGESTION
+    assert detect_modality("Consider using Redis.") == "suggestion"
+    kind_sug, _text_sug, _ = normalize_proposition("Consider using Redis.")
+    assert kind_sug == "SUGGESTION"
+
+    # 5. "Redis guarantees this property." -> modality: asserted
+    assert detect_modality("Redis guarantees this property.") == "asserted"
+
+    # 6. "Does systemd behave this way?" -> modality: inquiry, kind: QUESTION
+    assert detect_modality("Does systemd behave this way?") == "inquiry"
+    kind_q, _text_q, _ = normalize_proposition("Does systemd behave this way?")
+    assert kind_q == "QUESTION"
+
+
+def test_dogfood_attribution_guide_taxonomy():
+    """Verify dogfood_attribution_guide.md defines the complete 7-category taxonomy
+    and the chronology precedence rule to prevent retroactive over-crediting.
+    """
+    guide_path = Path(__file__).resolve().parent.parent / "docs" / "dogfood_attribution_guide.md"
+    assert guide_path.exists()
+    content = guide_path.read_text(encoding="utf-8")
+
+    # Assert all 7 canonical categories are explicitly present
+    canonical_categories = [
+        "PREEXISTING",
+        "HOWL_ORIGINATED",
+        "HOWL_REFINED",
+        "HOWL_CHALLENGED",
+        "HOWL_VALIDATED",
+        "HOWL_INSPIRED_TEST",
+        "HOWL_NO_EFFECT",
+    ]
+    for cat in canonical_categories:
+        assert f"`{cat}`" in content, f"Missing taxonomy category: {cat}"
+
+    # Assert Chronology Precedence Rule is documented
+    assert "Chronology Precedence Rule" in content
+    assert "MUST NOT later become `HOWL_ORIGINATED`" in content
+
