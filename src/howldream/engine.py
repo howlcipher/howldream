@@ -23,6 +23,8 @@ from howldream.contracts import (
 )
 from howldream.discovery import analyze_discovery, compact_families
 from howldream.evidence import ReportEvidence, audit_report
+from howldream.interop import candidate_participation
+from howldream.participation import run_participation
 from howldream.providers import Provider, make_provider, sampling_record
 from howldream.schema import Evidence, Experiment, Generation, Perturbation, ProviderConfig
 from howldream.scoring import metrics, score_group
@@ -252,10 +254,21 @@ def analyze(artifacts: dict, experiment: Experiment):
         experiment.explored_families,
         experiment.ranking_criteria,
     )
+    artifacts["discovery"]["participation"] = run_participation(
+        artifacts["candidates"], artifacts["discovery"]
+    )
+    artifacts["manifest"]["participation"] = artifacts["discovery"]["participation"]
+    artifacts["manifest"]["observed_models"] = sorted(
+        {
+            str(c["model"])
+            for c in artifacts["baseline"] + artifacts["candidates"]
+            if c.get("model") and (c.get("execution") or {}).get("inference_occurred")
+        }
+    )
     artifacts["metrics"]["discovery"] = {
         k: v
         for k, v in artifacts["discovery"].items()
-        if k not in {"units", "clusters", "ranking", "explored_families"}
+        if k not in {"units", "clusters", "ranking", "explored_families", "participation"}
     }
     artifacts["manifest"]["warnings"].extend(
         w for w in artifacts["discovery"]["warnings"] if w not in artifacts["manifest"]["warnings"]
@@ -316,7 +329,22 @@ def current_commit() -> str | None:
         commit = revision.stdout.strip() if revision.returncode == 0 else None
     except (OSError, subprocess.TimeoutExpired):
         commit = None
-    return commit
+    return commit or installed_commit()
+
+
+def installed_commit() -> str | None:
+    """Commit recorded by pip for a VCS install, when no git checkout is present."""
+    from importlib.metadata import PackageNotFoundError, distribution
+
+    try:
+        raw = distribution("howldream").read_text("direct_url.json")
+    except PackageNotFoundError:
+        return None
+    try:
+        commit = json.loads(raw or "{}").get("vcs_info", {}).get("commit_id")
+    except ValueError:
+        return None
+    return commit if isinstance(commit, str) else None
 
 
 def run(
@@ -733,6 +761,9 @@ def explore(
                     else "EXTERNALLY_OBSERVED",
                     "created_at": datetime.now(UTC).isoformat(),
                     "transformations": ["generated"],
+                    # "generated" above is the legacy stage name; participation says
+                    # whether Dream's provider authored the text or a fixture replayed it.
+                    "participation": [candidate_participation(c)],
                     # legacy/context keys, retained as unvalidated extras
                     "request_id": request.request_id,
                     "originating_component": request.originating_component,
