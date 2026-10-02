@@ -16,7 +16,7 @@ from howldream.benchmark import benchmark, list_benchmarks
 from howldream.contracts import CandidateHandoff, DescentDAG, ExplorationRequest
 from howldream.dreamvalue import evaluate
 from howldream.engine import explore, replay, run, wake
-from howldream.interop import export_candidate, review_candidate
+from howldream.interop import exploration_from_candidate, export_candidate, review_candidate
 from howldream.providers import RemoteCommandProvider
 from howldream.schema import read_experiment
 
@@ -62,11 +62,18 @@ def main() -> int:
     commands.add_parser("compare").add_argument("targets", type=Path, nargs="+")
 
     explore_parser = commands.add_parser("explore")
-    explore_parser.add_argument("target", type=Path, help="exploration request file (JSON or YAML)")
+    explore_parser.add_argument(
+        "target", type=Path, nargs="?", help="exploration request file (JSON or YAML)"
+    )
     explore_parser.add_argument(
         "--output", type=Path, default=Path(".howldream/runs"), help="artifact storage root"
     )
 
+    explore_parser.add_argument("--from-candidate", type=Path)
+    explore_parser.add_argument("--objective")
+    explore_parser.add_argument("--evidence", type=Path)
+    audit_parser = commands.add_parser("audit-attribution")
+    audit_parser.add_argument("target", type=Path, help="Chronology ledger JSON")
     trace_parser = commands.add_parser("trace")
     trace_parser.add_argument("target_id", help="node or candidate ID to trace backwards")
     trace_parser.add_argument(
@@ -100,6 +107,17 @@ def main() -> int:
             if not args.allow_remote:
                 raise ValueError("command requires --allow-remote after reviewing the profile")
             provider_override = RemoteCommandProvider(CommandConfig.read(args.command_config))
+        if args.command == "validate":
+            from howldream.validation import validate_artifact
+
+            print(json.dumps(validate_artifact(args.target)))
+            return 0
+        if args.command == "audit-attribution":
+            from howldream.attribution import audit_attribution
+
+            audit_result = audit_attribution(json.loads(args.target.read_text()))
+            print(json.dumps(audit_result, indent=2))
+            return 1 if audit_result["conflicts"] or audit_result["unresolved"] else 0
         if args.command == "export":
             print(export_candidate(args.target, args.candidate_id).model_dump_json(indent=2))
             return 0
@@ -142,9 +160,28 @@ def main() -> int:
             print(json.dumps(result, indent=2))
             return 0
         if args.command == "explore":
-            raw_content = args.target.read_text()
-            data = yaml.safe_load(raw_content)
-            req = ExplorationRequest.model_validate(data)
+            if bool(args.target) == bool(args.from_candidate):
+                raise ValueError("explore requires one request path or --from-candidate")
+            if args.from_candidate:
+                from howldream.schema import Evidence
+
+                candidate = CandidateHandoff.model_validate(
+                    json.loads(args.from_candidate.read_text())
+                )
+                evidence = (
+                    [Evidence.model_validate(x) for x in json.loads(args.evidence.read_text())]
+                    if args.evidence
+                    else []
+                )
+                req = exploration_from_candidate(
+                    candidate,
+                    objective=args.objective,
+                    evidence=evidence,
+                    remote=bool(provider_override),
+                    max_calls=args.max_calls if args.max_calls is not None else 3,
+                )
+            else:
+                req = ExplorationRequest.model_validate(yaml.safe_load(args.target.read_text()))
             if args.max_calls is not None:
                 req.budget.max_calls = args.max_calls
                 req = ExplorationRequest.model_validate(req.model_dump())
@@ -160,7 +197,7 @@ def main() -> int:
                 }
             _run_dir, exp_res = explore(req, args.output, provider_override=provider_override)
             print(exp_res.model_dump_json(indent=2))
-            return 0
+            return 1 if load_run(_run_dir)["manifest"]["status"] == "PARTIAL" else 0
         if args.command == "trace":
             target_run_dir = args.run_dir
             if target_run_dir is None and args.output.exists():

@@ -636,8 +636,8 @@ def verify(claims: list[dict], evidence: list[Evidence]) -> list[dict]:
                 status, failures = "UNSUPPORTED", ["UNSUPPORTED_CLAIM", "UNCERTAINTY_FAILURE"]
                 note = "Key absent from supplied fact ledger; absence is not proof of falsity."
             elif value.strip() in values:
-                status = "SUPPORTED"
-                note = "Exact match to supplied fact ledger, not independent external verification."
+                status = "ECHO"
+                note = "Restates supplied fact ledger; no independent verification credit."
             else:
                 status = "CONTRADICTED"
                 failures = [{"DRIFT": "SEMANTIC_DRIFT"}.get(kind, "CONTRADICTION")]
@@ -679,16 +679,52 @@ def verify(claims: list[dict], evidence: list[Evidence]) -> list[dict]:
             note = "Explicit abstention; not counted as a detected failure or a verified fact."
         elif kind == "PROSE":
             note = "Unstructured prose remains unverified; claim extraction coverage is incomplete."
+        if status in {"UNCERTAIN", "SUPPORTED"} and kind not in {"PREMISE", "CALC", "CONFLICT"}:
+            surface = claim.get("surface") or claim.get("source_text") or text
+            echo_sources = [
+                source.id
+                for source in evidence
+                if any(
+                    evidence_echo(surface, sentence)
+                    for sentence in re.split(r"(?<=[.!?])\s+|\n+", source.text)
+                )
+            ]
+            if echo_sources:
+                status, sources, failures = "ECHO", echo_sources, []
+                note = "Lexical evidence restatement; not independent verification."
         res_item = {
             "claim_id": claim["id"],
             "candidate_id": claim["candidate_id"],
             "status": status,
             "classifications": failures,
             "source_ids": sources,
-            "verifier": "supplied_ledger_and_arithmetic/v1",
+            "verifier": "supplied_ledger_and_arithmetic/v2",
             "scorer_type": "deterministic",
             "note": note,
         }
         res_item.update(extra_fields)
         results.append(res_item)
     return results
+
+
+def evidence_echo(claim: str, supplied: str) -> bool:
+    """Conservative near-restatement heuristic, not a semantic entailment verifier.
+
+    Ignore casing, punctuation and attribution boilerplate, but preserve polarity and
+    quantities. Require high overlap in both directions to avoid counting derivations.
+    """
+
+    def tokens(text):
+        text = re.sub(r"(?i)^(?:FACT:|the evidence says|the supplied evidence states)\s*", "", text)
+        return re.findall(r"[a-z0-9_]+", text.lower())
+
+    left, right = tokens(claim), tokens(supplied)
+    if not left or not right:
+        return False
+    polarity = {"no", "not", "never", "false", "without"}
+    if (set(left) & polarity) != (set(right) & polarity):
+        return False
+    if {t for t in left if t.isdigit()} != {t for t in right if t.isdigit()}:
+        return False
+    a, b = set(left), set(right)
+    return len(a & b) / max(len(a), len(b)) >= 0.9

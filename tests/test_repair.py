@@ -94,7 +94,7 @@ def test_create_dream_contract_roundtrip(tmp_path):
     )
     path, result = explore(request, tmp_path)
     assert (
-        result.candidates[0].provenance.model_dump()["source_candidates"][0]["candidate_id"]
+        result.candidates[0].provenance.model_dump()["source_candidate_refs"][0]["candidate_id"]
         == idea.id
     )
     artifact = load_run(path)
