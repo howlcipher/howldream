@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "name": "exp-B_evidence_exposed",
+  "objective": "Find meaningful software opportunities for a developer platform team.",
+  "hypothesis": "",
+  "mode": "dream",
+  "purpose": "development",
+  "constraints": [],
+  "explored_families": [],
+  "diversity_memory": false,
+  "ranking_criteria": [],
+  "provider": {
+    "kind": "command",
+    "model": "claude-sonnet-5-5",
+    "base_url": null,
+    "allow_remote": true,
+    "allow_local_inference": false,
+    "forbid_local_inference": true,
+    "timeout_seconds": 120,
+    "max_tokens": 768
+  },
+  "baseline": {
+    "candidates": 1,
+    "temperature": 0.2
+  },
+  "generation": {
+    "candidates": 2,
+    "temperature": 1.1
+  },
+  "max_calls": 3,
+  "trials": 1,
+  "seed": 42,
+  "evidence": [
+    {
+      "id": "operator-ledger",
+      "text": "Operator-authored stress context, not external observation: CI queues slow onboarding. Flaky tests obscure release signals. Teams duplicate service templates. Preview environments accumulate idle costs. Dependency updates break shared templates. Platform teams struggle with build cache misses and slow container images. Most requested work concerns CI queues and flaky tests.",
+      "facts": {},
+      "provenance": {
+        "source_type": "OPERATOR_EXPECTATION",
+        "produced_by": "mission operator",
+        "source_ref": "remote_smoke.py#authored-stress-context",
+        "independent_of_implementation": false,
+        "represents_observed_reality": false
+      }
+    }
+  ],
+  "context": [],
+  "speculative_candidates": [],
+  "perturbations": [],
+  "retain_text": true
+}

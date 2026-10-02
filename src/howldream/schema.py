@@ -6,6 +6,8 @@ from typing import Literal
 import yaml
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
+from howldream.evidence import EvidenceProvenance
+
 
 class StrictModel(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
@@ -31,6 +33,7 @@ class Evidence(StrictModel):
     id: str = Field(pattern=r"^[a-zA-Z0-9_./-]{1,100}$")
     text: str = Field(default="", max_length=50000)
     facts: dict[str, str] = Field(default_factory=dict)
+    provenance: EvidenceProvenance = Field(default_factory=EvidenceProvenance)
 
 
 class Perturbation(StrictModel):
@@ -44,6 +47,13 @@ class Experiment(StrictModel):
     objective: str = Field(min_length=1, max_length=10000)
     hypothesis: str = Field(default="", max_length=10000)
     mode: Literal["dream", "nightmare"] = "dream"
+    purpose: Literal["discovery", "development", "verification"] = "development"
+    constraints: list[str] = Field(default_factory=list, max_length=50)
+    explored_families: list[str] = Field(default_factory=list, max_length=100)
+    diversity_memory: bool = False
+    ranking_criteria: list[Literal["novelty", "objective_fit"]] = Field(
+        default_factory=list, max_length=2
+    )
     provider: ProviderConfig = Field(default_factory=ProviderConfig)
     baseline: Generation = Field(default_factory=lambda: Generation(candidates=3, temperature=0.2))
     generation: Generation = Field(default_factory=Generation)
@@ -65,6 +75,12 @@ class Experiment(StrictModel):
 
     @model_validator(mode="after")
     def unique_sources(self):
+        if self.purpose == "discovery" and self.speculative_candidates:
+            raise ValueError(
+                "Discovery uses explored_families; selected candidates require development"
+            )
+        if any(not c.strip() or len(c) > 2000 for c in self.constraints + self.explored_families):
+            raise ValueError("Control entries must be nonempty and at most 2000 characters")
         ids = [source.id for source in self.evidence]
         if len(ids) != len(set(ids)):
             raise ValueError("evidence IDs must be unique")

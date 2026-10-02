@@ -253,3 +253,11 @@ and does not rewrite reports or grant authority.
 
 Ecosystem CI pins the Create repair that retains existing finalists on failed resume.
 Provider-core is pinned to preserve telemetry for invalid nested CLI completion shapes as well.
+
+## Discovery and evidence integrity
+
+Fresh exploration requests default to discovery: the evidence ledger is retained for
+WAKE and withheld from generation. Use `purpose: development` or `verification` when
+selected opportunities or factual review need that context. Optional compact diversity
+memory, advisory IDEA clustering/ranking, source provenance and product-report claim
+audits are described in [discovery and validation](docs/discovery_validation.md).

@@ -1,0 +1,256 @@
+{
+  "context_echo_ratio": 0.8,
+  "evidence_echo_ratio": 0.8,
+  "novel_concept_ratio": 0.2,
+  "repeated_family_ratio": 0.5,
+  "idea_count": 10,
+  "cluster_count": 5,
+  "units": [
+    {
+      "id": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/1",
+      "candidate_id": "hd-20261002-190900-180eef6651dd/candidates/0/0",
+      "text": "IDEA: Build a \"release-signal court\" that treats each CI test result as testimony with a learned reliability score, so a release gate asks \"how much do we trust this signal?\" and not \"did it pass?\". Flaky tests are down-weighted rather than quarantined or deleted, and the gate reports a confidence interval for release readiness.",
+      "source_span": [
+        0,
+        330
+      ],
+      "source_hash": "e28d2498ff06baf5c8ca6b28b9f699039b56a182b1902cfcd98d305aa78d5b38",
+      "cluster": "cluster-1",
+      "representative": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/1",
+      "similar_to": null,
+      "similarity_to_representative": 1.0,
+      "evidence_token_overlap": 0.15625,
+      "context_token_overlap": 0.15625,
+      "evidence_family_echo": true,
+      "context_family_echo": true
+    },
+    {
+      "id": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/2",
+      "candidate_id": "hd-20261002-190900-180eef6651dd/candidates/0/0",
+      "text": "IDEA: Use the reliability model to schedule CI work, running the highest-information tests first and deferring low-information, high-flake tests. This could reduce queue pressure without adding capacity, tying together the two most-requested themes.",
+      "source_span": [
+        790,
+        1039
+      ],
+      "source_hash": "e28d2498ff06baf5c8ca6b28b9f699039b56a182b1902cfcd98d305aa78d5b38",
+      "cluster": "cluster-2",
+      "representative": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/2",
+      "similar_to": null,
+      "similarity_to_representative": 1.0,
+      "evidence_token_overlap": 0.23076923076923078,
+      "context_token_overlap": 0.23076923076923078,
+      "evidence_family_echo": false,
+      "context_family_echo": false
+    },
+    {
+      "id": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/3",
+      "candidate_id": "hd-20261002-190900-180eef6651dd/candidates/0/0",
+      "text": "IDEA: Treat service templates as a package-managed dependency graph, using automated \"template drift\" pull requests plus a canary rollout of dependency updates across a sample of template consumers before the update reaches the shared template.",
+      "source_span": [
+        1304,
+        1548
+      ],
+      "source_hash": "e28d2498ff06baf5c8ca6b28b9f699039b56a182b1902cfcd98d305aa78d5b38",
+      "cluster": "cluster-3",
+      "representative": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/3",
+      "similar_to": null,
+      "similarity_to_representative": 1.0,
+      "evidence_token_overlap": 0.23809523809523808,
+      "context_token_overlap": 0.23809523809523808,
+      "evidence_family_echo": true,
+      "context_family_echo": true
+    },
+    {
+      "id": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/4",
+      "candidate_id": "hd-20261002-190900-180eef6651dd/candidates/0/0",
+      "text": "IDEA: Give preview environments a \"lease with decay\" model: each environment holds a cost budget that depletes with idle time and is renewed by actual traffic or commits, with a snapshot-and-restore on demand instead of hard deletion.",
+      "source_span": [
+        1827,
+        2061
+      ],
+      "source_hash": "e28d2498ff06baf5c8ca6b28b9f699039b56a182b1902cfcd98d305aa78d5b38",
+      "cluster": "cluster-4",
+      "representative": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/4",
+      "similar_to": null,
+      "similarity_to_representative": 1.0,
+      "evidence_token_overlap": 0.17391304347826086,
+      "context_token_overlap": 0.17391304347826086,
+      "evidence_family_echo": true,
+      "context_family_echo": true
+    },
+    {
+      "id": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/5",
+      "candidate_id": "hd-20261002-190900-180eef6651dd/candidates/0/0",
+      "text": "IDEA: Challenge the premise of faster builds by investigating whether cache misses and image size are symptoms of unstable build inputs (non-hermetic steps, timestamps, unpinned layers). A \"cache-miss explainer\" could attribute each miss to a specific input change and rank root causes.",
+      "source_span": [
+        2288,
+        2574
+      ],
+      "source_hash": "e28d2498ff06baf5c8ca6b28b9f699039b56a182b1902cfcd98d305aa78d5b38",
+      "cluster": "cluster-5",
+      "representative": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/5",
+      "similar_to": null,
+      "similarity_to_representative": 1.0,
+      "evidence_token_overlap": 0.10714285714285714,
+      "context_token_overlap": 0.10714285714285714,
+      "evidence_family_echo": true,
+      "context_family_echo": true
+    },
+    {
+      "id": "hd-20261002-190900-180eef6651dd/candidates/0/1/idea/1",
+      "candidate_id": "hd-20261002-190900-180eef6651dd/candidates/0/1",
+      "text": "IDEA: Build a \"release-signal ledger\" that treats flaky tests as probabilistic evidence rather than defects to eliminate. Each test result carries a learned reliability weight, and release gates consume a confidence score instead of a binary pass/fail. This is unconventional because it stops chasing flake elimination and makes the platform robust to flakiness.",
+      "source_span": [
+        0,
+        362
+      ],
+      "source_hash": "a73131d7b851d1c6cf8718efa7dae6f80f5b0f59488b2cc8fd1ba9d2e0852034",
+      "cluster": "cluster-1",
+      "representative": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/1",
+      "similar_to": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/1",
+      "similarity_to_representative": 0.5,
+      "evidence_token_overlap": 0.11764705882352941,
+      "context_token_overlap": 0.11764705882352941,
+      "evidence_family_echo": true,
+      "context_family_echo": true
+    },
+    {
+      "id": "hd-20261002-190900-180eef6651dd/candidates/0/1/idea/2",
+      "candidate_id": "hd-20261002-190900-180eef6651dd/candidates/0/1",
+      "text": "IDEA: Replace queue-scaling work with a \"speculative CI\" scheduler that predicts which jobs are likely to be irrelevant to a change, using the change's dependency graph, and runs them at lower priority or post-merge. The goal is shorter queues for onboarding developers without adding capacity.",
+      "source_span": [
+        837,
+        1131
+      ],
+      "source_hash": "a73131d7b851d1c6cf8718efa7dae6f80f5b0f59488b2cc8fd1ba9d2e0852034",
+      "cluster": "cluster-3",
+      "representative": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/3",
+      "similar_to": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/3",
+      "similarity_to_representative": 0.5,
+      "evidence_token_overlap": 0.1724137931034483,
+      "context_token_overlap": 0.20689655172413793,
+      "evidence_family_echo": false,
+      "context_family_echo": false
+    },
+    {
+      "id": "hd-20261002-190900-180eef6651dd/candidates/0/1/idea/3",
+      "candidate_id": "hd-20261002-190900-180eef6651dd/candidates/0/1",
+      "text": "IDEA: Treat service templates as a dependency-managed product. Generate services from a versioned template with an automated \"template drift\" report and staged rollout of template updates, with canary adoption by a few teams before wide release. This addresses duplicated templates and dependency updates that break shared templates in one mechanism.",
+      "source_span": [
+        1473,
+        1823
+      ],
+      "source_hash": "a73131d7b851d1c6cf8718efa7dae6f80f5b0f59488b2cc8fd1ba9d2e0852034",
+      "cluster": "cluster-3",
+      "representative": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/3",
+      "similar_to": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/3",
+      "similarity_to_representative": 0.5,
+      "evidence_token_overlap": 0.32,
+      "context_token_overlap": 0.32,
+      "evidence_family_echo": true,
+      "context_family_echo": true
+    },
+    {
+      "id": "hd-20261002-190900-180eef6651dd/candidates/0/1/idea/4",
+      "candidate_id": "hd-20261002-190900-180eef6651dd/candidates/0/1",
+      "text": "IDEA: Make preview environments lease-based, with cost-aware expiry that extends only on observed activity such as traffic, commits, or reviewer comments, and posts the running cost to the pull request.",
+      "source_span": [
+        2092,
+        2294
+      ],
+      "source_hash": "a73131d7b851d1c6cf8718efa7dae6f80f5b0f59488b2cc8fd1ba9d2e0852034",
+      "cluster": "cluster-4",
+      "representative": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/4",
+      "similar_to": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/4",
+      "similarity_to_representative": 0.5,
+      "evidence_token_overlap": 0.15,
+      "context_token_overlap": 0.15,
+      "evidence_family_echo": true,
+      "context_family_echo": true
+    },
+    {
+      "id": "hd-20261002-190900-180eef6651dd/candidates/0/1/idea/5",
+      "candidate_id": "hd-20261002-190900-180eef6651dd/candidates/0/1",
+      "text": "IDEA: Use build-cache and container-image telemetry to attribute cache misses and image bloat to specific commits or Dockerfile layers, then surface a \"cache regression\" check on pull requests.",
+      "source_span": [
+        2453,
+        2646
+      ],
+      "source_hash": "a73131d7b851d1c6cf8718efa7dae6f80f5b0f59488b2cc8fd1ba9d2e0852034",
+      "cluster": "cluster-5",
+      "representative": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/5",
+      "similar_to": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/5",
+      "similarity_to_representative": 0.5,
+      "evidence_token_overlap": 0.23529411764705882,
+      "context_token_overlap": 0.23529411764705882,
+      "evidence_family_echo": true,
+      "context_family_echo": true
+    }
+  ],
+  "clusters": [
+    {
+      "id": "cluster-1",
+      "representative": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/1",
+      "representative_text": "IDEA: Build a \"release-signal court\" that treats each CI test result as testimony with a learned reliability score, so a release gate asks \"how much do we trust this signal?\" and not \"did it pass?\". Flaky tests are down-weighted rather than quarantined or deleted, and the gate reports a confidence interval for release readiness.",
+      "label": "asks, ci, confidence, court, deleted, did, down, each",
+      "members": [
+        "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/1",
+        "hd-20261002-190900-180eef6651dd/candidates/0/1/idea/1"
+      ]
+    },
+    {
+      "id": "cluster-2",
+      "representative": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/2",
+      "representative_text": "IDEA: Use the reliability model to schedule CI work, running the highest-information tests first and deferring low-information, high-flake tests. This could reduce queue pressure without adding capacity, tying together the two most-requested themes.",
+      "label": "adding, capacity, ci, deferring, first, flake, high, highest",
+      "members": [
+        "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/2"
+      ]
+    },
+    {
+      "id": "cluster-3",
+      "representative": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/3",
+      "representative_text": "IDEA: Treat service templates as a package-managed dependency graph, using automated \"template drift\" pull requests plus a canary rollout of dependency updates across a sample of template consumers before the update reaches the shared template.",
+      "label": "across, automated, before, canary, consumers, dependency, drift, graph",
+      "members": [
+        "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/3",
+        "hd-20261002-190900-180eef6651dd/candidates/0/1/idea/2",
+        "hd-20261002-190900-180eef6651dd/candidates/0/1/idea/3"
+      ]
+    },
+    {
+      "id": "cluster-4",
+      "representative": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/4",
+      "representative_text": "IDEA: Give preview environments a \"lease with decay\" model: each environment holds a cost budget that depletes with idle time and is renewed by actual traffic or commits, with a snapshot-and-restore on demand instead of hard deletion.",
+      "label": "actual, budget, commits, cost, decay, deletion, demand, depletes",
+      "members": [
+        "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/4",
+        "hd-20261002-190900-180eef6651dd/candidates/0/1/idea/4"
+      ]
+    },
+    {
+      "id": "cluster-5",
+      "representative": "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/5",
+      "representative_text": "IDEA: Challenge the premise of faster builds by investigating whether cache misses and image size are symptoms of unstable build inputs (non-hermetic steps, timestamps, unpinned layers). A \"cache-miss explainer\" could attribute each miss to a specific input change and rank root causes.",
+      "label": "attribute, builds, cache, causes, challenge, change, each, explainer",
+      "members": [
+        "hd-20261002-190900-180eef6651dd/candidates/0/0/idea/5",
+        "hd-20261002-190900-180eef6651dd/candidates/0/1/idea/5"
+      ]
+    }
+  ],
+  "ranking": [],
+  "warnings": [
+    "DISCOVERY_ANCHORING_HIGH"
+  ],
+  "explored_families": [
+    "asks, ci, confidence, court, deleted, did, down, each",
+    "adding, capacity, ci, deferring, first, flake, high, highest",
+    "across, automated, before, canary, consumers, dependency, drift, graph",
+    "actual, budget, commits, cost, decay, deletion, demand, depletes",
+    "attribute, builds, cache, causes, challenge, change, each, explainer"
+  ],
+  "method": "concept_tokens_and_leading_phrases/v2; Jaccard cluster threshold 0.5 or leading content phrase link; echo coverage 0.6 or phrase link",
+  "measurement_type": "ADVISORY_HEURISTIC",
+  "limitations": "Not semantic equivalence, calibrated novelty, entailment or usefulness"
+}

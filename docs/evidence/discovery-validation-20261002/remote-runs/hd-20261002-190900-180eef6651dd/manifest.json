@@ -1,0 +1,67 @@
+{
+  "schema": "howldream.run/v1",
+  "run_id": "hd-20261002-190900-180eef6651dd",
+  "experiment_id": "1dbcfc65eab601c0d46425e710377909b7f88592f89655ad8956ee7f487c3f51",
+  "version": "0.4.4",
+  "git_commit": "dd2cc52b82b4fefa8273a4db9abc709fef22d35f",
+  "implementation_hash": "730e1b9cd6e4ec9852030198436ef77a1ad2179a9a1d7052670f7c9c11f59dca",
+  "mode": "dream",
+  "started_at": "2026-10-02T19:09:00.572722+00:00",
+  "provider": {
+    "kind": "command",
+    "model": "claude-sonnet-5-5",
+    "base_url": null,
+    "allow_remote": true,
+    "allow_local_inference": false,
+    "forbid_local_inference": true,
+    "timeout_seconds": 120,
+    "max_tokens": 768
+  },
+  "capabilities": {
+    "supports_seed": false,
+    "supports_temperature": false,
+    "supports_top_p": false,
+    "supports_logprobs": false,
+    "supports_tool_calls": false,
+    "supports_structured_output": false,
+    "supports_token_usage": false,
+    "supports_local_instrumentation": false
+  },
+  "authority": "NONE",
+  "parent_run": null,
+  "status": "COMPLETE",
+  "errors": [],
+  "template_version": "line_experiment/v2",
+  "template_hash": "8096777d16cf15dcd68f34f709eeb4f81e1b983ba58fdda00c8008f2aa7add7b",
+  "source_hashes": {
+    "operator-ledger": "0b961ea06214e254199bc9862a725f7b0b3df66c486fbca82b1f88646cd1b0f0"
+  },
+  "replay": "CONFIGURATION_REPLAY_NOT_GUARANTEED",
+  "replay_available": true,
+  "warnings": [
+    "Verification is scoped to supplied evidence; generated text has no authority.",
+    "EXPERIMENT_CONTROL_NOT_APPLIED: inspect sampling requested/supported/applied; condition differences are confounded",
+    "DISCOVERY_ANCHORING_HIGH"
+  ],
+  "call_count": 3,
+  "analysis": {
+    "version": "0.4.4",
+    "implementation_hash": "730e1b9cd6e4ec9852030198436ef77a1ad2179a9a1d7052670f7c9c11f59dca",
+    "analyzed_at": "2026-10-02T19:09:33.749478+00:00",
+    "git_commit": "dd2cc52b82b4fefa8273a4db9abc709fef22d35f"
+  },
+  "completed_at": "2026-10-02T19:09:33.803518+00:00",
+  "file_hashes": {
+    "baseline.jsonl": "dfa32c71af4100c7cc17da641087db82016ecfec5a0aa20cb3ad541e366bb3ce",
+    "candidates.jsonl": "09a5a82f8f1a3571c0407823b01f4968aff386f90f59c997e99d21f3c1329c66",
+    "claims.jsonl": "71a59fd8838b5281e3da5fe0cd86aa8a800391f415a4edec0f35efcfbb9338ba",
+    "discovery.json": "7e2b04bd1f0430211412b227b4e0978ef2a35236dae380a9829873e45eb0c4c7",
+    "experiment.json": "99bde349d31e10c41d58741f71e1e6a6f49e0df05b8831a2f3fa871679ed9ccb",
+    "handoff.json": "85d86f446aedb55ad550bcc337b37caa6ac758f8468c214d08e1183e98437b64",
+    "metrics.json": "f09af97eab85697c9a5472becc479ddc521ec7a6c815733954a89c34acb0621e",
+    "report.md": "c8ee5a33c7f2370ed4c302bd1db8ea1e88a6e206a9cc6ca23b8a974adffff2ad",
+    "scores.json": "8f7408967c9c84129f79baf953364b399518b9719321029e93cfc0cb8cc3a4cf",
+    "verification.jsonl": "1fd8b0d9124d37abead8536481f95b3bee61eb8a2086f5470e89c85c1a44c5da",
+    "exploration_envelope.json": "d65a4ab25dc4cda928c22875cbf30b55c562466661c6eaf88f1b5817fe39a191"
+  }
+}

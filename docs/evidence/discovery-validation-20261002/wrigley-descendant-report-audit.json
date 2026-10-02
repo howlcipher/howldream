@@ -1,0 +1,51 @@
+{
+  "findings": [
+    {
+      "code": "CLAIM_EVIDENCE_MISMATCH",
+      "claim": "### Best Rejected Idea",
+      "supporting_evidence": [],
+      "evidence_type": [
+        "UNCLASSIFIED"
+      ],
+      "why_insufficient": [
+        "No explicitly bound passing validation",
+        "No independent observed data for empirical language",
+        "Absolute readiness/superiority requires a scoped human review"
+      ],
+      "suggested_narrower_wording": "Empirical validation remains unestablished."
+    },
+    {
+      "code": "CLAIM_EVIDENCE_MISMATCH",
+      "claim": "In contrast, HowlDream + HowlCreate broke through these conventions by inverting core assumptions, identifying the physical microclimate gap, and engineering **WrigleySentry**, a deterministic, sub-second, production-grade system with calm self-abstention.",
+      "supporting_evidence": [],
+      "evidence_type": [
+        "UNCLASSIFIED"
+      ],
+      "why_insufficient": [
+        "No explicitly bound passing validation",
+        "No independent observed data for empirical language",
+        "Absolute readiness/superiority requires a scoped human review"
+      ],
+      "suggested_narrower_wording": "Empirical validation remains unestablished."
+    },
+    {
+      "code": "CLAIM_EVIDENCE_MISMATCH",
+      "claim": "By systematically inverting conventional assumptions and aggressively probing adversarial failure modes, the system converted a challenging prompt into **WrigleySentry**, a high-value, production-grade baseball engineering product that outclasses conventional LLM baselines.",
+      "supporting_evidence": [],
+      "evidence_type": [
+        "UNCLASSIFIED"
+      ],
+      "why_insufficient": [
+        "No explicitly bound passing validation",
+        "No independent observed data for empirical language",
+        "Absolute readiness/superiority requires a scoped human review"
+      ],
+      "suggested_narrower_wording": "Empirical validation remains unestablished."
+    }
+  ],
+  "audit_type": "ADVISORY_HEURISTIC",
+  "limitations": [
+    "Exact scope bindings required",
+    "No external authentication or entailment"
+  ]
+}

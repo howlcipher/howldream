@@ -72,6 +72,9 @@ def main() -> int:
     explore_parser.add_argument("--from-candidate", type=Path)
     explore_parser.add_argument("--objective")
     explore_parser.add_argument("--evidence", type=Path)
+    claim_audit = commands.add_parser("audit-report")
+    claim_audit.add_argument("target", type=Path)
+    claim_audit.add_argument("--validation", type=Path, required=True)
     audit_parser = commands.add_parser("audit-attribution")
     audit_parser.add_argument("target", type=Path, help="Chronology ledger JSON")
     trace_parser = commands.add_parser("trace")
@@ -112,6 +115,13 @@ def main() -> int:
 
             print(json.dumps(validate_artifact(args.target)))
             return 0
+        if args.command == "audit-report":
+            from howldream.evidence import ReportEvidence, audit_report
+
+            ledger = ReportEvidence.model_validate(json.loads(args.validation.read_text()))
+            result = audit_report(args.target.read_text(), ledger)
+            print(json.dumps(scrub(result), indent=2))
+            return 1 if result["findings"] else 0
         if args.command == "audit-attribution":
             from howldream.attribution import audit_attribution
 
