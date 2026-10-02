@@ -698,6 +698,17 @@ def verify(claims: list[dict], evidence: list[Evidence]) -> list[dict]:
             "status": status,
             "classifications": failures,
             "source_ids": sources,
+            "evidence_provenance": [
+                {"source_id": s.id, **s.provenance.model_dump()}
+                for s in evidence
+                if s.id in sources
+            ],
+            "check_scope": "ARITHMETIC_SELF_CONSISTENCY"
+            if kind == "CALC"
+            else "CITATION_PRESENCE"
+            if kind == "CITE"
+            else "SUPPLIED_LEDGER",
+            "critical": claim.get("critical", False),
             "verifier": "supplied_ledger_and_arithmetic/v2",
             "scorer_type": "deterministic",
             "note": note,

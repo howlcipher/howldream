@@ -1,0 +1,2224 @@
+{
+  "schema_version": "howl.exploration_result/v1",
+  "exploration_id": "hd-20261002-190816-acbca5c51921",
+  "parent_request_id": "A_subject_only",
+  "objective": "Find meaningful software opportunities for a developer platform team.",
+  "originating_component": "howlplane",
+  "authority": {
+    "type": "ADVISORY",
+    "executable": false
+  },
+  "candidates": [
+    {
+      "schema_version": "howl.candidate/v1",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "source_run_id": "hd-20261002-190816-acbca5c51921",
+      "parent_request_id": "A_subject_only",
+      "objective": "Find meaningful software opportunities for a developer platform team.",
+      "text": "IDEA: Build a \"decision archaeology\" service that reconstructs why a platform default, deprecation, or guardrail exists by linking PRs, incident notes, chat threads, and config history into a queryable rationale graph, so teams can retire obsolete constraints safely.\nASSUMPTION: Rationale is recoverable from existing artifacts with enough fidelity; in many orgs the real reasons live in people's heads or in deleted channels.\n\nIDEA: Create a \"negative-space\" platform tool that measures what developers route around (copy-pasted scripts, shadow CI configs, forked templates, unofficial wrappers) and treats workarounds as a product-demand signal rather than a compliance violation.\nASSUMPTION: Workarounds can be detected reliably through static repo analysis without excessive false positives, and they reflect unmet platform needs rather than preference or legacy habit.\n\nIDEA: Offer a \"cost-of-wait\" ledger that attributes developer idle time (queued builds, review latency, environment provisioning, flaky-test reruns) to specific platform components, and expresses it as ranked, uncertainty-bounded estimates rather than single point numbers.\nASSUMPTION: Telemetry from CI, VCS, and ticketing can be joined at the person or change level without privacy objections or misleading proxies for \"waiting.\"\nUNKNOWN: baseline_developer_wait_time_distribution\n\nIDEA: Build a dependency \"blast-radius rehearsal\" tool that simulates a proposed platform change (runtime bump, base image update, API removal) against a sampled set of downstream repos and reports predicted breakage with confidence intervals, before any rollout.\nASSUMPTION: Downstream repos have enough runnable tests and reproducible builds for simulation to be informative; low-coverage repos would yield false reassurance.\n\nIDEA: Unconventional alternative: invert the golden-path model into a \"golden-path marketplace\" where teams publish and compete with their own paved-road templates, and the platform team curates by measured adoption and incident outcomes rather than mandating a single path.\nASSUMPTION: Multiple paths do not fragment security, support, and upgrade burden beyond what a small platform team can handle; the challenge is that standardization may be the actual value.\nASSUMPTION: Adoption and incident metrics are comparable across teams with very different risk profiles and maturity.\n\nIDEA: Develop an onboarding \"time-to-first-meaningful-change\" instrument that replays a synthetic new-hire journey on a schedule (clone, build, test, deploy to a sandbox) and alerts when the path regresses, treating onboarding as a continuously tested product.\nASSUMPTION: A synthetic journey represents real onboarding variety; real new hires hit organizational blockers (access approvals, unclear ownership) that automation cannot simulate.\n\nIDEA: Build an ownership-drift detector that reconciles service catalogs, CODEOWNERS, on-call rosters, and org charts, flagging orphaned or ambiguous assets and proposing reassignments for human confirmation.\nASSUMPTION: Source systems are accessible and have usable identifiers for matching; proposed reassignments would be accepted rather than ignored as noise.\n\nIDEA: Provide an AI-agent \"safe lane\" for platform operations: a permissioned execution layer with scoped credentials, dry-run diffs, and audit trails so coding agents can perform routine migrations and dependency updates under policy.\nASSUMPTION: Teams will trust agent-generated changes enough to review them at scale; review fatigue could negate the savings.\nUNKNOWN: agent_change_acceptance_rate\n\nIDEA: Create a \"platform changelog for humans\" that auto-translates internal platform releases into per-team impact notes based on what each team's repos actually use, suppressing irrelevant announcements.\nASSUMPTION: Usage of platform features can be inferred accurately from code and config; teams will read targeted notices more than broadcast ones.\n\nIDEA: Explore an ephemeral-environment cost and carbon \"budget\" feature that gives each team a visible allowance and automatically hibernates idle environments, with exceptions requested via a lightweight workflow.\nASSUMPTION: Idle detection is accurate enough to avoid disrupting legitimate long-running work; cost visibility alone may already change behavior without enforcement.\n\nCONFLICT: standardization_vs_autonomy (the marketplace and workaround-signal ideas pull against the centralized guardrail and ownership ideas; this tension is unresolved and needs developer research).\n\nUNKNOWN: platform_team_size_and_capacity\nUNKNOWN: existing_tooling_overlap_with_commercial_products\nUNKNOWN: highest_pain_family_ranked_by_developer_survey",
+      "condition": "dream",
+      "trust": "UNVERIFIED",
+      "status": "REJECTED",
+      "authority": {
+        "type": "ADVISORY",
+        "executable": false
+      },
+      "claims": [
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/1",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "IDEA",
+          "text": "Build a \"decision archaeology\" service that reconstructs why a platform default, deprecation, or guardrail exists by linking PRs, incident notes, chat threads, and config history into a queryable rationale graph, so teams can retire obsolete constraints safely.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/2",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "ASSUMPTION",
+          "text": "Rationale is recoverable from existing artifacts with enough fidelity; in many orgs the real reasons live in people's heads or in deleted channels.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/3",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "IDEA",
+          "text": "Create a \"negative-space\" platform tool that measures what developers route around (copy-pasted scripts, shadow CI configs, forked templates, unofficial wrappers) and treats workarounds as a product-demand signal rather than a compliance violation.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/4",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "ASSUMPTION",
+          "text": "Workarounds can be detected reliably through static repo analysis without excessive false positives, and they reflect unmet platform needs rather than preference or legacy habit.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/5",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "IDEA",
+          "text": "Offer a \"cost-of-wait\" ledger that attributes developer idle time (queued builds, review latency, environment provisioning, flaky-test reruns) to specific platform components, and expresses it as ranked, uncertainty-bounded estimates rather than single point numbers.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/6",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "ASSUMPTION",
+          "text": "Telemetry from CI, VCS, and ticketing can be joined at the person or change level without privacy objections or misleading proxies for \"waiting.\"",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/7",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "UNKNOWN",
+          "text": "baseline_developer_wait_time_distribution",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/8",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "IDEA",
+          "text": "Build a dependency \"blast-radius rehearsal\" tool that simulates a proposed platform change (runtime bump, base image update, API removal) against a sampled set of downstream repos and reports predicted breakage with confidence intervals, before any rollout.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/9",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "ASSUMPTION",
+          "text": "Downstream repos have enough runnable tests and reproducible builds for simulation to be informative; low-coverage repos would yield false reassurance.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/10",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "IDEA",
+          "text": "Unconventional alternative: invert the golden-path model into a \"golden-path marketplace\" where teams publish and compete with their own paved-road templates, and the platform team curates by measured adoption and incident outcomes rather than mandating a single path.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/11",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "ASSUMPTION",
+          "text": "Multiple paths do not fragment security, support, and upgrade burden beyond what a small platform team can handle; the challenge is that standardization may be the actual value.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/12",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "ASSUMPTION",
+          "text": "Adoption and incident metrics are comparable across teams with very different risk profiles and maturity.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/13",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "IDEA",
+          "text": "Develop an onboarding \"time-to-first-meaningful-change\" instrument that replays a synthetic new-hire journey on a schedule (clone, build, test, deploy to a sandbox) and alerts when the path regresses, treating onboarding as a continuously tested product.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/14",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "ASSUMPTION",
+          "text": "A synthetic journey represents real onboarding variety; real new hires hit organizational blockers (access approvals, unclear ownership) that automation cannot simulate.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/15",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "IDEA",
+          "text": "Build an ownership-drift detector that reconciles service catalogs, CODEOWNERS, on-call rosters, and org charts, flagging orphaned or ambiguous assets and proposing reassignments for human confirmation.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/16",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "ASSUMPTION",
+          "text": "Source systems are accessible and have usable identifiers for matching; proposed reassignments would be accepted rather than ignored as noise.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/17",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "IDEA",
+          "text": "Provide an AI-agent \"safe lane\" for platform operations: a permissioned execution layer with scoped credentials, dry-run diffs, and audit trails so coding agents can perform routine migrations and dependency updates under policy.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/18",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "ASSUMPTION",
+          "text": "Teams will trust agent-generated changes enough to review them at scale; review fatigue could negate the savings.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/19",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "UNKNOWN",
+          "text": "agent_change_acceptance_rate",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/20",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "IDEA",
+          "text": "Create a \"platform changelog for humans\" that auto-translates internal platform releases into per-team impact notes based on what each team's repos actually use, suppressing irrelevant announcements.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/21",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "ASSUMPTION",
+          "text": "Usage of platform features can be inferred accurately from code and config; teams will read targeted notices more than broadcast ones.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/22",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "IDEA",
+          "text": "Explore an ephemeral-environment cost and carbon \"budget\" feature that gives each team a visible allowance and automatically hibernates idle environments, with exceptions requested via a lightweight workflow.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/23",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "ASSUMPTION",
+          "text": "Idle detection is accurate enough to avoid disrupting legitimate long-running work; cost visibility alone may already change behavior without enforcement.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/24",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "CONFLICT",
+          "text": "standardization_vs_autonomy (the marketplace and workaround-signal ideas pull against the centralized guardrail and ownership ideas; this tension is unresolved and needs developer research).",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/25",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "UNKNOWN",
+          "text": "platform_team_size_and_capacity",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/26",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "UNKNOWN",
+          "text": "existing_tooling_overlap_with_commercial_products",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/27",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+          "kind": "UNKNOWN",
+          "text": "highest_pain_family_ranked_by_developer_survey",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        }
+      ],
+      "evidence_refs": [
+        "objective_context"
+      ],
+      "assumptions": [
+        "Rationale is recoverable from existing artifacts with enough fidelity; in many orgs the real reasons live in people's heads or in deleted channels.",
+        "Workarounds can be detected reliably through static repo analysis without excessive false positives, and they reflect unmet platform needs rather than preference or legacy habit.",
+        "Telemetry from CI, VCS, and ticketing can be joined at the person or change level without privacy objections or misleading proxies for \"waiting.\"",
+        "Downstream repos have enough runnable tests and reproducible builds for simulation to be informative; low-coverage repos would yield false reassurance.",
+        "Multiple paths do not fragment security, support, and upgrade burden beyond what a small platform team can handle; the challenge is that standardization may be the actual value.",
+        "Adoption and incident metrics are comparable across teams with very different risk profiles and maturity.",
+        "A synthetic journey represents real onboarding variety; real new hires hit organizational blockers (access approvals, unclear ownership) that automation cannot simulate.",
+        "Source systems are accessible and have usable identifiers for matching; proposed reassignments would be accepted rather than ignored as noise.",
+        "Teams will trust agent-generated changes enough to review them at scale; review fatigue could negate the savings.",
+        "Usage of platform features can be inferred accurately from code and config; teams will read targeted notices more than broadcast ones.",
+        "Idle detection is accurate enough to avoid disrupting legitimate long-running work; cost visibility alone may already change behavior without enforcement."
+      ],
+      "unresolved_issues": [
+        "Rationale is recoverable from existing artifacts with enough fidelity; in many orgs the real reasons live in people's heads or in deleted channels.",
+        "Workarounds can be detected reliably through static repo analysis without excessive false positives, and they reflect unmet platform needs rather than preference or legacy habit.",
+        "Telemetry from CI, VCS, and ticketing can be joined at the person or change level without privacy objections or misleading proxies for \"waiting.\"",
+        "Downstream repos have enough runnable tests and reproducible builds for simulation to be informative; low-coverage repos would yield false reassurance.",
+        "Multiple paths do not fragment security, support, and upgrade burden beyond what a small platform team can handle; the challenge is that standardization may be the actual value.",
+        "Adoption and incident metrics are comparable across teams with very different risk profiles and maturity.",
+        "A synthetic journey represents real onboarding variety; real new hires hit organizational blockers (access approvals, unclear ownership) that automation cannot simulate.",
+        "Source systems are accessible and have usable identifiers for matching; proposed reassignments would be accepted rather than ignored as noise.",
+        "Teams will trust agent-generated changes enough to review them at scale; review fatigue could negate the savings.",
+        "Usage of platform features can be inferred accurately from code and config; teams will read targeted notices more than broadcast ones.",
+        "Idle detection is accurate enough to avoid disrupting legitimate long-running work; cost visibility alone may already change behavior without enforcement.",
+        "Build a \"decision archaeology\" service that reconstructs why a platform default, deprecation, or guardrail exists by linking PRs, incident notes, chat threads, and config history into a queryable rationale graph, so teams can retire obsolete constraints safely.",
+        "Create a \"negative-space\" platform tool that measures what developers route around (copy-pasted scripts, shadow CI configs, forked templates, unofficial wrappers) and treats workarounds as a product-demand signal rather than a compliance violation.",
+        "Offer a \"cost-of-wait\" ledger that attributes developer idle time (queued builds, review latency, environment provisioning, flaky-test reruns) to specific platform components, and expresses it as ranked, uncertainty-bounded estimates rather than single point numbers.",
+        "baseline_developer_wait_time_distribution",
+        "Build a dependency \"blast-radius rehearsal\" tool that simulates a proposed platform change (runtime bump, base image update, API removal) against a sampled set of downstream repos and reports predicted breakage with confidence intervals, before any rollout.",
+        "Unconventional alternative: invert the golden-path model into a \"golden-path marketplace\" where teams publish and compete with their own paved-road templates, and the platform team curates by measured adoption and incident outcomes rather than mandating a single path.",
+        "Develop an onboarding \"time-to-first-meaningful-change\" instrument that replays a synthetic new-hire journey on a schedule (clone, build, test, deploy to a sandbox) and alerts when the path regresses, treating onboarding as a continuously tested product.",
+        "Build an ownership-drift detector that reconciles service catalogs, CODEOWNERS, on-call rosters, and org charts, flagging orphaned or ambiguous assets and proposing reassignments for human confirmation.",
+        "Provide an AI-agent \"safe lane\" for platform operations: a permissioned execution layer with scoped credentials, dry-run diffs, and audit trails so coding agents can perform routine migrations and dependency updates under policy.",
+        "agent_change_acceptance_rate",
+        "Create a \"platform changelog for humans\" that auto-translates internal platform releases into per-team impact notes based on what each team's repos actually use, suppressing irrelevant announcements.",
+        "Explore an ephemeral-environment cost and carbon \"budget\" feature that gives each team a visible allowance and automatically hibernates idle environments, with exceptions requested via a lightweight workflow.",
+        "standardization_vs_autonomy (the marketplace and workaround-signal ideas pull against the centralized guardrail and ownership ideas; this tension is unresolved and needs developer research).",
+        "platform_team_size_and_capacity",
+        "existing_tooling_overlap_with_commercial_products",
+        "highest_pain_family_ranked_by_developer_survey"
+      ],
+      "contradictions": [
+        "standardization_vs_autonomy (the marketplace and workaround-signal ideas pull against the centralized guardrail and ownership ideas; this tension is unresolved and needs developer research)."
+      ],
+      "verified_constraints": [],
+      "provenance": {
+        "run_id": "hd-20261002-190816-acbca5c51921",
+        "producer_component": "howldream",
+        "producer_version": "0.4.4",
+        "model_or_provider": "claude-sonnet-5-5",
+        "observation_kind": "EXTERNALLY_OBSERVED",
+        "created_at": "2026-10-02T19:09:00.531075+00:00",
+        "transformations": [
+          "generated"
+        ],
+        "request_id": "A_subject_only",
+        "originating_component": "howlplane",
+        "execution": {
+          "requested_provider": "command",
+          "selected_provider": "command",
+          "actual_provider": "claude",
+          "adapter": "claude-json",
+          "model": "claude-sonnet-5-5",
+          "requested_model": null,
+          "deterministic": false,
+          "mocked": false,
+          "inference_occurred": true,
+          "remote": true,
+          "remote_observation": "OPERATOR_DECLARED",
+          "fallback_reason": null,
+          "elapsed_seconds": 15.87909644699539,
+          "usage": {
+            "input_tokens": 2,
+            "cache_creation_input_tokens": 869,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 1614,
+            "output_tokens_details": {
+              "thinking_tokens": 0
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 869,
+              "ephemeral_5m_input_tokens": 0
+            }
+          },
+          "cost": 0.019620000000000002,
+          "request_id": "7821dab4-9e5a-4590-a28e-790cc399a220",
+          "raw_output_received": true,
+          "parse_status": "VALID",
+          "repair_attempted": false,
+          "sampling": null
+        },
+        "source_candidate_refs": [],
+        "source_candidates_location": "exploration_envelope.json#/provenance/source_candidates",
+        "hard_constraints": [],
+        "constraint_scope": "UNVERIFIED_GENERATION_GUIDANCE",
+        "purpose": "discovery",
+        "verification": [
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/1",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/2",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/3",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/4",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/5",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/6",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/7",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "Explicit abstention; not counted as a detected failure or a verified fact."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/8",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/9",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/10",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/11",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/12",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/13",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/14",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/15",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/16",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/17",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/18",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/19",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "Explicit abstention; not counted as a detected failure or a verified fact."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/20",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/21",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/22",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/23",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/24",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/25",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "Explicit abstention; not counted as a detected failure or a verified fact."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/26",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "Explicit abstention; not counted as a detected failure or a verified fact."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/27",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "Explicit abstention; not counted as a detected failure or a verified fact."
+          }
+        ],
+        "candidate_index": 0,
+        "trial": 0,
+        "prompt_hash": "41782e2599b0fe61aa5bbaf4ef5726429c88a570a07bf599038fc137a2a2aee4",
+        "output_hash": "fe15c938ed322b8c16522fc9f85862af18a91da2a81fed56ead7f8d25f89454a"
+      }
+    },
+    {
+      "schema_version": "howl.candidate/v1",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "source_run_id": "hd-20261002-190816-acbca5c51921",
+      "parent_request_id": "A_subject_only",
+      "objective": "Find meaningful software opportunities for a developer platform team.",
+      "text": "IDEA: Build a \"change-intent ledger\" that records why a platform change was made (the hypothesis, expected metric movement, rollback trigger) alongside the diff, then automatically compares outcomes to the stated intent weeks later, so platform teams learn which kinds of changes actually pay off.\nASSUMPTION: Developers will state intent in structured form if it takes under 30 seconds; this may fail if it feels like extra ceremony, and stated intents may be written vaguely enough to be unfalsifiable.\n\nIDEA: Create a \"deprecation pressure simulator\" that models the downstream effect of retiring an internal API, library version, or pipeline step by sampling real consumer call graphs, then outputs a ranked, probabilistic migration plan with confidence ranges rather than a single date.\nASSUMPTION: Consumer usage data is complete enough to build the graph; shadow consumers (scripts, notebooks, cron jobs, external partners) may be invisible and could dominate the real risk.\n\nIDEA: Build an \"environment drift archaeologist\" that diffs what a service believes about its runtime (declared config, IaC, docs) against observed behavior (traces, network flows, actual dependencies) and surfaces the discrepancies as a ranked backlog.\nASSUMPTION: Observability coverage is sufficient to infer actual dependencies; sampled traces may miss rare but critical paths.\n\nIDEA: Unconventional alternative: rather than building more self-service tooling, build a \"friction sensor\" that passively measures where developers wait, retry, or abandon workflows (CI reruns, repeated failed deploys, docs searches that end in a Slack question) and treats that signal as the product roadmap.\nASSUMPTION: Behavioral friction signals correlate with real productivity loss; some waiting is productive (thinking, review), and instrumenting developers raises trust and privacy concerns that could cause backlash.\nASSUMPTION: Platform teams will act on the data; the bottleneck may be prioritization or ownership rather than lack of insight.\n\nIDEA: Build a \"golden path decay detector\" that tracks how far teams have diverged from the recommended templates and flags divergences that are either a risk (security or compliance drift) or an unmet need (a signal the template should evolve).\nASSUMPTION: Divergence is mostly informative rather than noise; teams may diverge for legitimate reasons that the detector would misclassify as problems.\n\nIDEA: Create a \"flaky-knowledge\" tool for internal docs and runbooks that tests them: executes sandboxed steps from runbooks in ephemeral environments on a schedule and reports which instructions no longer work.\nASSUMPTION: Runbooks can be expressed or extracted into executable steps; many involve judgment, credentials, or production-only state that cannot be safely sandboxed.\n\nIDEA: Build an \"AI-agent traffic governor\" for the platform: a layer giving coding agents scoped, auditable, rate-limited access to internal tools, with per-agent budgets and a replayable record of what each agent did and why.\nASSUMPTION: Agent usage inside the organization is, or soon will be, high enough to justify dedicated infrastructure; existing IAM and audit systems might already be adequate with minor extensions.\n\nIDEA: Build a \"cost-to-intent\" attribution layer that maps cloud and CI spend to product-level outcomes and teams, with what-if estimates (\"moving this job to spot instances saves X with Y% failure risk\").\nASSUMPTION: Tagging and ownership data are accurate enough for attribution; shared infrastructure may make cost allocation inherently contested.\n\nUNKNOWN: platform_team_size_and_maturity\nUNKNOWN: current_toolchain_and_stack\nUNKNOWN: top_developer_pain_points_measured\nUNKNOWN: existing_observability_coverage\nUNKNOWN: build_vs_buy_constraints",
+      "condition": "dream",
+      "trust": "UNVERIFIED",
+      "status": "UNRESOLVED",
+      "authority": {
+        "type": "ADVISORY",
+        "executable": false
+      },
+      "claims": [
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/1",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "IDEA",
+          "text": "Build a \"change-intent ledger\" that records why a platform change was made (the hypothesis, expected metric movement, rollback trigger) alongside the diff, then automatically compares outcomes to the stated intent weeks later, so platform teams learn which kinds of changes actually pay off.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/2",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "ASSUMPTION",
+          "text": "Developers will state intent in structured form if it takes under 30 seconds; this may fail if it feels like extra ceremony, and stated intents may be written vaguely enough to be unfalsifiable.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/3",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "IDEA",
+          "text": "Create a \"deprecation pressure simulator\" that models the downstream effect of retiring an internal API, library version, or pipeline step by sampling real consumer call graphs, then outputs a ranked, probabilistic migration plan with confidence ranges rather than a single date.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/4",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "ASSUMPTION",
+          "text": "Consumer usage data is complete enough to build the graph; shadow consumers (scripts, notebooks, cron jobs, external partners) may be invisible and could dominate the real risk.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/5",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "IDEA",
+          "text": "Build an \"environment drift archaeologist\" that diffs what a service believes about its runtime (declared config, IaC, docs) against observed behavior (traces, network flows, actual dependencies) and surfaces the discrepancies as a ranked backlog.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/6",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "ASSUMPTION",
+          "text": "Observability coverage is sufficient to infer actual dependencies; sampled traces may miss rare but critical paths.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/7",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "IDEA",
+          "text": "Unconventional alternative: rather than building more self-service tooling, build a \"friction sensor\" that passively measures where developers wait, retry, or abandon workflows (CI reruns, repeated failed deploys, docs searches that end in a Slack question) and treats that signal as the product roadmap.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/8",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "ASSUMPTION",
+          "text": "Behavioral friction signals correlate with real productivity loss; some waiting is productive (thinking, review), and instrumenting developers raises trust and privacy concerns that could cause backlash.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/9",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "ASSUMPTION",
+          "text": "Platform teams will act on the data; the bottleneck may be prioritization or ownership rather than lack of insight.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/10",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "IDEA",
+          "text": "Build a \"golden path decay detector\" that tracks how far teams have diverged from the recommended templates and flags divergences that are either a risk (security or compliance drift) or an unmet need (a signal the template should evolve).",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/11",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "ASSUMPTION",
+          "text": "Divergence is mostly informative rather than noise; teams may diverge for legitimate reasons that the detector would misclassify as problems.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/12",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "IDEA",
+          "text": "Create a \"flaky-knowledge\" tool for internal docs and runbooks that tests them: executes sandboxed steps from runbooks in ephemeral environments on a schedule and reports which instructions no longer work.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/13",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "ASSUMPTION",
+          "text": "Runbooks can be expressed or extracted into executable steps; many involve judgment, credentials, or production-only state that cannot be safely sandboxed.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/14",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "IDEA",
+          "text": "Build an \"AI-agent traffic governor\" for the platform: a layer giving coding agents scoped, auditable, rate-limited access to internal tools, with per-agent budgets and a replayable record of what each agent did and why.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/15",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "ASSUMPTION",
+          "text": "Agent usage inside the organization is, or soon will be, high enough to justify dedicated infrastructure; existing IAM and audit systems might already be adequate with minor extensions.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/16",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "IDEA",
+          "text": "Build a \"cost-to-intent\" attribution layer that maps cloud and CI spend to product-level outcomes and teams, with what-if estimates (\"moving this job to spot instances saves X with Y% failure risk\").",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/17",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "ASSUMPTION",
+          "text": "Tagging and ownership data are accurate enough for attribution; shared infrastructure may make cost allocation inherently contested.",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/18",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "UNKNOWN",
+          "text": "platform_team_size_and_maturity",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/19",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "UNKNOWN",
+          "text": "current_toolchain_and_stack",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/20",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "UNKNOWN",
+          "text": "top_developer_pain_points_measured",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/21",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "UNKNOWN",
+          "text": "existing_observability_coverage",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        },
+        {
+          "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/22",
+          "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+          "kind": "UNKNOWN",
+          "text": "build_vs_buy_constraints",
+          "status": "UNVERIFIED",
+          "extractor": "line_grammar/v1"
+        }
+      ],
+      "evidence_refs": [
+        "objective_context"
+      ],
+      "assumptions": [
+        "Developers will state intent in structured form if it takes under 30 seconds; this may fail if it feels like extra ceremony, and stated intents may be written vaguely enough to be unfalsifiable.",
+        "Consumer usage data is complete enough to build the graph; shadow consumers (scripts, notebooks, cron jobs, external partners) may be invisible and could dominate the real risk.",
+        "Observability coverage is sufficient to infer actual dependencies; sampled traces may miss rare but critical paths.",
+        "Behavioral friction signals correlate with real productivity loss; some waiting is productive (thinking, review), and instrumenting developers raises trust and privacy concerns that could cause backlash.",
+        "Platform teams will act on the data; the bottleneck may be prioritization or ownership rather than lack of insight.",
+        "Divergence is mostly informative rather than noise; teams may diverge for legitimate reasons that the detector would misclassify as problems.",
+        "Runbooks can be expressed or extracted into executable steps; many involve judgment, credentials, or production-only state that cannot be safely sandboxed.",
+        "Agent usage inside the organization is, or soon will be, high enough to justify dedicated infrastructure; existing IAM and audit systems might already be adequate with minor extensions.",
+        "Tagging and ownership data are accurate enough for attribution; shared infrastructure may make cost allocation inherently contested."
+      ],
+      "unresolved_issues": [
+        "Developers will state intent in structured form if it takes under 30 seconds; this may fail if it feels like extra ceremony, and stated intents may be written vaguely enough to be unfalsifiable.",
+        "Consumer usage data is complete enough to build the graph; shadow consumers (scripts, notebooks, cron jobs, external partners) may be invisible and could dominate the real risk.",
+        "Observability coverage is sufficient to infer actual dependencies; sampled traces may miss rare but critical paths.",
+        "Behavioral friction signals correlate with real productivity loss; some waiting is productive (thinking, review), and instrumenting developers raises trust and privacy concerns that could cause backlash.",
+        "Platform teams will act on the data; the bottleneck may be prioritization or ownership rather than lack of insight.",
+        "Divergence is mostly informative rather than noise; teams may diverge for legitimate reasons that the detector would misclassify as problems.",
+        "Runbooks can be expressed or extracted into executable steps; many involve judgment, credentials, or production-only state that cannot be safely sandboxed.",
+        "Agent usage inside the organization is, or soon will be, high enough to justify dedicated infrastructure; existing IAM and audit systems might already be adequate with minor extensions.",
+        "Tagging and ownership data are accurate enough for attribution; shared infrastructure may make cost allocation inherently contested.",
+        "Build a \"change-intent ledger\" that records why a platform change was made (the hypothesis, expected metric movement, rollback trigger) alongside the diff, then automatically compares outcomes to the stated intent weeks later, so platform teams learn which kinds of changes actually pay off.",
+        "Create a \"deprecation pressure simulator\" that models the downstream effect of retiring an internal API, library version, or pipeline step by sampling real consumer call graphs, then outputs a ranked, probabilistic migration plan with confidence ranges rather than a single date.",
+        "Build an \"environment drift archaeologist\" that diffs what a service believes about its runtime (declared config, IaC, docs) against observed behavior (traces, network flows, actual dependencies) and surfaces the discrepancies as a ranked backlog.",
+        "Unconventional alternative: rather than building more self-service tooling, build a \"friction sensor\" that passively measures where developers wait, retry, or abandon workflows (CI reruns, repeated failed deploys, docs searches that end in a Slack question) and treats that signal as the product roadmap.",
+        "Build a \"golden path decay detector\" that tracks how far teams have diverged from the recommended templates and flags divergences that are either a risk (security or compliance drift) or an unmet need (a signal the template should evolve).",
+        "Create a \"flaky-knowledge\" tool for internal docs and runbooks that tests them: executes sandboxed steps from runbooks in ephemeral environments on a schedule and reports which instructions no longer work.",
+        "Build an \"AI-agent traffic governor\" for the platform: a layer giving coding agents scoped, auditable, rate-limited access to internal tools, with per-agent budgets and a replayable record of what each agent did and why.",
+        "Build a \"cost-to-intent\" attribution layer that maps cloud and CI spend to product-level outcomes and teams, with what-if estimates (\"moving this job to spot instances saves X with Y% failure risk\").",
+        "platform_team_size_and_maturity",
+        "current_toolchain_and_stack",
+        "top_developer_pain_points_measured",
+        "existing_observability_coverage",
+        "build_vs_buy_constraints"
+      ],
+      "contradictions": [],
+      "verified_constraints": [],
+      "provenance": {
+        "run_id": "hd-20261002-190816-acbca5c51921",
+        "producer_component": "howldream",
+        "producer_version": "0.4.4",
+        "model_or_provider": "claude-sonnet-5-5",
+        "observation_kind": "EXTERNALLY_OBSERVED",
+        "created_at": "2026-10-02T19:09:00.531299+00:00",
+        "transformations": [
+          "generated"
+        ],
+        "request_id": "A_subject_only",
+        "originating_component": "howlplane",
+        "execution": {
+          "requested_provider": "command",
+          "selected_provider": "command",
+          "actual_provider": "claude",
+          "adapter": "claude-json",
+          "model": "claude-sonnet-5-5",
+          "requested_model": null,
+          "deterministic": false,
+          "mocked": false,
+          "inference_occurred": true,
+          "remote": true,
+          "remote_observation": "OPERATOR_DECLARED",
+          "fallback_reason": null,
+          "elapsed_seconds": 13.426982103002956,
+          "usage": {
+            "input_tokens": 2,
+            "cache_creation_input_tokens": 870,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 1316,
+            "output_tokens_details": {
+              "thinking_tokens": 0
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 870,
+              "ephemeral_5m_input_tokens": 0
+            }
+          },
+          "cost": 0.016644,
+          "request_id": "3d6311cd-a1b0-4134-bbec-af88e223e3f8",
+          "raw_output_received": true,
+          "parse_status": "VALID",
+          "repair_attempted": false,
+          "sampling": null
+        },
+        "source_candidate_refs": [],
+        "source_candidates_location": "exploration_envelope.json#/provenance/source_candidates",
+        "hard_constraints": [],
+        "constraint_scope": "UNVERIFIED_GENERATION_GUIDANCE",
+        "purpose": "discovery",
+        "verification": [
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/1",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/2",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/3",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/4",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/5",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/6",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/7",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/8",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/9",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/10",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/11",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/12",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/13",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/14",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/15",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/16",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/17",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "No available check establishes this proposition."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/18",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "Explicit abstention; not counted as a detected failure or a verified fact."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/19",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "Explicit abstention; not counted as a detected failure or a verified fact."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/20",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "Explicit abstention; not counted as a detected failure or a verified fact."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/21",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "Explicit abstention; not counted as a detected failure or a verified fact."
+          },
+          {
+            "claim_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/22",
+            "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+            "status": "UNCERTAIN",
+            "classifications": [],
+            "source_ids": [],
+            "evidence_provenance": [],
+            "check_scope": "SUPPLIED_LEDGER",
+            "critical": false,
+            "verifier": "supplied_ledger_and_arithmetic/v2",
+            "scorer_type": "deterministic",
+            "note": "Explicit abstention; not counted as a detected failure or a verified fact."
+          }
+        ],
+        "candidate_index": 1,
+        "trial": 0,
+        "prompt_hash": "84a38f114e807667461d56f588cf49a90836d61d0eeb9d696b9b4fbba84e141e",
+        "output_hash": "869697f11fe01baac4e47215fb50d185b51c6c72cc19db70cfb617e8261e4fb7"
+      }
+    }
+  ],
+  "claims": [
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/1",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "IDEA",
+      "text": "Build a service catalog with automatic ownership discovery that infers owners from commit history, on-call rosters, and deploy records, then flags orphaned or stale services.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/2",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Ownership signals are accessible and reliable enough to infer owners without heavy manual curation.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/3",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "IDEA",
+      "text": "Create a CI/CD pipeline health analyzer that classifies build failures (flaky test, infra fault, dependency drift, genuine regression) and recommends fixes or quarantines.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/4",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Historical build logs and test results are retained long enough and in a form that supports consistent classification.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/5",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "IDEA",
+      "text": "Offer a golden-path scaffolding system (templates plus drift detection) that creates new services with the platform's standard logging, auth, deploy config, and observability, then reports how far each service has diverged.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/6",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Teams will adopt templates if they save time over their current setup, and divergence can be measured meaningfully.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/7",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "IDEA",
+      "text": "Build a local and ephemeral environment provisioner that spins up per-branch preview environments with seeded data and automatic teardown.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/8",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Cost of preview environments stays acceptable, and production-like data can be seeded without privacy or compliance exposure.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/9",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "IDEA",
+      "text": "Develop a dependency and supply-chain management tool that tracks library versions across repositories, opens batched upgrade pull requests, and prioritizes by exposure and reachability.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/10",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Automated upgrade PRs will pass tests often enough that reviewers do not ignore them.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/11",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "IDEA",
+      "text": "Build a developer-experience metrics layer that combines lead time, deploy frequency, review latency, and build wait time, with qualitative survey input, to identify the largest friction points.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/12",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Metrics can be gathered without being used for individual performance evaluation, which would distort behavior.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/13",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "UNKNOWN",
+      "text": "current_baseline_developer_friction_measurements",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/14",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "IDEA",
+      "text": "Create an internal documentation and knowledge retrieval assistant grounded in repositories, runbooks, and incident write-ups, with citations and freshness indicators.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/15",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Source documents are sufficiently accurate and current, and access controls can be enforced at retrieval time.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/16",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "IDEA",
+      "text": "Build an infrastructure-as-code guardrail layer with policy checks, cost estimates, and plain-language change previews surfaced in pull requests.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/17",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Policy rules can be encoded without causing excessive false positives that teams bypass.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/18",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "IDEA",
+      "text": "Build an incident and on-call tooling suite that correlates alerts with recent deploys and config changes, suggests runbooks, and drafts post-incident timelines.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/19",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Deploy and change events are captured consistently enough to correlate with alerts.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/20",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "IDEA",
+      "text": "Provide a cloud cost attribution and showback tool that maps spend to services and teams, and surfaces rightsizing opportunities within developer workflows.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/21",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Resource tagging or inference is complete enough to attribute most spend.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/22",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "UNKNOWN",
+      "text": "current_cloud_spend_attribution_coverage",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/23",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "IDEA",
+      "text": "Build an API and schema governance tool that detects breaking changes, tracks consumers, and manages deprecation timelines across internal services.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/24",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Consumer relationships can be discovered from traces, gateway logs, or client code scanning.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/25",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "IDEA",
+      "text": "Create a secrets and credentials hygiene tool that finds long-lived credentials, automates rotation, and migrates workloads to short-lived identity-based access.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/26",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Target systems support rotation or workload identity without significant refactoring.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/27",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "IDEA",
+      "text": "Build a feature flag and progressive delivery manager with stale flag detection, automated cleanup pull requests, and rollout guardrails tied to service health metrics.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/28",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Reliable health signals exist to gate rollouts automatically.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/29",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "IDEA",
+      "text": "Offer an AI-assisted code migration platform for large-scale refactors (framework upgrades, deprecated API removal) with staged rollout and verification across many repositories.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/30",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Test coverage is adequate to validate automated changes, and human review capacity can absorb the output.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/31",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "UNKNOWN",
+      "text": "platform_team_size_and_existing_tooling",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/baseline/0/0/claim/32",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/baseline/0/0",
+      "kind": "UNKNOWN",
+      "text": "prioritization_ranking_of_opportunities",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/1",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "IDEA",
+      "text": "Build a \"decision archaeology\" service that reconstructs why a platform default, deprecation, or guardrail exists by linking PRs, incident notes, chat threads, and config history into a queryable rationale graph, so teams can retire obsolete constraints safely.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/2",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Rationale is recoverable from existing artifacts with enough fidelity; in many orgs the real reasons live in people's heads or in deleted channels.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/3",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "IDEA",
+      "text": "Create a \"negative-space\" platform tool that measures what developers route around (copy-pasted scripts, shadow CI configs, forked templates, unofficial wrappers) and treats workarounds as a product-demand signal rather than a compliance violation.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/4",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Workarounds can be detected reliably through static repo analysis without excessive false positives, and they reflect unmet platform needs rather than preference or legacy habit.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/5",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "IDEA",
+      "text": "Offer a \"cost-of-wait\" ledger that attributes developer idle time (queued builds, review latency, environment provisioning, flaky-test reruns) to specific platform components, and expresses it as ranked, uncertainty-bounded estimates rather than single point numbers.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/6",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Telemetry from CI, VCS, and ticketing can be joined at the person or change level without privacy objections or misleading proxies for \"waiting.\"",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/7",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "UNKNOWN",
+      "text": "baseline_developer_wait_time_distribution",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/8",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "IDEA",
+      "text": "Build a dependency \"blast-radius rehearsal\" tool that simulates a proposed platform change (runtime bump, base image update, API removal) against a sampled set of downstream repos and reports predicted breakage with confidence intervals, before any rollout.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/9",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Downstream repos have enough runnable tests and reproducible builds for simulation to be informative; low-coverage repos would yield false reassurance.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/10",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "IDEA",
+      "text": "Unconventional alternative: invert the golden-path model into a \"golden-path marketplace\" where teams publish and compete with their own paved-road templates, and the platform team curates by measured adoption and incident outcomes rather than mandating a single path.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/11",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Multiple paths do not fragment security, support, and upgrade burden beyond what a small platform team can handle; the challenge is that standardization may be the actual value.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/12",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Adoption and incident metrics are comparable across teams with very different risk profiles and maturity.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/13",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "IDEA",
+      "text": "Develop an onboarding \"time-to-first-meaningful-change\" instrument that replays a synthetic new-hire journey on a schedule (clone, build, test, deploy to a sandbox) and alerts when the path regresses, treating onboarding as a continuously tested product.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/14",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "ASSUMPTION",
+      "text": "A synthetic journey represents real onboarding variety; real new hires hit organizational blockers (access approvals, unclear ownership) that automation cannot simulate.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/15",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "IDEA",
+      "text": "Build an ownership-drift detector that reconciles service catalogs, CODEOWNERS, on-call rosters, and org charts, flagging orphaned or ambiguous assets and proposing reassignments for human confirmation.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/16",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Source systems are accessible and have usable identifiers for matching; proposed reassignments would be accepted rather than ignored as noise.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/17",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "IDEA",
+      "text": "Provide an AI-agent \"safe lane\" for platform operations: a permissioned execution layer with scoped credentials, dry-run diffs, and audit trails so coding agents can perform routine migrations and dependency updates under policy.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/18",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Teams will trust agent-generated changes enough to review them at scale; review fatigue could negate the savings.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/19",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "UNKNOWN",
+      "text": "agent_change_acceptance_rate",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/20",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "IDEA",
+      "text": "Create a \"platform changelog for humans\" that auto-translates internal platform releases into per-team impact notes based on what each team's repos actually use, suppressing irrelevant announcements.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/21",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Usage of platform features can be inferred accurately from code and config; teams will read targeted notices more than broadcast ones.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/22",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "IDEA",
+      "text": "Explore an ephemeral-environment cost and carbon \"budget\" feature that gives each team a visible allowance and automatically hibernates idle environments, with exceptions requested via a lightweight workflow.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/23",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "ASSUMPTION",
+      "text": "Idle detection is accurate enough to avoid disrupting legitimate long-running work; cost visibility alone may already change behavior without enforcement.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/24",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "CONFLICT",
+      "text": "standardization_vs_autonomy (the marketplace and workaround-signal ideas pull against the centralized guardrail and ownership ideas; this tension is unresolved and needs developer research).",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/25",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "UNKNOWN",
+      "text": "platform_team_size_and_capacity",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/26",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "UNKNOWN",
+      "text": "existing_tooling_overlap_with_commercial_products",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/0/claim/27",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "kind": "UNKNOWN",
+      "text": "highest_pain_family_ranked_by_developer_survey",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/1",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "IDEA",
+      "text": "Build a \"change-intent ledger\" that records why a platform change was made (the hypothesis, expected metric movement, rollback trigger) alongside the diff, then automatically compares outcomes to the stated intent weeks later, so platform teams learn which kinds of changes actually pay off.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/2",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "ASSUMPTION",
+      "text": "Developers will state intent in structured form if it takes under 30 seconds; this may fail if it feels like extra ceremony, and stated intents may be written vaguely enough to be unfalsifiable.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/3",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "IDEA",
+      "text": "Create a \"deprecation pressure simulator\" that models the downstream effect of retiring an internal API, library version, or pipeline step by sampling real consumer call graphs, then outputs a ranked, probabilistic migration plan with confidence ranges rather than a single date.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/4",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "ASSUMPTION",
+      "text": "Consumer usage data is complete enough to build the graph; shadow consumers (scripts, notebooks, cron jobs, external partners) may be invisible and could dominate the real risk.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/5",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "IDEA",
+      "text": "Build an \"environment drift archaeologist\" that diffs what a service believes about its runtime (declared config, IaC, docs) against observed behavior (traces, network flows, actual dependencies) and surfaces the discrepancies as a ranked backlog.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/6",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "ASSUMPTION",
+      "text": "Observability coverage is sufficient to infer actual dependencies; sampled traces may miss rare but critical paths.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/7",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "IDEA",
+      "text": "Unconventional alternative: rather than building more self-service tooling, build a \"friction sensor\" that passively measures where developers wait, retry, or abandon workflows (CI reruns, repeated failed deploys, docs searches that end in a Slack question) and treats that signal as the product roadmap.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/8",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "ASSUMPTION",
+      "text": "Behavioral friction signals correlate with real productivity loss; some waiting is productive (thinking, review), and instrumenting developers raises trust and privacy concerns that could cause backlash.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/9",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "ASSUMPTION",
+      "text": "Platform teams will act on the data; the bottleneck may be prioritization or ownership rather than lack of insight.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/10",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "IDEA",
+      "text": "Build a \"golden path decay detector\" that tracks how far teams have diverged from the recommended templates and flags divergences that are either a risk (security or compliance drift) or an unmet need (a signal the template should evolve).",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/11",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "ASSUMPTION",
+      "text": "Divergence is mostly informative rather than noise; teams may diverge for legitimate reasons that the detector would misclassify as problems.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/12",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "IDEA",
+      "text": "Create a \"flaky-knowledge\" tool for internal docs and runbooks that tests them: executes sandboxed steps from runbooks in ephemeral environments on a schedule and reports which instructions no longer work.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/13",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "ASSUMPTION",
+      "text": "Runbooks can be expressed or extracted into executable steps; many involve judgment, credentials, or production-only state that cannot be safely sandboxed.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/14",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "IDEA",
+      "text": "Build an \"AI-agent traffic governor\" for the platform: a layer giving coding agents scoped, auditable, rate-limited access to internal tools, with per-agent budgets and a replayable record of what each agent did and why.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/15",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "ASSUMPTION",
+      "text": "Agent usage inside the organization is, or soon will be, high enough to justify dedicated infrastructure; existing IAM and audit systems might already be adequate with minor extensions.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/16",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "IDEA",
+      "text": "Build a \"cost-to-intent\" attribution layer that maps cloud and CI spend to product-level outcomes and teams, with what-if estimates (\"moving this job to spot instances saves X with Y% failure risk\").",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/17",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "ASSUMPTION",
+      "text": "Tagging and ownership data are accurate enough for attribution; shared infrastructure may make cost allocation inherently contested.",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/18",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "UNKNOWN",
+      "text": "platform_team_size_and_maturity",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/19",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "UNKNOWN",
+      "text": "current_toolchain_and_stack",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/20",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "UNKNOWN",
+      "text": "top_developer_pain_points_measured",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/21",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "UNKNOWN",
+      "text": "existing_observability_coverage",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    },
+    {
+      "id": "hd-20261002-190816-acbca5c51921/candidates/0/1/claim/22",
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "kind": "UNKNOWN",
+      "text": "build_vs_buy_constraints",
+      "status": "UNVERIFIED",
+      "extractor": "line_grammar/v1"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "objective_context",
+      "text": "Find meaningful software opportunities for a developer platform team.",
+      "facts": {},
+      "provenance": {
+        "source_type": "UNCLASSIFIED",
+        "produced_by": "unknown",
+        "source_ref": "",
+        "independent_of_implementation": false,
+        "represents_observed_reality": false
+      }
+    }
+  ],
+  "unresolved_assumptions": [
+    "Rationale is recoverable from existing artifacts with enough fidelity; in many orgs the real reasons live in people's heads or in deleted channels.",
+    "Workarounds can be detected reliably through static repo analysis without excessive false positives, and they reflect unmet platform needs rather than preference or legacy habit.",
+    "Telemetry from CI, VCS, and ticketing can be joined at the person or change level without privacy objections or misleading proxies for \"waiting.\"",
+    "Downstream repos have enough runnable tests and reproducible builds for simulation to be informative; low-coverage repos would yield false reassurance.",
+    "Multiple paths do not fragment security, support, and upgrade burden beyond what a small platform team can handle; the challenge is that standardization may be the actual value.",
+    "Adoption and incident metrics are comparable across teams with very different risk profiles and maturity.",
+    "A synthetic journey represents real onboarding variety; real new hires hit organizational blockers (access approvals, unclear ownership) that automation cannot simulate.",
+    "Source systems are accessible and have usable identifiers for matching; proposed reassignments would be accepted rather than ignored as noise.",
+    "Teams will trust agent-generated changes enough to review them at scale; review fatigue could negate the savings.",
+    "Usage of platform features can be inferred accurately from code and config; teams will read targeted notices more than broadcast ones.",
+    "Idle detection is accurate enough to avoid disrupting legitimate long-running work; cost visibility alone may already change behavior without enforcement.",
+    "Developers will state intent in structured form if it takes under 30 seconds; this may fail if it feels like extra ceremony, and stated intents may be written vaguely enough to be unfalsifiable.",
+    "Consumer usage data is complete enough to build the graph; shadow consumers (scripts, notebooks, cron jobs, external partners) may be invisible and could dominate the real risk.",
+    "Observability coverage is sufficient to infer actual dependencies; sampled traces may miss rare but critical paths.",
+    "Behavioral friction signals correlate with real productivity loss; some waiting is productive (thinking, review), and instrumenting developers raises trust and privacy concerns that could cause backlash.",
+    "Platform teams will act on the data; the bottleneck may be prioritization or ownership rather than lack of insight.",
+    "Divergence is mostly informative rather than noise; teams may diverge for legitimate reasons that the detector would misclassify as problems.",
+    "Runbooks can be expressed or extracted into executable steps; many involve judgment, credentials, or production-only state that cannot be safely sandboxed.",
+    "Agent usage inside the organization is, or soon will be, high enough to justify dedicated infrastructure; existing IAM and audit systems might already be adequate with minor extensions.",
+    "Tagging and ownership data are accurate enough for attribution; shared infrastructure may make cost allocation inherently contested."
+  ],
+  "contradictions": [
+    "standardization_vs_autonomy (the marketplace and workaround-signal ideas pull against the centralized guardrail and ownership ideas; this tension is unresolved and needs developer research)."
+  ],
+  "scores": [
+    {
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "duplicate_of": null,
+      "cluster_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+      "novelty": {
+        "value": 0.8048387096774193,
+        "scorer_type": "heuristic"
+      },
+      "relevance": {
+        "value": true,
+        "scorer_type": "heuristic",
+        "method": "objective_content_token_overlap"
+      },
+      "failure_count": 0,
+      "blocking_failure_count": 0,
+      "claim_status_counts": {
+        "SUPPORTED": 0,
+        "ECHO": 0,
+        "CONTRADICTED": 0,
+        "UNCERTAIN": 27,
+        "UNSUPPORTED": 0
+      },
+      "citation_error_count": 0,
+      "unresolved_count": 27,
+      "measurement_version": 2,
+      "supported_count": 0,
+      "false_premise_rejection_count": 0,
+      "measurement_type": "deterministic",
+      "decision": "INVESTIGATE",
+      "decision_type": "heuristic",
+      "reason": "Proposal merits investigation only; feasibility and assumptions remain unverified."
+    },
+    {
+      "candidate_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "duplicate_of": null,
+      "cluster_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+      "novelty": {
+        "value": 0.7928571428571428,
+        "scorer_type": "heuristic"
+      },
+      "relevance": {
+        "value": true,
+        "scorer_type": "heuristic",
+        "method": "objective_content_token_overlap"
+      },
+      "failure_count": 0,
+      "blocking_failure_count": 0,
+      "claim_status_counts": {
+        "SUPPORTED": 0,
+        "ECHO": 0,
+        "CONTRADICTED": 0,
+        "UNCERTAIN": 22,
+        "UNSUPPORTED": 0
+      },
+      "citation_error_count": 0,
+      "unresolved_count": 22,
+      "measurement_version": 2,
+      "supported_count": 0,
+      "false_premise_rejection_count": 0,
+      "measurement_type": "deterministic",
+      "decision": "INVESTIGATE",
+      "decision_type": "heuristic",
+      "reason": "Proposal merits investigation only; feasibility and assumptions remain unverified."
+    }
+  ],
+  "verification_status": "REQUIRES_DOWNSTREAM_REVIEW",
+  "recommended_disposition": "DEFER",
+  "provenance": {
+    "run_id": "hd-20261002-190816-acbca5c51921",
+    "producer_component": "howldream",
+    "producer_version": "0.4.4",
+    "model_or_provider": null,
+    "observation_kind": "EXTERNALLY_OBSERVED",
+    "created_at": "2026-10-02T19:09:00.531367+00:00",
+    "transformations": [
+      "explored"
+    ],
+    "request_id": "A_subject_only",
+    "request_provenance": {
+      "run_id": null,
+      "producer_component": null,
+      "producer_version": null,
+      "model_or_provider": null,
+      "observation_kind": null,
+      "created_at": "2026-10-02T19:08:16.579106+00:00",
+      "transformations": []
+    },
+    "source_candidates": [],
+    "discovery_analysis": {
+      "metrics": {
+        "context_echo_ratio": 0.0,
+        "evidence_echo_ratio": 0.0,
+        "novel_concept_ratio": 0.9444444444444444,
+        "repeated_family_ratio": 0.2222222222222222,
+        "idea_count": 18,
+        "cluster_count": 14,
+        "warnings": [],
+        "method": "concept_tokens_and_leading_phrases/v2; Jaccard cluster threshold 0.5 or leading content phrase link; echo coverage 0.6 or phrase link",
+        "measurement_type": "ADVISORY_HEURISTIC",
+        "limitations": "Not semantic equivalence, calibrated novelty, entailment or usefulness"
+      },
+      "artifact": "discovery.json"
+    },
+    "purpose": "discovery",
+    "constraints": [],
+    "diversity_memory": false,
+    "risk_class": "EXPLORATORY",
+    "parent_run_id": null,
+    "originating_component": "howlplane"
+  },
+  "descent_dag": {
+    "nodes": {
+      "obj-A_subject_only": {
+        "node_id": "obj-A_subject_only",
+        "node_type": "OBJECTIVE",
+        "label": "Objective: Find meaningful software opportunities for a developer platform team.",
+        "details": {
+          "objective": "Find meaningful software opportunities for a developer platform team.",
+          "originating_component": "howlplane"
+        },
+        "created_at": "2026-10-02T19:09:00.530784+00:00"
+      },
+      "hd-20261002-190816-acbca5c51921/baseline": {
+        "node_id": "hd-20261002-190816-acbca5c51921/baseline",
+        "node_type": "BASELINE",
+        "label": "Baseline Generation",
+        "details": {
+          "count": 1
+        },
+        "created_at": "2026-10-02T19:09:00.530808+00:00"
+      },
+      "hd-20261002-190816-acbca5c51921/dream": {
+        "node_id": "hd-20261002-190816-acbca5c51921/dream",
+        "node_type": "DREAM_RUN",
+        "label": "DREAM Run hd-20261002-190816-acbca5c51921",
+        "details": {
+          "mode": "dream",
+          "run_id": "hd-20261002-190816-acbca5c51921"
+        },
+        "created_at": "2026-10-02T19:09:00.530844+00:00"
+      },
+      "hd-20261002-190816-acbca5c51921/candidates/0/0": {
+        "node_id": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+        "node_type": "CANDIDATE",
+        "label": "Candidate 0: IDEA: Build a \"decision archaeology\" service that reconstruc",
+        "details": {
+          "text_hash": "fe15c938ed322b8c16522fc9f85862af18a91da2a81fed56ead7f8d25f89454a",
+          "trial": 0,
+          "index": 0
+        },
+        "created_at": "2026-10-02T19:09:00.530874+00:00"
+      },
+      "hd-20261002-190816-acbca5c51921/candidates/0/0/challenge": {
+        "node_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/challenge",
+        "node_type": "NIGHTMARE_CHALLENGE",
+        "label": "Nightmare Challenge for Candidate 0",
+        "details": {
+          "perturbations": []
+        },
+        "created_at": "2026-10-02T19:09:00.530896+00:00"
+      },
+      "hd-20261002-190816-acbca5c51921/candidates/0/0/wake": {
+        "node_id": "hd-20261002-190816-acbca5c51921/candidates/0/0/wake",
+        "node_type": "WAKE_VERIFICATION",
+        "label": "Wake Verification for Candidate 0",
+        "details": {
+          "trust": "UNVERIFIED"
+        },
+        "created_at": "2026-10-02T19:09:00.530921+00:00"
+      },
+      "hd-20261002-190816-acbca5c51921/candidates/0/1": {
+        "node_id": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+        "node_type": "CANDIDATE",
+        "label": "Candidate 1: IDEA: Build a \"change-intent ledger\" that records why a plat",
+        "details": {
+          "text_hash": "869697f11fe01baac4e47215fb50d185b51c6c72cc19db70cfb617e8261e4fb7",
+          "trial": 0,
+          "index": 1
+        },
+        "created_at": "2026-10-02T19:09:00.531136+00:00"
+      },
+      "hd-20261002-190816-acbca5c51921/candidates/0/1/challenge": {
+        "node_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/challenge",
+        "node_type": "NIGHTMARE_CHALLENGE",
+        "label": "Nightmare Challenge for Candidate 1",
+        "details": {
+          "perturbations": []
+        },
+        "created_at": "2026-10-02T19:09:00.531160+00:00"
+      },
+      "hd-20261002-190816-acbca5c51921/candidates/0/1/wake": {
+        "node_id": "hd-20261002-190816-acbca5c51921/candidates/0/1/wake",
+        "node_type": "WAKE_VERIFICATION",
+        "label": "Wake Verification for Candidate 1",
+        "details": {
+          "trust": "UNVERIFIED"
+        },
+        "created_at": "2026-10-02T19:09:00.531183+00:00"
+      }
+    },
+    "edges": [
+      {
+        "source": "obj-A_subject_only",
+        "target": "hd-20261002-190816-acbca5c51921/baseline",
+        "relation": "baseline_for"
+      },
+      {
+        "source": "obj-A_subject_only",
+        "target": "hd-20261002-190816-acbca5c51921/dream",
+        "relation": "explored_by"
+      },
+      {
+        "source": "hd-20261002-190816-acbca5c51921/dream",
+        "target": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+        "relation": "generated"
+      },
+      {
+        "source": "hd-20261002-190816-acbca5c51921/candidates/0/0",
+        "target": "hd-20261002-190816-acbca5c51921/candidates/0/0/challenge",
+        "relation": "challenged_by"
+      },
+      {
+        "source": "hd-20261002-190816-acbca5c51921/candidates/0/0/challenge",
+        "target": "hd-20261002-190816-acbca5c51921/candidates/0/0/wake",
+        "relation": "verified_at"
+      },
+      {
+        "source": "hd-20261002-190816-acbca5c51921/dream",
+        "target": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+        "relation": "generated"
+      },
+      {
+        "source": "hd-20261002-190816-acbca5c51921/candidates/0/1",
+        "target": "hd-20261002-190816-acbca5c51921/candidates/0/1/challenge",
+        "relation": "challenged_by"
+      },
+      {
+        "source": "hd-20261002-190816-acbca5c51921/candidates/0/1/challenge",
+        "target": "hd-20261002-190816-acbca5c51921/candidates/0/1/wake",
+        "relation": "verified_at"
+      }
+    ],
+    "max_depth": 20,
+    "max_branching_factor": 50
+  }
+}

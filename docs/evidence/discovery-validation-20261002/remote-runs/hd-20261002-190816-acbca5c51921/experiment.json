@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "name": "exp-A_subject_only",
+  "objective": "Find meaningful software opportunities for a developer platform team.",
+  "hypothesis": "",
+  "mode": "dream",
+  "purpose": "discovery",
+  "constraints": [],
+  "explored_families": [],
+  "diversity_memory": false,
+  "ranking_criteria": [],
+  "provider": {
+    "kind": "command",
+    "model": "claude-sonnet-5-5",
+    "base_url": null,
+    "allow_remote": true,
+    "allow_local_inference": false,
+    "forbid_local_inference": true,
+    "timeout_seconds": 120,
+    "max_tokens": 768
+  },
+  "baseline": {
+    "candidates": 1,
+    "temperature": 0.2
+  },
+  "generation": {
+    "candidates": 2,
+    "temperature": 1.1
+  },
+  "max_calls": 3,
+  "trials": 1,
+  "seed": 42,
+  "evidence": [
+    {
+      "id": "objective_context",
+      "text": "Find meaningful software opportunities for a developer platform team.",
+      "facts": {},
+      "provenance": {
+        "source_type": "UNCLASSIFIED",
+        "produced_by": "unknown",
+        "source_ref": "",
+        "independent_of_implementation": false,
+        "represents_observed_reality": false
+      }
+    }
+  ],
+  "context": [],
+  "speculative_candidates": [],
+  "perturbations": [],
+  "retain_text": true
+}

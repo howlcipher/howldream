@@ -76,6 +76,11 @@ def score_group(
         )
         checks = [v for v in verification or [] if v["candidate_id"] == candidate["id"]]
         failures = sum(bool(v["classifications"]) for v in checks)
+        blocking = sum(
+            v["status"] == "CONTRADICTED"
+            or (bool(v.get("critical")) and bool(v["classifications"]))
+            for v in checks
+        )
         unresolved = sum(v["status"] == "UNCERTAIN" for v in checks)
         supported = sum(v["status"] == "SUPPORTED" for v in checks)
         false_premise_rejections = sum(bool(v.get("false_premise_rejected")) for v in checks)
@@ -83,7 +88,7 @@ def score_group(
         proposal = any(line.startswith("IDEA:") for line in text.splitlines())
         decision = (
             "REJECT"
-            if failures or duplicate or not relevant
+            if blocking or duplicate or not relevant
             else "INVESTIGATE"
             if proposal or false_premise_rejections > 0
             else "UNCERTAIN"
@@ -103,6 +108,14 @@ def score_group(
                     "method": "objective_content_token_overlap",
                 },
                 "failure_count": failures,
+                "blocking_failure_count": blocking,
+                "claim_status_counts": {
+                    status: sum(v["status"] == status for v in checks)
+                    for status in ("SUPPORTED", "ECHO", "CONTRADICTED", "UNCERTAIN", "UNSUPPORTED")
+                },
+                "citation_error_count": sum(
+                    "SOURCE_MISATTRIBUTION" in v["classifications"] for v in checks
+                ),
                 "unresolved_count": unresolved,
                 "measurement_version": 2,
                 "supported_count": supported,
@@ -111,7 +124,7 @@ def score_group(
                 "decision": decision,
                 "decision_type": "heuristic",
                 "reason": (
-                    "Failure, duplicate, or missing lexical relevance."
+                    "Contradiction/critical failure, duplicate, or missing lexical relevance."
                     if decision == "REJECT"
                     else (
                         (

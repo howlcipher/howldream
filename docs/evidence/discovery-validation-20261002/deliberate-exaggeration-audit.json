@@ -1,0 +1,43 @@
+{
+  "findings": [
+    {
+      "code": "CLAIM_EVIDENCE_MISMATCH",
+      "claim": "Historically proven and production-grade.",
+      "supporting_evidence": [
+        {
+          "id": "SYNTHETIC_FIXTURE",
+          "provenance": {
+            "source_type": "SYNTHETIC_FIXTURE",
+            "produced_by": "authored taxonomy fixture",
+            "source_ref": "fixture://demo",
+            "independent_of_implementation": false,
+            "represents_observed_reality": false
+          },
+          "expected_value_origin": "authored example of this source category; NOT real external data",
+          "scope": "taxonomy serialization demonstration only",
+          "outcome": "PASS",
+          "artifact_ref": "demonstrate.py",
+          "holdout": false,
+          "independent_benchmark": false,
+          "prospective": false,
+          "causal_comparison": false,
+          "measured_metrics": [],
+          "limitations": []
+        }
+      ],
+      "evidence_type": [
+        "SYNTHETIC_FIXTURE"
+      ],
+      "why_insufficient": [
+        "No independent observed data for empirical language",
+        "Absolute readiness/superiority requires a scoped human review"
+      ],
+      "suggested_narrower_wording": "Passed controlled synthetic validation within the declared test scope."
+    }
+  ],
+  "audit_type": "ADVISORY_HEURISTIC",
+  "limitations": [
+    "Exact scope bindings required",
+    "No external authentication or entailment"
+  ]
+}

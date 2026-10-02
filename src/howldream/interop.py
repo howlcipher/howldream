@@ -9,6 +9,34 @@ from howldream.contracts import CandidateHandoff, Provenance
 
 def export_candidate(run_path: Path, candidate_id: str) -> CandidateHandoff:
     artifacts = load_run(run_path)
+    unit = next(
+        (u for u in artifacts.get("discovery", {}).get("units", []) if u["id"] == candidate_id),
+        None,
+    )
+    if unit:
+        from howldream.verification import extract
+
+        parent = export_candidate(run_path, unit["candidate_id"])
+        value = parent.model_dump()
+        value.update(
+            candidate_id=unit["id"],
+            text=unit["text"],
+            claims=extract(unit["text"], unit["id"]),
+            verified_constraints=[],
+        )
+        provenance = value["provenance"]
+        provenance["transformations"].append("idea_unit_selection")
+        provenance.pop("verification", None)
+        provenance.update(
+            parent_candidate_id=parent.candidate_id,
+            source_unit={k: unit[k] for k in ("id", "source_span", "source_hash", "cluster")},
+            parent_verification_ref=f"verification.jsonl#candidate={parent.candidate_id}",
+            unit_selection_scope=(
+                "Single IDEA line; batch assumptions/unresolved issues retained without "
+                "claim-specific association. Parent rejection/contradiction gates retained."
+            ),
+        )
+        return CandidateHandoff.model_validate(value)
     if (run_path / "exploration_envelope.json").exists():
         import json
 
@@ -49,6 +77,7 @@ def export_candidate(run_path: Path, candidate_id: str) -> CandidateHandoff:
                 else "EXTERNALLY_OBSERVED",
                 "transformations": ["run_candidate_export"],
                 "source_candidate": deepcopy(row),
+                "hard_constraints": experiment.get("constraints", []),
                 "verification": checks,
                 "execution": row.get("execution"),
             }
@@ -75,6 +104,14 @@ def review_candidate(candidate: CandidateHandoff, evidence):
             cl["origin"] = "NATURAL_EXTRACTED"
             cl.setdefault("extractor", "claim_pipeline/v2")
         claims_origin = "NATURAL_EXTRACTED"
+
+    for index, claim in enumerate(claims):
+        claim.setdefault("candidate_id", candidate.candidate_id)
+        claim.setdefault("id", f"{candidate.candidate_id}/claim/{index + 1}")
+        if claim["candidate_id"] != candidate.candidate_id:
+            raise ValueError("Claim candidate identity mismatch")
+        if not isinstance(claim.get("kind"), str) or not isinstance(claim.get("text"), str):
+            raise TypeError("Malformed structured claim: kind and text required")
 
     # 2. Scoped verification against supplied evidence only
     checks = verify(claims, evidence)
@@ -115,6 +152,7 @@ def exploration_from_candidate(
         if candidate.provenance.model_extra
         else [],
         source_candidates=[candidate],
+        purpose="verification",
         evidence_refs=[EvidenceRef.model_validate(e.model_dump()) for e in (evidence or [])],
         budget=ExplorationBudget(
             max_calls=max_calls,

@@ -1,0 +1,22 @@
+{
+  "schema": "howlplane.test_impact_assessment/v1",
+  "changed_behavior": "Discovery withholds evidence; typed validation provenance/report audit; claim-level defects; optional diversity/clustering; direct Dream handoff; Create reserved synthesis and evaluated convergence",
+  "tests_added": [
+    "Dream tests/test_discovery_integrity.py (31 new cases)",
+    "Create tests/test_discovery_development.py (12 new cases)"
+  ],
+  "tests_updated": [
+    "Create tests/test_repair.py low-budget contract now checks explicit insufficient/reduced plans"
+  ],
+  "tests_removed": [],
+  "duplicate_or_obsolete_tests_reviewed": true,
+  "full_regression_required": true,
+  "regression_commands_run": [
+    "Dream: HOWL_FORBID_LOCAL_INFERENCE=1 python -m pytest -q (235 passed)",
+    "Create: HOWL_FORBID_LOCAL_INFERENCE=1 python -m pytest -q (90 passed)",
+    "provider-core: HOWL_FORBID_LOCAL_INFERENCE=1 python -m pytest -q (37 passed)",
+    "Dream: ruff format --check src tests scripts; ruff check src tests scripts; flake8 src tests --max-line-length=100 --extend-ignore=E203,W503; mypy; generate_schemas.py --check",
+    "Create: compileall src tests; flake8 src tests --select=F821,F401,E9; scripts/test_seo.py"
+  ],
+  "rationale": "Public schema, orchestration, budget, authority and provenance seams require full suites. Deterministic tests exercise failure and safe paths; existing transport, semantic, chronology, hard-gate and recovery tests remain. Low-budget test previously demanded exhausted runs without finalists and is updated to intended behavior. No duplicate tests removed. Live generation is separately bounded and never used in unit tests."
+}

@@ -8,6 +8,8 @@ from uuid import uuid4
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
+from howldream.schema import Evidence
+
 
 class StrictModel(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
@@ -42,12 +44,8 @@ class ExplorationBudget(StrictModel):
     forbid_local_inference: bool = False
 
 
-class EvidenceRef(StrictModel):
-    """Evidence supplied to or extracted during exploration."""
-
-    id: str = Field(pattern=r"^[a-zA-Z0-9_./-]{1,100}$")
-    text: str = Field(default="", max_length=50000)
-    facts: dict[str, str] = Field(default_factory=dict)
+class EvidenceRef(Evidence):
+    """Supplied evidence with explicit validation-source provenance."""
 
 
 class Provenance(BaseModel):
@@ -91,6 +89,12 @@ class ExplorationRequest(StrictModel):
     objective: str = Field(min_length=1, max_length=10000)
     originating_component: str = Field(default="howlplane", min_length=1, max_length=100)
     requested_mode: Literal["dream", "nightmare", "paired"] = "dream"
+    purpose: Literal["discovery", "development", "verification"] = "discovery"
+    explored_families: list[str] = Field(default_factory=list, max_length=100)
+    diversity_memory: bool = False
+    ranking_criteria: list[Literal["novelty", "objective_fit"]] = Field(
+        default_factory=list, max_length=2
+    )
     constraints: list[str] = Field(default_factory=list, max_length=50)
     evidence_refs: list[EvidenceRef] = Field(default_factory=list, max_length=100)
     context_refs: list[str] = Field(default_factory=list, max_length=20)
@@ -100,6 +104,27 @@ class ExplorationRequest(StrictModel):
     provider: dict[str, Any] | None = None
     source_candidates: list[CandidateHandoff] = Field(default_factory=list)
     provenance: Provenance = Field(default_factory=Provenance)
+
+    @model_validator(mode="before")
+    @classmethod
+    def source_defaults_to_development(cls, value):
+        if isinstance(value, dict) and value.get("source_candidates") and "purpose" not in value:
+            return {**value, "purpose": "development"}
+        return value
+
+    @model_validator(mode="after")
+    def supported_controls(self):
+        if self.context_refs:
+            raise ValueError("UNSUPPORTED_CONTROL: context_refs; supply explicit evidence_refs")
+        if self.risk_class != "EXPLORATORY":
+            raise ValueError("UNSUPPORTED_CONTROL: risk_class; only EXPLORATORY is supported")
+        if any(not c.strip() or len(c) > 2000 for c in self.constraints + self.explored_families):
+            raise ValueError("Control entries must be nonempty and at most 2000 characters")
+        if self.purpose == "discovery" and self.source_candidates:
+            raise ValueError(
+                "Discovery uses explored_families; source_candidates require development"
+            )
+        return self
 
     @field_validator("request_id")
     @classmethod

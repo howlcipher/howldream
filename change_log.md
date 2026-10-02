@@ -236,3 +236,16 @@ result, and local verification evidence alongside the original model observation
 - Ecosystem verification now pins Create checkpoint-finalist retention hardening.
 
 - Pin provider-core nested response-shape recovery and the matching Create dependency in ecosystem CI.
+
+## Discovery and validation integrity hardening
+
+- Separate discovery generation from verification ledgers; preserve legacy experiments.
+- Reject ineffective context/risk controls; carry constraints and optional diversity memory.
+- Preserve IDEA lineage while adding advisory normalized-token clusters, echo and ranking.
+- Keep subordinate citation failures at claim scope; preserve contradiction/critical gates.
+- Classify validation provenance and audit exaggerated report claims without rewriting evidence.
+- Support nested review claim IDs and document direct Dream-to-Create development.
+- Export selected IDEA units as descendants with parent identity/span/hash and retained
+  uncertainty; preserve parent rejection gates and reference scoped parent checks.
+- Keep unverified tradeoff CONFLICT statements unresolved; only actual contradiction or
+  critical failure triggers semantic rejection. Pin ecosystem CI to merged Create support.
