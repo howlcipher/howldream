@@ -252,3 +252,4 @@ see [the attribution guide](docs/dogfood_attribution_guide.md). It reports evide
 and does not rewrite reports or grant authority.
 
 Ecosystem CI pins the Create repair that retains existing finalists on failed resume.
+Provider-core is pinned to preserve telemetry for invalid nested CLI completion shapes as well.

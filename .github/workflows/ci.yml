@@ -54,7 +54,7 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install --upgrade pip setuptools
       - run: pip install -e '.[dev]'
-      - run: pip install "git+https://github.com/howlcipher/howlcreate.git@3bc17e58c31c05fe7ca1012244a4acd77957dd04"
+      - run: pip install "git+https://github.com/howlcipher/howlcreate.git@ad24f662552b3652669bdcbf628a05e08cb70c97"
       - name: Confirm real howlcreate import
         run: python -c "from howlcreate.engine.candidate_ingestion import scaffold_candidate; print('real howlcreate.engine.candidate_ingestion import OK')"
       - run: pytest tests/test_end_to_end_ecosystem.py tests/test_repair.py -q
