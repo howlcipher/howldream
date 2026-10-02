@@ -232,3 +232,5 @@ result, and local verification evidence alongside the original model observation
 - Added WAKE ECHO and versioned separate measurement counts.
 - Preserved sanitized provider error envelopes and failed HTTP/command telemetry.
 - Restricted default exploration allowlist to mock; remote calls remain explicit.
+
+- Ecosystem verification now pins Create checkpoint-finalist retention hardening.

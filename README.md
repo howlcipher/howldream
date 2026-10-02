@@ -250,3 +250,5 @@ per-call timeout, not a total wall-clock deadline.
 `howldream audit-attribution ledger.json` mechanically flags chronology conflicts;
 see [the attribution guide](docs/dogfood_attribution_guide.md). It reports evidence
 and does not rewrite reports or grant authority.
+
+Ecosystem CI pins the Create repair that retains existing finalists on failed resume.
