@@ -261,3 +261,23 @@ WAKE and withheld from generation. Use `purpose: development` or `verification` 
 selected opportunities or factual review need that context. Optional compact diversity
 memory, advisory IDEA clustering/ranking, source provenance and product-report claim
 audits are described in [discovery and validation](docs/discovery_validation.md).
+
+## Participation provenance
+
+Run and candidate provenance now records what Dream actually did. Each
+`participation` record names the origin of the subject (component, provider,
+model), the transforming component, and the operation. Operations are
+`GENERATED`, `CLUSTERED`, `RANKED`, `REVIEWED`, `VALIDATED`, `TRANSFORMED`,
+`SELECTED` and `NO_EFFECT`.
+
+- Candidates authored by Dream's provider are `GENERATED`, with the observed model.
+- Fixture or mock output is `NO_EFFECT`, so it never earns generation credit.
+- Ideas written elsewhere go through `howldream cluster --external ideas.json`.
+  These require an `origin.component` other than howldream, and Dream records only
+  `CLUSTERED` (and `RANKED` with `--rank`).
+- `howldream export <discovery.json> --candidate-id <unit>` appends `SELECTED` and
+  emits a `howl.candidate/v1` that HowlWriter consumes directly
+  (`howlwriter native request --from-dream`).
+
+Run manifests also record `observed_models` from the actual executions. When no
+git checkout is present, `git_commit` falls back to pip's VCS install metadata.

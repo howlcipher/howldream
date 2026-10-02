@@ -95,6 +95,12 @@ def main() -> int:
     export_parser.add_argument(
         "--format", choices=["howl.candidate/v1"], default="howl.candidate/v1"
     )
+    cluster_parser = commands.add_parser(
+        "cluster", help="cluster externally authored ideas; Dream records CLUSTERED only"
+    )
+    cluster_parser.add_argument("--external", type=Path, required=True)
+    cluster_parser.add_argument("--rank", action="append", choices=["novelty", "objective_fit"])
+    cluster_parser.add_argument("--out", type=Path, help="write the discovery JSON here")
     review_parser = commands.add_parser("review")
     review_parser.add_argument("target", type=Path)
     review_parser.add_argument("--evidence", type=Path)
@@ -129,7 +135,28 @@ def main() -> int:
             print(json.dumps(audit_result, indent=2))
             return 1 if audit_result["conflicts"] or audit_result["unresolved"] else 0
         if args.command == "export":
+            if args.target.is_file():
+                from howldream.participation import export_external
+
+                discovery = json.loads(args.target.read_text())
+                print(json.dumps(export_external(discovery, args.candidate_id), indent=2))
+                return 0
             print(export_candidate(args.target, args.candidate_id).model_dump_json(indent=2))
+            return 0
+        if args.command == "cluster":
+            from howldream.participation import cluster_external
+
+            discovery = cluster_external(
+                json.loads(args.external.read_text()), tuple(args.rank or ())
+            )
+            text = json.dumps(scrub(discovery), indent=2)
+            if args.out:
+                args.out.write_text(text + "\n")
+                print(
+                    json.dumps({"discovery_id": discovery["discovery_id"], "path": str(args.out)})
+                )
+            else:
+                print(text)
             return 0
         if args.command == "review":
             from howldream.schema import Evidence

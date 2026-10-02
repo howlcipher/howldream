@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+Participation provenance (Run 5 AG finding: externally authored ideas credited to Dream).
+Runs, discovery and exported candidates record GENERATED / CLUSTERED / RANKED /
+SELECTED / NO_EFFECT with origin component, provider and model. The new
+`howldream cluster --external` clusters externally authored ideas without generation credit,
+and `export` accepts the resulting discovery file. Manifests record `observed_models`
+and fall back to pip VCS metadata for `git_commit` (Run 5 DF-D4). The ecosystem CI
+pin now targets merged HowlCreate bab145a.
+
 Pinned the final reviewed provider core with portable command tests. CI preserves
 `HOWL_FORBID_LOCAL_INFERENCE=1` for all verification commands.
 HTTP fixtures use mocked remote-shaped endpoints; cached local-provider rejection

@@ -5,6 +5,29 @@ from pathlib import Path
 
 from howldream.artifacts import load_run
 from howldream.contracts import CandidateHandoff, Provenance
+from howldream.participation import record
+
+
+def candidate_participation(row: dict) -> dict:
+    """What Dream did for this one candidate, from its own execution record."""
+    execution = row.get("execution") or {}
+    if execution.get("inference_occurred") is True and not execution.get("mocked"):
+        return record(
+            "GENERATED",
+            subject_count=1,
+            origin_component="howldream",
+            origin_provider=execution.get("actual_provider"),
+            origin_model=row.get("model") or execution.get("model"),
+            inference_occurred=True,
+            note="Dream prompted the provider; the provider authored the text.",
+        )
+    return record(
+        "NO_EFFECT",
+        subject_count=1,
+        origin_component="fixture",
+        origin_provider=execution.get("actual_provider"),
+        note="Fixture or mock output replayed; Dream did not generate it.",
+    )
 
 
 def export_candidate(run_path: Path, candidate_id: str) -> CandidateHandoff:
@@ -26,6 +49,31 @@ def export_candidate(run_path: Path, candidate_id: str) -> CandidateHandoff:
         )
         provenance = value["provenance"]
         provenance["transformations"].append("idea_unit_selection")
+        clustered = [
+            p
+            for p in artifacts.get("discovery", {}).get("participation", [])
+            if p["operation"] == "CLUSTERED"
+        ]
+        origin = provenance.get("participation", [{}])[0]
+        provenance["participation"] = (
+            provenance.get("participation", [])
+            + clustered
+            + [
+                record(
+                    "SELECTED",
+                    subject_count=1,
+                    origin_component=origin.get("origin_component", "unknown"),
+                    origin_provider=origin.get("origin_provider"),
+                    origin_model=origin.get("origin_model"),
+                    note="Operator selected this idea unit through `howldream export`.",
+                )
+            ]
+        )
+        provenance["selection"] = {
+            "selected_by": "operator",
+            "operation": "SELECTED",
+            "via": "howldream export",
+        }
         provenance.pop("verification", None)
         provenance.update(
             parent_candidate_id=parent.candidate_id,
@@ -78,6 +126,7 @@ def export_candidate(run_path: Path, candidate_id: str) -> CandidateHandoff:
                 "transformations": ["run_candidate_export"],
                 "source_candidate": deepcopy(row),
                 "hard_constraints": experiment.get("constraints", []),
+                "participation": [candidate_participation(row)],
                 "verification": checks,
                 "execution": row.get("execution"),
             }
