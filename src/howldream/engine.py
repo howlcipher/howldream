@@ -8,6 +8,8 @@ from pathlib import Path
 from typing import Literal
 from uuid import uuid4
 
+from howl_provider_core import ProviderError
+
 from howldream import __version__
 from howldream.artifacts import digest, load_run, save_run, scrub
 from howldream.contracts import (
@@ -19,7 +21,7 @@ from howldream.contracts import (
     ExplorationResult,
     Provenance,
 )
-from howldream.providers import Provider, make_provider
+from howldream.providers import Provider, make_provider, sampling_record
 from howldream.schema import Evidence, Experiment, Generation, Perturbation, ProviderConfig
 from howldream.scoring import metrics, score_group
 from howldream.verification import extract, verify
@@ -306,12 +308,15 @@ def run(
             "Redaction changed input; original configuration replay is unavailable."
         )
     call_count = 0
+    provider_stopped = False
     for trial in range(experiment.trials):
         for group, config, condition in (
             ("baseline", experiment.baseline, "baseline"),
             ("candidates", experiment.generation, experiment.mode),
         ):
             for index in range(config.candidates):
+                if provider_stopped:
+                    break
                 if call_count >= experiment.max_calls:
                     if artifacts["manifest"].get("stop_reason") != "BUDGET_EXHAUSTED":
                         artifacts["manifest"]["stop_reason"] = "BUDGET_EXHAUSTED"
@@ -337,18 +342,49 @@ def run(
                             "model": response.model,
                             "execution": response.execution,
                             "model_version": None,
-                            "temperature": config.temperature,
+                            "sampling": sampling_record(provider, config.temperature, seed),
+                            "temperature": config.temperature
+                            if provider.capabilities.get("supports_temperature", False)
+                            else None,
                             "seed": seed if provider.capabilities["supports_seed"] else None,
                             "latency_seconds": response.latency_seconds,
                             "usage": response.usage,
                             "retries": 0,
                         }
                     )
-                except ValueError:
+                except ValueError as error:
                     artifacts["manifest"]["errors"].append(
-                        {"candidate_id": candidate_id, "code": "PROVIDER_FAILURE"}
+                        {
+                            "candidate_id": candidate_id,
+                            "code": "PROVIDER_FAILURE",
+                            "failure": error.failure
+                            if isinstance(error, ProviderError)
+                            else {
+                                "category": "UNKNOWN_PROVIDER_FAILURE",
+                                "retryable": False,
+                                "sanitized_message": "provider request failed",
+                            },
+                            "execution": error.execution
+                            if isinstance(error, ProviderError)
+                            else None,
+                        }
                     )
+                    if isinstance(error, ProviderError) and error.failure["category"] in {
+                        "AUTHENTICATION",
+                        "SESSION_LIMIT",
+                        "CANCELLED",
+                        "BUDGET_EXHAUSTED",
+                    }:
+                        provider_stopped = True
+                        break
     artifacts["manifest"]["call_count"] = call_count
+    if not provider.capabilities.get(
+        "supports_temperature", False
+    ) or not provider.capabilities.get("supports_seed", False):
+        artifacts["manifest"]["warnings"].append(
+            "EXPERIMENT_CONTROL_NOT_APPLIED: "
+            "inspect sampling requested/supported/applied; condition differences are confounded"
+        )
     analyze(artifacts, experiment)
     if not wake_now:
         artifacts["claims"], artifacts["verification"], artifacts["scores"] = [], [], []
@@ -619,7 +655,17 @@ def explore(
                     "request_id": request.request_id,
                     "originating_component": request.originating_component,
                     "execution": c.get("execution"),
-                    "source_candidates": [x.model_dump() for x in request.source_candidates],
+                    "source_candidate_refs": [
+                        {
+                            "candidate_id": x.candidate_id,
+                            "source_run_id": x.source_run_id,
+                            "sha256": digest(json.dumps(scrub(x.model_dump()), sort_keys=True)),
+                        }
+                        for x in request.source_candidates
+                    ],
+                    "source_candidates_location": (
+                        "exploration_envelope.json#/provenance/source_candidates"
+                    ),
                     "verification": checks,
                     "candidate_index": c["index"],
                     "trial": c["trial"],
@@ -670,6 +716,7 @@ def explore(
                 "transformations": ["explored"],
                 # legacy/context keys, retained as unvalidated extras
                 "request_id": request.request_id,
+                "source_candidates": [x.model_dump() for x in request.source_candidates],
                 "parent_run_id": request.parent_run_id,
                 "originating_component": request.originating_component,
             }
@@ -677,6 +724,7 @@ def explore(
         descent_dag=dag,
     )
 
+    result = ExplorationResult.model_validate(scrub(result.model_dump()))
     envelope_path = run_dir / "exploration_envelope.json"
     envelope_path.write_text(result.model_dump_json(indent=2) + "\n")
     envelope_path.chmod(0o600)

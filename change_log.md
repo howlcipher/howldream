@@ -223,3 +223,16 @@ preinstalled runner tooling. Application checks and audit thresholds are unchang
 
 Recorded the corrected final deterministic demo, exact-output replay, benchmark
 result, and local verification evidence alongside the original model observations.
+
+## Resilience and measurement hardening (2026-10-02)
+
+- Added candidate exploration bridge, polymorphic validation, and chronology audit.
+- Removed per-candidate embedded source duplication in exploration results.
+- Separated requested/supported/applied sampling controls and observed model identity.
+- Added WAKE ECHO and versioned separate measurement counts.
+- Preserved sanitized provider error envelopes and failed HTTP/command telemetry.
+- Restricted default exploration allowlist to mock; remote calls remain explicit.
+
+- Ecosystem verification now pins Create checkpoint-finalist retention hardening.
+
+- Pin provider-core nested response-shape recovery and the matching Create dependency in ecosystem CI.

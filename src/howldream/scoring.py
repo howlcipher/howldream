@@ -104,6 +104,7 @@ def score_group(
                 },
                 "failure_count": failures,
                 "unresolved_count": unresolved,
+                "measurement_version": 2,
                 "supported_count": supported,
                 "false_premise_rejection_count": false_premise_rejections,
                 "measurement_type": "deterministic",
@@ -143,6 +144,11 @@ def metrics(candidates: list[dict], verification: list[dict]) -> dict:
         "claims": len(checks),
         "unresolved_claims": sum(v["status"] == "UNCERTAIN" for v in checks),
         "supported_claims": sum(v["status"] == "SUPPORTED" for v in checks),
+        "measurement_version": 2,
+        "supported_count": sum(v["status"] == "SUPPORTED" for v in checks),
+        "echo_count": sum(v["status"] == "ECHO" for v in checks),
+        "contradicted_count": sum(v["status"] == "CONTRADICTED" for v in checks),
+        "uncertain_count": sum(v["status"] in {"UNCERTAIN", "UNSUPPORTED"} for v in checks),
         "false_premise_rejection_count": sum(bool(v.get("false_premise_rejected")) for v in checks),
         "false_premise_acceptance_count": sum(
             "FALSE_PREMISE_ACCEPTANCE" in v.get("classifications", []) for v in checks

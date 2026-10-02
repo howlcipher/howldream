@@ -11,7 +11,16 @@ from dataclasses import dataclass
 from typing import Protocol
 from urllib.parse import urlsplit
 
-from howl_provider_core import CommandConfig, CommandProvider, Execution, Policy, guarded_opener
+from howl_provider_core import (
+    CommandConfig,
+    CommandProvider,
+    Execution,
+    Policy,
+    ProviderError,
+    classify_failure,
+    guarded_opener,
+    reported_metadata,
+)
 
 from howldream.schema import ProviderConfig
 
@@ -36,6 +45,8 @@ class Provider(Protocol):
 CAPABILITIES = dict.fromkeys(
     [
         "supports_seed",
+        "supports_temperature",
+        "supports_top_p",
         "supports_logprobs",
         "supports_tool_calls",
         "supports_structured_output",
@@ -79,7 +90,7 @@ class MockProvider:
     """Authored finite fixtures, not an AI model or empirical creativity claim."""
 
     def __init__(self):
-        self.capabilities = {**CAPABILITIES, "supports_seed": True}
+        self.capabilities = dict(CAPABILITIES)
 
     def generate(self, prompt, condition, index, temperature, seed):
         text = IDEAS[0] if condition == "baseline" else IDEAS[index % len(IDEAS)]
@@ -134,6 +145,7 @@ class HTTPProvider:
         self.capabilities = {
             **CAPABILITIES,
             "supports_seed": config.kind == "ollama",
+            "supports_temperature": True,
             "supports_token_usage": True,
         }
         # Ignore ambient HTTP proxies: local-only experiments stay on loopback.
@@ -170,12 +182,28 @@ class HTTPProvider:
             self.base.rstrip("/") + endpoint, data=json.dumps(payload).encode(), headers=headers
         )
         started = time.monotonic()
+        execution = None
         try:
             with self.opener.open(request, timeout=config.timeout_seconds) as response:
                 body = response.read(2_000_001)
             if len(body) > 2_000_000:
                 raise ValueError("provider response exceeds 2 MB")
             data = json.loads(body)
+            meta = reported_metadata(body.decode("utf-8"), "openai-json")
+            execution = Execution(
+                config.kind,
+                config.kind,
+                config.kind,
+                "http",
+                requested_model=config.model,
+                model=meta["model"],
+                usage=meta["usage"],
+                request_id=meta["request_id"],
+                inference_occurred=meta["inference_occurred"],
+                raw_output_received=True,
+                parse_status="FAILED",
+                elapsed_seconds=time.monotonic() - started,
+            ).to_dict()
             if config.kind == "ollama":
                 text = data["response"]
                 usage = {
@@ -196,30 +224,52 @@ class HTTPProvider:
                 model,
                 time.monotonic() - started,
                 usage,
-                Execution(
+                {
+                    **execution,
+                    "parse_status": "VALID",
+                    "usage": usage,
+                    "remote": not local_endpoint(self.base),
+                    "deterministic": data.get("deterministic", False),
+                    "mocked": data.get("mocked", False),
+                },
+            )
+        except (urllib.error.URLError, TimeoutError, OSError, http.client.HTTPException) as error:
+            # Never persist exception bodies, URLs, headers, or server echoes.
+            failure = classify_failure(
+                str(error.code)
+                if isinstance(error, urllib.error.HTTPError)
+                else "timeout"
+                if isinstance(error, TimeoutError)
+                else "provider unavailable"
+            )
+            raise ProviderError(
+                "provider request failed; check endpoint, model, credentials, and timeout",
+                failure=failure,
+                execution=execution
+                or Execution(
                     config.kind,
                     config.kind,
                     config.kind,
                     "http",
-                    model=data.get("model"),
                     requested_model=config.model,
-                    remote=not local_endpoint(self.base),
-                    deterministic=data.get("deterministic", False),
-                    mocked=data.get("mocked", False),
-                    inference_occurred=data.get("inference_occurred"),
                     elapsed_seconds=time.monotonic() - started,
-                    usage=usage,
                 ).to_dict(),
-            )
-        except (urllib.error.URLError, TimeoutError, OSError, http.client.HTTPException) as error:
-            # Never persist exception bodies, URLs, headers, or server echoes.
-            raise ValueError(
-                "provider request failed; check endpoint, model, credentials, and timeout"
-            ) from error
-        except (KeyError, IndexError, TypeError, json.JSONDecodeError) as error:
-            raise ValueError(
-                "malformed provider response; expected a nonempty text completion"
-            ) from error
+            ) from None
+        except (KeyError, IndexError, TypeError, ValueError, AttributeError):
+            raise ProviderError(
+                "malformed provider response; expected a nonempty text completion",
+                execution=execution
+                or Execution(
+                    config.kind,
+                    config.kind,
+                    config.kind,
+                    "http",
+                    requested_model=config.model,
+                    elapsed_seconds=time.monotonic() - started,
+                    raw_output_received=True,
+                    parse_status="FAILED",
+                ).to_dict(),
+            ) from None
 
 
 def local_endpoint(url: str) -> bool:
@@ -239,7 +289,7 @@ class RemoteCommandProvider:
         text, execution = self.adapter.generate(prompt)
         return Response(
             text,
-            execution.model or self.adapter.config.model or "unknown",
+            execution.model or "unknown",
             execution.elapsed_seconds,
             usage=execution.usage,
             execution=execution.to_dict(),
@@ -250,3 +300,21 @@ def make_provider(config: ProviderConfig) -> Provider:
     if config.kind == "command":
         raise ValueError("command requires explicit operator --command-config; not artifact config")
     return MockProvider() if config.kind == "mock" else HTTPProvider(config)
+
+
+def sampling_record(provider, temperature, seed):
+    """Requested controls and transport application are distinct observations.
+
+    HTTP applied means sent in the request, not independently proven backend behavior.
+    Command profiles have no reviewed sampling argument contract. Mock seed is fixture
+    selection only and never a stochastic experiment.
+    """
+    record = {}
+    for name, value in (("temperature", temperature), ("seed", seed), ("top_p", None)):
+        supported = provider.capabilities.get("supports_" + name, False)
+        record[name] = {
+            "requested": value,
+            "supported": supported,
+            "applied": bool(supported and value is not None),
+        }
+    return record

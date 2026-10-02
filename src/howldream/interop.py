@@ -93,3 +93,41 @@ def review_candidate(candidate: CandidateHandoff, evidence):
     value["claims"] = claims
     # Review is not authorship and does not replace source claims or verification metadata.
     return CandidateHandoff.model_validate(value)
+
+
+def exploration_from_candidate(
+    candidate: CandidateHandoff, *, objective=None, evidence=None, remote=False, max_calls=3
+):
+    """One canonical source, no promotion of speculative claims to evidence."""
+    from uuid import uuid4
+
+    from howldream.contracts import EvidenceRef, ExplorationBudget, ExplorationRequest
+
+    return ExplorationRequest(
+        request_id="candidate-" + uuid4().hex[:12],
+        parent_run_id=candidate.source_run_id,
+        objective=objective
+        or "Challenge assumptions and identify falsifiable risks for: " + candidate.objective,
+        originating_component="howlcreate"
+        if candidate.provenance.producer_component == "howlcreate"
+        else "howldream",
+        constraints=list(candidate.provenance.model_extra.get("hard_constraints", []))
+        if candidate.provenance.model_extra
+        else [],
+        source_candidates=[candidate],
+        evidence_refs=[EvidenceRef.model_validate(e.model_dump()) for e in (evidence or [])],
+        budget=ExplorationBudget(
+            max_calls=max_calls,
+            max_candidates=2,
+            provider_allowlist=["command"] if remote else ["mock"],
+            local_only=not remote,
+            forbid_local_inference=True,
+        ),
+        provenance=Provenance.model_validate(
+            {
+                "producer_component": "howldream",
+                "transformations": ["candidate_to_exploration"],
+                "source_candidate_id": candidate.candidate_id,
+            }
+        ),
+    )

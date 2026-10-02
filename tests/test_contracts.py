@@ -189,7 +189,7 @@ def test_known_fact_and_uncertainty():
     claims = extract("FACT: sky=blue\nFACT: sky=green\nFACT: moon=cheese\nUNKNOWN: moon", "c")
     results = verify(claims, experiment.evidence)
     assert [r["status"] for r in results] == [
-        "SUPPORTED",
+        "ECHO",
         "CONTRADICTED",
         "UNSUPPORTED",
         "UNCERTAIN",
@@ -200,7 +200,7 @@ def test_known_fact_and_uncertainty():
 
 def test_mock_and_capabilities():
     provider = MockProvider()
-    assert provider.capabilities["supports_seed"]
+    assert not provider.capabilities["supports_seed"]
     assert not provider.capabilities["supports_logprobs"]
     first = provider.generate("prompt", "baseline", 0, 0.2, 42)
     assert first.text == provider.generate("prompt", "baseline", 0, 0.2, 42).text

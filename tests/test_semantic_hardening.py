@@ -42,8 +42,8 @@ def test_natural_language_candidate_review_extraction():
     assert all(c.get("origin") == "NATURAL_EXTRACTED" for c in reviewed.claims)
     checks = reviewed.provenance.model_dump()["review"]["checks"]
     assert len(checks) >= 1
-    # At least one claim supported by the fact ledger
-    assert any(c["status"] == "SUPPORTED" for c in checks)
+    # Supplied fact restatements remain reviewable but receive no independent support credit.
+    assert any(c["status"] == "ECHO" for c in checks)
 
 
 def test_structured_claims_candidate_review_preservation():
@@ -209,7 +209,8 @@ def test_command_provider_usage_and_model_metadata(tmp_path: Path):
     provider = RemoteCommandProvider(CommandConfig.read(cfg_file))
     resp = provider.generate("Generate ideas", "dream", 0, 0.7, 42)
 
-    assert resp.model == "claude-sonnet-5-5"
+    assert resp.model == "unknown"
+    assert resp.execution["requested_model"] == "claude-sonnet-5-5"
     assert resp.usage is not None
     assert resp.usage.get("input_tokens") == 12
     assert resp.usage.get("output_tokens") == 8

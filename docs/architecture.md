@@ -76,7 +76,8 @@ manifest, JSON snapshot, JSONL candidates/claims/checks, metrics, scores, report
 Hashes detect accidental changes against a retained manifest, not malicious replacement
 of both files and manifest. WAKE and replay create descendants; they do not overwrite a run.
 One experiment has at most 500 requests; each has a timeout and output limit. No automatic
-retries or background services. A provider failure is recorded and yields PARTIAL with
+transport retries or background services. Sampling and WAKE measurement semantics
+are versioned and distinguish unsupported controls and supplied-evidence echoes. A provider failure is recorded and yields PARTIAL with
 nonzero CLI exit status. Interrupted processes may leave an incomplete directory.
 
 ## Controlled Native Ecosystem Architecture

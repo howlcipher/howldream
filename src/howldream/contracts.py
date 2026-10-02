@@ -36,7 +36,7 @@ class ExplorationBudget(StrictModel):
     max_trials: int = Field(default=1, ge=1, le=10)
     max_tokens: int = Field(default=512, ge=32, le=4096)
     max_duration_seconds: int = Field(default=120, ge=1, le=600)
-    provider_allowlist: list[str] = Field(default_factory=lambda: ["mock", "ollama"])
+    provider_allowlist: list[str] = Field(default_factory=lambda: ["mock"])
     local_only: bool = True
     allow_local_inference: bool = False
     forbid_local_inference: bool = False

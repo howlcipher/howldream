@@ -192,3 +192,64 @@ retain their original dates and do not establish current end-to-end Plane compat
 
 Verification CI sets `HOWL_FORBID_LOCAL_INFERENCE=1`. The shared provider dependency
 is pinned to its final reviewed commit, including portable command-provider tests.
+
+## Candidate exploration, validation, and measurement integrity
+
+```bash
+export HOWL_FORBID_LOCAL_INFERENCE=1
+howldream validate candidate.json
+howldream explore --from-candidate candidate.json \
+  --objective "Attack assumptions and identify falsifiable risks" \
+  --evidence evidence.json --output .howldream/runs
+howldream review candidate.json --evidence evidence.json
+```
+
+The bridge preserves one canonical advisory source candidate, including Create
+claims, evidence needs, constraints, uncertainty, provenance and identity. It does
+not convert speculation into evidence. Generated candidates carry source IDs,
+source run IDs and hashes, pointing to
+`exploration_envelope.json#/provenance/source_candidates`. Default bridge budget is
+three calls (one baseline, two divergent candidates), using authored mock output.
+For an authorized remote CLI add `--command-config /absolute/path/profile.json
+--allow-remote`; the reviewed profile is never discovered from candidate data.
+`--max-calls` remains a hard ceiling. A partial exploration exits nonzero.
+
+`validate` routes explicit canonical schema versions: experiment (integer 1),
+exploration request/result, candidate (including reviewed candidates), assessment,
+development result, and a nonempty strict evidence list. Unknown/ambiguous input
+fails with UNKNOWN_ARTIFACT_TYPE. Validation does not invoke a provider.
+
+Each generated row contains `sampling.temperature`, `sampling.seed`, and
+`sampling.top_p`, separating requested values, supported transport controls, and
+application. Raw/structured commands and mock fixtures apply neither temperature
+nor seed. HTTP temperature is transmitted; Ollama seed is supported by its adapter
+but local inference remains forbidden by default and the environment override is
+authoritative. `applied` does not independently authenticate remote backend behavior.
+Unsupported controls produce EXPERIMENT_CONTROL_NOT_APPLIED in manifest warnings.
+Do not interpret baseline-vs-Dream differences as a temperature experiment when
+that control was not applied. Top-p is not requested by this workflow.
+
+WAKE verifier v2 classifies direct fact-ledger matches and conservative lexical
+restatements of source text as ECHO. They receive no independent SUPPORTED credit.
+Metrics version 2 separates supported_count, echo_count, contradicted_count,
+uncertain_count and false_premise_rejection_count. Uncertain includes unsupported
+claims whose falsity is unknown. Arithmetic/explicit conflict checks retain their
+narrow support scope; free-form semantic derivation remains uncertain. Echo detection
+preserves polarity and numbers but is a lexical heuristic; semantic paraphrases may
+need human review. Historical v1 metrics are not directly comparable.
+
+Command errors carry sanitized structured categories and execution telemetry,
+including failures after inference. Adapters are `raw-text`, `generic-json`,
+`claude-json`, `openai-json`, and `gemini-json` (see provider-core's input shapes).
+No retries occur in Dream. Session/authentication/cancellation failures stop further
+requests; remote timeout stays profile-specific rather than globally increased.
+The default exploration allowlist is now mock only. A profile can explicitly choose
+up to 600 seconds per call; an exploration's duration field currently sets HTTP
+per-call timeout, not a total wall-clock deadline.
+
+`howldream audit-attribution ledger.json` mechanically flags chronology conflicts;
+see [the attribution guide](docs/dogfood_attribution_guide.md). It reports evidence
+and does not rewrite reports or grant authority.
+
+Ecosystem CI pins the Create repair that retains existing finalists on failed resume.
+Provider-core is pinned to preserve telemetry for invalid nested CLI completion shapes as well.
