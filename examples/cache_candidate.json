@@ -1,0 +1,14 @@
+{
+  "schema_version": "howl.candidate/v1",
+  "candidate_id": "authored-cache-demo",
+  "source_run_id": "quickstart-fixture",
+  "parent_request_id": "quickstart-cache",
+  "objective": "Design fault-tolerant cache",
+  "text": "Consider replicated cache entries with bounded staleness. Investigate failure detection, invalidation races, and recovery after a replica restart.",
+  "trust": "UNVERIFIED",
+  "assumptions": ["Replication and bounded staleness require independent validation."],
+  "provenance": {
+    "producer_component": "authored-example",
+    "observation_kind": "DETERMINISTIC"
+  }
+}

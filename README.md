@@ -32,7 +32,8 @@ source .venv/bin/activate
 pip install -e .
 howldream validate examples/self_detection.yaml
 howldream run examples/self_detection.yaml
-howldream explore --goal "Design fault-tolerant cache" --budget-candidates 3
+howldream explore --from-candidate examples/cache_candidate.json \
+  --objective "Design fault-tolerant cache" --max-calls 3 --output .howldream/runs
 howldream benchmark list
 howldream benchmark run dreambench --split development
 howldream evaluate dreamvalue
@@ -41,6 +42,11 @@ howldream evaluate dreamvalue
 No credentials or network inference are needed for the deterministic demo. Its
 authored catalog is clearly labeled, not presented as AI discovery. Optional
 Ollama and compatible HTTP providers support actual model experiments.
+
+The exploration starts from an authored, unverified cache candidate. Its three-call
+budget covers one baseline and two divergent candidates from mock output. Use a
+request file or `--from-candidate` as input; `--objective` sets the candidate bridge's
+goal and `--max-calls` caps provider calls, rather than counting only divergent candidates.
 
 The CLI prints its artifact directory. Use that path with `inspect`, `wake`,
 `replay`, `report`, and `compare`. `dream` and `nightmare` save generation for

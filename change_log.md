@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+Fix the README exploration quickstart to use the supported candidate bridge,
+`--objective`, `--max-calls`, and `--output`. Include an authored, unverified cache
+fixture and a public CLI regression that executes the documented command and
+checks its bounded mock-only output with local inference forbidden.
+
 Participation provenance (Run 5 AG finding: externally authored ideas credited to Dream).
 Runs, discovery and exported candidates record GENERATED / CLUSTERED / RANKED /
 SELECTED / NO_EFFECT with origin component, provider and model. The new
