@@ -298,3 +298,7 @@ model), the transforming component, and the operation. Operations are
 
 Run manifests also record `observed_models` from the actual executions. When no
 git checkout is present, `git_commit` falls back to pip's VCS install metadata.
+
+Provider artifacts use shared credential redaction, including bearer-prefixed
+assignments and hyphenated GitHub token bodies. Synthetic persistence regressions
+cover unknown provider echoes as well as configured secrets.
