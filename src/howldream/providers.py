@@ -113,11 +113,6 @@ class MockProvider:
         )
 
 
-class NoRedirect(urllib.request.HTTPRedirectHandler):
-    def redirect_request(self, req, fp, code, msg, headers, newurl):
-        raise ValueError("provider redirects are disabled")
-
-
 class HTTPProvider:
     def __init__(self, config: ProviderConfig):
         self.config = config
