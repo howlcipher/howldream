@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+Artifacts are redacted with howl-provider-core 0.2.0's shared rules (`redact`,
+`scrub`) plus the configured `HOWLDREAM_API_KEY`, instead of a local copy; this
+adds AWS access keys and `secret` assignments. The provider-core pin moves to
+`d5ae6d6` and CI's HowlCreate pin to `ce393c2`, which pins the same
+provider-core. The unused `NoRedirect` handler is removed (provider-core's
+`guarded_opener` already refuses redirects).
+
 `howldream interop --json` prints the `howl.interop/v1` descriptor from the Howl
 interop contract, built from the live parser: every command and flag, the
 documents each emits (`howl.exploration_result/v1`, `howl.candidate/v1`, ...),

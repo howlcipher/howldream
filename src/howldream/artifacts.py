@@ -3,38 +3,26 @@
 import hashlib
 import json
 import os
-import re
 from pathlib import Path
+
+from howl_provider_core import redact as _core_redact
+from howl_provider_core import scrub as _core_scrub
 
 
 def redact(text: str) -> str:
-    patterns = [
-        r"sk-[A-Za-z0-9_-]{12,}",
-        r"gh[pousr]_[A-Za-z0-9_]{12,}",
-        r"github_pat_[A-Za-z0-9_]+",
-        r"(?i)(?:authorization[\"']?\s*[:=]\s*[\"']?)(?:bearer\s+)?[^\s,\"'}]+",
-        r"(?i)(?:password|api_key|token)[\"']?\s*[:=]\s*[\"']?[^\s,\"'}]+",
-        r"-----BEGIN [^-]*PRIVATE KEY-----[\s\S]*?-----END [^-]*PRIVATE KEY-----",
-    ]
-    for pattern in patterns:
-        text = re.sub(pattern, "[REDACTED]", text)
-    return text
+    """Redact credentials with howl-provider-core's shared rules plus the configured API key."""
+    return _core_redact(text, _configured_secrets())
 
 
 def scrub(value):
-    if isinstance(value, str):
-        # Redact the configured API key even when it does not match a known pattern.
-        key = os.environ.get("HOWLDREAM_API_KEY")
-        return redact(value.replace(key, "[REDACTED]") if key else value)
-    if isinstance(value, dict):
-        secret_keys = {"authorization", "api_key", "password", "token", "access_token"}
-        return {
-            scrub(k): "[REDACTED]" if str(k).lower() in secret_keys else scrub(v)
-            for k, v in value.items()
-        }
-    if isinstance(value, list):
-        return [scrub(v) for v in value]
-    return value
+    """Redact credentials anywhere in a JSON-like value (howl-provider-core rules)."""
+    return _core_scrub(value, _configured_secrets())
+
+
+def _configured_secrets() -> tuple:
+    # Redact the configured API key even when it does not match a known pattern.
+    key = os.environ.get("HOWLDREAM_API_KEY")
+    return (key,) if key else ()
 
 
 def digest(value: str) -> str:
