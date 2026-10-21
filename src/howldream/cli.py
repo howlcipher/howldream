@@ -17,11 +17,13 @@ from howldream.contracts import CandidateHandoff, DescentDAG, ExplorationRequest
 from howldream.dreamvalue import evaluate
 from howldream.engine import explore, replay, run, wake
 from howldream.interop import exploration_from_candidate, export_candidate, review_candidate
+from howldream.interop_descriptor import describe
 from howldream.providers import RemoteCommandProvider
 from howldream.schema import read_experiment
 
 
-def main() -> int:
+def build_parser() -> argparse.ArgumentParser:
+    """Build the command-line parser (also the source of ``interop``)."""
     parser = argparse.ArgumentParser(description="HowlDream: dream output is data, not authority.")
     parser.add_argument("--version", action="version", version=__version__)
     commands = parser.add_subparsers(dest="command", required=True)
@@ -59,6 +61,9 @@ def main() -> int:
     evaluate_parser.add_argument("--input", type=Path)
     evaluate_parser.add_argument("--output", type=Path, default=Path(".howldream/evaluations"))
     evaluate_parser.add_argument("--reviews", type=Path, help="annotated human review path")
+    evaluate_parser.add_argument(
+        "--unblind", type=Path, help="unblinding map JSON (default: the map this run generates)"
+    )
     commands.add_parser("compare").add_argument("targets", type=Path, nargs="+")
 
     explore_parser = commands.add_parser("explore")
@@ -104,11 +109,23 @@ def main() -> int:
     review_parser = commands.add_parser("review")
     review_parser.add_argument("target", type=Path)
     review_parser.add_argument("--evidence", type=Path)
+    interop_parser = commands.add_parser(
+        "interop", help="print the howl.interop/v1 descriptor other Howl components check"
+    )
+    interop_parser.add_argument("--json", action="store_true", help="JSON output (the default)")
     for name in ("run", "dream", "nightmare", "explore"):
         commands.choices[name].add_argument("--max-calls", type=int)
         commands.choices[name].add_argument("--command-config", type=Path)
         commands.choices[name].add_argument("--allow-remote", action="store_true")
+    return parser
+
+
+def main() -> int:
+    parser = build_parser()
     args = parser.parse_args()
+    if args.command == "interop":
+        print(json.dumps(describe(build_parser()), indent=2))
+        return 0
     result: dict | list
     try:
         provider_override = None
@@ -192,7 +209,7 @@ def main() -> int:
                 args.input,
                 args.output,
                 reviews_path=getattr(args, "reviews", None),
-                unblinding_path=getattr(args, "unblind", None),
+                unblinding_path=args.unblind,
             )
             print(json.dumps(result, indent=2))
             return 0

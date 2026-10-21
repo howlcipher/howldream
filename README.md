@@ -220,6 +220,17 @@ For an authorized remote CLI add `--command-config /absolute/path/profile.json
 --allow-remote`; the reviewed profile is never discovered from candidate data.
 `--max-calls` remains a hard ceiling. A partial exploration exits nonzero.
 
+### Exit codes and the interop descriptor
+
+Every command except `report` prints JSON on stdout. Exit status 0 is success;
+1 is a completed run with a negative outcome (a `PARTIAL` run or exploration,
+`audit-report` findings, a failed benchmark), and its JSON is still on stdout;
+2 is an error or invalid input, with a JSON object carrying `error` on stderr.
+`howldream interop --json` prints the `howl.interop/v1` descriptor (every
+command and flag, the documents each emits, and this table) that other Howl
+components and `howl doctor` check against; see the
+[Howl interop contract](https://github.com/howlcipher/howl/blob/main/docs/INTEROP.md).
+
 `validate` routes explicit canonical schema versions: experiment (integer 1),
 exploration request/result, candidate (including reviewed candidates), assessment,
 development result, and a nonempty strict evidence list. Unknown/ambiguous input

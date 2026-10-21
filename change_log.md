@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+`howldream interop --json` prints the `howl.interop/v1` descriptor from the Howl
+interop contract, built from the live parser: every command and flag, the
+documents each emits (`howl.exploration_result/v1`, `howl.candidate/v1`, ...),
+and the exit codes, now documented in the README (0 ok, 1 negative outcome such
+as PARTIAL, 2 error). HowlPlane and `howl doctor` use it to check the commands
+they run. `evaluate --unblind` exposes the unblinding-map path `evaluate`
+already accepted; the CLI read the option without defining it.
+
 Fix the README exploration quickstart to use the supported candidate bridge,
 `--objective`, `--max-calls`, and `--output`. Include an authored, unverified cache
 fixture and a public CLI regression that executes the documented command and
