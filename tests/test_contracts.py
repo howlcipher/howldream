@@ -274,3 +274,14 @@ def test_cli_happy_path(tmp_path):
     )
     assert result.returncode == 0, result.stderr
     assert (tmp_path / "runs" / json.loads(result.stdout)["run_id"] / "report.md").exists()
+
+
+def test_unknown_provider_credentials_removed_from_persisted_artifacts(tmp_path):
+    from howldream.artifacts import write_json
+
+    echo = "token: bearer syntheticPrivate456 ghp_abcdefghijkl-mnopqrstuvwxyz"
+    path = tmp_path / "synthetic-receipt.json"
+    write_json(path, {"error": echo, "execution": [{"output": echo}]})
+    for secret in ("syntheticPrivate456", "abcdefghijkl-mnopqrstuvwxyz"):
+        assert secret not in path.read_text()
+        assert secret not in redact(echo)

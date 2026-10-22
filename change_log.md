@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+Mission 007 F2: update provider-core to the repaired historical redaction union;
+regressions cover bearer-prefixed assignments and hyphenated GitHub credentials
+in persisted errors and execution artifacts.
+
+
 Artifacts are redacted with howl-provider-core 0.2.0's shared rules (`redact`,
 `scrub`) plus the configured `HOWLDREAM_API_KEY`, instead of a local copy; this
 adds AWS access keys and `secret` assignments. The provider-core pin moves to
