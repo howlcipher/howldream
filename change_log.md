@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.4.5
 
 Mission 007 F2: update provider-core to the repaired historical redaction union;
 regressions cover bearer-prefixed assignments and hyphenated GitHub credentials
