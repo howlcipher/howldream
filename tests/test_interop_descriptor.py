@@ -37,6 +37,7 @@ def test_descriptor_shape(monkeypatch, capsys):
 
 def test_version_matches_pyproject():
     from pathlib import Path
+
     try:
         import tomllib
     except ImportError:
