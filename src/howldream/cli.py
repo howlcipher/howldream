@@ -24,8 +24,11 @@ from howldream.schema import read_experiment
 
 def build_parser() -> argparse.ArgumentParser:
     """Build the command-line parser (also the source of ``interop``)."""
-    parser = argparse.ArgumentParser(description="HowlDream: dream output is data, not authority.")
-    parser.add_argument("--version", action="version", version=__version__)
+    parser = argparse.ArgumentParser(
+        prog="howldream",
+        description="HowlDream: dream output is data, not authority.",
+    )
+    parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     commands = parser.add_subparsers(dest="command", required=True)
     for name in ("validate", "run", "dream", "nightmare", "wake", "replay", "inspect", "report"):
         sub = commands.add_parser(name)
