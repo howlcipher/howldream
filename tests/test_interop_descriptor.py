@@ -76,3 +76,15 @@ def test_commands_howlplane_runs_are_described(monkeypatch, capsys):
 def test_evaluate_accepts_the_unblinding_map_it_already_supported():
     args = build_parser().parse_args(["evaluate", "dreamvalue", "--unblind", "map.json"])
     assert str(args.unblind) == "map.json"
+
+
+def test_version_flag_output_format(capsys):
+    import pytest
+
+    from howldream.cli import build_parser
+
+    with pytest.raises(SystemExit) as exc_info:
+        build_parser().parse_args(["--version"])
+    assert exc_info.value.code == 0
+    captured = capsys.readouterr()
+    assert f"howldream {__version__}" in captured.out or f"howldream {__version__}" in captured.err
