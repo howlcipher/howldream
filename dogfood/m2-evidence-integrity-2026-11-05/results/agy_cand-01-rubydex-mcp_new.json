@@ -1,0 +1,538 @@
+{
+  "schema": "howlproof.result/v1",
+  "run_id": "hp-20261105-221037-129a3c410339",
+  "authority": "ADVISORY",
+  "version": "0.2.0b1",
+  "artifact": "cand-01-rubydex-mcp",
+  "profiles": [
+    "research"
+  ],
+  "adversaries": [
+    "FUNCTIONAL",
+    "SECURITY",
+    "RELIABILITY",
+    "AI",
+    "OPERATOR"
+  ],
+  "target": {
+    "root": "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/inputs/agy_bundles/cand-01-rubydex-mcp",
+    "is_git": false,
+    "commit": "",
+    "branch": "",
+    "dirty": false,
+    "file_count": 6,
+    "oversized_files_not_copied": [],
+    "tree_digest_before": "833172e12f8bc43319f010716ec3ce5b0cf67844693b6a150d5937863adb38db",
+    "tree_digest_after": "833172e12f8bc43319f010716ec3ce5b0cf67844693b6a150d5937863adb38db"
+  },
+  "started_at": "2026-11-05T22:10:37.934562+00:00",
+  "completed_at": "2026-11-05T22:10:37.975970+00:00",
+  "duration_ms": 41,
+  "verdict": "INSUFFICIENT_EVIDENCE",
+  "verdict_definition": "The artifact may or may not be acceptable. The evaluation that ran was inadequate to make a defensible determination, so no determination is claimed.",
+  "deciding_rule": "no_acceptance_criteria",
+  "rationale": [
+    "The artifact defines no acceptance criteria.",
+    "Running checks without criteria shows activity, not conformance."
+  ],
+  "criteria": [],
+  "counts": {
+    "checks": 5,
+    "verified": 1,
+    "failed": 0,
+    "skipped": 1,
+    "unavailable": 3,
+    "not_applicable": 0,
+    "errored": 0,
+    "simulated": 0,
+    "findings": 0,
+    "blocking_findings": 0,
+    "criteria_satisfied": 0,
+    "criteria_total": 0,
+    "by_severity": {
+      "BLOCKER": 0,
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 0,
+      "INFORMATIONAL": 0
+    },
+    "by_adversary": {
+      "FUNCTIONAL": 0,
+      "SECURITY": 0,
+      "RELIABILITY": 0,
+      "AI": 0,
+      "OPERATOR": 0,
+      "INTEGRITY": 0
+    }
+  },
+  "checks": [
+    {
+      "check_id": "research.claims.bundle",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim bundle is well formed and 5 evidence file(s) match their registered digests",
+      "limitation": "establishes structure and byte integrity only; no claim is verified by this check",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 4,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "bundle_sha256": "185f3e6311047fe0f57e28b383658e0cd7449cc39f815e55ae8cd1de4616f39b",
+        "candidate_id": "v4-agy/cand-01-rubydex-mcp",
+        "claims": 4,
+        "trust_model": "howl.evidence_trust/v1"
+      }
+    },
+    {
+      "check_id": "research.claims.c001",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim c01_01_rubydex_latency: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "the supplied evidence satisfies latency_ms le 50 ms, but it cannot be treated as verified: ev_shopify_rubydex_bench: no acquisition record: source_ref is a claim, not an observation",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c01_01_rubydex_latency",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "the supplied evidence satisfies latency_ms le 50 ms, but it cannot be treated as verified: ev_shopify_rubydex_bench: no acquisition record: source_ref is a claim, not an observation",
+        "evidence_considered": [
+          {
+            "id": "ev_shopify_rubydex_bench",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "supports",
+            "published_at": "2026-06-15T00:00:00Z",
+            "sha256": "2aaa71bf1d85b101b77176fb115fbe71d82b7f59b73744daf086d08edf419480",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://railsatscale.com/2026-06-15-rubydex-performance",
+              "produced_by": "shopify-tooling-team",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NONE",
+              "acquisition_id": null,
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "URL",
+              "source_origin": "CLAIMED_ONLY",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false,
+            "observed": "42 ms",
+            "ineligible_reasons": [
+              "no acquisition record: source_ref is a claim, not an observation"
+            ]
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the supplied numbers come from an authentic source",
+          "real-world truth"
+        ],
+        "checked_proposition": "Rubydex workspace indexer resolves project-wide constant lookups in under 50 ms on a 100,000 LOC codebase",
+        "scope": null,
+        "scope_limited": false,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": "SUPPORTED",
+        "check_passed": true,
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": true,
+          "evidence_integrity": "ok",
+          "source_origin": "CLAIMED_ONLY",
+          "claim_relevance": "NOT_ESTABLISHED",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": false,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "SUPPLIED_DATA_AGREES"
+        },
+        "bundle_sha256": "185f3e6311047fe0f57e28b383658e0cd7449cc39f815e55ae8cd1de4616f39b",
+        "candidate_id": "v4-agy/cand-01-rubydex-mcp"
+      }
+    },
+    {
+      "check_id": "research.claims.c002",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim c01_02_context_token_reduction: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "the supplied evidence satisfies token_reduction approx 65%, but it cannot be treated as verified: ev_context_token_study_a: source_ref is a placeholder and no acquisition record exists; ev_context_token_study_b: source_ref is a placeholder and no acquisition record exists",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c01_02_context_token_reduction",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "the supplied evidence satisfies token_reduction approx 65%, but it cannot be treated as verified: ev_context_token_study_a: source_ref is a placeholder and no acquisition record exists; ev_context_token_study_b: source_ref is a placeholder and no acquisition record exists",
+        "evidence_considered": [
+          {
+            "id": "ev_context_token_study_a",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "supports",
+            "published_at": "2026-07-01T00:00:00Z",
+            "sha256": "3280c464b277a3c9472a0aa079a85355fef5ae25e7da50fa553ca055740a39d4",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://example.org/bench-token-study-a",
+              "produced_by": "benchmarking-lab-a",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NONE",
+              "acquisition_id": null,
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "PLACEHOLDER",
+              "source_origin": "PLACEHOLDER",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false,
+            "observed": "63%",
+            "ineligible_reasons": [
+              "source_ref is a placeholder and no acquisition record exists"
+            ]
+          },
+          {
+            "id": "ev_context_token_study_b",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "supports",
+            "published_at": "2026-08-10T00:00:00Z",
+            "sha256": "6286f8e08c99dacf8716d52bc3b99de94dd2825cb4a4134ee7aa2584be29621b",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://example.org/bench-token-study-b",
+              "produced_by": "benchmarking-lab-b",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NONE",
+              "acquisition_id": null,
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "PLACEHOLDER",
+              "source_origin": "PLACEHOLDER",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false,
+            "observed": "64%",
+            "ineligible_reasons": [
+              "source_ref is a placeholder and no acquisition record exists"
+            ]
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the supplied numbers come from an authentic source",
+          "real-world truth"
+        ],
+        "checked_proposition": "Providing structural MCP AST graph context reduces agent prompt token usage by 65% compared to raw repository grep",
+        "scope": null,
+        "scope_limited": false,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": "SUPPORTED",
+        "check_passed": true,
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": true,
+          "evidence_integrity": "ok",
+          "source_origin": "PLACEHOLDER",
+          "claim_relevance": "NOT_ESTABLISHED",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": false,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "SUPPLIED_DATA_AGREES"
+        },
+        "bundle_sha256": "185f3e6311047fe0f57e28b383658e0cd7449cc39f815e55ae8cd1de4616f39b",
+        "candidate_id": "v4-agy/cand-01-rubydex-mcp"
+      }
+    },
+    {
+      "check_id": "research.claims.c003",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim c01_03_zero_hallucination: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "the supplied evidence contradicts hallucination_rate eq 0%, but it cannot be treated as verified: ev_agent_benchmark_failure: source_ref is a placeholder and no acquisition record exists",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c01_03_zero_hallucination",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "the supplied evidence contradicts hallucination_rate eq 0%, but it cannot be treated as verified: ev_agent_benchmark_failure: source_ref is a placeholder and no acquisition record exists",
+        "evidence_considered": [
+          {
+            "id": "ev_agent_benchmark_failure",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "contradicts",
+            "published_at": "2026-08-20T00:00:00Z",
+            "sha256": "4aab4c5e3f5689deb75db865200c283dc51626f19df1acb9ed51fda6ccfded47",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://example.org/eval-hallucination-ruby",
+              "produced_by": "ai-code-evaluation-group",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NONE",
+              "acquisition_id": null,
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "PLACEHOLDER",
+              "source_origin": "PLACEHOLDER",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false,
+            "observed": "4.2%",
+            "ineligible_reasons": [
+              "source_ref is a placeholder and no acquisition record exists"
+            ]
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the supplied numbers come from an authentic source",
+          "real-world truth"
+        ],
+        "checked_proposition": "AST graph context guarantees zero hallucination of nonexistent Ruby methods by LLM agents",
+        "scope": null,
+        "scope_limited": false,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": "REFUTED",
+        "check_passed": false,
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": false,
+          "evidence_integrity": "ok",
+          "source_origin": "PLACEHOLDER",
+          "claim_relevance": "NOT_ESTABLISHED",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": false,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "SUPPLIED_DATA_CONTRADICTS"
+        },
+        "bundle_sha256": "185f3e6311047fe0f57e28b383658e0cd7449cc39f815e55ae8cd1de4616f39b",
+        "candidate_id": "v4-agy/cand-01-rubydex-mcp"
+      }
+    },
+    {
+      "check_id": "research.claims.c004",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "SKIPPED",
+      "summary": "claim c01_04_rubydex_adoption_forecast: REQUIRES_EXTERNAL_VALIDATION",
+      "limitation": "nothing was established about this claim",
+      "reason": "value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c01_04_rubydex_adoption_forecast",
+        "category": "VALUE_JUDGMENT",
+        "assumption": false,
+        "method": "none",
+        "claim_status": "REQUIRES_EXTERNAL_VALIDATION",
+        "explanation": "value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+        "evidence_considered": [
+          {
+            "id": "ev_rubydex_adoption_survey",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": "2026-09-01T00:00:00Z",
+            "sha256": "a784ec3961f87b983b41a9b5750c78314926a75f06bdb7d197623ecb3579c46e",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://example.org/survey-2026-ruby-tooling",
+              "produced_by": "developer-insights-firm",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NONE",
+              "acquisition_id": null,
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "PLACEHOLDER",
+              "source_origin": "PLACEHOLDER",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "the truth of the judgment or forecast"
+        ],
+        "checked_proposition": "Rubydex MCP will become the default context provider for over 50% of Ruby AI developers by 2028",
+        "scope": null,
+        "scope_limited": false,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": null,
+        "check_passed": null,
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": null,
+          "evidence_integrity": "not_applicable",
+          "source_origin": "NOT_EXAMINED",
+          "claim_relevance": "NOT_APPLICABLE",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "NOT_APPLICABLE",
+          "real_world_eligible": false,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "UNRESOLVED"
+        },
+        "bundle_sha256": "185f3e6311047fe0f57e28b383658e0cd7449cc39f815e55ae8cd1de4616f39b",
+        "candidate_id": "v4-agy/cand-01-rubydex-mcp"
+      }
+    }
+  ],
+  "findings": [],
+  "unresolved_risks": [],
+  "limitations": [
+    "research.claims.c001 was UNAVAILABLE: the supplied evidence satisfies latency_ms le 50 ms, but it cannot be treated as verified: ev_shopify_rubydex_bench: no acquisition record: source_ref is a claim, not an observation",
+    "research.claims.c002 was UNAVAILABLE: the supplied evidence satisfies token_reduction approx 65%, but it cannot be treated as verified: ev_context_token_study_a: source_ref is a placeholder and no acquisition record exists; ev_context_token_study_b: source_ref is a placeholder and no acquisition record exists",
+    "research.claims.c003 was UNAVAILABLE: the supplied evidence contradicts hallucination_rate eq 0%, but it cannot be treated as verified: ev_agent_benchmark_failure: source_ref is a placeholder and no acquisition record exists",
+    "research.claims.c004 was SKIPPED: value judgments and forecasts cannot be established by an automated check, and citations do not change that"
+  ],
+  "notes": [
+    "no service is declared, so live adversaries have nothing to attack"
+  ],
+  "validation_modes": {
+    "REAL": [
+      "research.claims.bundle"
+    ],
+    "SIMULATED": [],
+    "SKIPPED": [
+      "research.claims.c004"
+    ],
+    "UNAVAILABLE": [
+      "research.claims.c001",
+      "research.claims.c002",
+      "research.claims.c003"
+    ],
+    "NOT_APPLICABLE": [],
+    "ERROR": []
+  },
+  "manifest": {
+    "schema": "howlproof.run/v1",
+    "run_id": "hp-20261105-221037-129a3c410339",
+    "authority": "ADVISORY",
+    "version": "0.2.0b1",
+    "implementation_hash": "102c32672453a3debe9caedcb14db67581b100b84e938ace15a386be6ddd8cb0",
+    "artifact": "cand-01-rubydex-mcp",
+    "profiles": [
+      "research"
+    ],
+    "started_at": "2026-11-05T22:10:37.934562+00:00",
+    "completed_at": "2026-11-05T22:10:37.975970+00:00",
+    "verdict": "INSUFFICIENT_EVIDENCE",
+    "evaluators": [
+      "research.claims/v1"
+    ],
+    "file_hashes": {
+      "checks.jsonl": "2b7bbb0a1dd4df141a1a5c122d9205740088eec440a399aab384eec124e0c3c2",
+      "config.json": "e3276b65cbed1d7cbdf4a467366de2765884687a05f1f2759a8370d56330b938",
+      "environment.json": "56bdcfd264084130a6737bd85aacaea10d0f821084211c7dbfd62cd5b060b770",
+      "evidence/research.claims/claim_results.json": "fa5dcf4de04f5557749213762423a0df1cb76fc8c4a84cbc9d1fca9f21186a89",
+      "handoff.json": "276abf7f0f08e671bed65a38c452f39ecda3d73b05c66caff907b3aa900dfa45",
+      "result.json": "e3dac6b5c1766462623161af8bd76546aae57d5be6abe60a99012934b0157d31",
+      "result.md": "93737797fd22b3bb962a3ebc5a96d30d5322e65f9c59492e6e9a625db9eb15a0",
+      "target.json": "a01059a9cfab31c6f4bbe8b2bccd3b1753e75f95102e1f19a2515e076b145f8a"
+    }
+  },
+  "path": "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/proof_out/new/hp-20261105-221037-129a3c410339"
+}

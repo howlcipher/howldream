@@ -1,0 +1,20 @@
+{
+  "attested_by": "claude-m2-dogfood",
+  "claimed_source_url": "https://www.ruby-lang.org/en/news/",
+  "content_sha256": "80f142e9189eefce2bfa0fae636e91fd96005fe10646c8585eacc1447aaabb3b",
+  "content_type": null,
+  "http_status": null,
+  "id": "acq-1c806da784745192",
+  "kind": "OPERATOR_FILE",
+  "limitations": [
+    "file was supplied by the operator and not fetched by howlproof; where it came from is as attested, not observed"
+  ],
+  "method": "operator_supplied_file",
+  "observed_url": null,
+  "record_sha256": "65f36fe519a67728ff1c6219e9cc12a800f0cba933e1dc5faf2a4d70124be91e",
+  "redirects": [],
+  "requested_url": null,
+  "retrieved_at": "2026-11-05T22:10:40Z",
+  "size": 45520,
+  "tool": "howlproof/0.2.0b1"
+}

@@ -1,0 +1,309 @@
+{
+  "schema": "howlproof.result/v1",
+  "run_id": "hp-20261105-221038-c0287214a877",
+  "authority": "ADVISORY",
+  "version": "0.2.0b1",
+  "artifact": "cand-03-rubypack",
+  "profiles": [
+    "research"
+  ],
+  "adversaries": [
+    "FUNCTIONAL",
+    "SECURITY",
+    "RELIABILITY",
+    "AI",
+    "OPERATOR"
+  ],
+  "target": {
+    "root": "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/inputs/agy_bundles/cand-03-rubypack",
+    "is_git": false,
+    "commit": "",
+    "branch": "",
+    "dirty": false,
+    "file_count": 5,
+    "oversized_files_not_copied": [],
+    "tree_digest_before": "e6d85f98b847e0210e8ae02704226252e6803be8978c1315eed07a2ec08b4bea",
+    "tree_digest_after": "e6d85f98b847e0210e8ae02704226252e6803be8978c1315eed07a2ec08b4bea"
+  },
+  "started_at": "2026-11-05T22:10:38.611023+00:00",
+  "completed_at": "2026-11-05T22:10:38.653747+00:00",
+  "duration_ms": 42,
+  "verdict": "INSUFFICIENT_EVIDENCE",
+  "verdict_definition": "The artifact may or may not be acceptable. The evaluation that ran was inadequate to make a defensible determination, so no determination is claimed.",
+  "deciding_rule": "no_acceptance_criteria",
+  "rationale": [
+    "The artifact defines no acceptance criteria.",
+    "Running checks without criteria shows activity, not conformance."
+  ],
+  "criteria": [],
+  "counts": {
+    "checks": 4,
+    "verified": 2,
+    "failed": 1,
+    "skipped": 0,
+    "unavailable": 1,
+    "not_applicable": 0,
+    "errored": 0,
+    "simulated": 0,
+    "findings": 1,
+    "blocking_findings": 0,
+    "criteria_satisfied": 0,
+    "criteria_total": 0,
+    "by_severity": {
+      "BLOCKER": 0,
+      "HIGH": 1,
+      "MEDIUM": 0,
+      "LOW": 0,
+      "INFORMATIONAL": 0
+    },
+    "by_adversary": {
+      "FUNCTIONAL": 1,
+      "SECURITY": 0,
+      "RELIABILITY": 0,
+      "AI": 0,
+      "OPERATOR": 0,
+      "INTEGRITY": 0
+    }
+  },
+  "checks": [
+    {
+      "check_id": "research.claims.bundle",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim bundle is well formed and 4 evidence file(s) match their registered digests",
+      "limitation": "establishes structure and byte integrity only; no claim is verified by this check",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 2,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "bundle_sha256": "699e2e802bfe9788fa065343d348bec65558339ed1617c6567360256378b1602",
+        "candidate_id": "v4-agy/cand-03-rubypack",
+        "claims": 3
+      }
+    },
+    {
+      "check_id": "research.claims.c001",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim c03_01_binary_size: SUPPORTED",
+      "limitation": "compares author-grounded checks against evidence whose independence is as declared in the bundle and is not authenticated; establishes only the compared fact, not that a source is correct, current or representative",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c03_01_binary_size",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "SUPPORTED",
+        "explanation": "independent evidence ev_rubypack_build_stats satisfies binary_size_mb le 35 MB",
+        "evidence_considered": [
+          {
+            "id": "ev_rubypack_build_stats",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "supports",
+            "published_at": "2026-03-15T00:00:00Z",
+            "sha256": "82cdde7ac091574989843e310c838887fe15e83431a1c99fd62b49455da4b35f",
+            "observed": "29 MB"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the source is correct, current or representative"
+        ],
+        "bundle_sha256": "699e2e802bfe9788fa065343d348bec65558339ed1617c6567360256378b1602",
+        "candidate_id": "v4-agy/cand-03-rubypack"
+      }
+    },
+    {
+      "check_id": "research.claims.c002",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim c03_02_startup_latency: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "independent evidence conflicts (ev_startup_linux supports, ev_startup_macos_arm contradicts); a newer source is not a resolution",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c03_02_startup_latency",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "independent evidence conflicts (ev_startup_linux supports, ev_startup_macos_arm contradicts); a newer source is not a resolution",
+        "evidence_considered": [
+          {
+            "id": "ev_startup_linux",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "supports",
+            "published_at": "2026-03-18T00:00:00Z",
+            "sha256": "a11458e0e7ce8ccc5da9a88e19e3913f0d2076f9bebcebb7910eec5034f3145a",
+            "observed": "12 ms"
+          },
+          {
+            "id": "ev_startup_macos_arm",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "contradicts",
+            "published_at": "2026-04-01T00:00:00Z",
+            "sha256": "bbe79fcc2b04257fe9391130f95ea2a03d4981de42778988073b209426389c65",
+            "observed": "38 ms"
+          }
+        ],
+        "conflicts": [
+          {
+            "kind": "supports_vs_contradicts",
+            "evidence": [
+              "ev_startup_linux",
+              "ev_startup_macos_arm"
+            ],
+            "newer": "ev_startup_macos_arm"
+          }
+        ],
+        "untrusted_flags": [],
+        "not_checked": [
+          "which conflicting source is correct"
+        ],
+        "bundle_sha256": "699e2e802bfe9788fa065343d348bec65558339ed1617c6567360256378b1602",
+        "candidate_id": "v4-agy/cand-03-rubypack"
+      }
+    },
+    {
+      "check_id": "research.claims.c003",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "FAILED",
+      "summary": "claim c03_03_gem_c_extension_compat: REFUTED",
+      "limitation": "compares author-grounded checks against evidence whose independence is as declared in the bundle and is not authenticated; establishes only the compared fact, not that a source is correct, current or representative",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c03_03_gem_c_extension_compat",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "REFUTED",
+        "explanation": "independent evidence ev_gem_build_compat contradicts compat_rate eq 100%",
+        "evidence_considered": [
+          {
+            "id": "ev_gem_build_compat",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "contradicts",
+            "published_at": "2026-05-01T00:00:00Z",
+            "sha256": "039340f4a4675399a5e6bd82546f3a3ae3e9a535d627c400affc7e79dce43bb7",
+            "observed": "74%"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the contradicting source is itself correct"
+        ],
+        "bundle_sha256": "699e2e802bfe9788fa065343d348bec65558339ed1617c6567360256378b1602",
+        "candidate_id": "v4-agy/cand-03-rubypack"
+      }
+    }
+  ],
+  "findings": [
+    {
+      "check_id": "research.claims.c003",
+      "adversary": "FUNCTIONAL",
+      "category": "correctness",
+      "title": "Claim c03_03_gem_c_extension_compat refuted by independent evidence",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "summary": "claim c03_03_gem_c_extension_compat: independent evidence ev_gem_build_compat contradicts compat_rate eq 100%",
+      "evidence": "[\n  {\n    \"id\": \"ev_gem_build_compat\",\n    \"independent\": true,\n    \"integrity\": \"ok\",\n    \"observed\": \"74%\",\n    \"published_at\": \"2026-05-01T00:00:00Z\",\n    \"relation\": \"contradicts\",\n    \"sha256\": \"039340f4a4675399a5e6bd82546f3a3ae3e9a535d627c400affc7e79dce43bb7\",\n    \"source_type\": \"EXTERNAL_OBSERVATION\"\n  }\n]",
+      "recommended_remediation": "Revise or withdraw the claim, or supply independent evidence that resolves the contradiction.",
+      "location": null,
+      "rule": "research.claims.refuted",
+      "state": "FOUND",
+      "reproduction": null,
+      "resolution_reason": null,
+      "id": "HP-FUNC-0002",
+      "fingerprint_basis": null,
+      "fingerprint": "cbfd55318db36934fcb1181ec851f4e7dfa3802b9669649e8a016a2dc95a604f",
+      "first_seen_run": "hp-20261105-221038-c0287214a877",
+      "first_seen_commit": "",
+      "last_seen_run": "hp-20261105-221038-c0287214a877",
+      "detail": {},
+      "blocking": false
+    }
+  ],
+  "unresolved_risks": [
+    "HP-FUNC-0002 (HIGH): claim c03_03_gem_c_extension_compat: independent evidence ev_gem_build_compat contradicts compat_rate eq 100%"
+  ],
+  "limitations": [
+    "research.claims.c002 was UNAVAILABLE: independent evidence conflicts (ev_startup_linux supports, ev_startup_macos_arm contradicts); a newer source is not a resolution"
+  ],
+  "notes": [
+    "no service is declared, so live adversaries have nothing to attack"
+  ],
+  "validation_modes": {
+    "REAL": [
+      "research.claims.bundle",
+      "research.claims.c001",
+      "research.claims.c003"
+    ],
+    "SIMULATED": [],
+    "SKIPPED": [],
+    "UNAVAILABLE": [
+      "research.claims.c002"
+    ],
+    "NOT_APPLICABLE": [],
+    "ERROR": []
+  },
+  "manifest": {
+    "schema": "howlproof.run/v1",
+    "run_id": "hp-20261105-221038-c0287214a877",
+    "authority": "ADVISORY",
+    "version": "0.2.0b1",
+    "implementation_hash": "49a4d42f4639179f93e9cdb450e93655cd436070ce8cd440594d88d96a9540bb",
+    "artifact": "cand-03-rubypack",
+    "profiles": [
+      "research"
+    ],
+    "started_at": "2026-11-05T22:10:38.611023+00:00",
+    "completed_at": "2026-11-05T22:10:38.653747+00:00",
+    "verdict": "INSUFFICIENT_EVIDENCE",
+    "evaluators": [
+      "research.claims/v1"
+    ],
+    "file_hashes": {
+      "checks.jsonl": "bb39fefdf09baa5c52d374b95b1437982c612c453e0bbd49a69000d3a786dc2a",
+      "config.json": "bf7cd9bca80095ba8b127eb67163691f9e3abdaae64eb3470905601e5b3663b4",
+      "environment.json": "01c2060fba66155b32393da7a7e5ea5903669138252cf4bcdff6c2c94837fe4b",
+      "evidence/research.claims/claim_results.json": "16af115a70c81aab8a4779d674d0704c1521bd5fd4f4a352f35f9927d82160b9",
+      "findings/HP-FUNC-0002.json": "461899c08308e67e1cddfbe790d043d9014cd2fe62e90233fffa5e94903f5365",
+      "handoff.json": "58365b001b1d052e185bf883c8b249d2f11c764f5b2211f9f391f95bedec007b",
+      "result.json": "fab01aa7bec6e18ea3d214fa4f9afb6616879c15de8654c1b75c1941e5cbdb1e",
+      "result.md": "6419ead5908dfa98d1f02682f94d1efce89361702e903eba05bbdc43b1379a0b",
+      "target.json": "0cc3c34c88b5c02c713eb3cda77cd552a4e673fffd5a1ab7ecf8d509aee10b8b"
+    }
+  },
+  "path": "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/proof_out/old/hp-20261105-221038-c0287214a877"
+}

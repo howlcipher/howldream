@@ -1,0 +1,568 @@
+{
+  "schema": "howlproof.result/v1",
+  "run_id": "hp-20261105-221042-415aba2b58fa",
+  "authority": "ADVISORY",
+  "version": "0.2.0b1",
+  "artifact": "claude",
+  "profiles": [
+    "research"
+  ],
+  "adversaries": [
+    "FUNCTIONAL",
+    "SECURITY",
+    "RELIABILITY",
+    "AI",
+    "OPERATOR"
+  ],
+  "target": {
+    "root": "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/bundles/claude",
+    "is_git": false,
+    "commit": "",
+    "branch": "",
+    "dirty": false,
+    "file_count": 8,
+    "oversized_files_not_copied": [],
+    "tree_digest_before": "7cade65928106222ee380387854c796147859411813ecc3adc6ddb278fcb3c1d",
+    "tree_digest_after": "7cade65928106222ee380387854c796147859411813ecc3adc6ddb278fcb3c1d"
+  },
+  "started_at": "2026-11-05T22:10:42.861821+00:00",
+  "completed_at": "2026-11-05T22:10:42.910974+00:00",
+  "duration_ms": 49,
+  "verdict": "INSUFFICIENT_EVIDENCE",
+  "verdict_definition": "The artifact may or may not be acceptable. The evaluation that ran was inadequate to make a defensible determination, so no determination is claimed.",
+  "deciding_rule": "no_acceptance_criteria",
+  "rationale": [
+    "The artifact defines no acceptance criteria.",
+    "Running checks without criteria shows activity, not conformance."
+  ],
+  "criteria": [],
+  "counts": {
+    "checks": 9,
+    "verified": 4,
+    "failed": 1,
+    "skipped": 1,
+    "unavailable": 3,
+    "not_applicable": 0,
+    "errored": 0,
+    "simulated": 0,
+    "findings": 1,
+    "blocking_findings": 0,
+    "criteria_satisfied": 0,
+    "criteria_total": 0,
+    "by_severity": {
+      "BLOCKER": 0,
+      "HIGH": 1,
+      "MEDIUM": 0,
+      "LOW": 0,
+      "INFORMATIONAL": 0
+    },
+    "by_adversary": {
+      "FUNCTIONAL": 1,
+      "SECURITY": 0,
+      "RELIABILITY": 0,
+      "AI": 0,
+      "OPERATOR": 0,
+      "INTEGRITY": 0
+    }
+  },
+  "checks": [
+    {
+      "check_id": "research.claims.bundle",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim bundle is well formed and 7 evidence file(s) match their registered digests",
+      "limitation": "establishes structure and byte integrity only; no claim is verified by this check",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 3,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "bundle_sha256": "931c6e20503c07eb7ec1b384bc4fc882af7d478a493fa6a6058825032dce034d",
+        "candidate_id": "m2/claude-corpus",
+        "claims": 8
+      }
+    },
+    {
+      "check_id": "research.claims.c001",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "FAILED",
+      "summary": "claim k02-3: REFUTED",
+      "limitation": "compares author-grounded checks against evidence whose independence is as declared in the bundle and is not authenticated; establishes only the compared fact, not that a source is correct, current or representative",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "k02-3",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "REFUTED",
+        "explanation": "independent evidence mutant_readme contradicts agent_integration_documented eq 1",
+        "evidence_considered": [
+          {
+            "id": "mutant_readme",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "contradicts",
+            "published_at": null,
+            "sha256": "08366e26680860c5f3f6a259c3d685aa7fa60f76e6f264364d0540726f144a4a",
+            "observed": "0"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the contradicting source is itself correct"
+        ],
+        "bundle_sha256": "931c6e20503c07eb7ec1b384bc4fc882af7d478a493fa6a6058825032dce034d",
+        "candidate_id": "m2/claude-corpus"
+      }
+    },
+    {
+      "check_id": "research.claims.c002",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim k02-3-scoped: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "evaluator 'text_presence' is not available in research.claims/v1 (supported: fact_compare, arithmetic); nothing was checked",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "k02-3-scoped",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "text_presence",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "evaluator 'text_presence' is not available in research.claims/v1 (supported: fact_compare, arithmetic); nothing was checked",
+        "evidence_considered": [
+          {
+            "id": "mutant_readme",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": null,
+            "sha256": "08366e26680860c5f3f6a259c3d685aa7fa60f76e6f264364d0540726f144a4a"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [],
+        "unsupported_evaluator": "text_presence",
+        "bundle_sha256": "931c6e20503c07eb7ec1b384bc4fc882af7d478a493fa6a6058825032dce034d",
+        "candidate_id": "m2/claude-corpus"
+      }
+    },
+    {
+      "check_id": "research.claims.c003",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim k02-5: SUPPORTED",
+      "limitation": "compares author-grounded checks against evidence whose independence is as declared in the bundle and is not authenticated; establishes only the compared fact, not that a source is correct, current or representative",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "k02-5",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "SUPPORTED",
+        "explanation": "independent evidence mutant_skill satisfies skill_file_http_status eq 200",
+        "evidence_considered": [
+          {
+            "id": "mutant_skill",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "supports",
+            "published_at": null,
+            "sha256": "e60c77a443f83c59679ca92e70c612928adf4d894c588a107d24149bed4193ba",
+            "observed": "200"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the source is correct, current or representative"
+        ],
+        "bundle_sha256": "931c6e20503c07eb7ec1b384bc4fc882af7d478a493fa6a6058825032dce034d",
+        "candidate_id": "m2/claude-corpus"
+      }
+    },
+    {
+      "check_id": "research.claims.c004",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim rel-4-0-9: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "evaluator 'text_presence' is not available in research.claims/v1 (supported: fact_compare, arithmetic); nothing was checked",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "rel-4-0-9",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "text_presence",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "evaluator 'text_presence' is not available in research.claims/v1 (supported: fact_compare, arithmetic); nothing was checked",
+        "evidence_considered": [
+          {
+            "id": "rubylang_news",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": "2026-10-23T00:00:00Z",
+            "sha256": "26847c2afd7b2fa316d52d070b75fa657a7a5e2a0e82f0ecedaf3a01a86c82e2"
+          },
+          {
+            "id": "rubylang_news_live",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": "2026-11-05T22:10:41Z",
+            "sha256": "6520a06825f92ce1c3fe1bc88f3f1d9dfa6d834777279183f0c8b404a78a82dc"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [],
+        "unsupported_evaluator": "text_presence",
+        "bundle_sha256": "931c6e20503c07eb7ec1b384bc4fc882af7d478a493fa6a6058825032dce034d",
+        "candidate_id": "m2/claude-corpus"
+      }
+    },
+    {
+      "check_id": "research.claims.c005",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim k03-3: SUPPORTED",
+      "limitation": "compares author-grounded checks against evidence whose independence is as declared in the bundle and is not authenticated; establishes only the compared fact, not that a source is correct, current or representative",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "k03-3",
+        "category": "TECHNICAL",
+        "assumption": false,
+        "method": "arithmetic",
+        "claim_status": "SUPPORTED",
+        "explanation": "(0.62 - 0.36) / 0.62 = 0.4193548387096774193548387097; expected approx 0.419 -> holds",
+        "evidence_considered": [
+          {
+            "id": "mame_readme",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": null,
+            "sha256": "d44a5857c0fae97dd434e98ef6a67b5a4fd337d934c9c9f1f78045eeb5c3b4b5"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "inputs of the expression were taken from the claim, not independently sourced"
+        ],
+        "bundle_sha256": "931c6e20503c07eb7ec1b384bc4fc882af7d478a493fa6a6058825032dce034d",
+        "candidate_id": "m2/claude-corpus"
+      }
+    },
+    {
+      "check_id": "research.claims.c006",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "SKIPPED",
+      "summary": "claim k06-3: REQUIRES_EXTERNAL_VALIDATION",
+      "limitation": "nothing was established about this claim",
+      "reason": "value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "k06-3",
+        "category": "VALUE_JUDGMENT",
+        "assumption": false,
+        "method": "none",
+        "claim_status": "REQUIRES_EXTERNAL_VALIDATION",
+        "explanation": "value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+        "evidence_considered": [
+          {
+            "id": "mutant_readme",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": null,
+            "sha256": "08366e26680860c5f3f6a259c3d685aa7fa60f76e6f264364d0540726f144a4a"
+          },
+          {
+            "id": "mutant_skill",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": null,
+            "sha256": "e60c77a443f83c59679ca92e70c612928adf4d894c588a107d24149bed4193ba"
+          },
+          {
+            "id": "rubylang_news",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": "2026-10-23T00:00:00Z",
+            "sha256": "26847c2afd7b2fa316d52d070b75fa657a7a5e2a0e82f0ecedaf3a01a86c82e2"
+          },
+          {
+            "id": "ruby400_notes",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": "2025-12-25T00:00:00Z",
+            "sha256": "6b9c5a2ab08e0a6a4b653e4a45354de6b3ddde47a5588a2e28d59c590c49febd"
+          },
+          {
+            "id": "rv_readme",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": null,
+            "sha256": "39a72c85310adac614ae82853e05b0d4a838366253b38a1fbc1fb7a95465edd1"
+          },
+          {
+            "id": "mame_readme",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": null,
+            "sha256": "d44a5857c0fae97dd434e98ef6a67b5a4fd337d934c9c9f1f78045eeb5c3b4b5"
+          },
+          {
+            "id": "rubylang_news_live",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": "2026-11-05T22:10:41Z",
+            "sha256": "6520a06825f92ce1c3fe1bc88f3f1d9dfa6d834777279183f0c8b404a78a82dc"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "the truth of the judgment or forecast"
+        ],
+        "bundle_sha256": "931c6e20503c07eb7ec1b384bc4fc882af7d478a493fa6a6058825032dce034d",
+        "candidate_id": "m2/claude-corpus"
+      }
+    },
+    {
+      "check_id": "research.claims.c007",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim ruby-4-0-0-latest: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "evaluator 'text_presence' is not available in research.claims/v1 (supported: fact_compare, arithmetic); nothing was checked",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "ruby-4-0-0-latest",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "text_presence",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "evaluator 'text_presence' is not available in research.claims/v1 (supported: fact_compare, arithmetic); nothing was checked",
+        "evidence_considered": [
+          {
+            "id": "ruby400_notes",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": "2025-12-25T00:00:00Z",
+            "sha256": "6b9c5a2ab08e0a6a4b653e4a45354de6b3ddde47a5588a2e28d59c590c49febd"
+          },
+          {
+            "id": "rubylang_news",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": "2026-10-23T00:00:00Z",
+            "sha256": "26847c2afd7b2fa316d52d070b75fa657a7a5e2a0e82f0ecedaf3a01a86c82e2"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [],
+        "unsupported_evaluator": "text_presence",
+        "bundle_sha256": "931c6e20503c07eb7ec1b384bc4fc882af7d478a493fa6a6058825032dce034d",
+        "candidate_id": "m2/claude-corpus"
+      }
+    },
+    {
+      "check_id": "research.claims.c008",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim rubydex-index-time: SUPPORTED",
+      "limitation": "compares author-grounded checks against evidence whose independence is as declared in the bundle and is not authenticated; establishes only the compared fact, not that a source is correct, current or representative",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "rubydex-index-time",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "SUPPORTED",
+        "explanation": "independent evidence rv_readme satisfies index_seconds le 2 seconds",
+        "evidence_considered": [
+          {
+            "id": "rv_readme",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "supports",
+            "published_at": null,
+            "sha256": "39a72c85310adac614ae82853e05b0d4a838366253b38a1fbc1fb7a95465edd1",
+            "observed": "1.8 seconds"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the source is correct, current or representative"
+        ],
+        "bundle_sha256": "931c6e20503c07eb7ec1b384bc4fc882af7d478a493fa6a6058825032dce034d",
+        "candidate_id": "m2/claude-corpus"
+      }
+    }
+  ],
+  "findings": [
+    {
+      "check_id": "research.claims.c001",
+      "adversary": "FUNCTIONAL",
+      "category": "correctness",
+      "title": "Claim k02-3 refuted by independent evidence",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "summary": "claim k02-3: independent evidence mutant_readme contradicts agent_integration_documented eq 1",
+      "evidence": "[\n  {\n    \"id\": \"mutant_readme\",\n    \"independent\": true,\n    \"integrity\": \"ok\",\n    \"observed\": \"0\",\n    \"published_at\": null,\n    \"relation\": \"contradicts\",\n    \"sha256\": \"08366e26680860c5f3f6a259c3d685aa7fa60f76e6f264364d0540726f144a4a\",\n    \"source_type\": \"EXTERNAL_OBSERVATION\"\n  }\n]",
+      "recommended_remediation": "Revise or withdraw the claim, or supply independent evidence that resolves the contradiction.",
+      "location": null,
+      "rule": "research.claims.refuted",
+      "state": "FOUND",
+      "reproduction": null,
+      "resolution_reason": null,
+      "id": "HP-FUNC-0001",
+      "fingerprint_basis": null,
+      "fingerprint": "d28cc93b0754ca34ba5128eadbe9eef5edca7f4fa376a2af39b0328a785466aa",
+      "first_seen_run": "hp-20261105-221042-415aba2b58fa",
+      "first_seen_commit": "",
+      "last_seen_run": "hp-20261105-221042-415aba2b58fa",
+      "detail": {},
+      "blocking": false
+    }
+  ],
+  "unresolved_risks": [
+    "HP-FUNC-0001 (HIGH): claim k02-3: independent evidence mutant_readme contradicts agent_integration_documented eq 1"
+  ],
+  "limitations": [
+    "research.claims.c002 was UNAVAILABLE: evaluator 'text_presence' is not available in research.claims/v1 (supported: fact_compare, arithmetic); nothing was checked",
+    "research.claims.c004 was UNAVAILABLE: evaluator 'text_presence' is not available in research.claims/v1 (supported: fact_compare, arithmetic); nothing was checked",
+    "research.claims.c006 was SKIPPED: value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+    "research.claims.c007 was UNAVAILABLE: evaluator 'text_presence' is not available in research.claims/v1 (supported: fact_compare, arithmetic); nothing was checked"
+  ],
+  "notes": [
+    "no service is declared, so live adversaries have nothing to attack"
+  ],
+  "validation_modes": {
+    "REAL": [
+      "research.claims.bundle",
+      "research.claims.c001",
+      "research.claims.c003",
+      "research.claims.c005",
+      "research.claims.c008"
+    ],
+    "SIMULATED": [],
+    "SKIPPED": [
+      "research.claims.c006"
+    ],
+    "UNAVAILABLE": [
+      "research.claims.c002",
+      "research.claims.c004",
+      "research.claims.c007"
+    ],
+    "NOT_APPLICABLE": [],
+    "ERROR": []
+  },
+  "manifest": {
+    "schema": "howlproof.run/v1",
+    "run_id": "hp-20261105-221042-415aba2b58fa",
+    "authority": "ADVISORY",
+    "version": "0.2.0b1",
+    "implementation_hash": "49a4d42f4639179f93e9cdb450e93655cd436070ce8cd440594d88d96a9540bb",
+    "artifact": "claude",
+    "profiles": [
+      "research"
+    ],
+    "started_at": "2026-11-05T22:10:42.861821+00:00",
+    "completed_at": "2026-11-05T22:10:42.910974+00:00",
+    "verdict": "INSUFFICIENT_EVIDENCE",
+    "evaluators": [
+      "research.claims/v1"
+    ],
+    "file_hashes": {
+      "checks.jsonl": "6c3d8e901c8cac2a4116043d3f01429dc50e8d8df0694676a249dc153617baa0",
+      "config.json": "e4ce65058c359b8fc8878c5d948c89ce2fa6229b6b5b42d0d11de2378f3a524e",
+      "environment.json": "dfa8d8ac10876f3d22a862eab1408de91f2a11bd061b5be464a2050f7c696c01",
+      "evidence/research.claims/claim_results.json": "9f453a555a57023c3641edd834b017ddeb560a815920a5bc0ed6ba1abde9125e",
+      "findings/HP-FUNC-0001.json": "433ac9000e1230214be812bb23e3fa73dfec431f2a77e9e8bc91f0a9a360e9d8",
+      "handoff.json": "0450a6a2f155a34de06537f8a6ebb699615adb969ef02896907e3b5cc521a600",
+      "result.json": "674bd67e9e53eda290ad22ea506265b9cc110e8bbf3c896bd51b8f8de68f73ff",
+      "result.md": "a811f74d6f6f0805c1ec742df06e23605b6626db030da72b3ac3c46e3cbebacb",
+      "target.json": "98c7537b28f555df03498a2db2f469f0e58e10c03a0ff63934794ffed9c9550c"
+    }
+  },
+  "path": "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/proof_out/claude_old/hp-20261105-221042-415aba2b58fa"
+}

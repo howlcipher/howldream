@@ -1,0 +1,318 @@
+[
+  {
+    "label": "agy_cand-01-rubydex-mcp_old",
+    "argv": [
+      "/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python",
+      "-I",
+      "-c",
+      "import sys; sys.path.insert(0, '/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/old_proof_src/src'); from howlproof.cli import main; sys.exit(main(sys.argv[1:]))",
+      "evaluate",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/inputs/agy_bundles/cand-01-rubydex-mcp",
+      "--profile",
+      "research",
+      "--evidence-root",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/proof_out/old",
+      "--json"
+    ],
+    "exit": 40
+  },
+  {
+    "label": "agy_cand-01-rubydex-mcp_new",
+    "argv": [
+      "/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python",
+      "-m",
+      "howlproof.cli",
+      "evaluate",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/inputs/agy_bundles/cand-01-rubydex-mcp",
+      "--profile",
+      "research",
+      "--evidence-root",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/proof_out/new",
+      "--json"
+    ],
+    "exit": 40
+  },
+  {
+    "label": "agy_cand-01-rubydex-mcp_import",
+    "argv": [
+      "/run/media/howlcipher/tallgeese/dev/howldream/.venv/bin/python",
+      "-m",
+      "howldream.cli",
+      "import-proof",
+      "--bundle",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/inputs/agy_bundles/cand-01-rubydex-mcp",
+      "--result",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/results/agy_cand-01-rubydex-mcp_new.json",
+      "--out",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/assessments/agy_cand-01-rubydex-mcp.json"
+    ],
+    "exit": 0
+  },
+  {
+    "label": "agy_cand-03-rubypack_old",
+    "argv": [
+      "/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python",
+      "-I",
+      "-c",
+      "import sys; sys.path.insert(0, '/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/old_proof_src/src'); from howlproof.cli import main; sys.exit(main(sys.argv[1:]))",
+      "evaluate",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/inputs/agy_bundles/cand-03-rubypack",
+      "--profile",
+      "research",
+      "--evidence-root",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/proof_out/old",
+      "--json"
+    ],
+    "exit": 40
+  },
+  {
+    "label": "agy_cand-03-rubypack_new",
+    "argv": [
+      "/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python",
+      "-m",
+      "howlproof.cli",
+      "evaluate",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/inputs/agy_bundles/cand-03-rubypack",
+      "--profile",
+      "research",
+      "--evidence-root",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/proof_out/new",
+      "--json"
+    ],
+    "exit": 40
+  },
+  {
+    "label": "agy_cand-03-rubypack_import",
+    "argv": [
+      "/run/media/howlcipher/tallgeese/dev/howldream/.venv/bin/python",
+      "-m",
+      "howldream.cli",
+      "import-proof",
+      "--bundle",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/inputs/agy_bundles/cand-03-rubypack",
+      "--result",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/results/agy_cand-03-rubypack_new.json",
+      "--out",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/assessments/agy_cand-03-rubypack.json"
+    ],
+    "exit": 0
+  },
+  {
+    "label": "acquire_mutant_readme",
+    "argv": [
+      "/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python",
+      "-m",
+      "howlproof.cli",
+      "acquire",
+      "--store",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/store",
+      "--file",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/inputs/claude_raw/mutant_README.md",
+      "--source-url",
+      "https://github.com/mbj/mutant",
+      "--operator",
+      "claude-m2-dogfood"
+    ],
+    "exit": 0
+  },
+  {
+    "label": "acquire_mutant_skill",
+    "argv": [
+      "/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python",
+      "-m",
+      "howlproof.cli",
+      "acquire",
+      "--store",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/store",
+      "--file",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/inputs/claude_raw/mutant_SKILL.md",
+      "--source-url",
+      "https://github.com/mbj/mutant",
+      "--operator",
+      "claude-m2-dogfood"
+    ],
+    "exit": 0
+  },
+  {
+    "label": "acquire_rubylang_news",
+    "argv": [
+      "/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python",
+      "-m",
+      "howlproof.cli",
+      "acquire",
+      "--store",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/store",
+      "--file",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/inputs/claude_raw/rubylang_news.html",
+      "--source-url",
+      "https://www.ruby-lang.org/en/news/",
+      "--operator",
+      "claude-m2-dogfood"
+    ],
+    "exit": 0
+  },
+  {
+    "label": "acquire_ruby400_notes",
+    "argv": [
+      "/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python",
+      "-m",
+      "howlproof.cli",
+      "acquire",
+      "--store",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/store",
+      "--file",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/inputs/claude_raw/ruby400_notes.html",
+      "--source-url",
+      "https://www.ruby-lang.org/en/news/2025/12/25/ruby-4-0-0-released/",
+      "--operator",
+      "claude-m2-dogfood"
+    ],
+    "exit": 0
+  },
+  {
+    "label": "acquire_rv_readme",
+    "argv": [
+      "/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python",
+      "-m",
+      "howlproof.cli",
+      "acquire",
+      "--store",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/store",
+      "--file",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/inputs/claude_raw/rv_README.md",
+      "--source-url",
+      "https://github.com/spinel-coop/rv",
+      "--operator",
+      "claude-m2-dogfood"
+    ],
+    "exit": 0
+  },
+  {
+    "label": "acquire_mame_readme",
+    "argv": [
+      "/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python",
+      "-m",
+      "howlproof.cli",
+      "acquire",
+      "--store",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/store",
+      "--file",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/inputs/claude_raw/mame_README.md",
+      "--source-url",
+      "https://github.com/mame/ai-coding-lang-bench",
+      "--operator",
+      "claude-m2-dogfood"
+    ],
+    "exit": 0
+  },
+  {
+    "label": "live_fetch",
+    "argv": [
+      "/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python",
+      "-m",
+      "howlproof.cli",
+      "acquire",
+      "--store",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/live_store",
+      "--url",
+      "https://www.ruby-lang.org/en/news/"
+    ],
+    "exit": 0
+  },
+  {
+    "label": "claude_export",
+    "argv": [
+      "/run/media/howlcipher/tallgeese/dev/howldream/.venv/bin/python",
+      "-m",
+      "howldream.cli",
+      "export-proof",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/inputs/claude_candidate.json",
+      "--evidence",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/inputs/claude_evidence.json",
+      "--out",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/bundles/claude"
+    ],
+    "exit": 0
+  },
+  {
+    "label": "claude_new",
+    "argv": [
+      "/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python",
+      "-m",
+      "howlproof.cli",
+      "evaluate",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/bundles/claude",
+      "--profile",
+      "research",
+      "--evidence-root",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/proof_out/claude_new",
+      "--acquisition-store",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/store",
+      "--json"
+    ],
+    "exit": 40
+  },
+  {
+    "label": "claude_old",
+    "argv": [
+      "/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python",
+      "-I",
+      "-c",
+      "import sys; sys.path.insert(0, '/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/old_proof_src/src'); from howlproof.cli import main; sys.exit(main(sys.argv[1:]))",
+      "evaluate",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/bundles/claude",
+      "--profile",
+      "research",
+      "--evidence-root",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/proof_out/claude_old",
+      "--json"
+    ],
+    "exit": 40
+  },
+  {
+    "label": "claude_new_nostore",
+    "argv": [
+      "/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python",
+      "-m",
+      "howlproof.cli",
+      "evaluate",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/bundles/claude",
+      "--profile",
+      "research",
+      "--evidence-root",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/proof_out/claude_nostore",
+      "--json"
+    ],
+    "exit": 40
+  },
+  {
+    "label": "claude_import",
+    "argv": [
+      "/run/media/howlcipher/tallgeese/dev/howldream/.venv/bin/python",
+      "-m",
+      "howldream.cli",
+      "import-proof",
+      "--bundle",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/bundles/claude",
+      "--result",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/results/claude_new.json",
+      "--out",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/assessments/claude.json"
+    ],
+    "exit": 0
+  },
+  {
+    "label": "claude_import_again",
+    "argv": [
+      "/run/media/howlcipher/tallgeese/dev/howldream/.venv/bin/python",
+      "-m",
+      "howldream.cli",
+      "import-proof",
+      "--bundle",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/bundles/claude",
+      "--result",
+      "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/results/claude_new.json"
+    ],
+    "exit": 0
+  }
+]

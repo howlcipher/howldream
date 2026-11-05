@@ -1,0 +1,20 @@
+{
+  "attested_by": "claude-m2-dogfood",
+  "claimed_source_url": "https://www.ruby-lang.org/en/news/2025/12/25/ruby-4-0-0-released/",
+  "content_sha256": "ba63465081fbee03802d56ced988c92d7be473b49a6a12454e76ff5dda830678",
+  "content_type": null,
+  "http_status": null,
+  "id": "acq-6206a0cdf4ebad9d",
+  "kind": "OPERATOR_FILE",
+  "limitations": [
+    "file was supplied by the operator and not fetched by howlproof; where it came from is as attested, not observed"
+  ],
+  "method": "operator_supplied_file",
+  "observed_url": null,
+  "record_sha256": "1071825c926d5eff6ce6e970d17db788c79767f3f56ce302ce4b59a1893019df",
+  "redirects": [],
+  "requested_url": null,
+  "retrieved_at": "2026-11-05T22:10:40Z",
+  "size": 94378,
+  "tool": "howlproof/0.2.0b1"
+}

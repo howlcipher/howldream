@@ -1,0 +1,20 @@
+{
+  "attested_by": "claude-m2-dogfood",
+  "claimed_source_url": "https://github.com/mame/ai-coding-lang-bench",
+  "content_sha256": "89089a7650fb22a885c76cd7b328961ae4f26d22cdacd8539c1cdc193579fd14",
+  "content_type": null,
+  "http_status": null,
+  "id": "acq-cf544340f2287421",
+  "kind": "OPERATOR_FILE",
+  "limitations": [
+    "file was supplied by the operator and not fetched by howlproof; where it came from is as attested, not observed"
+  ],
+  "method": "operator_supplied_file",
+  "observed_url": null,
+  "record_sha256": "2030f9e6157551f9fcbb2e43219beb0e5efda043a6b4d468cbe001754baa8a1d",
+  "redirects": [],
+  "requested_url": null,
+  "retrieved_at": "2026-11-05T22:10:41Z",
+  "size": 7787,
+  "tool": "howlproof/0.2.0b1"
+}

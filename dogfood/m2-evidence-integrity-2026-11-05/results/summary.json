@@ -1,0 +1,347 @@
+{
+  "agy": {
+    "cand-01-rubydex-mcp": {
+      "old_proof": {
+        "c01_01_rubydex_latency": [
+          "SUPPORTED",
+          "VERIFIED"
+        ],
+        "c01_02_context_token_reduction": [
+          "SUPPORTED",
+          "VERIFIED"
+        ],
+        "c01_03_zero_hallucination": [
+          "REFUTED",
+          "FAILED"
+        ],
+        "c01_04_rubydex_adoption_forecast": [
+          "REQUIRES_EXTERNAL_VALIDATION",
+          "SKIPPED"
+        ]
+      },
+      "new_proof": {
+        "c01_01_rubydex_latency": [
+          "INCONCLUSIVE",
+          "SUPPORTED",
+          "UNAVAILABLE",
+          "CLAIMED_ONLY",
+          "SUPPLIED_DATA_AGREES"
+        ],
+        "c01_02_context_token_reduction": [
+          "INCONCLUSIVE",
+          "SUPPORTED",
+          "UNAVAILABLE",
+          "PLACEHOLDER",
+          "SUPPLIED_DATA_AGREES"
+        ],
+        "c01_03_zero_hallucination": [
+          "INCONCLUSIVE",
+          "REFUTED",
+          "UNAVAILABLE",
+          "PLACEHOLDER",
+          "SUPPLIED_DATA_CONTRADICTS"
+        ],
+        "c01_04_rubydex_adoption_forecast": [
+          "REQUIRES_EXTERNAL_VALIDATION",
+          null,
+          "SKIPPED",
+          "NOT_EXAMINED",
+          "UNRESOLVED"
+        ]
+      },
+      "dream_disposition": "UNRESOLVED",
+      "dream_reason": "4 claim(s) remain unresolved"
+    },
+    "cand-03-rubypack": {
+      "old_proof": {
+        "c03_01_binary_size": [
+          "SUPPORTED",
+          "VERIFIED"
+        ],
+        "c03_02_startup_latency": [
+          "INCONCLUSIVE",
+          "UNAVAILABLE"
+        ],
+        "c03_03_gem_c_extension_compat": [
+          "REFUTED",
+          "FAILED"
+        ]
+      },
+      "new_proof": {
+        "c03_01_binary_size": [
+          "INCONCLUSIVE",
+          "SUPPORTED",
+          "UNAVAILABLE",
+          "PLACEHOLDER",
+          "SUPPLIED_DATA_AGREES"
+        ],
+        "c03_02_startup_latency": [
+          "INCONCLUSIVE",
+          null,
+          "UNAVAILABLE",
+          "PLACEHOLDER",
+          "UNRESOLVED"
+        ],
+        "c03_03_gem_c_extension_compat": [
+          "INCONCLUSIVE",
+          "REFUTED",
+          "UNAVAILABLE",
+          "PLACEHOLDER",
+          "SUPPLIED_DATA_CONTRADICTS"
+        ]
+      },
+      "dream_disposition": "UNRESOLVED",
+      "dream_reason": "3 claim(s) remain unresolved"
+    }
+  },
+  "claude": {
+    "old_proof": {
+      "k02-3": "REFUTED",
+      "k02-3-scoped": "INCONCLUSIVE",
+      "k02-5": "SUPPORTED",
+      "rel-4-0-9": "INCONCLUSIVE",
+      "k03-3": "SUPPORTED",
+      "k06-3": "REQUIRES_EXTERNAL_VALIDATION",
+      "ruby-4-0-0-latest": "INCONCLUSIVE",
+      "rubydex-index-time": "SUPPORTED"
+    },
+    "new_proof_no_store": {
+      "k02-3": "INCONCLUSIVE",
+      "k02-3-scoped": "INCONCLUSIVE",
+      "k02-5": "INCONCLUSIVE",
+      "rel-4-0-9": "INCONCLUSIVE",
+      "k03-3": "SUPPORTED",
+      "k06-3": "REQUIRES_EXTERNAL_VALIDATION",
+      "ruby-4-0-0-latest": "INCONCLUSIVE",
+      "rubydex-index-time": "INCONCLUSIVE"
+    },
+    "new_proof": {
+      "k02-3": {
+        "claim_status": "INCONCLUSIVE",
+        "check_outcome": "REFUTED",
+        "proof_check_status": "UNAVAILABLE",
+        "explanation": "the supplied evidence contradicts agent_integration_documented eq 1, but it cannot be treated as verified: mutant_readme: fact value '0' not found in the acquired source and no methodology recorded: a quantitative measurement needs a methodology_quote of at least 4 words that appears in the acquired source",
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": false,
+          "evidence_integrity": "ok",
+          "source_origin": "OPERATOR_ATTESTED_FILE",
+          "claim_relevance": "STRUCTURAL_MATCH",
+          "methodology": "NOT_RECORDED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": false,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "SUPPLIED_DATA_CONTRADICTS"
+        },
+        "scope_limited": false,
+        "conflicts": [],
+        "also_found_in": null
+      },
+      "k02-3-scoped": {
+        "claim_status": "REFUTED",
+        "check_outcome": "REFUTED",
+        "proof_check_status": "FAILED",
+        "explanation": "'agent' is not found in mutant_readme (expected present); this concerns only the checked artifact(s); the term does appear in other bundle evidence (mutant_skill), so the broader question is open",
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": false,
+          "evidence_integrity": "ok",
+          "source_origin": "OPERATOR_ATTESTED_FILE",
+          "claim_relevance": "STRUCTURAL_MATCH",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "SINGLE_SOURCE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": true,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "SOURCE_VERIFIED_SCOPED"
+        },
+        "scope_limited": true,
+        "conflicts": [],
+        "also_found_in": [
+          "mutant_skill"
+        ]
+      },
+      "k02-5": {
+        "claim_status": "INCONCLUSIVE",
+        "check_outcome": "SUPPORTED",
+        "proof_check_status": "UNAVAILABLE",
+        "explanation": "the supplied evidence satisfies skill_file_http_status eq 200, but it cannot be treated as verified: mutant_skill: fact value '200' not found in the acquired source and claim lists no subject_terms, so relevance to the source cannot be established and no methodology recorded: a quantitative measurement needs a methodology_quote of at least 4 words that appears in the acquired source",
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": true,
+          "evidence_integrity": "ok",
+          "source_origin": "OPERATOR_ATTESTED_FILE",
+          "claim_relevance": "NOT_ESTABLISHED",
+          "methodology": "NOT_RECORDED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": false,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "SUPPLIED_DATA_AGREES"
+        },
+        "scope_limited": false,
+        "conflicts": [],
+        "also_found_in": null
+      },
+      "rel-4-0-9": {
+        "claim_status": "SUPPORTED",
+        "check_outcome": "SUPPORTED",
+        "proof_check_status": "VERIFIED",
+        "explanation": "'Ruby 4.0.9 Released' is found in rubylang_news, rubylang_news_live (expected present); this concerns only the checked artifact(s)",
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": true,
+          "evidence_integrity": "ok",
+          "source_origin": "OBSERVED_ACQUISITION",
+          "claim_relevance": "STRUCTURAL_MATCH",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "DUPLICATES_ONLY",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": true,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "SOURCE_VERIFIED_SCOPED"
+        },
+        "scope_limited": true,
+        "conflicts": [],
+        "also_found_in": [
+          "ruby400_notes"
+        ]
+      },
+      "k03-3": {
+        "claim_status": "SUPPORTED",
+        "check_outcome": "SUPPORTED",
+        "proof_check_status": "VERIFIED",
+        "explanation": "(0.62 - 0.36) / 0.62 = 0.4193548387096774193548387097; expected approx 0.419 -> holds",
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": true,
+          "evidence_integrity": "not_applicable",
+          "source_origin": "NOT_EXAMINED",
+          "claim_relevance": "NOT_APPLICABLE",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "UNVERIFIED",
+          "real_world_eligible": false,
+          "real_world_truth": "NOT_ESTABLISHED",
+          "evidence_status": "DETERMINISTIC_CHECK_ONLY"
+        },
+        "scope_limited": false,
+        "conflicts": [],
+        "also_found_in": null
+      },
+      "k06-3": {
+        "claim_status": "REQUIRES_EXTERNAL_VALIDATION",
+        "check_outcome": null,
+        "proof_check_status": "SKIPPED",
+        "explanation": "value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": null,
+          "evidence_integrity": "not_applicable",
+          "source_origin": "NOT_EXAMINED",
+          "claim_relevance": "NOT_APPLICABLE",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "NOT_APPLICABLE",
+          "real_world_eligible": false,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "UNRESOLVED"
+        },
+        "scope_limited": false,
+        "conflicts": [],
+        "also_found_in": null
+      },
+      "ruby-4-0-0-latest": {
+        "claim_status": "REFUTED",
+        "check_outcome": "REFUTED",
+        "proof_check_status": "FAILED",
+        "explanation": "'Ruby 4.0.9 Released' is found in ruby400_notes, rubylang_news (expected absent); this concerns only the checked artifact(s)",
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": false,
+          "evidence_integrity": "ok",
+          "source_origin": "OPERATOR_ATTESTED_FILE",
+          "claim_relevance": "STRUCTURAL_MATCH",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "SEPARATE_ARTIFACTS_ORIGIN_UNASSESSED",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": true,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "SOURCE_VERIFIED_SCOPED"
+        },
+        "scope_limited": true,
+        "conflicts": [],
+        "also_found_in": [
+          "rubylang_news_live"
+        ]
+      },
+      "rubydex-index-time": {
+        "claim_status": "INCONCLUSIVE",
+        "check_outcome": "SUPPORTED",
+        "proof_check_status": "UNAVAILABLE",
+        "explanation": "the supplied evidence satisfies index_seconds le 2 seconds, but it cannot be treated as verified: rv_readme: subject term(s) ['Rubydex'] not found in the acquired source",
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": true,
+          "evidence_integrity": "ok",
+          "source_origin": "OPERATOR_ATTESTED_FILE",
+          "claim_relevance": "NOT_ESTABLISHED",
+          "methodology": "NOT_REQUIRED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": false,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "SUPPLIED_DATA_AGREES"
+        },
+        "scope_limited": false,
+        "conflicts": [],
+        "also_found_in": null
+      }
+    },
+    "proof_verdict": "INSUFFICIENT_EVIDENCE",
+    "proof_deciding_rule": "no_acceptance_criteria",
+    "dream_disposition": "INVESTIGATE",
+    "dream_reason": "2 claim(s) refuted (2 only within a limited scope); 4 unresolved",
+    "dream_replay_identical": true,
+    "dream_summary_row": {
+      "kind": "proof_evidence_summary",
+      "evidence_status": "PARTIALLY_VERIFIED",
+      "claims": 8,
+      "source_verified_or_deterministic": 2,
+      "scope_limited_refutations": 2,
+      "development_approval": "NOT_GRANTED",
+      "note": "a research assessment is evidence, not authorization: building, deploying, purchasing or publishing needs a separate explicit approval"
+    }
+  },
+  "live_fetch": {
+    "exit": 0,
+    "record": {
+      "content_sha256": "80f142e9189eefce2bfa0fae636e91fd96005fe10646c8585eacc1447aaabb3b",
+      "content_type": "text/html; charset=utf-8",
+      "http_status": 200,
+      "id": "acq-ddb8bb5d88fd3a3b",
+      "kind": "RETRIEVED",
+      "limitations": [
+        "bytes were received from the observed location at the recorded time; this does not show the content is accurate or current"
+      ],
+      "method": "https_get",
+      "observed_url": "https://www.ruby-lang.org/en/news/",
+      "record_sha256": "b97712d0e33f87db120bfaa995886ec071d8d2262f7c7beb630085840d0de53c",
+      "redirects": [],
+      "requested_url": "https://www.ruby-lang.org/en/news/",
+      "retrieved_at": "2026-11-05T22:10:41Z",
+      "size": 45520,
+      "tool": "howlproof/0.2.0b1"
+    },
+    "error": null
+  }
+}

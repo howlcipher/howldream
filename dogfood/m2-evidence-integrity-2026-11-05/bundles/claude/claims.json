@@ -1,0 +1,398 @@
+{
+  "authorship": {
+    "component": "claude-m2-dogfood",
+    "kind": "EXTERNAL_AUTHORED",
+    "model": null,
+    "provider": null
+  },
+  "candidate": {
+    "candidate_id": "m2/claude-corpus",
+    "objective": "M2 evidence integrity dogfood",
+    "parent_request_id": "m2-dogfood-1",
+    "source_run_id": "m2-dogfood-1",
+    "status": "GENERATED",
+    "text": "Fixed v4 claim corpus for the M2 evidence trust model.",
+    "trust": "UNVERIFIED"
+  },
+  "claims": [
+    {
+      "assumption": false,
+      "category": "EMPIRICAL",
+      "category_basis": "explicit",
+      "check": {
+        "expected": "1",
+        "fact": "agent_integration_documented",
+        "op": "eq",
+        "tolerance": "0",
+        "type": "fact_compare"
+      },
+      "claim_id": "k02-3",
+      "evidence_refs": [
+        "mutant_readme"
+      ],
+      "falsification": "refuted if independent evidence reports agent_integration_documented not eq 1",
+      "falsification_basis": "derived_from_check",
+      "origin": "SOURCE_STRUCTURED",
+      "source_kind": "FACT",
+      "subject_terms": [
+        "Mutant"
+      ],
+      "text": "The Mutant README documents an AI-agent integration.",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "compare against independent primary-source data",
+          "record units, dates and methodology of every source"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    },
+    {
+      "assumption": false,
+      "category": "EMPIRICAL",
+      "category_basis": "explicit",
+      "check": {
+        "expect": "present",
+        "term": "agent",
+        "type": "text_presence"
+      },
+      "checked_proposition": "The text of the Mutant README contains the word 'agent'",
+      "claim_id": "k02-3-scoped",
+      "evidence_refs": [
+        "mutant_readme"
+      ],
+      "falsification": null,
+      "falsification_basis": null,
+      "origin": "SOURCE_STRUCTURED",
+      "scope": {
+        "artifact": "mbj/mutant README.md",
+        "extent": "SINGLE_FILE"
+      },
+      "source_kind": "FACT",
+      "subject_terms": [
+        "Mutant"
+      ],
+      "text": "The Mutant README documents an AI-agent integration.",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "compare against independent primary-source data",
+          "record units, dates and methodology of every source"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    },
+    {
+      "assumption": false,
+      "category": "EMPIRICAL",
+      "category_basis": "explicit",
+      "check": {
+        "expected": "200",
+        "fact": "skill_file_http_status",
+        "op": "eq",
+        "tolerance": "0",
+        "type": "fact_compare"
+      },
+      "claim_id": "k02-5",
+      "evidence_refs": [
+        "mutant_skill"
+      ],
+      "falsification": "refuted if independent evidence reports skill_file_http_status not eq 200",
+      "falsification_basis": "derived_from_check",
+      "origin": "SOURCE_STRUCTURED",
+      "source_kind": "FACT",
+      "text": "The mutant repository ships an agent skill file (SKILL.md).",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "compare against independent primary-source data",
+          "record units, dates and methodology of every source"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    },
+    {
+      "assumption": false,
+      "category": "EMPIRICAL",
+      "category_basis": "explicit",
+      "check": {
+        "expect": "present",
+        "term": "Ruby 4.0.9 Released",
+        "type": "text_presence"
+      },
+      "checked_proposition": "The ruby-lang.org news page lists 'Ruby 4.0.9 Released'",
+      "claim_id": "rel-4-0-9",
+      "evidence_refs": [
+        "rubylang_news",
+        "rubylang_news_live"
+      ],
+      "falsification": null,
+      "falsification_basis": null,
+      "origin": "SOURCE_STRUCTURED",
+      "scope": {
+        "artifact": "ruby-lang.org/en/news/",
+        "extent": "SINGLE_PAGE"
+      },
+      "source_kind": "FACT",
+      "subject_terms": [
+        "Ruby"
+      ],
+      "text": "Ruby 4.0.9 has been released.",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "compare against independent primary-source data",
+          "record units, dates and methodology of every source"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    },
+    {
+      "assumption": false,
+      "category": "TECHNICAL",
+      "category_basis": "explicit",
+      "check": {
+        "expected": "0.419",
+        "expression": "(0.62 - 0.36) / 0.62",
+        "op": "approx",
+        "tolerance": "0.001",
+        "type": "arithmetic"
+      },
+      "claim_id": "k03-3",
+      "evidence_refs": [
+        "mame_readme"
+      ],
+      "falsification": null,
+      "falsification_basis": null,
+      "origin": "SOURCE_STRUCTURED",
+      "source_kind": "FACT",
+      "text": "Arithmetic: (0.62-0.36)/0.62 = 0.419 (Ruby cost 41.9% below TypeScript, same benchmark).",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "author a deterministic experiment or executable check and supply it as a check"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    },
+    {
+      "assumption": false,
+      "category": "VALUE_JUDGMENT",
+      "category_basis": "explicit",
+      "check": null,
+      "claim_id": "k06-3",
+      "evidence_refs": [
+        "mutant_readme",
+        "mutant_skill",
+        "rubylang_news",
+        "ruby400_notes",
+        "rv_readme",
+        "mame_readme",
+        "rubylang_news_live"
+      ],
+      "falsification": null,
+      "falsification_basis": null,
+      "origin": "SOURCE_STRUCTURED",
+      "source_kind": "FACT",
+      "text": "Ruby will return to the TIOBE top 10 by 2028.",
+      "verification_plan": {
+        "grounded": false,
+        "methods": [
+          "external validation: human judgment or prospective data"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    },
+    {
+      "assumption": false,
+      "category": "EMPIRICAL",
+      "category_basis": "explicit",
+      "check": {
+        "expect": "absent",
+        "term": "Ruby 4.0.9 Released",
+        "type": "text_presence"
+      },
+      "checked_proposition": "Neither cited ruby-lang.org page lists 'Ruby 4.0.9 Released'",
+      "claim_id": "ruby-4-0-0-latest",
+      "evidence_refs": [
+        "ruby400_notes",
+        "rubylang_news"
+      ],
+      "falsification": null,
+      "falsification_basis": null,
+      "origin": "SOURCE_STRUCTURED",
+      "scope": {
+        "artifact": "two ruby-lang.org pages",
+        "extent": "TWO_PAGES"
+      },
+      "source_kind": "FACT",
+      "subject_terms": [
+        "Ruby"
+      ],
+      "text": "Ruby 4.0.0 is the most recent Ruby 4.0 release.",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "compare against independent primary-source data",
+          "record units, dates and methodology of every source"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    },
+    {
+      "assumption": false,
+      "category": "EMPIRICAL",
+      "category_basis": "explicit",
+      "check": {
+        "expected": "2 seconds",
+        "fact": "index_seconds",
+        "nature": "reported_fact",
+        "op": "le",
+        "tolerance": "0",
+        "type": "fact_compare"
+      },
+      "claim_id": "rubydex-index-time",
+      "evidence_refs": [
+        "rv_readme"
+      ],
+      "falsification": "refuted if independent evidence reports index_seconds not le 2 seconds",
+      "falsification_basis": "derived_from_check",
+      "origin": "SOURCE_STRUCTURED",
+      "source_kind": "FACT",
+      "subject_terms": [
+        "Rubydex"
+      ],
+      "text": "Rubydex indexes a project in under 2 seconds.",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "compare against independent primary-source data",
+          "record units, dates and methodology of every source"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "acquisition": {
+        "content_sha256": "50853f45ced3f829db853ce770c6a05bdedff7906226d720782486032c969ee0",
+        "id": "acq-8376a0c28d5fda0c"
+      },
+      "id": "mutant_readme",
+      "independent": true,
+      "path": "evidence/001-mutant_readme.json",
+      "produced_by": "mbj/mutant",
+      "published_at": null,
+      "represents_observed_reality": true,
+      "sha256": "08366e26680860c5f3f6a259c3d685aa7fa60f76e6f264364d0540726f144a4a",
+      "source_ref": "https://github.com/mbj/mutant",
+      "source_type": "EXTERNAL_OBSERVATION"
+    },
+    {
+      "acquisition": {
+        "content_sha256": "ef8f4b28a556eab88341e0585552f13049e1c7a0ee14e69496ac63452c6cf1a6",
+        "id": "acq-ee346fc6cf899b5a"
+      },
+      "id": "mutant_skill",
+      "independent": true,
+      "path": "evidence/002-mutant_skill.json",
+      "produced_by": "mbj/mutant",
+      "published_at": null,
+      "represents_observed_reality": true,
+      "sha256": "e60c77a443f83c59679ca92e70c612928adf4d894c588a107d24149bed4193ba",
+      "source_ref": "https://github.com/mbj/mutant",
+      "source_type": "EXTERNAL_OBSERVATION"
+    },
+    {
+      "acquisition": {
+        "content_sha256": "80f142e9189eefce2bfa0fae636e91fd96005fe10646c8585eacc1447aaabb3b",
+        "id": "acq-1c806da784745192"
+      },
+      "id": "rubylang_news",
+      "independent": true,
+      "path": "evidence/003-rubylang_news.json",
+      "produced_by": "ruby-lang.org",
+      "published_at": "2026-10-23T00:00:00Z",
+      "represents_observed_reality": true,
+      "sha256": "26847c2afd7b2fa316d52d070b75fa657a7a5e2a0e82f0ecedaf3a01a86c82e2",
+      "source_ref": "https://www.ruby-lang.org/en/news/",
+      "source_type": "EXTERNAL_OBSERVATION"
+    },
+    {
+      "acquisition": {
+        "content_sha256": "ba63465081fbee03802d56ced988c92d7be473b49a6a12454e76ff5dda830678",
+        "id": "acq-6206a0cdf4ebad9d"
+      },
+      "id": "ruby400_notes",
+      "independent": true,
+      "path": "evidence/004-ruby400_notes.json",
+      "produced_by": "ruby-lang.org",
+      "published_at": "2025-12-25T00:00:00Z",
+      "represents_observed_reality": true,
+      "sha256": "6b9c5a2ab08e0a6a4b653e4a45354de6b3ddde47a5588a2e28d59c590c49febd",
+      "source_ref": "https://www.ruby-lang.org/en/news/2025/12/25/ruby-4-0-0-released/",
+      "source_type": "EXTERNAL_OBSERVATION"
+    },
+    {
+      "acquisition": {
+        "content_sha256": "af6fc35a57569b14b7aca4caaf9419dc3eeaafb4e6508f3ce84af9b06df75934",
+        "id": "acq-acf688b5c0fdda78"
+      },
+      "id": "rv_readme",
+      "independent": true,
+      "path": "evidence/005-rv_readme.json",
+      "produced_by": "spinel-coop/rv",
+      "published_at": null,
+      "represents_observed_reality": true,
+      "sha256": "39a72c85310adac614ae82853e05b0d4a838366253b38a1fbc1fb7a95465edd1",
+      "source_ref": "https://github.com/spinel-coop/rv",
+      "source_type": "EXTERNAL_OBSERVATION"
+    },
+    {
+      "acquisition": {
+        "content_sha256": "89089a7650fb22a885c76cd7b328961ae4f26d22cdacd8539c1cdc193579fd14",
+        "id": "acq-cf544340f2287421"
+      },
+      "id": "mame_readme",
+      "independent": true,
+      "path": "evidence/006-mame_readme.json",
+      "produced_by": "mame",
+      "published_at": null,
+      "represents_observed_reality": true,
+      "sha256": "d44a5857c0fae97dd434e98ef6a67b5a4fd337d934c9c9f1f78045eeb5c3b4b5",
+      "source_ref": "https://github.com/mame/ai-coding-lang-bench",
+      "source_type": "EXTERNAL_OBSERVATION"
+    },
+    {
+      "acquisition": {
+        "content_sha256": "80f142e9189eefce2bfa0fae636e91fd96005fe10646c8585eacc1447aaabb3b",
+        "id": "acq-ddb8bb5d88fd3a3b"
+      },
+      "id": "rubylang_news_live",
+      "independent": true,
+      "path": "evidence/007-rubylang_news_live.json",
+      "produced_by": "ruby-lang.org",
+      "published_at": "2026-11-05T22:10:41Z",
+      "represents_observed_reality": true,
+      "sha256": "6520a06825f92ce1c3fe1bc88f3f1d9dfa6d834777279183f0c8b404a78a82dc",
+      "source_ref": "https://www.ruby-lang.org/en/news/",
+      "source_type": "EXTERNAL_OBSERVATION"
+    }
+  ],
+  "lineage": {
+    "candidate_created_at": "2026-11-05T00:00:00+00:00",
+    "candidate_sha256": "adc640ece504cb1e7bc60158361d7e79372945cd940642799e5b15c89bdb9090",
+    "exported_by": "howldream",
+    "exporter_version": "0.4.5"
+  },
+  "schema": "howl.claim_bundle/v1"
+}
