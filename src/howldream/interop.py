@@ -232,7 +232,7 @@ def assess_candidate(candidate: CandidateHandoff, evidence) -> CandidateAssessme
         schema_version="howl.assessment/v1",
         assessment_id=f"assess-{candidate.candidate_id}",
         candidate_id=candidate.candidate_id,
-        disposition=disposition,
+        disposition=disposition,  # type: ignore[arg-type]
         reason=reason,
         confidence=confidence,  # type: ignore[arg-type]
         contradictions=[c["text"] for c in claims if c.get("id") in contradicted],
