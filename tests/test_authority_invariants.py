@@ -289,7 +289,7 @@ def test_nested_claim_authority_smuggling_is_schema_valid_but_inert(schemas):
 
 
 def test_candidate_assessment_accepts_reason_both_layers(schemas):
-    """CandidateAssessment accepts an optional descriptive reason in both Pydantic and schema layers."""
+    """CandidateAssessment accepts an optional reason in both Pydantic and schema layers."""
     payload = valid_payload("howl.assessment.v1")
     payload["reason"] = "Invariants verified; candidate passed all safety gates"
     assessment = CandidateAssessment.model_validate(payload)

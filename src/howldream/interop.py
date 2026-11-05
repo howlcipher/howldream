@@ -207,7 +207,10 @@ def assess_candidate(candidate: CandidateHandoff, evidence) -> CandidateAssessme
     if candidate.authority.executable or candidate.authority.type != "ADVISORY":
         disposition = "REJECT"
         confidence = "HIGH"
-        reason = "Authority escalation prohibited: speculative candidate cannot claim execution authority"
+        reason = (
+            "Authority escalation prohibited: speculative candidate cannot claim "
+            "execution authority"
+        )
     elif contradicted or cand_status == "REJECTED":
         disposition = "REJECT"
         confidence = "HIGH"
