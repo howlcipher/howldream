@@ -28,9 +28,9 @@ ENV = ["HOWLDREAM_API_KEY", "HOWL_FORBID_LOCAL_INFERENCE"]
 NOT_JSON = {"report"}
 
 EMITS = {
-    "explore": ["howl.exploration_result/v1", "howl.exploration/v1"],
+    "explore": ["howl.exploration_result/v1"],
     "export": ["howl.candidate/v1"],
-    "review": ["howl.assessment/v1"],
+    "review": ["howl.candidate/v1", "howl.assessment/v1"],
     "cluster": ["howldream.external_discovery/v1"],
     "run": ["howldream.run/v1", "howldream.handoff/v1"],
     "dream": ["howldream.run/v1", "howldream.handoff/v1"],

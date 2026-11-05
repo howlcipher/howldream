@@ -4,7 +4,12 @@ from copy import deepcopy
 from pathlib import Path
 
 from howldream.artifacts import load_run
-from howldream.contracts import CandidateHandoff, Provenance
+from howldream.contracts import (
+    CandidateAssessment,
+    CandidateHandoff,
+    ExplorationAuthority,
+    Provenance,
+)
 from howldream.participation import record
 
 
@@ -179,6 +184,71 @@ def review_candidate(candidate: CandidateHandoff, evidence):
     value["claims"] = claims
     # Review is not authorship and does not replace source claims or verification metadata.
     return CandidateHandoff.model_validate(value)
+
+
+def assess_candidate(candidate: CandidateHandoff, evidence) -> CandidateAssessment:
+    """Evaluate candidate and emit a canonical howl.assessment/v1 envelope."""
+    from howldream.verification import extract, extract_natural, verify
+
+    if candidate.claims:
+        claims = deepcopy(candidate.claims)
+    else:
+        claims = extract_natural(candidate.text, candidate.candidate_id)
+        if not claims:
+            claims = extract(candidate.text, candidate.candidate_id)
+
+    checks = verify(claims, evidence)
+
+    contradicted = [c["claim_id"] for c in checks if c["status"] == "CONTRADICTED"]
+    unresolved = [c["claim_id"] for c in checks if c["status"] not in ("SUPPORTED", "ECHO")]
+    locally_verified = any(c["status"] == "SUPPORTED" for c in checks)
+
+    cand_status = candidate.status
+    if candidate.authority.executable or candidate.authority.type != "ADVISORY":
+        disposition = "REJECT"
+        confidence = "HIGH"
+        reason = (
+            "Authority escalation prohibited: speculative candidate cannot claim "
+            "execution authority"
+        )
+    elif contradicted or cand_status == "REJECTED":
+        disposition = "REJECT"
+        confidence = "HIGH"
+        reason = f"Candidate rejected: {len(contradicted)} contradictory claim(s)"
+    elif (locally_verified or cand_status == "LOCALLY_VERIFIED") and not unresolved:
+        disposition = "ACCEPT_FOR_DEVELOPMENT"
+        confidence = "MEDIUM"
+        reason = "Sufficient evidence invariants verified for deliberate development"
+    elif unresolved or cand_status == "UNRESOLVED" or candidate.assumptions:
+        disposition = "UNRESOLVED"
+        confidence = "LOW"
+        reason = f"Unresolved assumptions or claims ({len(unresolved)}) require further evidence"
+    else:
+        disposition = "INVESTIGATE"
+        confidence = "LOW"
+        reason = "Candidate challenged but requires downstream review"
+
+    return CandidateAssessment(
+        schema_version="howl.assessment/v1",
+        assessment_id=f"assess-{candidate.candidate_id}",
+        candidate_id=candidate.candidate_id,
+        disposition=disposition,  # type: ignore[arg-type]
+        reason=reason,
+        confidence=confidence,  # type: ignore[arg-type]
+        contradictions=[c["text"] for c in claims if c.get("id") in contradicted],
+        unresolved_claims=[c["text"] for c in claims if c.get("id") in unresolved],
+        limitations=[reason],
+        authority=ExplorationAuthority(),
+        provenance=Provenance.model_validate(
+            {
+                "run_id": candidate.source_run_id,
+                "producer_component": "howldream",
+                "observation_kind": candidate.provenance.observation_kind or "SIMULATED",
+                "transformations": ["howldream_candidate_assessment"],
+                "source_candidate_id": candidate.candidate_id,
+            }
+        ),
+    )
 
 
 def exploration_from_candidate(

@@ -286,3 +286,15 @@ def test_nested_claim_authority_smuggling_is_schema_valid_but_inert(schemas):
     payload = valid_payload("howl.exploration_result.v1")
     payload["claims"] = [{"authority": {"type": "EXECUTIVE", "executable": True}}]
     jsonschema.validate(payload, schemas["howl.exploration_result.v1"])  # does not raise
+
+
+def test_candidate_assessment_accepts_reason_both_layers(schemas):
+    """CandidateAssessment accepts an optional reason in both Pydantic and schema layers."""
+    payload = valid_payload("howl.assessment.v1")
+    payload["reason"] = "Invariants verified; candidate passed all safety gates"
+    assessment = CandidateAssessment.model_validate(payload)
+    assert assessment.reason == "Invariants verified; candidate passed all safety gates"
+    assert assessment.authority.type == "ADVISORY"
+    assert assessment.authority.executable is False
+    # Schema validation also succeeds without additionalProperties violation
+    jsonschema.validate(payload, schemas["howl.assessment.v1"])
