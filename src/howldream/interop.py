@@ -4,7 +4,12 @@ from copy import deepcopy
 from pathlib import Path
 
 from howldream.artifacts import load_run
-from howldream.contracts import CandidateAssessment, CandidateHandoff, ExplorationAuthority, Provenance
+from howldream.contracts import (
+    CandidateAssessment,
+    CandidateHandoff,
+    ExplorationAuthority,
+    Provenance,
+)
 from howldream.participation import record
 
 
@@ -241,7 +246,6 @@ def assess_candidate(candidate: CandidateHandoff, evidence) -> CandidateAssessme
             }
         ),
     )
-
 
 
 def exploration_from_candidate(

@@ -298,4 +298,3 @@ def test_candidate_assessment_accepts_reason_both_layers(schemas):
     assert assessment.authority.executable is False
     # Schema validation also succeeds without additionalProperties violation
     jsonschema.validate(payload, schemas["howl.assessment.v1"])
-
