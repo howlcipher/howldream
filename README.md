@@ -140,7 +140,9 @@ flowchart LR
 `howldream export-proof` / `import-proof` hand a candidate's claims to HowlProof's
 `research` profile and bring per-claim results back as a `howl.assessment/v1`, without
 inventing acceptance criteria or promoting unverifiable claims. Externally authored
-candidates are labelled `IMPORTED`/`EXTERNAL_AUTHORED`, never `GENERATED`. See
+candidates are labelled `IMPORTED`/`EXTERNAL_AUTHORED`, never `GENERATED`. A research result
+is evidence, never approval: `import-proof` does not emit `ACCEPT_FOR_DEVELOPMENT`, and
+declared provenance (`independent`, a URL, a digest) confers no verification. See
 [docs/dream_to_proof.md](docs/dream_to_proof.md).
 
 ## What exists
