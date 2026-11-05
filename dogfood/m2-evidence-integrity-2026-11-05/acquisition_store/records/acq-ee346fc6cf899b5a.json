@@ -1,0 +1,20 @@
+{
+  "attested_by": "claude-m2-dogfood",
+  "claimed_source_url": "https://github.com/mbj/mutant",
+  "content_sha256": "ef8f4b28a556eab88341e0585552f13049e1c7a0ee14e69496ac63452c6cf1a6",
+  "content_type": null,
+  "http_status": null,
+  "id": "acq-ee346fc6cf899b5a",
+  "kind": "OPERATOR_FILE",
+  "limitations": [
+    "file was supplied by the operator and not fetched by howlproof; where it came from is as attested, not observed"
+  ],
+  "method": "operator_supplied_file",
+  "observed_url": null,
+  "record_sha256": "e418ed886ed74d071e368bd223edacb0dad4b74bf17bc723ed477f92c3d21ed5",
+  "redirects": [],
+  "requested_url": null,
+  "retrieved_at": "2026-11-05T22:10:40Z",
+  "size": 7957,
+  "tool": "howlproof/0.2.0b1"
+}

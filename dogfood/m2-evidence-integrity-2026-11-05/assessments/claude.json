@@ -1,0 +1,975 @@
+{
+  "schema_version": "howl.assessment/v1",
+  "assessment_id": "assess-proof-4c5acbb986dff3df",
+  "candidate_id": "m2/claude-corpus",
+  "disposition": "INVESTIGATE",
+  "reason": "2 claim(s) refuted (2 only within a limited scope); 4 unresolved",
+  "evidence": [
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "k02-3",
+      "claim_text": "The Mutant README documents an AI-agent integration.",
+      "category": "EMPIRICAL",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "INCONCLUSIVE",
+      "method": "fact_compare",
+      "explanation": "the supplied evidence contradicts agent_integration_documented eq 1, but it cannot be treated as verified: mutant_readme: fact value '0' not found in the acquired source and no methodology recorded: a quantitative measurement needs a methodology_quote of at least 4 words that appears in the acquired source",
+      "evidence_considered": [
+        {
+          "id": "mutant_readme",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "contradicts",
+          "published_at": null,
+          "sha256": "08366e26680860c5f3f6a259c3d685aa7fa60f76e6f264364d0540726f144a4a",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://github.com/mbj/mutant",
+            "produced_by": "mbj/mutant",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "OBSERVED",
+            "acquisition_id": "acq-8376a0c28d5fda0c",
+            "acquisition_kind": "OPERATOR_FILE",
+            "acquisition_method": "operator_supplied_file",
+            "retrieved_at": "2026-11-05T22:10:39Z",
+            "observed_location": "https://github.com/mbj/mutant",
+            "content_sha256": "50853f45ced3f829db853ce770c6a05bdedff7906226d720782486032c969ee0",
+            "reference_class": "URL",
+            "source_origin": "OPERATOR_ATTESTED_FILE",
+            "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+            "facts_located_in_source": false,
+            "relevance": "STRUCTURAL_MATCH",
+            "methodology": "NOT_RECORDED"
+          },
+          "eligible": false,
+          "observed": "0",
+          "ineligible_reasons": [
+            "fact value '0' not found in the acquired source",
+            "no methodology recorded: a quantitative measurement needs a methodology_quote of at least 4 words that appears in the acquired source"
+          ]
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "whether the supplied numbers come from an authentic source",
+        "real-world truth"
+      ],
+      "untrusted_flags": [],
+      "assurance": {
+        "trust_model": "howl.evidence_trust/v1",
+        "check_passed": false,
+        "evidence_integrity": "ok",
+        "source_origin": "OPERATOR_ATTESTED_FILE",
+        "claim_relevance": "STRUCTURAL_MATCH",
+        "methodology": "NOT_RECORDED",
+        "corroboration": "NONE",
+        "corroborated": false,
+        "input_provenance": "SEE_EVIDENCE",
+        "real_world_eligible": false,
+        "real_world_truth": "UNRESOLVED",
+        "evidence_status": "SUPPLIED_DATA_CONTRADICTS"
+      },
+      "check_outcome": "REFUTED",
+      "checked_proposition": "The Mutant README documents an AI-agent integration.",
+      "scope": null,
+      "scope_limited": false,
+      "broader_question": "NOT_EVALUATED",
+      "also_found_in": []
+    },
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "k02-3-scoped",
+      "claim_text": "The Mutant README documents an AI-agent integration.",
+      "category": "EMPIRICAL",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "REFUTED",
+      "method": "text_presence",
+      "explanation": "'agent' is not found in mutant_readme (expected present); this concerns only the checked artifact(s); the term does appear in other bundle evidence (mutant_skill), so the broader question is open",
+      "evidence_considered": [
+        {
+          "id": "mutant_readme",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "lacks",
+          "published_at": null,
+          "sha256": "08366e26680860c5f3f6a259c3d685aa7fa60f76e6f264364d0540726f144a4a",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://github.com/mbj/mutant",
+            "produced_by": "mbj/mutant",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "OBSERVED",
+            "acquisition_id": "acq-8376a0c28d5fda0c",
+            "acquisition_kind": "OPERATOR_FILE",
+            "acquisition_method": "operator_supplied_file",
+            "retrieved_at": "2026-11-05T22:10:39Z",
+            "observed_location": "https://github.com/mbj/mutant",
+            "content_sha256": "50853f45ced3f829db853ce770c6a05bdedff7906226d720782486032c969ee0",
+            "reference_class": "URL",
+            "source_origin": "OPERATOR_ATTESTED_FILE",
+            "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+            "facts_located_in_source": null,
+            "relevance": "STRUCTURAL_MATCH",
+            "methodology": "NOT_EVALUATED"
+          },
+          "eligible": true,
+          "ineligible_reasons": []
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "whether the feature or behaviour exists outside the checked artifact(s); absence from a document is not absence from the project",
+        "whether the artifact's statements are true"
+      ],
+      "untrusted_flags": [],
+      "assurance": {
+        "trust_model": "howl.evidence_trust/v1",
+        "check_passed": false,
+        "evidence_integrity": "ok",
+        "source_origin": "OPERATOR_ATTESTED_FILE",
+        "claim_relevance": "STRUCTURAL_MATCH",
+        "methodology": "NOT_EVALUATED",
+        "corroboration": "SINGLE_SOURCE",
+        "corroborated": false,
+        "input_provenance": "SEE_EVIDENCE",
+        "real_world_eligible": true,
+        "real_world_truth": "UNRESOLVED",
+        "evidence_status": "SOURCE_VERIFIED_SCOPED"
+      },
+      "check_outcome": "REFUTED",
+      "checked_proposition": "The text of the Mutant README contains the word 'agent'",
+      "scope": {
+        "artifact": "mbj/mutant README.md",
+        "extent": "SINGLE_FILE"
+      },
+      "scope_limited": true,
+      "broader_question": "NOT_EVALUATED",
+      "also_found_in": [
+        "mutant_skill"
+      ]
+    },
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "k02-5",
+      "claim_text": "The mutant repository ships an agent skill file (SKILL.md).",
+      "category": "EMPIRICAL",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "INCONCLUSIVE",
+      "method": "fact_compare",
+      "explanation": "the supplied evidence satisfies skill_file_http_status eq 200, but it cannot be treated as verified: mutant_skill: fact value '200' not found in the acquired source and claim lists no subject_terms, so relevance to the source cannot be established and no methodology recorded: a quantitative measurement needs a methodology_quote of at least 4 words that appears in the acquired source",
+      "evidence_considered": [
+        {
+          "id": "mutant_skill",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "supports",
+          "published_at": null,
+          "sha256": "e60c77a443f83c59679ca92e70c612928adf4d894c588a107d24149bed4193ba",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://github.com/mbj/mutant",
+            "produced_by": "mbj/mutant",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "OBSERVED",
+            "acquisition_id": "acq-ee346fc6cf899b5a",
+            "acquisition_kind": "OPERATOR_FILE",
+            "acquisition_method": "operator_supplied_file",
+            "retrieved_at": "2026-11-05T22:10:40Z",
+            "observed_location": "https://github.com/mbj/mutant",
+            "content_sha256": "ef8f4b28a556eab88341e0585552f13049e1c7a0ee14e69496ac63452c6cf1a6",
+            "reference_class": "URL",
+            "source_origin": "OPERATOR_ATTESTED_FILE",
+            "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+            "facts_located_in_source": false,
+            "relevance": "NOT_ESTABLISHED",
+            "methodology": "NOT_RECORDED"
+          },
+          "eligible": false,
+          "observed": "200",
+          "ineligible_reasons": [
+            "fact value '200' not found in the acquired source",
+            "claim lists no subject_terms, so relevance to the source cannot be established",
+            "no methodology recorded: a quantitative measurement needs a methodology_quote of at least 4 words that appears in the acquired source"
+          ]
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "whether the supplied numbers come from an authentic source",
+        "real-world truth"
+      ],
+      "untrusted_flags": [],
+      "assurance": {
+        "trust_model": "howl.evidence_trust/v1",
+        "check_passed": true,
+        "evidence_integrity": "ok",
+        "source_origin": "OPERATOR_ATTESTED_FILE",
+        "claim_relevance": "NOT_ESTABLISHED",
+        "methodology": "NOT_RECORDED",
+        "corroboration": "NONE",
+        "corroborated": false,
+        "input_provenance": "SEE_EVIDENCE",
+        "real_world_eligible": false,
+        "real_world_truth": "UNRESOLVED",
+        "evidence_status": "SUPPLIED_DATA_AGREES"
+      },
+      "check_outcome": "SUPPORTED",
+      "checked_proposition": "The mutant repository ships an agent skill file (SKILL.md).",
+      "scope": null,
+      "scope_limited": false,
+      "broader_question": "NOT_EVALUATED",
+      "also_found_in": []
+    },
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "rel-4-0-9",
+      "claim_text": "Ruby 4.0.9 has been released.",
+      "category": "EMPIRICAL",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "SUPPORTED",
+      "method": "text_presence",
+      "explanation": "'Ruby 4.0.9 Released' is found in rubylang_news, rubylang_news_live (expected present); this concerns only the checked artifact(s)",
+      "evidence_considered": [
+        {
+          "id": "rubylang_news",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "contains",
+          "published_at": "2026-10-23T00:00:00Z",
+          "sha256": "26847c2afd7b2fa316d52d070b75fa657a7a5e2a0e82f0ecedaf3a01a86c82e2",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://www.ruby-lang.org/en/news/",
+            "produced_by": "ruby-lang.org",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "OBSERVED",
+            "acquisition_id": "acq-1c806da784745192",
+            "acquisition_kind": "OPERATOR_FILE",
+            "acquisition_method": "operator_supplied_file",
+            "retrieved_at": "2026-11-05T22:10:40Z",
+            "observed_location": "https://www.ruby-lang.org/en/news/",
+            "content_sha256": "80f142e9189eefce2bfa0fae636e91fd96005fe10646c8585eacc1447aaabb3b",
+            "reference_class": "URL",
+            "source_origin": "OPERATOR_ATTESTED_FILE",
+            "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+            "facts_located_in_source": null,
+            "relevance": "STRUCTURAL_MATCH",
+            "methodology": "NOT_EVALUATED"
+          },
+          "eligible": true,
+          "ineligible_reasons": []
+        },
+        {
+          "id": "rubylang_news_live",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "contains",
+          "published_at": "2026-11-05T22:10:41Z",
+          "sha256": "6520a06825f92ce1c3fe1bc88f3f1d9dfa6d834777279183f0c8b404a78a82dc",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://www.ruby-lang.org/en/news/",
+            "produced_by": "ruby-lang.org",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "OBSERVED",
+            "acquisition_id": "acq-ddb8bb5d88fd3a3b",
+            "acquisition_kind": "RETRIEVED",
+            "acquisition_method": "https_get",
+            "retrieved_at": "2026-11-05T22:10:41Z",
+            "observed_location": "https://www.ruby-lang.org/en/news/",
+            "content_sha256": "80f142e9189eefce2bfa0fae636e91fd96005fe10646c8585eacc1447aaabb3b",
+            "reference_class": "URL",
+            "source_origin": "OBSERVED_ACQUISITION",
+            "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+            "facts_located_in_source": null,
+            "relevance": "STRUCTURAL_MATCH",
+            "methodology": "NOT_EVALUATED"
+          },
+          "eligible": true,
+          "ineligible_reasons": []
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "whether the feature or behaviour exists outside the checked artifact(s); absence from a document is not absence from the project",
+        "whether the artifact's statements are true"
+      ],
+      "untrusted_flags": [],
+      "assurance": {
+        "trust_model": "howl.evidence_trust/v1",
+        "check_passed": true,
+        "evidence_integrity": "ok",
+        "source_origin": "OBSERVED_ACQUISITION",
+        "claim_relevance": "STRUCTURAL_MATCH",
+        "methodology": "NOT_EVALUATED",
+        "corroboration": "DUPLICATES_ONLY",
+        "corroborated": false,
+        "input_provenance": "SEE_EVIDENCE",
+        "real_world_eligible": true,
+        "real_world_truth": "UNRESOLVED",
+        "evidence_status": "SOURCE_VERIFIED_SCOPED"
+      },
+      "check_outcome": "SUPPORTED",
+      "checked_proposition": "The ruby-lang.org news page lists 'Ruby 4.0.9 Released'",
+      "scope": {
+        "artifact": "ruby-lang.org/en/news/",
+        "extent": "SINGLE_PAGE"
+      },
+      "scope_limited": true,
+      "broader_question": "NOT_EVALUATED",
+      "also_found_in": [
+        "ruby400_notes"
+      ]
+    },
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "k03-3",
+      "claim_text": "Arithmetic: (0.62-0.36)/0.62 = 0.419 (Ruby cost 41.9% below TypeScript, same benchmark).",
+      "category": "TECHNICAL",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "SUPPORTED",
+      "method": "arithmetic",
+      "explanation": "(0.62 - 0.36) / 0.62 = 0.4193548387096774193548387097; expected approx 0.419 -> holds",
+      "evidence_considered": [
+        {
+          "id": "mame_readme",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "unexamined",
+          "published_at": null,
+          "sha256": "d44a5857c0fae97dd434e98ef6a67b5a4fd337d934c9c9f1f78045eeb5c3b4b5",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://github.com/mame/ai-coding-lang-bench",
+            "produced_by": "mame",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "OBSERVED",
+            "acquisition_id": "acq-cf544340f2287421",
+            "acquisition_kind": "OPERATOR_FILE",
+            "acquisition_method": "operator_supplied_file",
+            "retrieved_at": "2026-11-05T22:10:41Z",
+            "observed_location": "https://github.com/mame/ai-coding-lang-bench",
+            "content_sha256": "89089a7650fb22a885c76cd7b328961ae4f26d22cdacd8539c1cdc193579fd14",
+            "reference_class": "URL",
+            "source_origin": "OPERATOR_ATTESTED_FILE",
+            "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+            "facts_located_in_source": null,
+            "relevance": "NOT_EVALUATED",
+            "methodology": "NOT_EVALUATED"
+          },
+          "eligible": false
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "inputs of the expression were taken from the claim, not independently sourced"
+      ],
+      "untrusted_flags": [],
+      "assurance": {
+        "trust_model": "howl.evidence_trust/v1",
+        "check_passed": true,
+        "evidence_integrity": "not_applicable",
+        "source_origin": "NOT_EXAMINED",
+        "claim_relevance": "NOT_APPLICABLE",
+        "methodology": "NOT_EVALUATED",
+        "corroboration": "NONE",
+        "corroborated": false,
+        "input_provenance": "UNVERIFIED",
+        "real_world_eligible": false,
+        "real_world_truth": "NOT_ESTABLISHED",
+        "evidence_status": "DETERMINISTIC_CHECK_ONLY"
+      },
+      "check_outcome": "SUPPORTED",
+      "checked_proposition": "Arithmetic: (0.62-0.36)/0.62 = 0.419 (Ruby cost 41.9% below TypeScript, same benchmark).",
+      "scope": null,
+      "scope_limited": false,
+      "broader_question": "NOT_EVALUATED",
+      "also_found_in": []
+    },
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "k06-3",
+      "claim_text": "Ruby will return to the TIOBE top 10 by 2028.",
+      "category": "VALUE_JUDGMENT",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "REQUIRES_EXTERNAL_VALIDATION",
+      "method": "none",
+      "explanation": "value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+      "evidence_considered": [
+        {
+          "id": "mutant_readme",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "unexamined",
+          "published_at": null,
+          "sha256": "08366e26680860c5f3f6a259c3d685aa7fa60f76e6f264364d0540726f144a4a",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://github.com/mbj/mutant",
+            "produced_by": "mbj/mutant",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "OBSERVED",
+            "acquisition_id": "acq-8376a0c28d5fda0c",
+            "acquisition_kind": "OPERATOR_FILE",
+            "acquisition_method": "operator_supplied_file",
+            "retrieved_at": "2026-11-05T22:10:39Z",
+            "observed_location": "https://github.com/mbj/mutant",
+            "content_sha256": "50853f45ced3f829db853ce770c6a05bdedff7906226d720782486032c969ee0",
+            "reference_class": "URL",
+            "source_origin": "OPERATOR_ATTESTED_FILE",
+            "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+            "facts_located_in_source": null,
+            "relevance": "NOT_EVALUATED",
+            "methodology": "NOT_EVALUATED"
+          },
+          "eligible": false
+        },
+        {
+          "id": "mutant_skill",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "unexamined",
+          "published_at": null,
+          "sha256": "e60c77a443f83c59679ca92e70c612928adf4d894c588a107d24149bed4193ba",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://github.com/mbj/mutant",
+            "produced_by": "mbj/mutant",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "OBSERVED",
+            "acquisition_id": "acq-ee346fc6cf899b5a",
+            "acquisition_kind": "OPERATOR_FILE",
+            "acquisition_method": "operator_supplied_file",
+            "retrieved_at": "2026-11-05T22:10:40Z",
+            "observed_location": "https://github.com/mbj/mutant",
+            "content_sha256": "ef8f4b28a556eab88341e0585552f13049e1c7a0ee14e69496ac63452c6cf1a6",
+            "reference_class": "URL",
+            "source_origin": "OPERATOR_ATTESTED_FILE",
+            "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+            "facts_located_in_source": null,
+            "relevance": "NOT_EVALUATED",
+            "methodology": "NOT_EVALUATED"
+          },
+          "eligible": false
+        },
+        {
+          "id": "rubylang_news",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "unexamined",
+          "published_at": "2026-10-23T00:00:00Z",
+          "sha256": "26847c2afd7b2fa316d52d070b75fa657a7a5e2a0e82f0ecedaf3a01a86c82e2",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://www.ruby-lang.org/en/news/",
+            "produced_by": "ruby-lang.org",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "OBSERVED",
+            "acquisition_id": "acq-1c806da784745192",
+            "acquisition_kind": "OPERATOR_FILE",
+            "acquisition_method": "operator_supplied_file",
+            "retrieved_at": "2026-11-05T22:10:40Z",
+            "observed_location": "https://www.ruby-lang.org/en/news/",
+            "content_sha256": "80f142e9189eefce2bfa0fae636e91fd96005fe10646c8585eacc1447aaabb3b",
+            "reference_class": "URL",
+            "source_origin": "OPERATOR_ATTESTED_FILE",
+            "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+            "facts_located_in_source": null,
+            "relevance": "NOT_EVALUATED",
+            "methodology": "NOT_EVALUATED"
+          },
+          "eligible": false
+        },
+        {
+          "id": "ruby400_notes",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "unexamined",
+          "published_at": "2025-12-25T00:00:00Z",
+          "sha256": "6b9c5a2ab08e0a6a4b653e4a45354de6b3ddde47a5588a2e28d59c590c49febd",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://www.ruby-lang.org/en/news/2025/12/25/ruby-4-0-0-released/",
+            "produced_by": "ruby-lang.org",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "OBSERVED",
+            "acquisition_id": "acq-6206a0cdf4ebad9d",
+            "acquisition_kind": "OPERATOR_FILE",
+            "acquisition_method": "operator_supplied_file",
+            "retrieved_at": "2026-11-05T22:10:40Z",
+            "observed_location": "https://www.ruby-lang.org/en/news/2025/12/25/ruby-4-0-0-released/",
+            "content_sha256": "ba63465081fbee03802d56ced988c92d7be473b49a6a12454e76ff5dda830678",
+            "reference_class": "URL",
+            "source_origin": "OPERATOR_ATTESTED_FILE",
+            "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+            "facts_located_in_source": null,
+            "relevance": "NOT_EVALUATED",
+            "methodology": "NOT_EVALUATED"
+          },
+          "eligible": false
+        },
+        {
+          "id": "rv_readme",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "unexamined",
+          "published_at": null,
+          "sha256": "39a72c85310adac614ae82853e05b0d4a838366253b38a1fbc1fb7a95465edd1",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://github.com/spinel-coop/rv",
+            "produced_by": "spinel-coop/rv",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "OBSERVED",
+            "acquisition_id": "acq-acf688b5c0fdda78",
+            "acquisition_kind": "OPERATOR_FILE",
+            "acquisition_method": "operator_supplied_file",
+            "retrieved_at": "2026-11-05T22:10:41Z",
+            "observed_location": "https://github.com/spinel-coop/rv",
+            "content_sha256": "af6fc35a57569b14b7aca4caaf9419dc3eeaafb4e6508f3ce84af9b06df75934",
+            "reference_class": "URL",
+            "source_origin": "OPERATOR_ATTESTED_FILE",
+            "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+            "facts_located_in_source": null,
+            "relevance": "NOT_EVALUATED",
+            "methodology": "NOT_EVALUATED"
+          },
+          "eligible": false
+        },
+        {
+          "id": "mame_readme",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "unexamined",
+          "published_at": null,
+          "sha256": "d44a5857c0fae97dd434e98ef6a67b5a4fd337d934c9c9f1f78045eeb5c3b4b5",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://github.com/mame/ai-coding-lang-bench",
+            "produced_by": "mame",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "OBSERVED",
+            "acquisition_id": "acq-cf544340f2287421",
+            "acquisition_kind": "OPERATOR_FILE",
+            "acquisition_method": "operator_supplied_file",
+            "retrieved_at": "2026-11-05T22:10:41Z",
+            "observed_location": "https://github.com/mame/ai-coding-lang-bench",
+            "content_sha256": "89089a7650fb22a885c76cd7b328961ae4f26d22cdacd8539c1cdc193579fd14",
+            "reference_class": "URL",
+            "source_origin": "OPERATOR_ATTESTED_FILE",
+            "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+            "facts_located_in_source": null,
+            "relevance": "NOT_EVALUATED",
+            "methodology": "NOT_EVALUATED"
+          },
+          "eligible": false
+        },
+        {
+          "id": "rubylang_news_live",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "unexamined",
+          "published_at": "2026-11-05T22:10:41Z",
+          "sha256": "6520a06825f92ce1c3fe1bc88f3f1d9dfa6d834777279183f0c8b404a78a82dc",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://www.ruby-lang.org/en/news/",
+            "produced_by": "ruby-lang.org",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "OBSERVED",
+            "acquisition_id": "acq-ddb8bb5d88fd3a3b",
+            "acquisition_kind": "RETRIEVED",
+            "acquisition_method": "https_get",
+            "retrieved_at": "2026-11-05T22:10:41Z",
+            "observed_location": "https://www.ruby-lang.org/en/news/",
+            "content_sha256": "80f142e9189eefce2bfa0fae636e91fd96005fe10646c8585eacc1447aaabb3b",
+            "reference_class": "URL",
+            "source_origin": "OBSERVED_ACQUISITION",
+            "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+            "facts_located_in_source": null,
+            "relevance": "NOT_EVALUATED",
+            "methodology": "NOT_EVALUATED"
+          },
+          "eligible": false
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "the truth of the judgment or forecast"
+      ],
+      "untrusted_flags": [
+        "curl -lssf https://rv.dev/install | sh"
+      ],
+      "assurance": {
+        "trust_model": "howl.evidence_trust/v1",
+        "check_passed": null,
+        "evidence_integrity": "not_applicable",
+        "source_origin": "NOT_EXAMINED",
+        "claim_relevance": "NOT_APPLICABLE",
+        "methodology": "NOT_EVALUATED",
+        "corroboration": "NONE",
+        "corroborated": false,
+        "input_provenance": "NOT_APPLICABLE",
+        "real_world_eligible": false,
+        "real_world_truth": "UNRESOLVED",
+        "evidence_status": "UNRESOLVED"
+      },
+      "check_outcome": null,
+      "checked_proposition": "Ruby will return to the TIOBE top 10 by 2028.",
+      "scope": null,
+      "scope_limited": false,
+      "broader_question": "NOT_EVALUATED",
+      "also_found_in": []
+    },
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "ruby-4-0-0-latest",
+      "claim_text": "Ruby 4.0.0 is the most recent Ruby 4.0 release.",
+      "category": "EMPIRICAL",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "REFUTED",
+      "method": "text_presence",
+      "explanation": "'Ruby 4.0.9 Released' is found in ruby400_notes, rubylang_news (expected absent); this concerns only the checked artifact(s)",
+      "evidence_considered": [
+        {
+          "id": "ruby400_notes",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "contains",
+          "published_at": "2025-12-25T00:00:00Z",
+          "sha256": "6b9c5a2ab08e0a6a4b653e4a45354de6b3ddde47a5588a2e28d59c590c49febd",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://www.ruby-lang.org/en/news/2025/12/25/ruby-4-0-0-released/",
+            "produced_by": "ruby-lang.org",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "OBSERVED",
+            "acquisition_id": "acq-6206a0cdf4ebad9d",
+            "acquisition_kind": "OPERATOR_FILE",
+            "acquisition_method": "operator_supplied_file",
+            "retrieved_at": "2026-11-05T22:10:40Z",
+            "observed_location": "https://www.ruby-lang.org/en/news/2025/12/25/ruby-4-0-0-released/",
+            "content_sha256": "ba63465081fbee03802d56ced988c92d7be473b49a6a12454e76ff5dda830678",
+            "reference_class": "URL",
+            "source_origin": "OPERATOR_ATTESTED_FILE",
+            "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+            "facts_located_in_source": null,
+            "relevance": "STRUCTURAL_MATCH",
+            "methodology": "NOT_EVALUATED"
+          },
+          "eligible": true,
+          "ineligible_reasons": []
+        },
+        {
+          "id": "rubylang_news",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "contains",
+          "published_at": "2026-10-23T00:00:00Z",
+          "sha256": "26847c2afd7b2fa316d52d070b75fa657a7a5e2a0e82f0ecedaf3a01a86c82e2",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://www.ruby-lang.org/en/news/",
+            "produced_by": "ruby-lang.org",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "OBSERVED",
+            "acquisition_id": "acq-1c806da784745192",
+            "acquisition_kind": "OPERATOR_FILE",
+            "acquisition_method": "operator_supplied_file",
+            "retrieved_at": "2026-11-05T22:10:40Z",
+            "observed_location": "https://www.ruby-lang.org/en/news/",
+            "content_sha256": "80f142e9189eefce2bfa0fae636e91fd96005fe10646c8585eacc1447aaabb3b",
+            "reference_class": "URL",
+            "source_origin": "OPERATOR_ATTESTED_FILE",
+            "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+            "facts_located_in_source": null,
+            "relevance": "STRUCTURAL_MATCH",
+            "methodology": "NOT_EVALUATED"
+          },
+          "eligible": true,
+          "ineligible_reasons": []
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "whether the feature or behaviour exists outside the checked artifact(s); absence from a document is not absence from the project",
+        "whether the artifact's statements are true"
+      ],
+      "untrusted_flags": [],
+      "assurance": {
+        "trust_model": "howl.evidence_trust/v1",
+        "check_passed": false,
+        "evidence_integrity": "ok",
+        "source_origin": "OPERATOR_ATTESTED_FILE",
+        "claim_relevance": "STRUCTURAL_MATCH",
+        "methodology": "NOT_EVALUATED",
+        "corroboration": "SEPARATE_ARTIFACTS_ORIGIN_UNASSESSED",
+        "corroborated": false,
+        "input_provenance": "SEE_EVIDENCE",
+        "real_world_eligible": true,
+        "real_world_truth": "UNRESOLVED",
+        "evidence_status": "SOURCE_VERIFIED_SCOPED"
+      },
+      "check_outcome": "REFUTED",
+      "checked_proposition": "Neither cited ruby-lang.org page lists 'Ruby 4.0.9 Released'",
+      "scope": {
+        "artifact": "two ruby-lang.org pages",
+        "extent": "TWO_PAGES"
+      },
+      "scope_limited": true,
+      "broader_question": "NOT_EVALUATED",
+      "also_found_in": [
+        "rubylang_news_live"
+      ]
+    },
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "rubydex-index-time",
+      "claim_text": "Rubydex indexes a project in under 2 seconds.",
+      "category": "EMPIRICAL",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "INCONCLUSIVE",
+      "method": "fact_compare",
+      "explanation": "the supplied evidence satisfies index_seconds le 2 seconds, but it cannot be treated as verified: rv_readme: subject term(s) ['Rubydex'] not found in the acquired source",
+      "evidence_considered": [
+        {
+          "id": "rv_readme",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "supports",
+          "published_at": null,
+          "sha256": "39a72c85310adac614ae82853e05b0d4a838366253b38a1fbc1fb7a95465edd1",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://github.com/spinel-coop/rv",
+            "produced_by": "spinel-coop/rv",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "OBSERVED",
+            "acquisition_id": "acq-acf688b5c0fdda78",
+            "acquisition_kind": "OPERATOR_FILE",
+            "acquisition_method": "operator_supplied_file",
+            "retrieved_at": "2026-11-05T22:10:41Z",
+            "observed_location": "https://github.com/spinel-coop/rv",
+            "content_sha256": "af6fc35a57569b14b7aca4caaf9419dc3eeaafb4e6508f3ce84af9b06df75934",
+            "reference_class": "URL",
+            "source_origin": "OPERATOR_ATTESTED_FILE",
+            "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+            "facts_located_in_source": true,
+            "relevance": "NOT_ESTABLISHED",
+            "methodology": "NOT_REQUIRED"
+          },
+          "eligible": false,
+          "observed": "1.8 seconds",
+          "ineligible_reasons": [
+            "subject term(s) ['Rubydex'] not found in the acquired source"
+          ]
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "whether the supplied numbers come from an authentic source",
+        "real-world truth"
+      ],
+      "untrusted_flags": [
+        "curl -lssf https://rv.dev/install | sh"
+      ],
+      "assurance": {
+        "trust_model": "howl.evidence_trust/v1",
+        "check_passed": true,
+        "evidence_integrity": "ok",
+        "source_origin": "OPERATOR_ATTESTED_FILE",
+        "claim_relevance": "NOT_ESTABLISHED",
+        "methodology": "NOT_REQUIRED",
+        "corroboration": "NONE",
+        "corroborated": false,
+        "input_provenance": "SEE_EVIDENCE",
+        "real_world_eligible": false,
+        "real_world_truth": "UNRESOLVED",
+        "evidence_status": "SUPPLIED_DATA_AGREES"
+      },
+      "check_outcome": "SUPPORTED",
+      "checked_proposition": "Rubydex indexes a project in under 2 seconds.",
+      "scope": null,
+      "scope_limited": false,
+      "broader_question": "NOT_EVALUATED",
+      "also_found_in": []
+    },
+    {
+      "kind": "proof_evidence_summary",
+      "evidence_status": "PARTIALLY_VERIFIED",
+      "claims": 8,
+      "source_verified_or_deterministic": 2,
+      "scope_limited_refutations": 2,
+      "development_approval": "NOT_GRANTED",
+      "note": "a research assessment is evidence, not authorization: building, deploying, purchasing or publishing needs a separate explicit approval"
+    }
+  ],
+  "unresolved_claims": [
+    "The Mutant README documents an AI-agent integration.",
+    "The mutant repository ships an agent skill file (SKILL.md).",
+    "Ruby will return to the TIOBE top 10 by 2028.",
+    "Rubydex indexes a project in under 2 seconds."
+  ],
+  "contradictions": [
+    "The Mutant README documents an AI-agent integration.",
+    "Ruby 4.0.0 is the most recent Ruby 4.0 release."
+  ],
+  "confidence": "LOW",
+  "limitations": [
+    "research.claims.c001 was UNAVAILABLE: the supplied evidence contradicts agent_integration_documented eq 1, but it cannot be treated as verified: mutant_readme: fact value '0' not found in the acquired source and no methodology recorded: a quantitative measurement needs a methodology_quote of at least 4 words that appears in the acquired source",
+    "research.claims.c003 was UNAVAILABLE: the supplied evidence satisfies skill_file_http_status eq 200, but it cannot be treated as verified: mutant_skill: fact value '200' not found in the acquired source and claim lists no subject_terms, so relevance to the source cannot be established and no methodology recorded: a quantitative measurement needs a methodology_quote of at least 4 words that appears in the acquired source",
+    "research.claims.c006 was SKIPPED: value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+    "research.claims.c008 was UNAVAILABLE: the supplied evidence satisfies index_seconds le 2 seconds, but it cannot be treated as verified: rv_readme: subject term(s) ['Rubydex'] not found in the acquired source",
+    "claim results hold only for the checks the candidate's author supplied; independence of origin is not established and real-world truth stays unresolved",
+    "this assessment does not approve development; a separate explicit approval is required"
+  ],
+  "authority": {
+    "type": "ADVISORY",
+    "executable": false
+  },
+  "provenance": {
+    "run_id": "m2-dogfood-1",
+    "producer_component": "howldream",
+    "producer_version": "0.4.5",
+    "model_or_provider": null,
+    "observation_kind": "DETERMINISTIC",
+    "created_at": "2026-11-05T22:10:42.517196+00:00",
+    "transformations": [
+      "howlproof_claim_import"
+    ],
+    "source_candidate_id": "m2/claude-corpus",
+    "bundle_sha256": "931c6e20503c07eb7ec1b384bc4fc882af7d478a493fa6a6058825032dce034d",
+    "authorship": {
+      "component": "claude-m2-dogfood",
+      "kind": "EXTERNAL_AUTHORED",
+      "model": null,
+      "provider": null
+    },
+    "proof": {
+      "run_id": "hp-20261105-221042-779b4c8b8e75",
+      "version": "0.2.0b1",
+      "verdict": "INSUFFICIENT_EVIDENCE",
+      "deciding_rule": "no_acceptance_criteria",
+      "started_at": "2026-11-05T22:10:42.404405+00:00",
+      "completed_at": "2026-11-05T22:10:42.517196+00:00",
+      "unresolved_risks": [
+        "HP-FUNC-0001 (HIGH): claim k02-3-scoped: 'agent' is not found in mutant_readme (expected present); this concerns only the checked artifact(s); the term does appear in other bundle evidence (mutant_skill), so the broader question is open",
+        "HP-FUNC-0002 (HIGH): claim ruby-4-0-0-latest: 'Ruby 4.0.9 Released' is found in ruby400_notes, rubylang_news (expected absent); this concerns only the checked artifact(s)"
+      ]
+    },
+    "claim_statuses": {
+      "k02-3": "INCONCLUSIVE",
+      "k02-3-scoped": "REFUTED",
+      "k02-5": "INCONCLUSIVE",
+      "rel-4-0-9": "SUPPORTED",
+      "k03-3": "SUPPORTED",
+      "k06-3": "REQUIRES_EXTERNAL_VALIDATION",
+      "ruby-4-0-0-latest": "REFUTED",
+      "rubydex-index-time": "INCONCLUSIVE"
+    }
+  }
+}

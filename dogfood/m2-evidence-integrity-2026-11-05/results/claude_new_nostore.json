@@ -1,0 +1,1151 @@
+{
+  "schema": "howlproof.result/v1",
+  "run_id": "hp-20261105-221043-feba027a0ffd",
+  "authority": "ADVISORY",
+  "version": "0.2.0b1",
+  "artifact": "claude",
+  "profiles": [
+    "research"
+  ],
+  "adversaries": [
+    "FUNCTIONAL",
+    "SECURITY",
+    "RELIABILITY",
+    "AI",
+    "OPERATOR"
+  ],
+  "target": {
+    "root": "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/bundles/claude",
+    "is_git": false,
+    "commit": "",
+    "branch": "",
+    "dirty": false,
+    "file_count": 8,
+    "oversized_files_not_copied": [],
+    "tree_digest_before": "7cade65928106222ee380387854c796147859411813ecc3adc6ddb278fcb3c1d",
+    "tree_digest_after": "7cade65928106222ee380387854c796147859411813ecc3adc6ddb278fcb3c1d"
+  },
+  "started_at": "2026-11-05T22:10:43.252944+00:00",
+  "completed_at": "2026-11-05T22:10:43.305144+00:00",
+  "duration_ms": 52,
+  "verdict": "INSUFFICIENT_EVIDENCE",
+  "verdict_definition": "The artifact may or may not be acceptable. The evaluation that ran was inadequate to make a defensible determination, so no determination is claimed.",
+  "deciding_rule": "no_acceptance_criteria",
+  "rationale": [
+    "The artifact defines no acceptance criteria.",
+    "Running checks without criteria shows activity, not conformance."
+  ],
+  "criteria": [],
+  "counts": {
+    "checks": 9,
+    "verified": 2,
+    "failed": 0,
+    "skipped": 1,
+    "unavailable": 6,
+    "not_applicable": 0,
+    "errored": 0,
+    "simulated": 0,
+    "findings": 0,
+    "blocking_findings": 0,
+    "criteria_satisfied": 0,
+    "criteria_total": 0,
+    "by_severity": {
+      "BLOCKER": 0,
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 0,
+      "INFORMATIONAL": 0
+    },
+    "by_adversary": {
+      "FUNCTIONAL": 0,
+      "SECURITY": 0,
+      "RELIABILITY": 0,
+      "AI": 0,
+      "OPERATOR": 0,
+      "INTEGRITY": 0
+    }
+  },
+  "checks": [
+    {
+      "check_id": "research.claims.bundle",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim bundle is well formed and 7 evidence file(s) match their registered digests",
+      "limitation": "establishes structure and byte integrity only; no claim is verified by this check",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 9,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "bundle_sha256": "931c6e20503c07eb7ec1b384bc4fc882af7d478a493fa6a6058825032dce034d",
+        "candidate_id": "m2/claude-corpus",
+        "claims": 8,
+        "trust_model": "howl.evidence_trust/v1"
+      }
+    },
+    {
+      "check_id": "research.claims.c001",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim k02-3: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "the supplied evidence contradicts agent_integration_documented eq 1, but it cannot be treated as verified: mutant_readme: acquisition could not be verified (NO_STORE)",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "k02-3",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "the supplied evidence contradicts agent_integration_documented eq 1, but it cannot be treated as verified: mutant_readme: acquisition could not be verified (NO_STORE)",
+        "evidence_considered": [
+          {
+            "id": "mutant_readme",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "contradicts",
+            "published_at": null,
+            "sha256": "08366e26680860c5f3f6a259c3d685aa7fa60f76e6f264364d0540726f144a4a",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://github.com/mbj/mutant",
+              "produced_by": "mbj/mutant",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NO_STORE",
+              "acquisition_id": "acq-8376a0c28d5fda0c",
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "URL",
+              "source_origin": "UNVERIFIABLE",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false,
+            "observed": "0",
+            "ineligible_reasons": [
+              "acquisition could not be verified (NO_STORE)"
+            ]
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the supplied numbers come from an authentic source",
+          "real-world truth"
+        ],
+        "checked_proposition": "The Mutant README documents an AI-agent integration.",
+        "scope": null,
+        "scope_limited": false,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": "REFUTED",
+        "check_passed": false,
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": false,
+          "evidence_integrity": "ok",
+          "source_origin": "UNVERIFIABLE",
+          "claim_relevance": "NOT_ESTABLISHED",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": false,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "SUPPLIED_DATA_CONTRADICTS"
+        },
+        "bundle_sha256": "931c6e20503c07eb7ec1b384bc4fc882af7d478a493fa6a6058825032dce034d",
+        "candidate_id": "m2/claude-corpus"
+      }
+    },
+    {
+      "check_id": "research.claims.c002",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim k02-3-scoped: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "no cited artifact could be searched: mutant_readme: acquisition could not be verified (NO_STORE)",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "k02-3-scoped",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "text_presence",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "no cited artifact could be searched: mutant_readme: acquisition could not be verified (NO_STORE)",
+        "evidence_considered": [
+          {
+            "id": "mutant_readme",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unverified",
+            "published_at": null,
+            "sha256": "08366e26680860c5f3f6a259c3d685aa7fa60f76e6f264364d0540726f144a4a",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://github.com/mbj/mutant",
+              "produced_by": "mbj/mutant",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NO_STORE",
+              "acquisition_id": "acq-8376a0c28d5fda0c",
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "URL",
+              "source_origin": "UNVERIFIABLE",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false,
+            "ineligible_reasons": [
+              "acquisition could not be verified (NO_STORE)"
+            ],
+            "note": "acquisition could not be verified (NO_STORE)"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the feature or behaviour exists outside the checked artifact(s); absence from a document is not absence from the project",
+          "whether the artifact's statements are true"
+        ],
+        "checked_proposition": "The text of the Mutant README contains the word 'agent'",
+        "scope": {
+          "artifact": "mbj/mutant README.md",
+          "extent": "SINGLE_FILE"
+        },
+        "scope_limited": true,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": null,
+        "check_passed": null,
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": null,
+          "evidence_integrity": "ok",
+          "source_origin": "UNVERIFIABLE",
+          "claim_relevance": "NOT_ESTABLISHED",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": false,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "UNRESOLVED"
+        },
+        "bundle_sha256": "931c6e20503c07eb7ec1b384bc4fc882af7d478a493fa6a6058825032dce034d",
+        "candidate_id": "m2/claude-corpus"
+      }
+    },
+    {
+      "check_id": "research.claims.c003",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim k02-5: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "the supplied evidence satisfies skill_file_http_status eq 200, but it cannot be treated as verified: mutant_skill: acquisition could not be verified (NO_STORE)",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "k02-5",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "the supplied evidence satisfies skill_file_http_status eq 200, but it cannot be treated as verified: mutant_skill: acquisition could not be verified (NO_STORE)",
+        "evidence_considered": [
+          {
+            "id": "mutant_skill",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "supports",
+            "published_at": null,
+            "sha256": "e60c77a443f83c59679ca92e70c612928adf4d894c588a107d24149bed4193ba",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://github.com/mbj/mutant",
+              "produced_by": "mbj/mutant",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NO_STORE",
+              "acquisition_id": "acq-ee346fc6cf899b5a",
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "URL",
+              "source_origin": "UNVERIFIABLE",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false,
+            "observed": "200",
+            "ineligible_reasons": [
+              "acquisition could not be verified (NO_STORE)"
+            ]
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the supplied numbers come from an authentic source",
+          "real-world truth"
+        ],
+        "checked_proposition": "The mutant repository ships an agent skill file (SKILL.md).",
+        "scope": null,
+        "scope_limited": false,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": "SUPPORTED",
+        "check_passed": true,
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": true,
+          "evidence_integrity": "ok",
+          "source_origin": "UNVERIFIABLE",
+          "claim_relevance": "NOT_ESTABLISHED",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": false,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "SUPPLIED_DATA_AGREES"
+        },
+        "bundle_sha256": "931c6e20503c07eb7ec1b384bc4fc882af7d478a493fa6a6058825032dce034d",
+        "candidate_id": "m2/claude-corpus"
+      }
+    },
+    {
+      "check_id": "research.claims.c004",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim rel-4-0-9: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "no cited artifact could be searched: rubylang_news: acquisition could not be verified (NO_STORE); rubylang_news_live: acquisition could not be verified (NO_STORE)",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "rel-4-0-9",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "text_presence",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "no cited artifact could be searched: rubylang_news: acquisition could not be verified (NO_STORE); rubylang_news_live: acquisition could not be verified (NO_STORE)",
+        "evidence_considered": [
+          {
+            "id": "rubylang_news",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unverified",
+            "published_at": "2026-10-23T00:00:00Z",
+            "sha256": "26847c2afd7b2fa316d52d070b75fa657a7a5e2a0e82f0ecedaf3a01a86c82e2",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://www.ruby-lang.org/en/news/",
+              "produced_by": "ruby-lang.org",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NO_STORE",
+              "acquisition_id": "acq-1c806da784745192",
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "URL",
+              "source_origin": "UNVERIFIABLE",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false,
+            "ineligible_reasons": [
+              "acquisition could not be verified (NO_STORE)"
+            ],
+            "note": "acquisition could not be verified (NO_STORE)"
+          },
+          {
+            "id": "rubylang_news_live",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unverified",
+            "published_at": "2026-11-05T22:10:41Z",
+            "sha256": "6520a06825f92ce1c3fe1bc88f3f1d9dfa6d834777279183f0c8b404a78a82dc",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://www.ruby-lang.org/en/news/",
+              "produced_by": "ruby-lang.org",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NO_STORE",
+              "acquisition_id": "acq-ddb8bb5d88fd3a3b",
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "URL",
+              "source_origin": "UNVERIFIABLE",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false,
+            "ineligible_reasons": [
+              "acquisition could not be verified (NO_STORE)"
+            ],
+            "note": "acquisition could not be verified (NO_STORE)"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the feature or behaviour exists outside the checked artifact(s); absence from a document is not absence from the project",
+          "whether the artifact's statements are true"
+        ],
+        "checked_proposition": "The ruby-lang.org news page lists 'Ruby 4.0.9 Released'",
+        "scope": {
+          "artifact": "ruby-lang.org/en/news/",
+          "extent": "SINGLE_PAGE"
+        },
+        "scope_limited": true,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": null,
+        "check_passed": null,
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": null,
+          "evidence_integrity": "ok",
+          "source_origin": "UNVERIFIABLE",
+          "claim_relevance": "NOT_ESTABLISHED",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": false,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "UNRESOLVED"
+        },
+        "bundle_sha256": "931c6e20503c07eb7ec1b384bc4fc882af7d478a493fa6a6058825032dce034d",
+        "candidate_id": "m2/claude-corpus"
+      }
+    },
+    {
+      "check_id": "research.claims.c005",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim k03-3: SUPPORTED",
+      "limitation": "compares author-grounded checks against evidence; sourced claims need an observed acquisition in which the fact and subject terms appear. Establishes only the compared proposition within its stated scope, not that a source is correct, current, representative or independent in origin",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "k03-3",
+        "category": "TECHNICAL",
+        "assumption": false,
+        "method": "arithmetic",
+        "claim_status": "SUPPORTED",
+        "explanation": "(0.62 - 0.36) / 0.62 = 0.4193548387096774193548387097; expected approx 0.419 -> holds",
+        "evidence_considered": [
+          {
+            "id": "mame_readme",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": null,
+            "sha256": "d44a5857c0fae97dd434e98ef6a67b5a4fd337d934c9c9f1f78045eeb5c3b4b5",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://github.com/mame/ai-coding-lang-bench",
+              "produced_by": "mame",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NO_STORE",
+              "acquisition_id": "acq-cf544340f2287421",
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "URL",
+              "source_origin": "UNVERIFIABLE",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "inputs of the expression were taken from the claim, not independently sourced"
+        ],
+        "checked_proposition": "Arithmetic: (0.62-0.36)/0.62 = 0.419 (Ruby cost 41.9% below TypeScript, same benchmark).",
+        "scope": null,
+        "scope_limited": false,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": "SUPPORTED",
+        "check_passed": true,
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": true,
+          "evidence_integrity": "not_applicable",
+          "source_origin": "NOT_EXAMINED",
+          "claim_relevance": "NOT_APPLICABLE",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "UNVERIFIED",
+          "real_world_eligible": false,
+          "real_world_truth": "NOT_ESTABLISHED",
+          "evidence_status": "DETERMINISTIC_CHECK_ONLY"
+        },
+        "bundle_sha256": "931c6e20503c07eb7ec1b384bc4fc882af7d478a493fa6a6058825032dce034d",
+        "candidate_id": "m2/claude-corpus"
+      }
+    },
+    {
+      "check_id": "research.claims.c006",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "SKIPPED",
+      "summary": "claim k06-3: REQUIRES_EXTERNAL_VALIDATION",
+      "limitation": "nothing was established about this claim",
+      "reason": "value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "k06-3",
+        "category": "VALUE_JUDGMENT",
+        "assumption": false,
+        "method": "none",
+        "claim_status": "REQUIRES_EXTERNAL_VALIDATION",
+        "explanation": "value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+        "evidence_considered": [
+          {
+            "id": "mutant_readme",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": null,
+            "sha256": "08366e26680860c5f3f6a259c3d685aa7fa60f76e6f264364d0540726f144a4a",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://github.com/mbj/mutant",
+              "produced_by": "mbj/mutant",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NO_STORE",
+              "acquisition_id": "acq-8376a0c28d5fda0c",
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "URL",
+              "source_origin": "UNVERIFIABLE",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false
+          },
+          {
+            "id": "mutant_skill",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": null,
+            "sha256": "e60c77a443f83c59679ca92e70c612928adf4d894c588a107d24149bed4193ba",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://github.com/mbj/mutant",
+              "produced_by": "mbj/mutant",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NO_STORE",
+              "acquisition_id": "acq-ee346fc6cf899b5a",
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "URL",
+              "source_origin": "UNVERIFIABLE",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false
+          },
+          {
+            "id": "rubylang_news",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": "2026-10-23T00:00:00Z",
+            "sha256": "26847c2afd7b2fa316d52d070b75fa657a7a5e2a0e82f0ecedaf3a01a86c82e2",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://www.ruby-lang.org/en/news/",
+              "produced_by": "ruby-lang.org",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NO_STORE",
+              "acquisition_id": "acq-1c806da784745192",
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "URL",
+              "source_origin": "UNVERIFIABLE",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false
+          },
+          {
+            "id": "ruby400_notes",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": "2025-12-25T00:00:00Z",
+            "sha256": "6b9c5a2ab08e0a6a4b653e4a45354de6b3ddde47a5588a2e28d59c590c49febd",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://www.ruby-lang.org/en/news/2025/12/25/ruby-4-0-0-released/",
+              "produced_by": "ruby-lang.org",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NO_STORE",
+              "acquisition_id": "acq-6206a0cdf4ebad9d",
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "URL",
+              "source_origin": "UNVERIFIABLE",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false
+          },
+          {
+            "id": "rv_readme",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": null,
+            "sha256": "39a72c85310adac614ae82853e05b0d4a838366253b38a1fbc1fb7a95465edd1",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://github.com/spinel-coop/rv",
+              "produced_by": "spinel-coop/rv",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NO_STORE",
+              "acquisition_id": "acq-acf688b5c0fdda78",
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "URL",
+              "source_origin": "UNVERIFIABLE",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false
+          },
+          {
+            "id": "mame_readme",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": null,
+            "sha256": "d44a5857c0fae97dd434e98ef6a67b5a4fd337d934c9c9f1f78045eeb5c3b4b5",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://github.com/mame/ai-coding-lang-bench",
+              "produced_by": "mame",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NO_STORE",
+              "acquisition_id": "acq-cf544340f2287421",
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "URL",
+              "source_origin": "UNVERIFIABLE",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false
+          },
+          {
+            "id": "rubylang_news_live",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": "2026-11-05T22:10:41Z",
+            "sha256": "6520a06825f92ce1c3fe1bc88f3f1d9dfa6d834777279183f0c8b404a78a82dc",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://www.ruby-lang.org/en/news/",
+              "produced_by": "ruby-lang.org",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NO_STORE",
+              "acquisition_id": "acq-ddb8bb5d88fd3a3b",
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "URL",
+              "source_origin": "UNVERIFIABLE",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "the truth of the judgment or forecast"
+        ],
+        "checked_proposition": "Ruby will return to the TIOBE top 10 by 2028.",
+        "scope": null,
+        "scope_limited": false,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": null,
+        "check_passed": null,
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": null,
+          "evidence_integrity": "not_applicable",
+          "source_origin": "NOT_EXAMINED",
+          "claim_relevance": "NOT_APPLICABLE",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "NOT_APPLICABLE",
+          "real_world_eligible": false,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "UNRESOLVED"
+        },
+        "bundle_sha256": "931c6e20503c07eb7ec1b384bc4fc882af7d478a493fa6a6058825032dce034d",
+        "candidate_id": "m2/claude-corpus"
+      }
+    },
+    {
+      "check_id": "research.claims.c007",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim ruby-4-0-0-latest: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "no cited artifact could be searched: ruby400_notes: acquisition could not be verified (NO_STORE); rubylang_news: acquisition could not be verified (NO_STORE)",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "ruby-4-0-0-latest",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "text_presence",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "no cited artifact could be searched: ruby400_notes: acquisition could not be verified (NO_STORE); rubylang_news: acquisition could not be verified (NO_STORE)",
+        "evidence_considered": [
+          {
+            "id": "ruby400_notes",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unverified",
+            "published_at": "2025-12-25T00:00:00Z",
+            "sha256": "6b9c5a2ab08e0a6a4b653e4a45354de6b3ddde47a5588a2e28d59c590c49febd",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://www.ruby-lang.org/en/news/2025/12/25/ruby-4-0-0-released/",
+              "produced_by": "ruby-lang.org",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NO_STORE",
+              "acquisition_id": "acq-6206a0cdf4ebad9d",
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "URL",
+              "source_origin": "UNVERIFIABLE",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false,
+            "ineligible_reasons": [
+              "acquisition could not be verified (NO_STORE)"
+            ],
+            "note": "acquisition could not be verified (NO_STORE)"
+          },
+          {
+            "id": "rubylang_news",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unverified",
+            "published_at": "2026-10-23T00:00:00Z",
+            "sha256": "26847c2afd7b2fa316d52d070b75fa657a7a5e2a0e82f0ecedaf3a01a86c82e2",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://www.ruby-lang.org/en/news/",
+              "produced_by": "ruby-lang.org",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NO_STORE",
+              "acquisition_id": "acq-1c806da784745192",
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "URL",
+              "source_origin": "UNVERIFIABLE",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false,
+            "ineligible_reasons": [
+              "acquisition could not be verified (NO_STORE)"
+            ],
+            "note": "acquisition could not be verified (NO_STORE)"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the feature or behaviour exists outside the checked artifact(s); absence from a document is not absence from the project",
+          "whether the artifact's statements are true"
+        ],
+        "checked_proposition": "Neither cited ruby-lang.org page lists 'Ruby 4.0.9 Released'",
+        "scope": {
+          "artifact": "two ruby-lang.org pages",
+          "extent": "TWO_PAGES"
+        },
+        "scope_limited": true,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": null,
+        "check_passed": null,
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": null,
+          "evidence_integrity": "ok",
+          "source_origin": "UNVERIFIABLE",
+          "claim_relevance": "NOT_ESTABLISHED",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": false,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "UNRESOLVED"
+        },
+        "bundle_sha256": "931c6e20503c07eb7ec1b384bc4fc882af7d478a493fa6a6058825032dce034d",
+        "candidate_id": "m2/claude-corpus"
+      }
+    },
+    {
+      "check_id": "research.claims.c008",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim rubydex-index-time: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "the supplied evidence satisfies index_seconds le 2 seconds, but it cannot be treated as verified: rv_readme: acquisition could not be verified (NO_STORE)",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "rubydex-index-time",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "the supplied evidence satisfies index_seconds le 2 seconds, but it cannot be treated as verified: rv_readme: acquisition could not be verified (NO_STORE)",
+        "evidence_considered": [
+          {
+            "id": "rv_readme",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "supports",
+            "published_at": null,
+            "sha256": "39a72c85310adac614ae82853e05b0d4a838366253b38a1fbc1fb7a95465edd1",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://github.com/spinel-coop/rv",
+              "produced_by": "spinel-coop/rv",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NO_STORE",
+              "acquisition_id": "acq-acf688b5c0fdda78",
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "URL",
+              "source_origin": "UNVERIFIABLE",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false,
+            "observed": "1.8 seconds",
+            "ineligible_reasons": [
+              "acquisition could not be verified (NO_STORE)"
+            ]
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the supplied numbers come from an authentic source",
+          "real-world truth"
+        ],
+        "checked_proposition": "Rubydex indexes a project in under 2 seconds.",
+        "scope": null,
+        "scope_limited": false,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": "SUPPORTED",
+        "check_passed": true,
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": true,
+          "evidence_integrity": "ok",
+          "source_origin": "UNVERIFIABLE",
+          "claim_relevance": "NOT_ESTABLISHED",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": false,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "SUPPLIED_DATA_AGREES"
+        },
+        "bundle_sha256": "931c6e20503c07eb7ec1b384bc4fc882af7d478a493fa6a6058825032dce034d",
+        "candidate_id": "m2/claude-corpus"
+      }
+    }
+  ],
+  "findings": [],
+  "unresolved_risks": [],
+  "limitations": [
+    "research.claims.c001 was UNAVAILABLE: the supplied evidence contradicts agent_integration_documented eq 1, but it cannot be treated as verified: mutant_readme: acquisition could not be verified (NO_STORE)",
+    "research.claims.c002 was UNAVAILABLE: no cited artifact could be searched: mutant_readme: acquisition could not be verified (NO_STORE)",
+    "research.claims.c003 was UNAVAILABLE: the supplied evidence satisfies skill_file_http_status eq 200, but it cannot be treated as verified: mutant_skill: acquisition could not be verified (NO_STORE)",
+    "research.claims.c004 was UNAVAILABLE: no cited artifact could be searched: rubylang_news: acquisition could not be verified (NO_STORE); rubylang_news_live: acquisition could not be verified (NO_STORE)",
+    "research.claims.c006 was SKIPPED: value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+    "research.claims.c007 was UNAVAILABLE: no cited artifact could be searched: ruby400_notes: acquisition could not be verified (NO_STORE); rubylang_news: acquisition could not be verified (NO_STORE)",
+    "research.claims.c008 was UNAVAILABLE: the supplied evidence satisfies index_seconds le 2 seconds, but it cannot be treated as verified: rv_readme: acquisition could not be verified (NO_STORE)"
+  ],
+  "notes": [
+    "no service is declared, so live adversaries have nothing to attack"
+  ],
+  "validation_modes": {
+    "REAL": [
+      "research.claims.bundle",
+      "research.claims.c005"
+    ],
+    "SIMULATED": [],
+    "SKIPPED": [
+      "research.claims.c006"
+    ],
+    "UNAVAILABLE": [
+      "research.claims.c001",
+      "research.claims.c002",
+      "research.claims.c003",
+      "research.claims.c004",
+      "research.claims.c007",
+      "research.claims.c008"
+    ],
+    "NOT_APPLICABLE": [],
+    "ERROR": []
+  },
+  "manifest": {
+    "schema": "howlproof.run/v1",
+    "run_id": "hp-20261105-221043-feba027a0ffd",
+    "authority": "ADVISORY",
+    "version": "0.2.0b1",
+    "implementation_hash": "102c32672453a3debe9caedcb14db67581b100b84e938ace15a386be6ddd8cb0",
+    "artifact": "claude",
+    "profiles": [
+      "research"
+    ],
+    "started_at": "2026-11-05T22:10:43.252944+00:00",
+    "completed_at": "2026-11-05T22:10:43.305144+00:00",
+    "verdict": "INSUFFICIENT_EVIDENCE",
+    "evaluators": [
+      "research.claims/v1"
+    ],
+    "file_hashes": {
+      "checks.jsonl": "1c55084233ffae6f7e9c4c6a7e8c55709a2818ad2c309d2f9e881e3bb6a4f22b",
+      "config.json": "e4ce65058c359b8fc8878c5d948c89ce2fa6229b6b5b42d0d11de2378f3a524e",
+      "environment.json": "aaefe3163bdf0f3b83b48402530a12b8550b7f0e44e9c18ee3a506021d472d27",
+      "evidence/research.claims/claim_results.json": "823390dbbdc6e9a6c65a57bb45af38e716aaeb3d960954cd8a55ee661f2d9223",
+      "handoff.json": "1549cec3e48883432dfc374bb62456ac99d6eb0f61b57765a5461aee142584fc",
+      "result.json": "7f269b68e003179a3e5632045a03214a7523a78ec8b6caced6f967affbdc600f",
+      "result.md": "33a4297a547583926937240d7169c84d5b458fa21126e32f559abed97094e633",
+      "target.json": "98c7537b28f555df03498a2db2f469f0e58e10c03a0ff63934794ffed9c9550c"
+    }
+  },
+  "path": "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/proof_out/claude_nostore/hp-20261105-221043-feba027a0ffd"
+}

@@ -1,0 +1,183 @@
+{
+  "candidate_id": "m2/claude-corpus",
+  "source_run_id": "m2-dogfood-1",
+  "parent_request_id": "m2-dogfood-1",
+  "objective": "M2 evidence integrity dogfood",
+  "text": "Fixed v4 claim corpus for the M2 evidence trust model.",
+  "claims": [
+    {
+      "id": "k02-3",
+      "candidate_id": "m2/claude-corpus",
+      "kind": "FACT",
+      "text": "The Mutant README documents an AI-agent integration.",
+      "status": "UNVERIFIED",
+      "category": "EMPIRICAL",
+      "evidence_refs": [
+        "mutant_readme"
+      ],
+      "check": {
+        "type": "fact_compare",
+        "fact": "agent_integration_documented",
+        "op": "eq",
+        "expected": "1",
+        "tolerance": "0"
+      },
+      "subject_terms": [
+        "Mutant"
+      ]
+    },
+    {
+      "id": "k02-3-scoped",
+      "candidate_id": "m2/claude-corpus",
+      "kind": "FACT",
+      "text": "The Mutant README documents an AI-agent integration.",
+      "status": "UNVERIFIED",
+      "category": "EMPIRICAL",
+      "evidence_refs": [
+        "mutant_readme"
+      ],
+      "check": {
+        "type": "text_presence",
+        "term": "agent",
+        "expect": "present"
+      },
+      "subject_terms": [
+        "Mutant"
+      ],
+      "checked_proposition": "The text of the Mutant README contains the word 'agent'",
+      "scope": {
+        "artifact": "mbj/mutant README.md",
+        "extent": "SINGLE_FILE"
+      }
+    },
+    {
+      "id": "k02-5",
+      "candidate_id": "m2/claude-corpus",
+      "kind": "FACT",
+      "text": "The mutant repository ships an agent skill file (SKILL.md).",
+      "status": "UNVERIFIED",
+      "category": "EMPIRICAL",
+      "evidence_refs": [
+        "mutant_skill"
+      ],
+      "check": {
+        "type": "fact_compare",
+        "fact": "skill_file_http_status",
+        "op": "eq",
+        "expected": "200",
+        "tolerance": "0"
+      }
+    },
+    {
+      "id": "rel-4-0-9",
+      "candidate_id": "m2/claude-corpus",
+      "kind": "FACT",
+      "text": "Ruby 4.0.9 has been released.",
+      "status": "UNVERIFIED",
+      "category": "EMPIRICAL",
+      "evidence_refs": [
+        "rubylang_news",
+        "rubylang_news_live"
+      ],
+      "check": {
+        "type": "text_presence",
+        "term": "Ruby 4.0.9 Released",
+        "expect": "present"
+      },
+      "subject_terms": [
+        "Ruby"
+      ],
+      "checked_proposition": "The ruby-lang.org news page lists 'Ruby 4.0.9 Released'",
+      "scope": {
+        "artifact": "ruby-lang.org/en/news/",
+        "extent": "SINGLE_PAGE"
+      }
+    },
+    {
+      "id": "k03-3",
+      "candidate_id": "m2/claude-corpus",
+      "kind": "FACT",
+      "text": "Arithmetic: (0.62-0.36)/0.62 = 0.419 (Ruby cost 41.9% below TypeScript, same benchmark).",
+      "status": "UNVERIFIED",
+      "category": "TECHNICAL",
+      "evidence_refs": [
+        "mame_readme"
+      ],
+      "check": {
+        "type": "arithmetic",
+        "expression": "(0.62 - 0.36) / 0.62",
+        "op": "approx",
+        "expected": "0.419",
+        "tolerance": "0.001"
+      }
+    },
+    {
+      "id": "k06-3",
+      "candidate_id": "m2/claude-corpus",
+      "kind": "FACT",
+      "text": "Ruby will return to the TIOBE top 10 by 2028.",
+      "status": "UNVERIFIED",
+      "category": "VALUE_JUDGMENT",
+      "evidence_refs": [],
+      "check": null
+    },
+    {
+      "id": "ruby-4-0-0-latest",
+      "candidate_id": "m2/claude-corpus",
+      "kind": "FACT",
+      "text": "Ruby 4.0.0 is the most recent Ruby 4.0 release.",
+      "status": "UNVERIFIED",
+      "category": "EMPIRICAL",
+      "evidence_refs": [
+        "ruby400_notes",
+        "rubylang_news"
+      ],
+      "check": {
+        "type": "text_presence",
+        "term": "Ruby 4.0.9 Released",
+        "expect": "absent"
+      },
+      "subject_terms": [
+        "Ruby"
+      ],
+      "checked_proposition": "Neither cited ruby-lang.org page lists 'Ruby 4.0.9 Released'",
+      "scope": {
+        "artifact": "two ruby-lang.org pages",
+        "extent": "TWO_PAGES"
+      }
+    },
+    {
+      "id": "rubydex-index-time",
+      "candidate_id": "m2/claude-corpus",
+      "kind": "FACT",
+      "text": "Rubydex indexes a project in under 2 seconds.",
+      "status": "UNVERIFIED",
+      "category": "EMPIRICAL",
+      "evidence_refs": [
+        "rv_readme"
+      ],
+      "check": {
+        "type": "fact_compare",
+        "fact": "index_seconds",
+        "op": "le",
+        "expected": "2 seconds",
+        "tolerance": "0",
+        "nature": "reported_fact"
+      },
+      "subject_terms": [
+        "Rubydex"
+      ]
+    }
+  ],
+  "assumptions": [],
+  "provenance": {
+    "producer_component": "howldream",
+    "observation_kind": "EXTERNALLY_OBSERVED",
+    "origin": {
+      "component": "claude-m2-dogfood",
+      "provider": null,
+      "model": null
+    },
+    "created_at": "2026-11-05T00:00:00+00:00"
+  }
+}

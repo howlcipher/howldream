@@ -1,0 +1,341 @@
+{
+  "schema": "howlproof.result/v1",
+  "run_id": "hp-20261105-221037-8cefc7dfc608",
+  "authority": "ADVISORY",
+  "version": "0.2.0b1",
+  "artifact": "cand-01-rubydex-mcp",
+  "profiles": [
+    "research"
+  ],
+  "adversaries": [
+    "FUNCTIONAL",
+    "SECURITY",
+    "RELIABILITY",
+    "AI",
+    "OPERATOR"
+  ],
+  "target": {
+    "root": "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/inputs/agy_bundles/cand-01-rubydex-mcp",
+    "is_git": false,
+    "commit": "",
+    "branch": "",
+    "dirty": false,
+    "file_count": 6,
+    "oversized_files_not_copied": [],
+    "tree_digest_before": "833172e12f8bc43319f010716ec3ce5b0cf67844693b6a150d5937863adb38db",
+    "tree_digest_after": "833172e12f8bc43319f010716ec3ce5b0cf67844693b6a150d5937863adb38db"
+  },
+  "started_at": "2026-11-05T22:10:37.552664+00:00",
+  "completed_at": "2026-11-05T22:10:37.597462+00:00",
+  "duration_ms": 44,
+  "verdict": "INSUFFICIENT_EVIDENCE",
+  "verdict_definition": "The artifact may or may not be acceptable. The evaluation that ran was inadequate to make a defensible determination, so no determination is claimed.",
+  "deciding_rule": "no_acceptance_criteria",
+  "rationale": [
+    "The artifact defines no acceptance criteria.",
+    "Running checks without criteria shows activity, not conformance."
+  ],
+  "criteria": [],
+  "counts": {
+    "checks": 5,
+    "verified": 3,
+    "failed": 1,
+    "skipped": 1,
+    "unavailable": 0,
+    "not_applicable": 0,
+    "errored": 0,
+    "simulated": 0,
+    "findings": 1,
+    "blocking_findings": 0,
+    "criteria_satisfied": 0,
+    "criteria_total": 0,
+    "by_severity": {
+      "BLOCKER": 0,
+      "HIGH": 1,
+      "MEDIUM": 0,
+      "LOW": 0,
+      "INFORMATIONAL": 0
+    },
+    "by_adversary": {
+      "FUNCTIONAL": 1,
+      "SECURITY": 0,
+      "RELIABILITY": 0,
+      "AI": 0,
+      "OPERATOR": 0,
+      "INTEGRITY": 0
+    }
+  },
+  "checks": [
+    {
+      "check_id": "research.claims.bundle",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim bundle is well formed and 5 evidence file(s) match their registered digests",
+      "limitation": "establishes structure and byte integrity only; no claim is verified by this check",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 2,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "bundle_sha256": "185f3e6311047fe0f57e28b383658e0cd7449cc39f815e55ae8cd1de4616f39b",
+        "candidate_id": "v4-agy/cand-01-rubydex-mcp",
+        "claims": 4
+      }
+    },
+    {
+      "check_id": "research.claims.c001",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim c01_01_rubydex_latency: SUPPORTED",
+      "limitation": "compares author-grounded checks against evidence whose independence is as declared in the bundle and is not authenticated; establishes only the compared fact, not that a source is correct, current or representative",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c01_01_rubydex_latency",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "SUPPORTED",
+        "explanation": "independent evidence ev_shopify_rubydex_bench satisfies latency_ms le 50 ms",
+        "evidence_considered": [
+          {
+            "id": "ev_shopify_rubydex_bench",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "supports",
+            "published_at": "2026-06-15T00:00:00Z",
+            "sha256": "2aaa71bf1d85b101b77176fb115fbe71d82b7f59b73744daf086d08edf419480",
+            "observed": "42 ms"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the source is correct, current or representative"
+        ],
+        "bundle_sha256": "185f3e6311047fe0f57e28b383658e0cd7449cc39f815e55ae8cd1de4616f39b",
+        "candidate_id": "v4-agy/cand-01-rubydex-mcp"
+      }
+    },
+    {
+      "check_id": "research.claims.c002",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim c01_02_context_token_reduction: SUPPORTED",
+      "limitation": "compares author-grounded checks against evidence whose independence is as declared in the bundle and is not authenticated; establishes only the compared fact, not that a source is correct, current or representative",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c01_02_context_token_reduction",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "SUPPORTED",
+        "explanation": "independent evidence ev_context_token_study_a, ev_context_token_study_b satisfies token_reduction approx 65%",
+        "evidence_considered": [
+          {
+            "id": "ev_context_token_study_a",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "supports",
+            "published_at": "2026-07-01T00:00:00Z",
+            "sha256": "3280c464b277a3c9472a0aa079a85355fef5ae25e7da50fa553ca055740a39d4",
+            "observed": "63%"
+          },
+          {
+            "id": "ev_context_token_study_b",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "supports",
+            "published_at": "2026-08-10T00:00:00Z",
+            "sha256": "6286f8e08c99dacf8716d52bc3b99de94dd2825cb4a4134ee7aa2584be29621b",
+            "observed": "64%"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the source is correct, current or representative"
+        ],
+        "bundle_sha256": "185f3e6311047fe0f57e28b383658e0cd7449cc39f815e55ae8cd1de4616f39b",
+        "candidate_id": "v4-agy/cand-01-rubydex-mcp"
+      }
+    },
+    {
+      "check_id": "research.claims.c003",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "FAILED",
+      "summary": "claim c01_03_zero_hallucination: REFUTED",
+      "limitation": "compares author-grounded checks against evidence whose independence is as declared in the bundle and is not authenticated; establishes only the compared fact, not that a source is correct, current or representative",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c01_03_zero_hallucination",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "REFUTED",
+        "explanation": "independent evidence ev_agent_benchmark_failure contradicts hallucination_rate eq 0%",
+        "evidence_considered": [
+          {
+            "id": "ev_agent_benchmark_failure",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "contradicts",
+            "published_at": "2026-08-20T00:00:00Z",
+            "sha256": "4aab4c5e3f5689deb75db865200c283dc51626f19df1acb9ed51fda6ccfded47",
+            "observed": "4.2%"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the contradicting source is itself correct"
+        ],
+        "bundle_sha256": "185f3e6311047fe0f57e28b383658e0cd7449cc39f815e55ae8cd1de4616f39b",
+        "candidate_id": "v4-agy/cand-01-rubydex-mcp"
+      }
+    },
+    {
+      "check_id": "research.claims.c004",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "SKIPPED",
+      "summary": "claim c01_04_rubydex_adoption_forecast: REQUIRES_EXTERNAL_VALIDATION",
+      "limitation": "nothing was established about this claim",
+      "reason": "value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c01_04_rubydex_adoption_forecast",
+        "category": "VALUE_JUDGMENT",
+        "assumption": false,
+        "method": "none",
+        "claim_status": "REQUIRES_EXTERNAL_VALIDATION",
+        "explanation": "value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+        "evidence_considered": [
+          {
+            "id": "ev_rubydex_adoption_survey",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": "2026-09-01T00:00:00Z",
+            "sha256": "a784ec3961f87b983b41a9b5750c78314926a75f06bdb7d197623ecb3579c46e"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "the truth of the judgment or forecast"
+        ],
+        "bundle_sha256": "185f3e6311047fe0f57e28b383658e0cd7449cc39f815e55ae8cd1de4616f39b",
+        "candidate_id": "v4-agy/cand-01-rubydex-mcp"
+      }
+    }
+  ],
+  "findings": [
+    {
+      "check_id": "research.claims.c003",
+      "adversary": "FUNCTIONAL",
+      "category": "correctness",
+      "title": "Claim c01_03_zero_hallucination refuted by independent evidence",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "summary": "claim c01_03_zero_hallucination: independent evidence ev_agent_benchmark_failure contradicts hallucination_rate eq 0%",
+      "evidence": "[\n  {\n    \"id\": \"ev_agent_benchmark_failure\",\n    \"independent\": true,\n    \"integrity\": \"ok\",\n    \"observed\": \"4.2%\",\n    \"published_at\": \"2026-08-20T00:00:00Z\",\n    \"relation\": \"contradicts\",\n    \"sha256\": \"4aab4c5e3f5689deb75db865200c283dc51626f19df1acb9ed51fda6ccfded47\",\n    \"source_type\": \"EXTERNAL_OBSERVATION\"\n  }\n]",
+      "recommended_remediation": "Revise or withdraw the claim, or supply independent evidence that resolves the contradiction.",
+      "location": null,
+      "rule": "research.claims.refuted",
+      "state": "FOUND",
+      "reproduction": null,
+      "resolution_reason": null,
+      "id": "HP-FUNC-0001",
+      "fingerprint_basis": null,
+      "fingerprint": "fa1014eb1ac592748eb82f467bf848900aaed60fe9b5f37b5222af5a50d549cd",
+      "first_seen_run": "hp-20261105-221037-8cefc7dfc608",
+      "first_seen_commit": "",
+      "last_seen_run": "hp-20261105-221037-8cefc7dfc608",
+      "detail": {},
+      "blocking": false
+    }
+  ],
+  "unresolved_risks": [
+    "HP-FUNC-0001 (HIGH): claim c01_03_zero_hallucination: independent evidence ev_agent_benchmark_failure contradicts hallucination_rate eq 0%"
+  ],
+  "limitations": [
+    "research.claims.c004 was SKIPPED: value judgments and forecasts cannot be established by an automated check, and citations do not change that"
+  ],
+  "notes": [
+    "no service is declared, so live adversaries have nothing to attack"
+  ],
+  "validation_modes": {
+    "REAL": [
+      "research.claims.bundle",
+      "research.claims.c001",
+      "research.claims.c002",
+      "research.claims.c003"
+    ],
+    "SIMULATED": [],
+    "SKIPPED": [
+      "research.claims.c004"
+    ],
+    "UNAVAILABLE": [],
+    "NOT_APPLICABLE": [],
+    "ERROR": []
+  },
+  "manifest": {
+    "schema": "howlproof.run/v1",
+    "run_id": "hp-20261105-221037-8cefc7dfc608",
+    "authority": "ADVISORY",
+    "version": "0.2.0b1",
+    "implementation_hash": "49a4d42f4639179f93e9cdb450e93655cd436070ce8cd440594d88d96a9540bb",
+    "artifact": "cand-01-rubydex-mcp",
+    "profiles": [
+      "research"
+    ],
+    "started_at": "2026-11-05T22:10:37.552664+00:00",
+    "completed_at": "2026-11-05T22:10:37.597462+00:00",
+    "verdict": "INSUFFICIENT_EVIDENCE",
+    "evaluators": [
+      "research.claims/v1"
+    ],
+    "file_hashes": {
+      "checks.jsonl": "ce010c26976d8f9b9ca292847246a22671d74bf35b958dcf8a75de69f66686eb",
+      "config.json": "e3276b65cbed1d7cbdf4a467366de2765884687a05f1f2759a8370d56330b938",
+      "environment.json": "abaa3c3a935d021aa2b5f3030f32e13a5f001a96b2fce9ccde97001a6b5f4823",
+      "evidence/research.claims/claim_results.json": "a9542cb3beeb44a650488381b1e81f8f652518f10a188d80f742abf55972541c",
+      "findings/HP-FUNC-0001.json": "c8355779b66e7b5b8e0719c38c02d201efc77887cd9f72fde19011b2bbaa66f2",
+      "handoff.json": "72765f9c280beaa882ecd1f9d4c7c51a14056933d2544fd769fb9516df166b89",
+      "result.json": "437104ff651a3f6f390790bcd23188a18a1939b7df50c11524b45145c42a988a",
+      "result.md": "86bff007121310ee8118274f98785f2c45b87aa84c88233113f43c2f7a072601",
+      "target.json": "a01059a9cfab31c6f4bbe8b2bccd3b1753e75f95102e1f19a2515e076b145f8a"
+    }
+  },
+  "path": "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/proof_out/old/hp-20261105-221037-8cefc7dfc608"
+}

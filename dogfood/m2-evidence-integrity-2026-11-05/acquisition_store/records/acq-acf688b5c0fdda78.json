@@ -1,0 +1,20 @@
+{
+  "attested_by": "claude-m2-dogfood",
+  "claimed_source_url": "https://github.com/spinel-coop/rv",
+  "content_sha256": "af6fc35a57569b14b7aca4caaf9419dc3eeaafb4e6508f3ce84af9b06df75934",
+  "content_type": null,
+  "http_status": null,
+  "id": "acq-acf688b5c0fdda78",
+  "kind": "OPERATOR_FILE",
+  "limitations": [
+    "file was supplied by the operator and not fetched by howlproof; where it came from is as attested, not observed"
+  ],
+  "method": "operator_supplied_file",
+  "observed_url": null,
+  "record_sha256": "655755977b32a8d641f32c016e3a93a0a2998a47df8e5848535d8716f82a0e6b",
+  "redirects": [],
+  "requested_url": null,
+  "retrieved_at": "2026-11-05T22:10:41Z",
+  "size": 6933,
+  "tool": "howlproof/0.2.0b1"
+}

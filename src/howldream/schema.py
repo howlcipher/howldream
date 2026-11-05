@@ -29,11 +29,21 @@ class ProviderConfig(StrictModel):
     max_tokens: int = Field(default=512, ge=32, le=4096)
 
 
+class AcquisitionPointer(StrictModel):
+    """Points at a HowlProof acquisition record. A pointer is a claim; Proof verifies it
+    against the operator's acquisition store, and Dream never treats it as proof."""
+
+    id: str = Field(pattern=r"^acq-[0-9a-f]{16}$")
+    content_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+
+
 class Evidence(StrictModel):
     id: str = Field(pattern=r"^[a-zA-Z0-9_./-]{1,100}$")
     text: str = Field(default="", max_length=50000)
     facts: dict[str, str] = Field(default_factory=dict)
     provenance: EvidenceProvenance = Field(default_factory=EvidenceProvenance)
+    acquisition: AcquisitionPointer | None = None
+    methodology_quote: str = Field(default="", max_length=2000)
 
 
 class Perturbation(StrictModel):

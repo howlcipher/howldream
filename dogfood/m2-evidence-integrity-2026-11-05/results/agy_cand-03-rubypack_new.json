@@ -1,0 +1,458 @@
+{
+  "schema": "howlproof.result/v1",
+  "run_id": "hp-20261105-221038-8e6869c1430b",
+  "authority": "ADVISORY",
+  "version": "0.2.0b1",
+  "artifact": "cand-03-rubypack",
+  "profiles": [
+    "research"
+  ],
+  "adversaries": [
+    "FUNCTIONAL",
+    "SECURITY",
+    "RELIABILITY",
+    "AI",
+    "OPERATOR"
+  ],
+  "target": {
+    "root": "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/inputs/agy_bundles/cand-03-rubypack",
+    "is_git": false,
+    "commit": "",
+    "branch": "",
+    "dirty": false,
+    "file_count": 5,
+    "oversized_files_not_copied": [],
+    "tree_digest_before": "e6d85f98b847e0210e8ae02704226252e6803be8978c1315eed07a2ec08b4bea",
+    "tree_digest_after": "e6d85f98b847e0210e8ae02704226252e6803be8978c1315eed07a2ec08b4bea"
+  },
+  "started_at": "2026-11-05T22:10:38.990076+00:00",
+  "completed_at": "2026-11-05T22:10:39.030107+00:00",
+  "duration_ms": 40,
+  "verdict": "INSUFFICIENT_EVIDENCE",
+  "verdict_definition": "The artifact may or may not be acceptable. The evaluation that ran was inadequate to make a defensible determination, so no determination is claimed.",
+  "deciding_rule": "no_acceptance_criteria",
+  "rationale": [
+    "The artifact defines no acceptance criteria.",
+    "Running checks without criteria shows activity, not conformance."
+  ],
+  "criteria": [],
+  "counts": {
+    "checks": 4,
+    "verified": 1,
+    "failed": 0,
+    "skipped": 0,
+    "unavailable": 3,
+    "not_applicable": 0,
+    "errored": 0,
+    "simulated": 0,
+    "findings": 0,
+    "blocking_findings": 0,
+    "criteria_satisfied": 0,
+    "criteria_total": 0,
+    "by_severity": {
+      "BLOCKER": 0,
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 0,
+      "INFORMATIONAL": 0
+    },
+    "by_adversary": {
+      "FUNCTIONAL": 0,
+      "SECURITY": 0,
+      "RELIABILITY": 0,
+      "AI": 0,
+      "OPERATOR": 0,
+      "INTEGRITY": 0
+    }
+  },
+  "checks": [
+    {
+      "check_id": "research.claims.bundle",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim bundle is well formed and 4 evidence file(s) match their registered digests",
+      "limitation": "establishes structure and byte integrity only; no claim is verified by this check",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 3,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "bundle_sha256": "699e2e802bfe9788fa065343d348bec65558339ed1617c6567360256378b1602",
+        "candidate_id": "v4-agy/cand-03-rubypack",
+        "claims": 3,
+        "trust_model": "howl.evidence_trust/v1"
+      }
+    },
+    {
+      "check_id": "research.claims.c001",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim c03_01_binary_size: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "the supplied evidence satisfies binary_size_mb le 35 MB, but it cannot be treated as verified: ev_rubypack_build_stats: source_ref is a placeholder and no acquisition record exists",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c03_01_binary_size",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "the supplied evidence satisfies binary_size_mb le 35 MB, but it cannot be treated as verified: ev_rubypack_build_stats: source_ref is a placeholder and no acquisition record exists",
+        "evidence_considered": [
+          {
+            "id": "ev_rubypack_build_stats",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "supports",
+            "published_at": "2026-03-15T00:00:00Z",
+            "sha256": "82cdde7ac091574989843e310c838887fe15e83431a1c99fd62b49455da4b35f",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://example.org/rubypack-size-bench",
+              "produced_by": "packaging-lab",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NONE",
+              "acquisition_id": null,
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "PLACEHOLDER",
+              "source_origin": "PLACEHOLDER",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false,
+            "observed": "29 MB",
+            "ineligible_reasons": [
+              "source_ref is a placeholder and no acquisition record exists"
+            ]
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the supplied numbers come from an authentic source",
+          "real-world truth"
+        ],
+        "checked_proposition": "Static CRuby single-binary output size with bundled standard library is under 35 MB",
+        "scope": null,
+        "scope_limited": false,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": "SUPPORTED",
+        "check_passed": true,
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": true,
+          "evidence_integrity": "ok",
+          "source_origin": "PLACEHOLDER",
+          "claim_relevance": "NOT_ESTABLISHED",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": false,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "SUPPLIED_DATA_AGREES"
+        },
+        "bundle_sha256": "699e2e802bfe9788fa065343d348bec65558339ed1617c6567360256378b1602",
+        "candidate_id": "v4-agy/cand-03-rubypack"
+      }
+    },
+    {
+      "check_id": "research.claims.c002",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim c03_02_startup_latency: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "evidence conflicts (ev_startup_linux supports, ev_startup_macos_arm contradicts); a newer source is not a resolution",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c03_02_startup_latency",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "evidence conflicts (ev_startup_linux supports, ev_startup_macos_arm contradicts); a newer source is not a resolution",
+        "evidence_considered": [
+          {
+            "id": "ev_startup_linux",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "supports",
+            "published_at": "2026-03-18T00:00:00Z",
+            "sha256": "a11458e0e7ce8ccc5da9a88e19e3913f0d2076f9bebcebb7910eec5034f3145a",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://example.org/rubypack-linux-perf",
+              "produced_by": "benchmarking-lab-linux",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NONE",
+              "acquisition_id": null,
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "PLACEHOLDER",
+              "source_origin": "PLACEHOLDER",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false,
+            "observed": "12 ms",
+            "ineligible_reasons": [
+              "source_ref is a placeholder and no acquisition record exists"
+            ]
+          },
+          {
+            "id": "ev_startup_macos_arm",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "contradicts",
+            "published_at": "2026-04-01T00:00:00Z",
+            "sha256": "bbe79fcc2b04257fe9391130f95ea2a03d4981de42778988073b209426389c65",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://example.org/rubypack-mac-perf",
+              "produced_by": "benchmarking-lab-mac",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NONE",
+              "acquisition_id": null,
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "PLACEHOLDER",
+              "source_origin": "PLACEHOLDER",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false,
+            "observed": "38 ms",
+            "ineligible_reasons": [
+              "source_ref is a placeholder and no acquisition record exists"
+            ]
+          }
+        ],
+        "conflicts": [
+          {
+            "kind": "supports_vs_contradicts",
+            "evidence": [
+              "ev_startup_linux",
+              "ev_startup_macos_arm"
+            ],
+            "newer": "ev_startup_macos_arm"
+          }
+        ],
+        "untrusted_flags": [],
+        "not_checked": [
+          "which conflicting source is correct"
+        ],
+        "checked_proposition": "Single-binary executable startup latency is 12 ms",
+        "scope": null,
+        "scope_limited": false,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": null,
+        "check_passed": null,
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": null,
+          "evidence_integrity": "ok",
+          "source_origin": "PLACEHOLDER",
+          "claim_relevance": "NOT_ESTABLISHED",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": false,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "UNRESOLVED"
+        },
+        "bundle_sha256": "699e2e802bfe9788fa065343d348bec65558339ed1617c6567360256378b1602",
+        "candidate_id": "v4-agy/cand-03-rubypack"
+      }
+    },
+    {
+      "check_id": "research.claims.c003",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim c03_03_gem_c_extension_compat: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "the supplied evidence contradicts compat_rate eq 100%, but it cannot be treated as verified: ev_gem_build_compat: source_ref is a placeholder and no acquisition record exists",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c03_03_gem_c_extension_compat",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "the supplied evidence contradicts compat_rate eq 100%, but it cannot be treated as verified: ev_gem_build_compat: source_ref is a placeholder and no acquisition record exists",
+        "evidence_considered": [
+          {
+            "id": "ev_gem_build_compat",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "contradicts",
+            "published_at": "2026-05-01T00:00:00Z",
+            "sha256": "039340f4a4675399a5e6bd82546f3a3ae3e9a535d627c400affc7e79dce43bb7",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://example.org/gem-static-compat",
+              "produced_by": "ruby-ecosystem-audit",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NONE",
+              "acquisition_id": null,
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "PLACEHOLDER",
+              "source_origin": "PLACEHOLDER",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false,
+            "observed": "74%",
+            "ineligible_reasons": [
+              "source_ref is a placeholder and no acquisition record exists"
+            ]
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the supplied numbers come from an authentic source",
+          "real-world truth"
+        ],
+        "checked_proposition": "RubyPack compiles 100% of existing gems with native C extensions without build modifications",
+        "scope": null,
+        "scope_limited": false,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": "REFUTED",
+        "check_passed": false,
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": false,
+          "evidence_integrity": "ok",
+          "source_origin": "PLACEHOLDER",
+          "claim_relevance": "NOT_ESTABLISHED",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": false,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "SUPPLIED_DATA_CONTRADICTS"
+        },
+        "bundle_sha256": "699e2e802bfe9788fa065343d348bec65558339ed1617c6567360256378b1602",
+        "candidate_id": "v4-agy/cand-03-rubypack"
+      }
+    }
+  ],
+  "findings": [],
+  "unresolved_risks": [],
+  "limitations": [
+    "research.claims.c001 was UNAVAILABLE: the supplied evidence satisfies binary_size_mb le 35 MB, but it cannot be treated as verified: ev_rubypack_build_stats: source_ref is a placeholder and no acquisition record exists",
+    "research.claims.c002 was UNAVAILABLE: evidence conflicts (ev_startup_linux supports, ev_startup_macos_arm contradicts); a newer source is not a resolution",
+    "research.claims.c003 was UNAVAILABLE: the supplied evidence contradicts compat_rate eq 100%, but it cannot be treated as verified: ev_gem_build_compat: source_ref is a placeholder and no acquisition record exists"
+  ],
+  "notes": [
+    "no service is declared, so live adversaries have nothing to attack"
+  ],
+  "validation_modes": {
+    "REAL": [
+      "research.claims.bundle"
+    ],
+    "SIMULATED": [],
+    "SKIPPED": [],
+    "UNAVAILABLE": [
+      "research.claims.c001",
+      "research.claims.c002",
+      "research.claims.c003"
+    ],
+    "NOT_APPLICABLE": [],
+    "ERROR": []
+  },
+  "manifest": {
+    "schema": "howlproof.run/v1",
+    "run_id": "hp-20261105-221038-8e6869c1430b",
+    "authority": "ADVISORY",
+    "version": "0.2.0b1",
+    "implementation_hash": "102c32672453a3debe9caedcb14db67581b100b84e938ace15a386be6ddd8cb0",
+    "artifact": "cand-03-rubypack",
+    "profiles": [
+      "research"
+    ],
+    "started_at": "2026-11-05T22:10:38.990076+00:00",
+    "completed_at": "2026-11-05T22:10:39.030107+00:00",
+    "verdict": "INSUFFICIENT_EVIDENCE",
+    "evaluators": [
+      "research.claims/v1"
+    ],
+    "file_hashes": {
+      "checks.jsonl": "403db13bbbc878decd3f269133ee61054bf1fc3e3356fac5f45afd4b88244fd7",
+      "config.json": "bf7cd9bca80095ba8b127eb67163691f9e3abdaae64eb3470905601e5b3663b4",
+      "environment.json": "2e0a141c47f50f9d679c074318202025d205d7c474d7be13f16f9f7ffb8a4e89",
+      "evidence/research.claims/claim_results.json": "25be2a8edeedd9dcde8b154b8de18f157e7937dedd0d3feb229066cb8b079e38",
+      "handoff.json": "fa11c2aed154dd29b10f9951013e3913cc044a61346a68832830f0e2f81f8d0b",
+      "result.json": "22ae32779566c8ffd03ce4c37af66bdaa86918cd421e6cdcf9220fc206bb0011",
+      "result.md": "769bfb032fb7de47b82c4bb7dbeda65d7fa16fb081676ed91a11426d0dc67231",
+      "target.json": "0cc3c34c88b5c02c713eb3cda77cd552a4e673fffd5a1ab7ecf8d509aee10b8b"
+    }
+  },
+  "path": "/run/media/howlcipher/tallgeese/dev/ruby_ideas/m2_dogfood/proof_out/new/hp-20261105-221038-8e6869c1430b"
+}

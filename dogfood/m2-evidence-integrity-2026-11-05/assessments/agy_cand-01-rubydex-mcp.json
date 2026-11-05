@@ -1,0 +1,413 @@
+{
+  "schema_version": "howl.assessment/v1",
+  "assessment_id": "assess-proof-de78c0b72ca1329e",
+  "candidate_id": "v4-agy/cand-01-rubydex-mcp",
+  "disposition": "UNRESOLVED",
+  "reason": "4 claim(s) remain unresolved",
+  "evidence": [
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "c01_01_rubydex_latency",
+      "claim_text": "Rubydex workspace indexer resolves project-wide constant lookups in under 50 ms on a 100,000 LOC codebase",
+      "category": "EMPIRICAL",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "INCONCLUSIVE",
+      "method": "fact_compare",
+      "explanation": "the supplied evidence satisfies latency_ms le 50 ms, but it cannot be treated as verified: ev_shopify_rubydex_bench: no acquisition record: source_ref is a claim, not an observation",
+      "evidence_considered": [
+        {
+          "id": "ev_shopify_rubydex_bench",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "supports",
+          "published_at": "2026-06-15T00:00:00Z",
+          "sha256": "2aaa71bf1d85b101b77176fb115fbe71d82b7f59b73744daf086d08edf419480",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://railsatscale.com/2026-06-15-rubydex-performance",
+            "produced_by": "shopify-tooling-team",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "NONE",
+            "acquisition_id": null,
+            "acquisition_kind": null,
+            "acquisition_method": null,
+            "retrieved_at": null,
+            "observed_location": null,
+            "content_sha256": null,
+            "reference_class": "URL",
+            "source_origin": "CLAIMED_ONLY",
+            "evidence_form": "SUBMITTED_EXTRACT",
+            "facts_located_in_source": null,
+            "relevance": "NOT_EVALUATED",
+            "methodology": "NOT_EVALUATED"
+          },
+          "eligible": false,
+          "observed": "42 ms",
+          "ineligible_reasons": [
+            "no acquisition record: source_ref is a claim, not an observation"
+          ]
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "whether the supplied numbers come from an authentic source",
+        "real-world truth"
+      ],
+      "untrusted_flags": [],
+      "assurance": {
+        "trust_model": "howl.evidence_trust/v1",
+        "check_passed": true,
+        "evidence_integrity": "ok",
+        "source_origin": "CLAIMED_ONLY",
+        "claim_relevance": "NOT_ESTABLISHED",
+        "methodology": "NOT_EVALUATED",
+        "corroboration": "NONE",
+        "corroborated": false,
+        "input_provenance": "SEE_EVIDENCE",
+        "real_world_eligible": false,
+        "real_world_truth": "UNRESOLVED",
+        "evidence_status": "SUPPLIED_DATA_AGREES"
+      },
+      "check_outcome": "SUPPORTED",
+      "checked_proposition": "Rubydex workspace indexer resolves project-wide constant lookups in under 50 ms on a 100,000 LOC codebase",
+      "scope": null,
+      "scope_limited": false,
+      "broader_question": "NOT_EVALUATED",
+      "also_found_in": []
+    },
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "c01_02_context_token_reduction",
+      "claim_text": "Providing structural MCP AST graph context reduces agent prompt token usage by 65% compared to raw repository grep",
+      "category": "EMPIRICAL",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "INCONCLUSIVE",
+      "method": "fact_compare",
+      "explanation": "the supplied evidence satisfies token_reduction approx 65%, but it cannot be treated as verified: ev_context_token_study_a: source_ref is a placeholder and no acquisition record exists; ev_context_token_study_b: source_ref is a placeholder and no acquisition record exists",
+      "evidence_considered": [
+        {
+          "id": "ev_context_token_study_a",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "supports",
+          "published_at": "2026-07-01T00:00:00Z",
+          "sha256": "3280c464b277a3c9472a0aa079a85355fef5ae25e7da50fa553ca055740a39d4",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://example.org/bench-token-study-a",
+            "produced_by": "benchmarking-lab-a",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "NONE",
+            "acquisition_id": null,
+            "acquisition_kind": null,
+            "acquisition_method": null,
+            "retrieved_at": null,
+            "observed_location": null,
+            "content_sha256": null,
+            "reference_class": "PLACEHOLDER",
+            "source_origin": "PLACEHOLDER",
+            "evidence_form": "SUBMITTED_EXTRACT",
+            "facts_located_in_source": null,
+            "relevance": "NOT_EVALUATED",
+            "methodology": "NOT_EVALUATED"
+          },
+          "eligible": false,
+          "observed": "63%",
+          "ineligible_reasons": [
+            "source_ref is a placeholder and no acquisition record exists"
+          ]
+        },
+        {
+          "id": "ev_context_token_study_b",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "supports",
+          "published_at": "2026-08-10T00:00:00Z",
+          "sha256": "6286f8e08c99dacf8716d52bc3b99de94dd2825cb4a4134ee7aa2584be29621b",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://example.org/bench-token-study-b",
+            "produced_by": "benchmarking-lab-b",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "NONE",
+            "acquisition_id": null,
+            "acquisition_kind": null,
+            "acquisition_method": null,
+            "retrieved_at": null,
+            "observed_location": null,
+            "content_sha256": null,
+            "reference_class": "PLACEHOLDER",
+            "source_origin": "PLACEHOLDER",
+            "evidence_form": "SUBMITTED_EXTRACT",
+            "facts_located_in_source": null,
+            "relevance": "NOT_EVALUATED",
+            "methodology": "NOT_EVALUATED"
+          },
+          "eligible": false,
+          "observed": "64%",
+          "ineligible_reasons": [
+            "source_ref is a placeholder and no acquisition record exists"
+          ]
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "whether the supplied numbers come from an authentic source",
+        "real-world truth"
+      ],
+      "untrusted_flags": [],
+      "assurance": {
+        "trust_model": "howl.evidence_trust/v1",
+        "check_passed": true,
+        "evidence_integrity": "ok",
+        "source_origin": "PLACEHOLDER",
+        "claim_relevance": "NOT_ESTABLISHED",
+        "methodology": "NOT_EVALUATED",
+        "corroboration": "NONE",
+        "corroborated": false,
+        "input_provenance": "SEE_EVIDENCE",
+        "real_world_eligible": false,
+        "real_world_truth": "UNRESOLVED",
+        "evidence_status": "SUPPLIED_DATA_AGREES"
+      },
+      "check_outcome": "SUPPORTED",
+      "checked_proposition": "Providing structural MCP AST graph context reduces agent prompt token usage by 65% compared to raw repository grep",
+      "scope": null,
+      "scope_limited": false,
+      "broader_question": "NOT_EVALUATED",
+      "also_found_in": []
+    },
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "c01_03_zero_hallucination",
+      "claim_text": "AST graph context guarantees zero hallucination of nonexistent Ruby methods by LLM agents",
+      "category": "EMPIRICAL",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "INCONCLUSIVE",
+      "method": "fact_compare",
+      "explanation": "the supplied evidence contradicts hallucination_rate eq 0%, but it cannot be treated as verified: ev_agent_benchmark_failure: source_ref is a placeholder and no acquisition record exists",
+      "evidence_considered": [
+        {
+          "id": "ev_agent_benchmark_failure",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "contradicts",
+          "published_at": "2026-08-20T00:00:00Z",
+          "sha256": "4aab4c5e3f5689deb75db865200c283dc51626f19df1acb9ed51fda6ccfded47",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://example.org/eval-hallucination-ruby",
+            "produced_by": "ai-code-evaluation-group",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "NONE",
+            "acquisition_id": null,
+            "acquisition_kind": null,
+            "acquisition_method": null,
+            "retrieved_at": null,
+            "observed_location": null,
+            "content_sha256": null,
+            "reference_class": "PLACEHOLDER",
+            "source_origin": "PLACEHOLDER",
+            "evidence_form": "SUBMITTED_EXTRACT",
+            "facts_located_in_source": null,
+            "relevance": "NOT_EVALUATED",
+            "methodology": "NOT_EVALUATED"
+          },
+          "eligible": false,
+          "observed": "4.2%",
+          "ineligible_reasons": [
+            "source_ref is a placeholder and no acquisition record exists"
+          ]
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "whether the supplied numbers come from an authentic source",
+        "real-world truth"
+      ],
+      "untrusted_flags": [],
+      "assurance": {
+        "trust_model": "howl.evidence_trust/v1",
+        "check_passed": false,
+        "evidence_integrity": "ok",
+        "source_origin": "PLACEHOLDER",
+        "claim_relevance": "NOT_ESTABLISHED",
+        "methodology": "NOT_EVALUATED",
+        "corroboration": "NONE",
+        "corroborated": false,
+        "input_provenance": "SEE_EVIDENCE",
+        "real_world_eligible": false,
+        "real_world_truth": "UNRESOLVED",
+        "evidence_status": "SUPPLIED_DATA_CONTRADICTS"
+      },
+      "check_outcome": "REFUTED",
+      "checked_proposition": "AST graph context guarantees zero hallucination of nonexistent Ruby methods by LLM agents",
+      "scope": null,
+      "scope_limited": false,
+      "broader_question": "NOT_EVALUATED",
+      "also_found_in": []
+    },
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "c01_04_rubydex_adoption_forecast",
+      "claim_text": "Rubydex MCP will become the default context provider for over 50% of Ruby AI developers by 2028",
+      "category": "VALUE_JUDGMENT",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "REQUIRES_EXTERNAL_VALIDATION",
+      "method": "none",
+      "explanation": "value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+      "evidence_considered": [
+        {
+          "id": "ev_rubydex_adoption_survey",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "unexamined",
+          "published_at": "2026-09-01T00:00:00Z",
+          "sha256": "a784ec3961f87b983b41a9b5750c78314926a75f06bdb7d197623ecb3579c46e",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://example.org/survey-2026-ruby-tooling",
+            "produced_by": "developer-insights-firm",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "NONE",
+            "acquisition_id": null,
+            "acquisition_kind": null,
+            "acquisition_method": null,
+            "retrieved_at": null,
+            "observed_location": null,
+            "content_sha256": null,
+            "reference_class": "PLACEHOLDER",
+            "source_origin": "PLACEHOLDER",
+            "evidence_form": "SUBMITTED_EXTRACT",
+            "facts_located_in_source": null,
+            "relevance": "NOT_EVALUATED",
+            "methodology": "NOT_EVALUATED"
+          },
+          "eligible": false
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "the truth of the judgment or forecast"
+      ],
+      "untrusted_flags": [],
+      "assurance": {
+        "trust_model": "howl.evidence_trust/v1",
+        "check_passed": null,
+        "evidence_integrity": "not_applicable",
+        "source_origin": "NOT_EXAMINED",
+        "claim_relevance": "NOT_APPLICABLE",
+        "methodology": "NOT_EVALUATED",
+        "corroboration": "NONE",
+        "corroborated": false,
+        "input_provenance": "NOT_APPLICABLE",
+        "real_world_eligible": false,
+        "real_world_truth": "UNRESOLVED",
+        "evidence_status": "UNRESOLVED"
+      },
+      "check_outcome": null,
+      "checked_proposition": "Rubydex MCP will become the default context provider for over 50% of Ruby AI developers by 2028",
+      "scope": null,
+      "scope_limited": false,
+      "broader_question": "NOT_EVALUATED",
+      "also_found_in": []
+    },
+    {
+      "kind": "proof_evidence_summary",
+      "evidence_status": "UNVERIFIED",
+      "claims": 4,
+      "source_verified_or_deterministic": 0,
+      "scope_limited_refutations": 0,
+      "development_approval": "NOT_GRANTED",
+      "note": "a research assessment is evidence, not authorization: building, deploying, purchasing or publishing needs a separate explicit approval"
+    }
+  ],
+  "unresolved_claims": [
+    "Rubydex workspace indexer resolves project-wide constant lookups in under 50 ms on a 100,000 LOC codebase",
+    "Providing structural MCP AST graph context reduces agent prompt token usage by 65% compared to raw repository grep",
+    "AST graph context guarantees zero hallucination of nonexistent Ruby methods by LLM agents",
+    "Rubydex MCP will become the default context provider for over 50% of Ruby AI developers by 2028"
+  ],
+  "contradictions": [],
+  "confidence": "LOW",
+  "limitations": [
+    "research.claims.c001 was UNAVAILABLE: the supplied evidence satisfies latency_ms le 50 ms, but it cannot be treated as verified: ev_shopify_rubydex_bench: no acquisition record: source_ref is a claim, not an observation",
+    "research.claims.c002 was UNAVAILABLE: the supplied evidence satisfies token_reduction approx 65%, but it cannot be treated as verified: ev_context_token_study_a: source_ref is a placeholder and no acquisition record exists; ev_context_token_study_b: source_ref is a placeholder and no acquisition record exists",
+    "research.claims.c003 was UNAVAILABLE: the supplied evidence contradicts hallucination_rate eq 0%, but it cannot be treated as verified: ev_agent_benchmark_failure: source_ref is a placeholder and no acquisition record exists",
+    "research.claims.c004 was SKIPPED: value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+    "claim results hold only for the checks the candidate's author supplied; independence of origin is not established and real-world truth stays unresolved",
+    "this assessment does not approve development; a separate explicit approval is required"
+  ],
+  "authority": {
+    "type": "ADVISORY",
+    "executable": false
+  },
+  "provenance": {
+    "run_id": "v4-agy-run-001",
+    "producer_component": "howldream",
+    "producer_version": "0.4.5",
+    "model_or_provider": null,
+    "observation_kind": "DETERMINISTIC",
+    "created_at": "2026-11-05T22:10:37.975970+00:00",
+    "transformations": [
+      "howlproof_claim_import"
+    ],
+    "source_candidate_id": "v4-agy/cand-01-rubydex-mcp",
+    "bundle_sha256": "185f3e6311047fe0f57e28b383658e0cd7449cc39f815e55ae8cd1de4616f39b",
+    "authorship": {
+      "component": "agy-agent",
+      "kind": "EXTERNAL_AUTHORED",
+      "model": "gemini-3.8-flash",
+      "provider": "google"
+    },
+    "proof": {
+      "run_id": "hp-20261105-221037-129a3c410339",
+      "version": "0.2.0b1",
+      "verdict": "INSUFFICIENT_EVIDENCE",
+      "deciding_rule": "no_acceptance_criteria",
+      "started_at": "2026-11-05T22:10:37.934562+00:00",
+      "completed_at": "2026-11-05T22:10:37.975970+00:00",
+      "unresolved_risks": []
+    },
+    "claim_statuses": {
+      "c01_01_rubydex_latency": "INCONCLUSIVE",
+      "c01_02_context_token_reduction": "INCONCLUSIVE",
+      "c01_03_zero_hallucination": "INCONCLUSIVE",
+      "c01_04_rubydex_adoption_forecast": "REQUIRES_EXTERNAL_VALIDATION"
+    }
+  }
+}

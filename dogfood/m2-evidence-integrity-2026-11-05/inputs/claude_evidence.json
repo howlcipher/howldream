@@ -1,0 +1,126 @@
+[
+  {
+    "id": "mutant_readme",
+    "text": "",
+    "facts": {
+      "agent_integration_documented": "0"
+    },
+    "provenance": {
+      "source_type": "EXTERNAL_OBSERVATION",
+      "produced_by": "mbj/mutant",
+      "source_ref": "https://github.com/mbj/mutant",
+      "independent_of_implementation": true,
+      "represents_observed_reality": true
+    },
+    "acquisition": {
+      "id": "acq-8376a0c28d5fda0c",
+      "content_sha256": "50853f45ced3f829db853ce770c6a05bdedff7906226d720782486032c969ee0"
+    }
+  },
+  {
+    "id": "mutant_skill",
+    "text": "",
+    "facts": {
+      "skill_file_http_status": "200"
+    },
+    "provenance": {
+      "source_type": "EXTERNAL_OBSERVATION",
+      "produced_by": "mbj/mutant",
+      "source_ref": "https://github.com/mbj/mutant",
+      "independent_of_implementation": true,
+      "represents_observed_reality": true
+    },
+    "acquisition": {
+      "id": "acq-ee346fc6cf899b5a",
+      "content_sha256": "ef8f4b28a556eab88341e0585552f13049e1c7a0ee14e69496ac63452c6cf1a6"
+    }
+  },
+  {
+    "id": "rubylang_news",
+    "text": "",
+    "facts": {
+      "published_at": "2026-10-23T00:00:00Z"
+    },
+    "provenance": {
+      "source_type": "EXTERNAL_OBSERVATION",
+      "produced_by": "ruby-lang.org",
+      "source_ref": "https://www.ruby-lang.org/en/news/",
+      "independent_of_implementation": true,
+      "represents_observed_reality": true
+    },
+    "acquisition": {
+      "id": "acq-1c806da784745192",
+      "content_sha256": "80f142e9189eefce2bfa0fae636e91fd96005fe10646c8585eacc1447aaabb3b"
+    }
+  },
+  {
+    "id": "ruby400_notes",
+    "text": "",
+    "facts": {
+      "published_at": "2025-12-25T00:00:00Z"
+    },
+    "provenance": {
+      "source_type": "EXTERNAL_OBSERVATION",
+      "produced_by": "ruby-lang.org",
+      "source_ref": "https://www.ruby-lang.org/en/news/2025/12/25/ruby-4-0-0-released/",
+      "independent_of_implementation": true,
+      "represents_observed_reality": true
+    },
+    "acquisition": {
+      "id": "acq-6206a0cdf4ebad9d",
+      "content_sha256": "ba63465081fbee03802d56ced988c92d7be473b49a6a12454e76ff5dda830678"
+    }
+  },
+  {
+    "id": "rv_readme",
+    "text": "",
+    "facts": {
+      "index_seconds": "1.8 seconds"
+    },
+    "provenance": {
+      "source_type": "EXTERNAL_OBSERVATION",
+      "produced_by": "spinel-coop/rv",
+      "source_ref": "https://github.com/spinel-coop/rv",
+      "independent_of_implementation": true,
+      "represents_observed_reality": true
+    },
+    "acquisition": {
+      "id": "acq-acf688b5c0fdda78",
+      "content_sha256": "af6fc35a57569b14b7aca4caaf9419dc3eeaafb4e6508f3ce84af9b06df75934"
+    }
+  },
+  {
+    "id": "mame_readme",
+    "text": "",
+    "facts": {},
+    "provenance": {
+      "source_type": "EXTERNAL_OBSERVATION",
+      "produced_by": "mame",
+      "source_ref": "https://github.com/mame/ai-coding-lang-bench",
+      "independent_of_implementation": true,
+      "represents_observed_reality": true
+    },
+    "acquisition": {
+      "id": "acq-cf544340f2287421",
+      "content_sha256": "89089a7650fb22a885c76cd7b328961ae4f26d22cdacd8539c1cdc193579fd14"
+    }
+  },
+  {
+    "id": "rubylang_news_live",
+    "text": "",
+    "facts": {
+      "published_at": "2026-11-05T22:10:41Z"
+    },
+    "provenance": {
+      "source_type": "EXTERNAL_OBSERVATION",
+      "produced_by": "ruby-lang.org",
+      "source_ref": "https://www.ruby-lang.org/en/news/",
+      "independent_of_implementation": true,
+      "represents_observed_reality": true
+    },
+    "acquisition": {
+      "id": "acq-ddb8bb5d88fd3a3b",
+      "content_sha256": "80f142e9189eefce2bfa0fae636e91fd96005fe10646c8585eacc1447aaabb3b"
+    }
+  }
+]

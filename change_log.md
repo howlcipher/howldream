@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+M2 evidence integrity at the bridge. **Behaviour change:** `import-proof` no longer emits
+`ACCEPT_FOR_DEVELOPMENT` (HowlPlane promotes candidates to development on that value); a
+fully source-verified result is `INVESTIGATE` with a `proof_evidence_summary` row
+(`development_approval: NOT_GRANTED`). SUPPORTED claims without source-verified or
+deterministic backing leave the bundle `UNRESOLVED`, and a `scope_limited` refutation is never
+a `REJECT`. Claim rows carry Proof's `assurance`, `check_outcome`, `checked_proposition`,
+`scope` and `also_found_in`. `export-proof` passes through optional `subject_terms`,
+`checked_proposition`, `scope`, evidence `acquisition` and `methodology_quote` (validated,
+never invented). Needs HowlProof's evidence-trust release for real-world SUPPORTED.
+
 Added `export-proof` and `import-proof`: the Dream to Proof bridge (`howl.claim_bundle/v1`
 out, per-claim `howl.assessment/v1` back). Externally exported candidates now carry status
 `IMPORTED` (new enum value; `GENERATED` artifacts still validate) and an explicit

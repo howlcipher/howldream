@@ -288,7 +288,10 @@ def three(tmp_path):
 @pytest.mark.parametrize(
     ("statuses", "disposition", "confidence"),
     [
-        (["SUPPORTED"] * 3, "ACCEPT_FOR_DEVELOPMENT", "MEDIUM"),
+        # M2: proof-import never emits ACCEPT_FOR_DEVELOPMENT (HowlPlane promotes on it). These
+        # hand-built results carry no assurance record, so SUPPORTED is unverified here; the
+        # fully source-verified case is covered in test_proof_trust_bridge.py.
+        (["SUPPORTED"] * 3, "UNRESOLVED", "LOW"),
         (["REFUTED"] * 3, "REJECT", "HIGH"),
         (["SUPPORTED", "REFUTED", "INCONCLUSIVE"], "INVESTIGATE", "LOW"),
         (["SUPPORTED", "INCONCLUSIVE", "INCONCLUSIVE"], "UNRESOLVED", "LOW"),
@@ -536,15 +539,20 @@ def test_round_trip_through_the_real_howlproof_cli(tmp_path):
     assert imported.returncode == 0, imported.stderr
     assessment = CandidateAssessment.model_validate_json(out.read_text())
     rows = {e["claim_id"]: e for e in assessment.evidence if e.get("kind") == "proof_claim_result"}
+    # M2: the bench evidence is declared EXTERNAL/independent but was never acquired from its
+    # (example.test) source, so the numeric checks agree/disagree without being verified.
     assert {k: v["claim_status"] for k, v in rows.items()} == {
-        "c-ok": "SUPPORTED",
-        "c-bad": "REFUTED",
+        "c-ok": "INCONCLUSIVE",
+        "c-bad": "INCONCLUSIVE",
         "c-math": "SUPPORTED",
         "c-forecast": "REQUIRES_EXTERNAL_VALIDATION",
         "c-none": "INCONCLUSIVE",
     }
+    assert rows["c-ok"]["check_outcome"] == "SUPPORTED"
+    assert rows["c-bad"]["check_outcome"] == "REFUTED"
+    assert rows["c-math"]["assurance"]["evidence_status"] == "DETERMINISTIC_CHECK_ONLY"
     assert assessment.candidate_id == "run-1/cand-1"
-    assert assessment.disposition == "INVESTIGATE"
+    assert assessment.disposition == "UNRESOLVED"
     trust = {e["id"]: e["independent"] for e in rows["c-ok"]["evidence_considered"]}
     assert trust == {"bench": True, "agent-note": False}
     assert rows["c-ok"]["untrusted_flags"]  # the injected instruction was seen, not obeyed

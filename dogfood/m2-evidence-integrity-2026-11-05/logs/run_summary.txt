@@ -1,0 +1,197 @@
+{
+ "agy": {
+  "cand-01-rubydex-mcp": {
+   "old_proof": {
+    "c01_01_rubydex_latency": [
+     "SUPPORTED",
+     "VERIFIED"
+    ],
+    "c01_02_context_token_reduction": [
+     "SUPPORTED",
+     "VERIFIED"
+    ],
+    "c01_03_zero_hallucination": [
+     "REFUTED",
+     "FAILED"
+    ],
+    "c01_04_rubydex_adoption_forecast": [
+     "REQUIRES_EXTERNAL_VALIDATION",
+     "SKIPPED"
+    ]
+   },
+   "new_proof": {
+    "c01_01_rubydex_latency": [
+     "INCONCLUSIVE",
+     "SUPPORTED",
+     "UNAVAILABLE",
+     "CLAIMED_ONLY",
+     "SUPPLIED_DATA_AGREES"
+    ],
+    "c01_02_context_token_reduction": [
+     "INCONCLUSIVE",
+     "SUPPORTED",
+     "UNAVAILABLE",
+     "PLACEHOLDER",
+     "SUPPLIED_DATA_AGREES"
+    ],
+    "c01_03_zero_hallucination": [
+     "INCONCLUSIVE",
+     "REFUTED",
+     "UNAVAILABLE",
+     "PLACEHOLDER",
+     "SUPPLIED_DATA_CONTRADICTS"
+    ],
+    "c01_04_rubydex_adoption_forecast": [
+     "REQUIRES_EXTERNAL_VALIDATION",
+     null,
+     "SKIPPED",
+     "NOT_EXAMINED",
+     "UNRESOLVED"
+    ]
+   },
+   "dream_disposition": "UNRESOLVED",
+   "dream_reason": "4 claim(s) remain unresolved"
+  },
+  "cand-03-rubypack": {
+   "old_proof": {
+    "c03_01_binary_size": [
+     "SUPPORTED",
+     "VERIFIED"
+    ],
+    "c03_02_startup_latency": [
+     "INCONCLUSIVE",
+     "UNAVAILABLE"
+    ],
+    "c03_03_gem_c_extension_compat": [
+     "REFUTED",
+     "FAILED"
+    ]
+   },
+   "new_proof": {
+    "c03_01_binary_size": [
+     "INCONCLUSIVE",
+     "SUPPORTED",
+     "UNAVAILABLE",
+     "PLACEHOLDER",
+     "SUPPLIED_DATA_AGREES"
+    ],
+    "c03_02_startup_latency": [
+     "INCONCLUSIVE",
+     null,
+     "UNAVAILABLE",
+     "PLACEHOLDER",
+     "UNRESOLVED"
+    ],
+    "c03_03_gem_c_extension_compat": [
+     "INCONCLUSIVE",
+     "REFUTED",
+     "UNAVAILABLE",
+     "PLACEHOLDER",
+     "SUPPLIED_DATA_CONTRADICTS"
+    ]
+   },
+   "dream_disposition": "UNRESOLVED",
+   "dream_reason": "3 claim(s) remain unresolved"
+  }
+ },
+ "live_fetch": {
+  "exit": 0,
+  "record": {
+   "content_sha256": "80f142e9189eefce2bfa0fae636e91fd96005fe10646c8585eacc1447aaabb3b",
+   "content_type": "text/html; charset=utf-8",
+   "http_status": 200,
+   "id": "acq-ddb8bb5d88fd3a3b",
+   "kind": "RETRIEVED",
+   "limitations": [
+    "bytes were received from the observed location at the recorded time; this does not show the content is accurate or current"
+   ],
+   "method": "https_get",
+   "observed_url": "https://www.ruby-lang.org/en/news/",
+   "record_sha256": "b97712d0e33f87db120bfaa995886ec071d8d2262f7c7beb630085840d0de53c",
+   "redirects": [],
+   "requested_url": "https://www.ruby-lang.org/en/news/",
+   "retrieved_at": "2026-11-05T22:10:41Z",
+   "size": 45520,
+   "tool": "howlproof/0.2.0b1"
+  },
+  "error": null
+ }
+}
+{
+ "old_proof": {
+  "k02-3": "REFUTED",
+  "k02-3-scoped": "INCONCLUSIVE",
+  "k02-5": "SUPPORTED",
+  "rel-4-0-9": "INCONCLUSIVE",
+  "k03-3": "SUPPORTED",
+  "k06-3": "REQUIRES_EXTERNAL_VALIDATION",
+  "ruby-4-0-0-latest": "INCONCLUSIVE",
+  "rubydex-index-time": "SUPPORTED"
+ },
+ "new_proof_no_store": {
+  "k02-3": "INCONCLUSIVE",
+  "k02-3-scoped": "INCONCLUSIVE",
+  "k02-5": "INCONCLUSIVE",
+  "rel-4-0-9": "INCONCLUSIVE",
+  "k03-3": "SUPPORTED",
+  "k06-3": "REQUIRES_EXTERNAL_VALIDATION",
+  "ruby-4-0-0-latest": "INCONCLUSIVE",
+  "rubydex-index-time": "INCONCLUSIVE"
+ },
+ "new_proof": {
+  "k02-3": [
+   "INCONCLUSIVE",
+   "REFUTED",
+   "OPERATOR_ATTESTED_FILE"
+  ],
+  "k02-3-scoped": [
+   "REFUTED",
+   "REFUTED",
+   "OPERATOR_ATTESTED_FILE"
+  ],
+  "k02-5": [
+   "INCONCLUSIVE",
+   "SUPPORTED",
+   "OPERATOR_ATTESTED_FILE"
+  ],
+  "rel-4-0-9": [
+   "SUPPORTED",
+   "SUPPORTED",
+   "OBSERVED_ACQUISITION"
+  ],
+  "k03-3": [
+   "SUPPORTED",
+   "SUPPORTED",
+   "NOT_EXAMINED"
+  ],
+  "k06-3": [
+   "REQUIRES_EXTERNAL_VALIDATION",
+   null,
+   "NOT_EXAMINED"
+  ],
+  "ruby-4-0-0-latest": [
+   "REFUTED",
+   "REFUTED",
+   "OPERATOR_ATTESTED_FILE"
+  ],
+  "rubydex-index-time": [
+   "INCONCLUSIVE",
+   "SUPPORTED",
+   "OPERATOR_ATTESTED_FILE"
+  ]
+ },
+ "proof_verdict": "INSUFFICIENT_EVIDENCE",
+ "proof_deciding_rule": "no_acceptance_criteria",
+ "dream_disposition": "INVESTIGATE",
+ "dream_reason": "2 claim(s) refuted (2 only within a limited scope); 4 unresolved",
+ "dream_replay_identical": true,
+ "dream_summary_row": {
+  "kind": "proof_evidence_summary",
+  "evidence_status": "PARTIALLY_VERIFIED",
+  "claims": 8,
+  "source_verified_or_deterministic": 2,
+  "scope_limited_refutations": 2,
+  "development_approval": "NOT_GRANTED",
+  "note": "a research assessment is evidence, not authorization: building, deploying, purchasing or publishing needs a separate explicit approval"
+ }
+}

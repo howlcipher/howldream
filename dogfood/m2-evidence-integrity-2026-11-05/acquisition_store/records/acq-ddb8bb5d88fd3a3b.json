@@ -1,0 +1,18 @@
+{
+  "content_sha256": "80f142e9189eefce2bfa0fae636e91fd96005fe10646c8585eacc1447aaabb3b",
+  "content_type": "text/html; charset=utf-8",
+  "http_status": 200,
+  "id": "acq-ddb8bb5d88fd3a3b",
+  "kind": "RETRIEVED",
+  "limitations": [
+    "bytes were received from the observed location at the recorded time; this does not show the content is accurate or current"
+  ],
+  "method": "https_get",
+  "observed_url": "https://www.ruby-lang.org/en/news/",
+  "record_sha256": "b97712d0e33f87db120bfaa995886ec071d8d2262f7c7beb630085840d0de53c",
+  "redirects": [],
+  "requested_url": "https://www.ruby-lang.org/en/news/",
+  "retrieved_at": "2026-11-05T22:10:41Z",
+  "size": 45520,
+  "tool": "howlproof/0.2.0b1"
+}

@@ -117,6 +117,33 @@ def classify(claim: dict[str, Any]) -> tuple[str, str]:
     return "HYPOTHESIS", "heuristic"
 
 
+def trust_fields(claim: dict[str, Any]) -> dict[str, Any]:
+    """Optional, author-supplied scoping fields. Validated, passed through, never invented."""
+    out: dict[str, Any] = {}
+    terms = claim.get("subject_terms")
+    if terms is not None:
+        if (
+            not isinstance(terms, list)
+            or not 0 < len(terms) <= 10
+            or not all(isinstance(t, str) and 0 < len(t.strip()) <= 200 for t in terms)
+        ):
+            raise ValueError("claim subject_terms must be 1 to 10 non-empty strings")
+        out["subject_terms"] = list(terms)
+    proposition = claim.get("checked_proposition")
+    if proposition is not None:
+        if not isinstance(proposition, str) or not 0 < len(proposition.strip()) <= 1000:
+            raise ValueError("claim checked_proposition must be a non-empty string")
+        out["checked_proposition"] = proposition
+    scope = claim.get("scope")
+    if scope is not None:
+        if not isinstance(scope, dict) or not all(
+            isinstance(k, str) and isinstance(v, str) and len(v) <= 500 for k, v in scope.items()
+        ):
+            raise ValueError("claim scope must be an object of short strings")
+        out["scope"] = dict(scope)
+    return out
+
+
 def _safe(name: str) -> str:
     return re.sub(r"[^A-Za-z0-9_.-]+", "_", name).strip("._") or "evidence"
 
@@ -133,8 +160,14 @@ def _write_evidence(evidence: list[Evidence], out: Path) -> list[dict[str, Any]]
         relative = f"evidence/{index:03d}-{_safe(source.id)}.json"
         (out / relative).write_bytes(body)
         provenance = source.provenance
+        extras: dict[str, Any] = {}
+        if source.acquisition is not None:
+            extras["acquisition"] = source.acquisition.model_dump()
+        if source.methodology_quote:
+            extras["methodology_quote"] = source.methodology_quote
         entries.append(
             {
+                **extras,
                 "id": source.id,
                 "path": relative,
                 "sha256": hashlib.sha256(body).hexdigest(),
@@ -197,6 +230,7 @@ def export_proof(
                 "falsification_basis": falsification_basis,
                 "evidence_refs": list(claim.get("evidence_refs") or all_refs),
                 "check": check,
+                **trust_fields(claim),
                 "verification_plan": {
                     "status": "PROPOSED",
                     "grounded": check is not None,
@@ -308,30 +342,97 @@ def import_proof(bundle_dir: Path, result: dict[str, Any]) -> CandidateAssessmen
                 "conflicts": detail["conflicts"] if detail else [],
                 "not_checked": detail["not_checked"] if detail else [],
                 "untrusted_flags": detail["untrusted_flags"] if detail else [],
+                # M2 trust fields. Absent in a pre-M2 Proof result and then left absent:
+                # nothing is inferred, and absence is read as "not verified".
+                "assurance": detail.get("assurance") if detail else None,
+                "check_outcome": detail.get("check_outcome") if detail else None,
+                "checked_proposition": detail.get("checked_proposition") if detail else None,
+                "scope": detail.get("scope") if detail else None,
+                "scope_limited": bool(detail.get("scope_limited")) if detail else False,
+                "broader_question": detail.get("broader_question") if detail else None,
+                "also_found_in": detail.get("also_found_in", []) if detail else [],
             }
         )
     values = list(statuses.values())
     texts = {cid: c["text"] for cid, c in known.items()}
     contradictions = [texts[c] for c, s in statuses.items() if s == "REFUTED"]
     unresolved = [texts[c] for c, s in statuses.items() if s not in ("SUPPORTED", "REFUTED")]
+    by_claim = {r["claim_id"]: r for r in rows}
+
+    def source_backed(claim_id: str) -> bool:
+        """SUPPORTED on evidence that earned it, or a deterministic check (inputs unverified)."""
+        assurance = by_claim[claim_id]["assurance"] or {}
+        return bool(
+            assurance.get("real_world_eligible")
+            or assurance.get("evidence_status") == "DETERMINISTIC_CHECK_ONLY"
+        )
+
+    scoped_refutations = [
+        c for c, s in statuses.items() if s == "REFUTED" and by_claim[c]["scope_limited"]
+    ]
+    verified = [c for c, s in statuses.items() if s == "SUPPORTED" and source_backed(c)]
+    # ACCEPT_FOR_DEVELOPMENT is never produced here: HowlPlane promotes a candidate to
+    # development on that exact value, and a research result is evidence, not approval.
     if values and all(v == "SUPPORTED" for v in values) and integrity_ok:
-        disposition, confidence = "ACCEPT_FOR_DEVELOPMENT", "MEDIUM"
-        reason = f"all {len(values)} claim(s) supported by independent evidence"
-    elif values and all(v == "REFUTED" for v in values):
+        if len(verified) == len(values):
+            disposition, confidence = "INVESTIGATE", "MEDIUM"
+            reason = (
+                f"all {len(values)} claim(s) supported within their stated scope by checked "
+                "evidence; no approval to develop is granted by this result"
+            )
+        else:
+            disposition, confidence = "UNRESOLVED", "LOW"
+            reason = (
+                f"{len(values) - len(verified)} of {len(values)} claim(s) are SUPPORTED only "
+                "against unverified, synthetic or unattributed evidence"
+            )
+    elif values and all(v == "REFUTED" for v in values) and not scoped_refutations:
         disposition, confidence = "REJECT", "HIGH"
         reason = f"all {len(values)} claim(s) refuted"
     elif contradictions:
         disposition, confidence = "INVESTIGATE", "LOW"
-        reason = f"{len(contradictions)} claim(s) refuted; {len(unresolved)} unresolved"
+        reason = (
+            f"{len(contradictions)} claim(s) refuted"
+            + (
+                f" ({len(scoped_refutations)} only within a limited scope)"
+                if scoped_refutations
+                else ""
+            )
+            + f"; {len(unresolved)} unresolved"
+        )
     else:
         disposition, confidence = "UNRESOLVED", "LOW"
         reason = f"{len(unresolved)} claim(s) remain unresolved"
+    backed_refutations = [c for c, s in statuses.items() if s == "REFUTED" and source_backed(c)]
+    if not verified and not backed_refutations:
+        overall = "UNVERIFIED"
+    elif len(verified) == len(values) and integrity_ok:
+        overall = "ALL_CLAIMS_SOURCE_VERIFIED"
+    else:
+        overall = "PARTIALLY_VERIFIED"
+    rows.append(
+        {
+            "kind": "proof_evidence_summary",
+            "evidence_status": overall,
+            "claims": len(values),
+            "source_verified_or_deterministic": len(verified),
+            "scope_limited_refutations": len(scoped_refutations),
+            "development_approval": "NOT_GRANTED",
+            "note": (
+                "a research assessment is evidence, not authorization: building, deploying, "
+                "purchasing or publishing needs a separate explicit approval"
+            ),
+        }
+    )
     limitations = list(dict.fromkeys(result.get("limitations") or []))
     if not integrity_ok:
         limitations.append("evidence integrity check did not pass; acceptance withheld")
     limitations.append(
         "claim results hold only for the checks the candidate's author supplied; "
-        "independence of evidence is as declared, not authenticated"
+        "independence of origin is not established and real-world truth stays unresolved"
+    )
+    limitations.append(
+        "this assessment does not approve development; a separate explicit approval is required"
     )
     completed = result.get("completed_at") or result.get("started_at")
     key = json.dumps([digest, sorted(statuses.items())], sort_keys=True).encode()

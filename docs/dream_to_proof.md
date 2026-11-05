@@ -31,6 +31,13 @@ IDs and claim text, and records:
 * evidence trust: `independent` is true only for external source types declared independent
   of the implementation. Agent-supplied evidence stays non-independent and cannot support
   a claim. `facts.published_at` / `facts.retrieved_at` become the evidence timestamp.
+  `independent`, `source_type` and `represents_observed_reality` are **declarations**; Proof
+  keeps them as claimed provenance and they confer no authority (see below).
+* optional trust fields, validated and passed through, never invented: per claim
+  `subject_terms` (terms a source must contain to be relevant), `checked_proposition` (the
+  exact proposition checked) and `scope` (`{artifact, extent}`); per evidence `acquisition`
+  (`{id, content_sha256}`, a pointer into a HowlProof acquisition store) and
+  `methodology_quote`.
 
 The output directory must be empty. Re-exporting the same candidate is byte-identical.
 
@@ -44,13 +51,40 @@ candidate and bundle are never modified.
 
 | Claim results | Disposition |
 | --- | --- |
-| all SUPPORTED, integrity passed | `ACCEPT_FOR_DEVELOPMENT` (MEDIUM) |
-| all REFUTED | `REJECT` (HIGH) |
-| some REFUTED, rest anything | `INVESTIGATE` (LOW) |
+| all SUPPORTED, integrity passed, every claim source-verified or deterministic | `INVESTIGATE` (MEDIUM) |
+| all SUPPORTED, but some only against unverified, synthetic or unattributed evidence | `UNRESOLVED` (LOW) |
+| all REFUTED, none scope-limited | `REJECT` (HIGH) |
+| some REFUTED, or all REFUTED but some only within a limited scope | `INVESTIGATE` (LOW) |
 | otherwise (INCONCLUSIVE, REQUIRES_EXTERNAL_VALIDATION, ERROR, not assessed) | `UNRESOLVED` (LOW) |
 
+**`import-proof` never emits `ACCEPT_FOR_DEVELOPMENT`.** That value is a downstream trigger:
+HowlPlane promotes a candidate to a HowlCreate development run when it sees it
+(`howldream_runner.py`), so a research result must not be able to produce it. This is a
+change from 0.4.5, where all-SUPPORTED produced it; the enum is unchanged for
+compatibility. A fully supported bundle becomes `INVESTIGATE`, and the assessment carries a
+`proof_evidence_summary` row with `evidence_status` (`ALL_CLAIMS_SOURCE_VERIFIED`,
+`PARTIALLY_VERIFIED`, `UNVERIFIED`) and `development_approval: NOT_GRANTED`. Building,
+deploying, purchasing or publishing needs a separate explicit approval that this tool does not
+model. (The unrelated local `review` path can still emit `ACCEPT_FOR_DEVELOPMENT` from
+Dream's own invariant checks; it is not fed by Proof and is unchanged.)
+
 INCONCLUSIVE is never turned into REJECT or acceptance, and one claim never decides
-another. Importing the same result twice yields the same assessment.
+another. A refutation that Proof marks `scope_limited` (for example "this README does not
+mention X") is never turned into a rejection of the candidate: the broader question was not
+evaluated. A SUPPORTED result without Proof's `assurance` record (a pre-M2 HowlProof) counts as
+unverified. Each `proof_claim_result` row also carries `assurance`, `check_outcome`,
+`checked_proposition`, `scope`, `scope_limited`, `broader_question` and `also_found_in` when
+Proof supplied them. Importing the same result twice yields the same assessment.
+
+## What "verified" means here
+
+Proof separates *the check passed*, *bytes are intact*, *the source was observed being
+acquired*, *the source is structurally relevant*, *a methodology is quoted*, *copies are not
+corroboration* and *real-world truth*. Only an acquired source (`howlproof acquire`, passed to
+`evaluate --acquisition-store`) can carry a sourced claim to SUPPORTED/REFUTED. A fabricated
+number that matches its own check, a placeholder URL such as `example.org`, or an AI summary
+yields INCONCLUSIVE with `check_outcome` recording what the numbers said. See HowlProof's
+`docs/research_claims.md` for the full table.
 
 ## Real discovery without local inference
 
@@ -63,13 +97,17 @@ exports. Local inference remains off.
 ## Compatibility
 
 * HowlDream 0.4.5 (this change adds `IMPORTED` to the candidate status enum; old
-  artifacts with `GENERATED` still validate).
-* HowlProof 0.2.0b1 with `research.claims` v1.
+  artifacts with `GENERATED` still validate). M2 adds optional `acquisition` and
+  `methodology_quote` to evidence input and optional claim trust fields; old inputs still work.
+* HowlProof 0.2.0b1 with `research.claims` v1. **M2 requires the HowlProof evidence-trust
+  release** (`assurance`, `howlproof acquire`) to reach SUPPORTED on real-world claims; with an
+  older HowlProof every real-world SUPPORTED is read as unverified. Migrate by re-evaluating:
+  old assessments are not rewritten.
 * Candidate-schema errors from `review` and `export-proof` now name `howl.candidate/v1`
   and list the accepted values.
 
 ## Known limits
 
 Natural-language extraction still returns a compound sentence as one claim; split compound
-claims and author checks when a claim should be decided. Nothing here fetches or verifies a
-URL. See the dogfood record in `dogfood/dream-proof-2026-11-05/`.
+claims and author checks when a claim should be decided. Nothing in Dream fetches a URL;
+retrieval is HowlProof's explicit `acquire` command. See the dogfood record in `dogfood/dream-proof-2026-11-05/`.
