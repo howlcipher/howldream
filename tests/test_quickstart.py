@@ -20,6 +20,9 @@ def test_readme_quickstart_exploration_is_offline_and_bounded(tmp_path):
     )
     shutil.copytree(root / "examples", tmp_path / "examples")
     executable = Path(sys.executable).parent / "howldream"
+    if not executable.exists():
+        found = shutil.which("howldream")
+        executable = Path(found) if found else executable
     env = {**os.environ, "HOWL_FORBID_LOCAL_INFERENCE": "1"}
     result = subprocess.run(
         [str(executable), *shlex.split(command)[1:]],

@@ -170,6 +170,7 @@ class CandidateAssessment(StrictModel):
     assessment_id: str = Field(min_length=1, max_length=100)
     candidate_id: str = Field(min_length=1, max_length=200)
     disposition: Literal["REJECT", "UNRESOLVED", "INVESTIGATE", "ACCEPT_FOR_DEVELOPMENT"]
+    reason: str = Field(default="", max_length=5000)
     evidence: list[dict[str, Any]] = Field(default_factory=list)
     unresolved_claims: list[str] = Field(default_factory=list)
     contradictions: list[str] = Field(default_factory=list)

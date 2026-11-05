@@ -172,6 +172,12 @@
     "provenance": {
       "$ref": "#/$defs/Provenance"
     },
+    "reason": {
+      "default": "",
+      "maxLength": 5000,
+      "title": "Reason",
+      "type": "string"
+    },
     "schema_version": {
       "const": "howl.assessment/v1",
       "default": "howl.assessment/v1",
