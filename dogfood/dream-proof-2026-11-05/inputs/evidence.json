@@ -1,0 +1,82 @@
+[
+  {
+    "id": "S2-mini-git",
+    "text": "Transcribed from ruby_ideas/claude/11_sources.md row S2 (tool summary of the mame/ai-coding-lang-bench README); NOT re-fetched for this run. Claude Code, Opus 4.6, March 2026, 20 runs per config, one small prototype task.",
+    "facts": {
+      "ruby_seconds": "73.1 s",
+      "python_seconds": "74.6 s",
+      "typescript_seconds": "133.0 s",
+      "ruby_steep_seconds": "186.6 s",
+      "ruby_cost": "$0.36",
+      "typescript_cost": "$0.62",
+      "published_at": "2026-03-01"
+    },
+    "provenance": {
+      "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+      "produced_by": "mame/ai-coding-lang-bench via archived tool summary",
+      "source_ref": "https://github.com/mame/ai-coding-lang-bench",
+      "independent_of_implementation": true,
+      "represents_observed_reality": true
+    }
+  },
+  {
+    "id": "S1-ruby-4.0-notes",
+    "text": "Transcribed from row S1: Ruby 4.0.0 released 2025-12-25; ZJIT is faster than the interpreter but slower than YJIT. No Rails speedup figure is stated.",
+    "facts": {
+      "zjit_vs_yjit": "slower",
+      "published_at": "2025-12-25"
+    },
+    "provenance": {
+      "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+      "produced_by": "ruby-lang.org release notes via archived search summary",
+      "source_ref": "https://www.ruby-lang.org/en/news/2025/12/25/ruby-4-0-0-released/",
+      "independent_of_implementation": true,
+      "represents_observed_reality": true
+    }
+  },
+  {
+    "id": "S5-tiobe-jul",
+    "text": "Row S5: one July 2026 TIOBE table lists Ruby at #20 (0.73%). Secondary aggregator, not re-fetched.",
+    "facts": {
+      "top20_member": "1",
+      "published_at": "2026-07-15"
+    },
+    "provenance": {
+      "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+      "produced_by": "hellogithub.com TIOBE report via archived search summary",
+      "source_ref": "https://hellogithub.com/report/tiobe",
+      "independent_of_implementation": true,
+      "represents_observed_reality": true
+    }
+  },
+  {
+    "id": "S5-tiobe-sep",
+    "text": "Row S5: a Sept 2026 report places Ruby out of the top 20. Secondary aggregator, not re-fetched.",
+    "facts": {
+      "top20_member": "0",
+      "published_at": "2026-09-20"
+    },
+    "provenance": {
+      "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+      "produced_by": "statisticstimes TIOBE summary via archived search summary",
+      "source_ref": "https://statisticstimes.com",
+      "independent_of_implementation": true,
+      "represents_observed_reality": true
+    }
+  },
+  {
+    "id": "local-rv-install",
+    "text": "ERROR rv::update: Self-update failed: Unable to load receipt for app rv\nInstalled Ruby version 4.0.9 to /tmp/claude-1000/-run-media-howlcipher-tallgeese-dev-ruby-ideas-claude/0b996d52-4f46-4b3f-94ff-b26618c0a0c4/scratchpad/rvhome/data/rv/rubies\n\nreal\t0m2.010s\nuser\t0m0.559s\nsys\t0m0.603s\n",
+    "facts": {
+      "rv_ruby_install_seconds": "2.010 s",
+      "published_at": "2026-11-05"
+    },
+    "provenance": {
+      "source_type": "UNCLASSIFIED",
+      "produced_by": "claude agent local run (howl_evidence/rv_ruby_install.log)",
+      "source_ref": "",
+      "independent_of_implementation": false,
+      "represents_observed_reality": false
+    }
+  }
+]

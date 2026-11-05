@@ -1,0 +1,306 @@
+[
+  {
+    "claim_id": "rr-1-accurate",
+    "category": "EMPIRICAL",
+    "assumption": false,
+    "method": "fact_compare",
+    "claim_status": "SUPPORTED",
+    "explanation": "independent evidence S2-mini-git satisfies ruby_seconds approx 73.1 s",
+    "evidence_considered": [
+      {
+        "id": "S2-mini-git",
+        "integrity": "ok",
+        "independent": true,
+        "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+        "relation": "supports",
+        "published_at": "2026-03-01",
+        "sha256": "8240d0eb65b45d53f39943f99a76b2a6fb2aa98c3a9fe669a999e85888901c5e",
+        "observed": "73.1 s"
+      }
+    ],
+    "conflicts": [],
+    "untrusted_flags": [],
+    "not_checked": [
+      "whether the source is correct, current or representative"
+    ],
+    "bundle_sha256": "cb798720dfe55065bdc5026e9aac64efcab9420384c3bf0eab4df7b3e5e328f2",
+    "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1"
+  },
+  {
+    "claim_id": "rr-2-inaccurate",
+    "category": "EMPIRICAL",
+    "assumption": false,
+    "method": "fact_compare",
+    "claim_status": "REFUTED",
+    "explanation": "independent evidence S2-mini-git contradicts python_seconds approx 40 s",
+    "evidence_considered": [
+      {
+        "id": "S2-mini-git",
+        "integrity": "ok",
+        "independent": true,
+        "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+        "relation": "contradicts",
+        "published_at": "2026-03-01",
+        "sha256": "8240d0eb65b45d53f39943f99a76b2a6fb2aa98c3a9fe669a999e85888901c5e",
+        "observed": "74.6 s"
+      }
+    ],
+    "conflicts": [],
+    "untrusted_flags": [],
+    "not_checked": [
+      "whether the contradicting source is itself correct"
+    ],
+    "bundle_sha256": "cb798720dfe55065bdc5026e9aac64efcab9420384c3bf0eab4df7b3e5e328f2",
+    "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1"
+  },
+  {
+    "claim_id": "rr-3-no-method",
+    "category": "EMPIRICAL",
+    "assumption": false,
+    "method": "none",
+    "claim_status": "INCONCLUSIVE",
+    "explanation": "no grounded check was supplied for this claim; a citation or quotation is not proof, and any verification plan stays proposed until the author grounds it",
+    "evidence_considered": [
+      {
+        "id": "S2-mini-git",
+        "integrity": "ok",
+        "independent": true,
+        "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+        "relation": "unexamined",
+        "published_at": "2026-03-01",
+        "sha256": "8240d0eb65b45d53f39943f99a76b2a6fb2aa98c3a9fe669a999e85888901c5e"
+      }
+    ],
+    "conflicts": [],
+    "untrusted_flags": [],
+    "not_checked": [
+      "whether the cited sources establish the claim"
+    ],
+    "bundle_sha256": "cb798720dfe55065bdc5026e9aac64efcab9420384c3bf0eab4df7b3e5e328f2",
+    "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1"
+  },
+  {
+    "claim_id": "rr-4-currency",
+    "category": "EMPIRICAL",
+    "assumption": false,
+    "method": "fact_compare",
+    "claim_status": "SUPPORTED",
+    "explanation": "independent evidence S2-mini-git satisfies ruby_cost approx $0.36",
+    "evidence_considered": [
+      {
+        "id": "S2-mini-git",
+        "integrity": "ok",
+        "independent": true,
+        "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+        "relation": "supports",
+        "published_at": "2026-03-01",
+        "sha256": "8240d0eb65b45d53f39943f99a76b2a6fb2aa98c3a9fe669a999e85888901c5e",
+        "observed": "$0.36"
+      }
+    ],
+    "conflicts": [],
+    "untrusted_flags": [],
+    "not_checked": [
+      "whether the source is correct, current or representative"
+    ],
+    "bundle_sha256": "cb798720dfe55065bdc5026e9aac64efcab9420384c3bf0eab4df7b3e5e328f2",
+    "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1"
+  },
+  {
+    "claim_id": "rr-5-forecast",
+    "category": "VALUE_JUDGMENT",
+    "assumption": false,
+    "method": "none",
+    "claim_status": "REQUIRES_EXTERNAL_VALIDATION",
+    "explanation": "value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+    "evidence_considered": [
+      {
+        "id": "S5-tiobe-jul",
+        "integrity": "ok",
+        "independent": true,
+        "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+        "relation": "unexamined",
+        "published_at": "2026-07-15",
+        "sha256": "2346d3bc4401298ba6809d79ffadd7331c644b4f79115c9f62f26e58ddb096dd"
+      },
+      {
+        "id": "S5-tiobe-sep",
+        "integrity": "ok",
+        "independent": true,
+        "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+        "relation": "unexamined",
+        "published_at": "2026-09-20",
+        "sha256": "ec026567fcf921b902ac254dd424fecdd8ad94b5445dc4525cf41b2269d0eef7"
+      }
+    ],
+    "conflicts": [],
+    "untrusted_flags": [],
+    "not_checked": [
+      "the truth of the judgment or forecast"
+    ],
+    "bundle_sha256": "cb798720dfe55065bdc5026e9aac64efcab9420384c3bf0eab4df7b3e5e328f2",
+    "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1"
+  },
+  {
+    "claim_id": "rr-6a-arithmetic",
+    "category": "TECHNICAL",
+    "assumption": false,
+    "method": "arithmetic",
+    "claim_status": "SUPPORTED",
+    "explanation": "186.6 / 73.1 = 2.552667578659370725034199726; expected approx 2.55 -> holds",
+    "evidence_considered": [
+      {
+        "id": "S2-mini-git",
+        "integrity": "ok",
+        "independent": true,
+        "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+        "relation": "unexamined",
+        "published_at": "2026-03-01",
+        "sha256": "8240d0eb65b45d53f39943f99a76b2a6fb2aa98c3a9fe669a999e85888901c5e"
+      },
+      {
+        "id": "S1-ruby-4.0-notes",
+        "integrity": "ok",
+        "independent": true,
+        "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+        "relation": "unexamined",
+        "published_at": "2025-12-25",
+        "sha256": "44a01c9667a366fec6c1b867ae32ed03ecb9a2a91d93b50dbe721e45d557e4d1"
+      },
+      {
+        "id": "S5-tiobe-jul",
+        "integrity": "ok",
+        "independent": true,
+        "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+        "relation": "unexamined",
+        "published_at": "2026-07-15",
+        "sha256": "2346d3bc4401298ba6809d79ffadd7331c644b4f79115c9f62f26e58ddb096dd"
+      },
+      {
+        "id": "S5-tiobe-sep",
+        "integrity": "ok",
+        "independent": true,
+        "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+        "relation": "unexamined",
+        "published_at": "2026-09-20",
+        "sha256": "ec026567fcf921b902ac254dd424fecdd8ad94b5445dc4525cf41b2269d0eef7"
+      },
+      {
+        "id": "local-rv-install",
+        "integrity": "ok",
+        "independent": false,
+        "source_type": "UNCLASSIFIED",
+        "relation": "unexamined",
+        "published_at": "2026-11-05",
+        "sha256": "c205566224a847495528a22779394a7a254b25d4500a38c9ce65a67ba0804b52"
+      }
+    ],
+    "conflicts": [],
+    "untrusted_flags": [],
+    "not_checked": [
+      "inputs of the expression were taken from the claim, not independently sourced"
+    ],
+    "bundle_sha256": "cb798720dfe55065bdc5026e9aac64efcab9420384c3bf0eab4df7b3e5e328f2",
+    "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1"
+  },
+  {
+    "claim_id": "rr-6b-executable",
+    "category": "TECHNICAL",
+    "assumption": false,
+    "method": "fact_compare",
+    "claim_status": "INCONCLUSIVE",
+    "explanation": "matching evidence exists but none is declared independent; evidence that is not independent cannot support or refute a claim",
+    "evidence_considered": [
+      {
+        "id": "local-rv-install",
+        "integrity": "ok",
+        "independent": false,
+        "source_type": "UNCLASSIFIED",
+        "relation": "supports",
+        "published_at": "2026-11-05",
+        "sha256": "c205566224a847495528a22779394a7a254b25d4500a38c9ce65a67ba0804b52",
+        "observed": "2.010 s"
+      }
+    ],
+    "conflicts": [],
+    "untrusted_flags": [],
+    "not_checked": [
+      "independent corroboration"
+    ],
+    "bundle_sha256": "cb798720dfe55065bdc5026e9aac64efcab9420384c3bf0eab4df7b3e5e328f2",
+    "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1"
+  },
+  {
+    "claim_id": "rr-7-superseded",
+    "category": "EMPIRICAL",
+    "assumption": false,
+    "method": "fact_compare",
+    "claim_status": "INCONCLUSIVE",
+    "explanation": "independent evidence conflicts (S5-tiobe-jul supports, S5-tiobe-sep contradicts); a newer source is not a resolution",
+    "evidence_considered": [
+      {
+        "id": "S5-tiobe-jul",
+        "integrity": "ok",
+        "independent": true,
+        "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+        "relation": "supports",
+        "published_at": "2026-07-15",
+        "sha256": "2346d3bc4401298ba6809d79ffadd7331c644b4f79115c9f62f26e58ddb096dd",
+        "observed": "1"
+      },
+      {
+        "id": "S5-tiobe-sep",
+        "integrity": "ok",
+        "independent": true,
+        "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+        "relation": "contradicts",
+        "published_at": "2026-09-20",
+        "sha256": "ec026567fcf921b902ac254dd424fecdd8ad94b5445dc4525cf41b2269d0eef7",
+        "observed": "0"
+      }
+    ],
+    "conflicts": [
+      {
+        "kind": "supports_vs_contradicts",
+        "evidence": [
+          "S5-tiobe-jul",
+          "S5-tiobe-sep"
+        ],
+        "newer": "S5-tiobe-sep"
+      }
+    ],
+    "untrusted_flags": [],
+    "not_checked": [
+      "which conflicting source is correct"
+    ],
+    "bundle_sha256": "cb798720dfe55065bdc5026e9aac64efcab9420384c3bf0eab4df7b3e5e328f2",
+    "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1"
+  },
+  {
+    "claim_id": "rr-8-wrong-source",
+    "category": "EMPIRICAL",
+    "assumption": false,
+    "method": "fact_compare",
+    "claim_status": "INCONCLUSIVE",
+    "explanation": "no cited evidence is both usable and relevant to the compared fact (S1-ruby-4.0-notes: irrelevant)",
+    "evidence_considered": [
+      {
+        "id": "S1-ruby-4.0-notes",
+        "integrity": "ok",
+        "independent": true,
+        "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+        "relation": "irrelevant",
+        "published_at": "2025-12-25",
+        "sha256": "44a01c9667a366fec6c1b867ae32ed03ecb9a2a91d93b50dbe721e45d557e4d1",
+        "note": "the evidence has no fact named 'yjit_rails_speedup'"
+      }
+    ],
+    "conflicts": [],
+    "untrusted_flags": [],
+    "not_checked": [
+      "whether the cited sources address the claim"
+    ],
+    "bundle_sha256": "cb798720dfe55065bdc5026e9aac64efcab9420384c3bf0eab4df7b3e5e328f2",
+    "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1"
+  }
+]

@@ -1,0 +1,76 @@
+{
+  "schema": "howldream.external_discovery/v1",
+  "discovery_id": "hdx-2f5ef9e5f568",
+  "created_at": "2026-11-05T20:59:47.692192+00:00",
+  "objective": "Is Ruby a defensible bet for AI-assisted development tooling?",
+  "origin": {
+    "component": "claude-opus-agent",
+    "provider": "anthropic",
+    "model": "claude (Ruby Renaissance, Nov 2026)"
+  },
+  "authority": "NONE",
+  "participation": [
+    {
+      "operation": "CLUSTERED",
+      "transforming_component": "howldream",
+      "origin_component": "claude-opus-agent",
+      "origin_provider": "anthropic",
+      "origin_model": "claude (Ruby Renaissance, Nov 2026)",
+      "subject_count": 1,
+      "inference_occurred": false,
+      "note": "Externally supplied ideas; Dream clustered them and generated none."
+    }
+  ],
+  "generated_by_howldream": 0,
+  "context_echo_ratio": 0.0,
+  "evidence_echo_ratio": 0.0,
+  "novel_concept_ratio": 1.0,
+  "repeated_family_ratio": 0.0,
+  "idea_count": 1,
+  "cluster_count": 1,
+  "units": [
+    {
+      "id": "ext-1/idea/1",
+      "candidate_id": "ext-1",
+      "text": "IDEA: Ruby is a cheap, fast language for AI coding agents and is positioned to regain mainstream adoption.",
+      "source_span": [
+        0,
+        106
+      ],
+      "source_hash": "8216f1915e36a4e6cd95c833e2e2afe80ec8ef937c77e8d07830d6740a0d1505",
+      "cluster": "cluster-1",
+      "representative": "ext-1/idea/1",
+      "similar_to": null,
+      "similarity_to_representative": 1.0,
+      "evidence_token_overlap": 0.0,
+      "context_token_overlap": 0.18181818181818182,
+      "evidence_family_echo": false,
+      "context_family_echo": false,
+      "origin": {
+        "component": "claude-opus-agent",
+        "provider": "anthropic",
+        "model": "claude (Ruby Renaissance, Nov 2026)"
+      },
+      "supplied_id": "rr-thesis"
+    }
+  ],
+  "clusters": [
+    {
+      "id": "cluster-1",
+      "representative": "ext-1/idea/1",
+      "representative_text": "IDEA: Ruby is a cheap, fast language for AI coding agents and is positioned to regain mainstream adoption.",
+      "label": "adoption, agents, ai, cheap, coding, fast, language, mainstream",
+      "members": [
+        "ext-1/idea/1"
+      ]
+    }
+  ],
+  "ranking": [],
+  "warnings": [],
+  "explored_families": [
+    "adoption, agents, ai, cheap, coding, fast, language, mainstream"
+  ],
+  "method": "concept_tokens_and_leading_phrases/v3; Jaccard cluster threshold 0.5 or first-8-content-word phrase link; echo coverage 0.6 or first-16-word phrase link",
+  "measurement_type": "ADVISORY_HEURISTIC",
+  "limitations": "Not semantic equivalence, calibrated novelty, entailment or usefulness"
+}

@@ -1,0 +1,8 @@
+{
+  "facts": {
+    "published_at": "2026-11-05",
+    "rv_ruby_install_seconds": "2.010 s"
+  },
+  "id": "local-rv-install",
+  "text": "ERROR rv::update: Self-update failed: Unable to load receipt for app rv\nInstalled Ruby version 4.0.9 to /tmp/claude-1000/-run-media-howlcipher-tallgeese-dev-ruby-ideas-claude/0b996d52-4f46-4b3f-94ff-b26618c0a0c4/scratchpad/rvhome/data/rv/rubies\n\nreal\t0m2.010s\nuser\t0m0.559s\nsys\t0m0.603s\n"
+}

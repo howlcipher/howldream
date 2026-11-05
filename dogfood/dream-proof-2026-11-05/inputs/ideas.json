@@ -1,0 +1,14 @@
+{
+  "objective": "Is Ruby a defensible bet for AI-assisted development tooling?",
+  "origin": {
+    "component": "claude-opus-agent",
+    "provider": "anthropic",
+    "model": "claude (Ruby Renaissance, Nov 2026)"
+  },
+  "ideas": [
+    {
+      "id": "rr-thesis",
+      "text": "Ruby is a cheap, fast language for AI coding agents and is positioned to regain mainstream adoption."
+    }
+  ]
+}

@@ -1,0 +1,344 @@
+{
+  "authorship": {
+    "component": "claude-opus-agent",
+    "kind": "EXTERNAL_AUTHORED",
+    "model": "claude (Ruby Renaissance, Nov 2026)",
+    "provider": "anthropic"
+  },
+  "candidate": {
+    "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1",
+    "objective": "Is Ruby a defensible bet for AI-assisted development tooling?",
+    "parent_request_id": "hdx-2f5ef9e5f568",
+    "source_run_id": "hdx-2f5ef9e5f568",
+    "status": "IMPORTED",
+    "text": "IDEA: Ruby is a cheap, fast language for AI coding agents and is positioned to regain mainstream adoption.",
+    "trust": "UNVERIFIED"
+  },
+  "claims": [
+    {
+      "assumption": false,
+      "category": "EMPIRICAL",
+      "category_basis": "explicit",
+      "check": {
+        "expected": "73.1 s",
+        "fact": "ruby_seconds",
+        "op": "approx",
+        "tolerance": "0.05 s",
+        "type": "fact_compare"
+      },
+      "claim_id": "rr-1-accurate",
+      "evidence_refs": [
+        "S2-mini-git"
+      ],
+      "falsification": "refuted if independent evidence reports ruby_seconds not approx 73.1 s",
+      "falsification_basis": "derived_from_check",
+      "origin": "SOURCE_STRUCTURED",
+      "source_kind": "FACT",
+      "text": "In the mini-git benchmark the Ruby configuration took 73.1 s.",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "compare against independent primary-source data",
+          "record units, dates and methodology of every source"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    },
+    {
+      "assumption": false,
+      "category": "EMPIRICAL",
+      "category_basis": "explicit",
+      "check": {
+        "expected": "40 s",
+        "fact": "python_seconds",
+        "op": "approx",
+        "tolerance": "0.5 s",
+        "type": "fact_compare"
+      },
+      "claim_id": "rr-2-inaccurate",
+      "evidence_refs": [
+        "S2-mini-git"
+      ],
+      "falsification": "refuted if independent evidence reports python_seconds not approx 40 s",
+      "falsification_basis": "derived_from_check",
+      "origin": "SOURCE_STRUCTURED",
+      "source_kind": "FACT",
+      "text": "In the mini-git benchmark the Python configuration took 40 s.",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "compare against independent primary-source data",
+          "record units, dates and methodology of every source"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    },
+    {
+      "assumption": false,
+      "category": "EMPIRICAL",
+      "category_basis": "explicit",
+      "check": null,
+      "claim_id": "rr-3-no-method",
+      "evidence_refs": [
+        "S2-mini-git"
+      ],
+      "falsification": null,
+      "falsification_basis": null,
+      "origin": "SOURCE_STRUCTURED",
+      "source_kind": "FACT",
+      "text": "Ruby makes AI-assisted development about 40% cheaper than TypeScript.",
+      "verification_plan": {
+        "grounded": false,
+        "methods": [
+          "compare against independent primary-source data",
+          "record units, dates and methodology of every source"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    },
+    {
+      "assumption": false,
+      "category": "EMPIRICAL",
+      "category_basis": "explicit",
+      "check": {
+        "expected": "$0.36",
+        "fact": "ruby_cost",
+        "op": "approx",
+        "tolerance": "$0.005",
+        "type": "fact_compare"
+      },
+      "claim_id": "rr-4-currency",
+      "evidence_refs": [
+        "S2-mini-git"
+      ],
+      "falsification": "refuted if independent evidence reports ruby_cost not approx $0.36",
+      "falsification_basis": "derived_from_check",
+      "origin": "SOURCE_STRUCTURED",
+      "source_kind": "FACT",
+      "text": "The Ruby configuration cost $0.36 per run.",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "compare against independent primary-source data",
+          "record units, dates and methodology of every source"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    },
+    {
+      "assumption": false,
+      "category": "VALUE_JUDGMENT",
+      "category_basis": "explicit",
+      "check": null,
+      "claim_id": "rr-5-forecast",
+      "evidence_refs": [
+        "S5-tiobe-jul",
+        "S5-tiobe-sep"
+      ],
+      "falsification": null,
+      "falsification_basis": null,
+      "origin": "SOURCE_STRUCTURED",
+      "source_kind": "IDEA",
+      "text": "Ruby will return to the TIOBE top 10 by 2028.",
+      "verification_plan": {
+        "grounded": false,
+        "methods": [
+          "external validation: human judgment or prospective data"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    },
+    {
+      "assumption": false,
+      "category": "TECHNICAL",
+      "category_basis": "explicit",
+      "check": {
+        "expected": "2.55",
+        "expression": "186.6 / 73.1",
+        "op": "approx",
+        "tolerance": "0.01",
+        "type": "arithmetic"
+      },
+      "claim_id": "rr-6a-arithmetic",
+      "evidence_refs": [
+        "S2-mini-git",
+        "S1-ruby-4.0-notes",
+        "S5-tiobe-jul",
+        "S5-tiobe-sep",
+        "local-rv-install"
+      ],
+      "falsification": null,
+      "falsification_basis": null,
+      "origin": "SOURCE_STRUCTURED",
+      "source_kind": "CALC",
+      "text": "Ruby+Steep took 2.55 times as long as Ruby (186.6 / 73.1).",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "author a deterministic experiment or executable check and supply it as a check"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    },
+    {
+      "assumption": false,
+      "category": "TECHNICAL",
+      "category_basis": "explicit",
+      "check": {
+        "expected": "30 s",
+        "fact": "rv_ruby_install_seconds",
+        "op": "lt",
+        "tolerance": "0",
+        "type": "fact_compare"
+      },
+      "claim_id": "rr-6b-executable",
+      "evidence_refs": [
+        "local-rv-install"
+      ],
+      "falsification": "refuted if independent evidence reports rv_ruby_install_seconds not lt 30 s",
+      "falsification_basis": "derived_from_check",
+      "origin": "SOURCE_STRUCTURED",
+      "source_kind": "FACT",
+      "text": "rv installs a Ruby in under 30 s.",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "author a deterministic experiment or executable check and supply it as a check"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    },
+    {
+      "assumption": false,
+      "category": "EMPIRICAL",
+      "category_basis": "explicit",
+      "check": {
+        "expected": "1",
+        "fact": "top20_member",
+        "op": "eq",
+        "tolerance": "0",
+        "type": "fact_compare"
+      },
+      "claim_id": "rr-7-superseded",
+      "evidence_refs": [
+        "S5-tiobe-jul",
+        "S5-tiobe-sep"
+      ],
+      "falsification": "refuted if independent evidence reports top20_member not eq 1",
+      "falsification_basis": "derived_from_check",
+      "origin": "SOURCE_STRUCTURED",
+      "source_kind": "FACT",
+      "text": "Ruby is in the TIOBE top 20.",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "compare against independent primary-source data",
+          "record units, dates and methodology of every source"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    },
+    {
+      "assumption": false,
+      "category": "EMPIRICAL",
+      "category_basis": "explicit",
+      "check": {
+        "expected": "92%",
+        "fact": "yjit_rails_speedup",
+        "op": "approx",
+        "tolerance": "1%",
+        "type": "fact_compare"
+      },
+      "claim_id": "rr-8-wrong-source",
+      "evidence_refs": [
+        "S1-ruby-4.0-notes"
+      ],
+      "falsification": "refuted if independent evidence reports yjit_rails_speedup not approx 92%",
+      "falsification_basis": "derived_from_check",
+      "origin": "SOURCE_STRUCTURED",
+      "source_kind": "FACT",
+      "text": "YJIT makes Rails apps 92% faster, per the Ruby 4.0 release notes.",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "compare against independent primary-source data",
+          "record units, dates and methodology of every source"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "S2-mini-git",
+      "independent": true,
+      "path": "evidence/001-S2-mini-git.json",
+      "produced_by": "mame/ai-coding-lang-bench via archived tool summary",
+      "published_at": "2026-03-01",
+      "represents_observed_reality": true,
+      "sha256": "8240d0eb65b45d53f39943f99a76b2a6fb2aa98c3a9fe669a999e85888901c5e",
+      "source_ref": "https://github.com/mame/ai-coding-lang-bench",
+      "source_type": "DERIVED_FROM_EXTERNAL_DATA"
+    },
+    {
+      "id": "S1-ruby-4.0-notes",
+      "independent": true,
+      "path": "evidence/002-S1-ruby-4.0-notes.json",
+      "produced_by": "ruby-lang.org release notes via archived search summary",
+      "published_at": "2025-12-25",
+      "represents_observed_reality": true,
+      "sha256": "44a01c9667a366fec6c1b867ae32ed03ecb9a2a91d93b50dbe721e45d557e4d1",
+      "source_ref": "https://www.ruby-lang.org/en/news/2025/12/25/ruby-4-0-0-released/",
+      "source_type": "DERIVED_FROM_EXTERNAL_DATA"
+    },
+    {
+      "id": "S5-tiobe-jul",
+      "independent": true,
+      "path": "evidence/003-S5-tiobe-jul.json",
+      "produced_by": "hellogithub.com TIOBE report via archived search summary",
+      "published_at": "2026-07-15",
+      "represents_observed_reality": true,
+      "sha256": "2346d3bc4401298ba6809d79ffadd7331c644b4f79115c9f62f26e58ddb096dd",
+      "source_ref": "https://hellogithub.com/report/tiobe",
+      "source_type": "DERIVED_FROM_EXTERNAL_DATA"
+    },
+    {
+      "id": "S5-tiobe-sep",
+      "independent": true,
+      "path": "evidence/004-S5-tiobe-sep.json",
+      "produced_by": "statisticstimes TIOBE summary via archived search summary",
+      "published_at": "2026-09-20",
+      "represents_observed_reality": true,
+      "sha256": "ec026567fcf921b902ac254dd424fecdd8ad94b5445dc4525cf41b2269d0eef7",
+      "source_ref": "https://statisticstimes.com",
+      "source_type": "DERIVED_FROM_EXTERNAL_DATA"
+    },
+    {
+      "id": "local-rv-install",
+      "independent": false,
+      "path": "evidence/005-local-rv-install.json",
+      "produced_by": "claude agent local run (howl_evidence/rv_ruby_install.log)",
+      "published_at": "2026-11-05",
+      "represents_observed_reality": false,
+      "sha256": "c205566224a847495528a22779394a7a254b25d4500a38c9ce65a67ba0804b52",
+      "source_ref": "",
+      "source_type": "UNCLASSIFIED"
+    }
+  ],
+  "lineage": {
+    "candidate_created_at": "2026-11-05T20:59:48.026334+00:00",
+    "candidate_sha256": "bcfc4c6881ac164b69fd9ebf8a11a4ce6e34e56d454ddb2975625bf789fc1b52",
+    "exported_by": "howldream",
+    "exporter_version": "0.4.5"
+  },
+  "schema": "howl.claim_bundle/v1"
+}

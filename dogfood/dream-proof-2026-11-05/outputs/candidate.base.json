@@ -1,0 +1,74 @@
+{
+  "schema_version": "howl.candidate/v1",
+  "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1",
+  "source_run_id": "hdx-2f5ef9e5f568",
+  "parent_request_id": "hdx-2f5ef9e5f568",
+  "objective": "Is Ruby a defensible bet for AI-assisted development tooling?",
+  "text": "IDEA: Ruby is a cheap, fast language for AI coding agents and is positioned to regain mainstream adoption.",
+  "condition": "dream",
+  "trust": "UNVERIFIED",
+  "status": "IMPORTED",
+  "authority": {
+    "type": "ADVISORY",
+    "executable": false
+  },
+  "claims": [],
+  "evidence_refs": [],
+  "assumptions": [],
+  "unresolved_issues": [],
+  "contradictions": [],
+  "verified_constraints": [],
+  "provenance": {
+    "run_id": null,
+    "producer_component": "howldream",
+    "producer_version": null,
+    "model_or_provider": null,
+    "observation_kind": "EXTERNALLY_OBSERVED",
+    "created_at": "2026-11-05T20:59:48.026334+00:00",
+    "transformations": [
+      "external_cluster",
+      "idea_unit_selection"
+    ],
+    "source_unit": {
+      "id": "ext-1/idea/1",
+      "source_span": [
+        0,
+        106
+      ],
+      "source_hash": "8216f1915e36a4e6cd95c833e2e2afe80ec8ef937c77e8d07830d6740a0d1505",
+      "cluster": "cluster-1"
+    },
+    "origin": {
+      "component": "claude-opus-agent",
+      "provider": "anthropic",
+      "model": "claude (Ruby Renaissance, Nov 2026)"
+    },
+    "participation": [
+      {
+        "operation": "CLUSTERED",
+        "transforming_component": "howldream",
+        "origin_component": "claude-opus-agent",
+        "origin_provider": "anthropic",
+        "origin_model": "claude (Ruby Renaissance, Nov 2026)",
+        "subject_count": 1,
+        "inference_occurred": false,
+        "note": "Externally supplied ideas; Dream clustered them and generated none."
+      },
+      {
+        "operation": "SELECTED",
+        "transforming_component": "howldream",
+        "origin_component": "claude-opus-agent",
+        "origin_provider": "anthropic",
+        "origin_model": "claude (Ruby Renaissance, Nov 2026)",
+        "subject_count": 1,
+        "inference_occurred": false,
+        "note": "Operator selected this unit through `howldream export`."
+      }
+    ],
+    "selection": {
+      "selected_by": "operator",
+      "operation": "SELECTED",
+      "via": "howldream export"
+    }
+  }
+}

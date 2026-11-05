@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+Added `export-proof` and `import-proof`: the Dream to Proof bridge (`howl.claim_bundle/v1`
+out, per-claim `howl.assessment/v1` back). Externally exported candidates now carry status
+`IMPORTED` (new enum value; `GENERATED` artifacts still validate) and an explicit
+`authorship` record (`EXTERNAL_AUTHORED`, `MODEL_GENERATED`, `MOCK`, `SYNTHETIC_FIXTURE`,
+`UNKNOWN`). Candidate validation errors from `review` and `export-proof` name
+`howl.candidate/v1` and list the accepted values. Dogfood record in
+`dogfood/dream-proof-2026-11-05/`.
+
 ## 0.4.5
 
 Mission 007 F2: update provider-core to the repaired historical redaction union;

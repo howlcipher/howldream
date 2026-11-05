@@ -189,7 +189,8 @@
         "LOCALLY_VERIFIED",
         "FRAME_REVIEWED",
         "UNRESOLVED",
-        "REJECTED"
+        "REJECTED",
+        "IMPORTED"
       ],
       "title": "Status",
       "type": "string"

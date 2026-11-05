@@ -1,0 +1,14 @@
+{"discovery_id": "hdx-2f5ef9e5f568", "path": "outputs/discovery.json"}
+{"bundle": "outputs/bundle", "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1", "claims": 9, "evidence": 5, "authorship": "EXTERNAL_AUTHORED", "next": "howlproof evaluate outputs/bundle --profile research --json"}
+candidate: hdx-2f5ef9e5f568/ext-1/idea/1 | status in export: IMPORTED
+disposition: INVESTIGATE | confidence: LOW | 1 claim(s) refuted; 5 unresolved
+proof verdict: INSUFFICIENT_EVIDENCE ( no_acceptance_criteria )
+SUPPORTED                      rr-1-accurate        independent evidence S2-mini-git satisfies ruby_seconds approx 73.1 s
+REFUTED                        rr-2-inaccurate      independent evidence S2-mini-git contradicts python_seconds approx 40 s
+INCONCLUSIVE                   rr-3-no-method       no grounded check was supplied for this claim; a citation or quotation is not proof, and any verification plan
+SUPPORTED                      rr-4-currency        independent evidence S2-mini-git satisfies ruby_cost approx $0.36
+REQUIRES_EXTERNAL_VALIDATION   rr-5-forecast        value judgments and forecasts cannot be established by an automated check, and citations do not change that
+SUPPORTED                      rr-6a-arithmetic     186.6 / 73.1 = 2.552667578659370725034199726; expected approx 2.55 -> holds
+INCONCLUSIVE                   rr-6b-executable     matching evidence exists but none is declared independent; evidence that is not independent cannot support or 
+INCONCLUSIVE                   rr-7-superseded      independent evidence conflicts (S5-tiobe-jul supports, S5-tiobe-sep contradicts); a newer source is not a reso
+INCONCLUSIVE                   rr-8-wrong-source    no cited evidence is both usable and relevant to the compared fact (S1-ruby-4.0-notes: irrelevant)

@@ -234,6 +234,7 @@ def export_external(discovery: dict, unit_id: str) -> dict:
             "parent_request_id": discovery["discovery_id"],
             "objective": discovery["objective"],
             "text": unit["text"],
+            "status": "IMPORTED",
             "provenance": {
                 "producer_component": "howldream",
                 "observation_kind": "EXTERNALLY_OBSERVED",
