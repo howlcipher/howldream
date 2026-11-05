@@ -135,6 +135,14 @@ flowchart LR
   * **HowlCreate**: `candidate_ingestion` module develops candidates into sandbox prototype designs. Merged in howlcreate; as of 0.4.1, HowlDream's CI installs a pinned `howlcreate` commit and exercises this real module rather than the local fallback stub.
   * **HowlRelay**: Native `HowlDreamCollector` gathers exploration evidence into the relay state store. Merged, tested, and self-contained (no package dependency on HowlDream).
 
+## Dream to Proof
+
+`howldream export-proof` / `import-proof` hand a candidate's claims to HowlProof's
+`research` profile and bring per-claim results back as a `howl.assessment/v1`, without
+inventing acceptance criteria or promoting unverifiable claims. Externally authored
+candidates are labelled `IMPORTED`/`EXTERNAL_AUTHORED`, never `GENERATED`. See
+[docs/dream_to_proof.md](docs/dream_to_proof.md).
+
 ## What exists
 
 Strict versioned YAML/JSON experiments, bounded trials, provider capability records,

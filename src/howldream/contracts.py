@@ -152,6 +152,7 @@ class CandidateHandoff(StrictModel):
         "FRAME_REVIEWED",
         "UNRESOLVED",
         "REJECTED",
+        "IMPORTED",
     ] = "GENERATED"
     authority: ExplorationAuthority = Field(default_factory=ExplorationAuthority)
     claims: list[dict[str, Any]] = Field(default_factory=list)

@@ -1,0 +1,140 @@
+[
+  {
+    "id": "rr-1-accurate",
+    "kind": "FACT",
+    "text": "In the mini-git benchmark the Ruby configuration took 73.1 s.",
+    "status": "UNVERIFIED",
+    "category": "EMPIRICAL",
+    "check": {
+      "type": "fact_compare",
+      "fact": "ruby_seconds",
+      "op": "approx",
+      "expected": "73.1 s",
+      "tolerance": "0.05 s"
+    },
+    "evidence_refs": [
+      "S2-mini-git"
+    ]
+  },
+  {
+    "id": "rr-2-inaccurate",
+    "kind": "FACT",
+    "text": "In the mini-git benchmark the Python configuration took 40 s.",
+    "status": "UNVERIFIED",
+    "category": "EMPIRICAL",
+    "check": {
+      "type": "fact_compare",
+      "fact": "python_seconds",
+      "op": "approx",
+      "expected": "40 s",
+      "tolerance": "0.5 s"
+    },
+    "evidence_refs": [
+      "S2-mini-git"
+    ]
+  },
+  {
+    "id": "rr-3-no-method",
+    "kind": "FACT",
+    "text": "Ruby makes AI-assisted development about 40% cheaper than TypeScript.",
+    "status": "UNVERIFIED",
+    "category": "EMPIRICAL",
+    "evidence_refs": [
+      "S2-mini-git"
+    ]
+  },
+  {
+    "id": "rr-4-currency",
+    "kind": "FACT",
+    "text": "The Ruby configuration cost $0.36 per run.",
+    "status": "UNVERIFIED",
+    "category": "EMPIRICAL",
+    "check": {
+      "type": "fact_compare",
+      "fact": "ruby_cost",
+      "op": "approx",
+      "expected": "$0.36",
+      "tolerance": "$0.005"
+    },
+    "evidence_refs": [
+      "S2-mini-git"
+    ]
+  },
+  {
+    "id": "rr-5-forecast",
+    "kind": "IDEA",
+    "text": "Ruby will return to the TIOBE top 10 by 2028.",
+    "status": "UNVERIFIED",
+    "category": "VALUE_JUDGMENT",
+    "evidence_refs": [
+      "S5-tiobe-jul",
+      "S5-tiobe-sep"
+    ]
+  },
+  {
+    "id": "rr-6a-arithmetic",
+    "kind": "CALC",
+    "text": "Ruby+Steep took 2.55 times as long as Ruby (186.6 / 73.1).",
+    "status": "UNVERIFIED",
+    "category": "TECHNICAL",
+    "check": {
+      "type": "arithmetic",
+      "expression": "186.6 / 73.1",
+      "op": "approx",
+      "expected": "2.55",
+      "tolerance": "0.01"
+    }
+  },
+  {
+    "id": "rr-6b-executable",
+    "kind": "FACT",
+    "text": "rv installs a Ruby in under 30 s.",
+    "status": "UNVERIFIED",
+    "category": "TECHNICAL",
+    "check": {
+      "type": "fact_compare",
+      "fact": "rv_ruby_install_seconds",
+      "op": "lt",
+      "expected": "30 s",
+      "tolerance": "0"
+    },
+    "evidence_refs": [
+      "local-rv-install"
+    ]
+  },
+  {
+    "id": "rr-7-superseded",
+    "kind": "FACT",
+    "text": "Ruby is in the TIOBE top 20.",
+    "status": "UNVERIFIED",
+    "category": "EMPIRICAL",
+    "check": {
+      "type": "fact_compare",
+      "fact": "top20_member",
+      "op": "eq",
+      "expected": "1",
+      "tolerance": "0"
+    },
+    "evidence_refs": [
+      "S5-tiobe-jul",
+      "S5-tiobe-sep"
+    ]
+  },
+  {
+    "id": "rr-8-wrong-source",
+    "kind": "FACT",
+    "text": "YJIT makes Rails apps 92% faster, per the Ruby 4.0 release notes.",
+    "status": "UNVERIFIED",
+    "category": "EMPIRICAL",
+    "check": {
+      "type": "fact_compare",
+      "fact": "yjit_rails_speedup",
+      "op": "approx",
+      "expected": "92%",
+      "tolerance": "1%"
+    },
+    "evidence_refs": [
+      "S1-ruby-4.0-notes"
+    ]
+  }
+]

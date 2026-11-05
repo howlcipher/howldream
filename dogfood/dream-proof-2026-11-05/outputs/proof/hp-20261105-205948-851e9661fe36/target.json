@@ -1,0 +1,11 @@
+{
+  "root": "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/dream-proof-2026-11-05/outputs/bundle",
+  "is_git": true,
+  "commit": "1abdbff9e0c2811aea32135a84ec4275be4fe87d",
+  "branch": "feat/dream-proof-bridge",
+  "dirty": true,
+  "file_count": 6,
+  "oversized_files_not_copied": [],
+  "tree_digest_before": "58c8b6b19fba3394ab64ca80de5a365f62f3c60a4e7d34395bcfbfd4fdda7bd8",
+  "tree_digest_after": "58c8b6b19fba3394ab64ca80de5a365f62f3c60a4e7d34395bcfbfd4fdda7bd8"
+}

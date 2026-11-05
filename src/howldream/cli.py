@@ -112,6 +112,22 @@ def build_parser() -> argparse.ArgumentParser:
     review_parser = commands.add_parser("review")
     review_parser.add_argument("target", type=Path)
     review_parser.add_argument("--evidence", type=Path)
+    export_proof_parser = commands.add_parser(
+        "export-proof",
+        help="write a howl.claim_bundle/v1 directory for `howlproof evaluate --profile research`",
+    )
+    export_proof_parser.add_argument("target", type=Path, help="howl.candidate/v1 JSON file")
+    export_proof_parser.add_argument("--evidence", type=Path, help="evidence ledger (JSON list)")
+    export_proof_parser.add_argument(
+        "--out", type=Path, required=True, help="empty output directory"
+    )
+    import_proof_parser = commands.add_parser(
+        "import-proof",
+        help="turn `howlproof evaluate --json` output into a per-claim howl.assessment/v1",
+    )
+    import_proof_parser.add_argument("--bundle", type=Path, required=True)
+    import_proof_parser.add_argument("--result", type=Path, required=True)
+    import_proof_parser.add_argument("--out", type=Path, help="write the assessment here")
     interop_parser = commands.add_parser(
         "interop", help="print the howl.interop/v1 descriptor other Howl components check"
     )
@@ -177,6 +193,34 @@ def main() -> int:
                 )
             else:
                 print(text)
+            return 0
+        if args.command == "export-proof":
+            from howldream.proof_bridge import export_proof
+
+            candidate = CandidateHandoff.model_validate(json.loads(args.target.read_text()))
+            ledger = json.loads(args.evidence.read_text()) if args.evidence else []
+            bundle = export_proof(candidate, ledger, args.out)
+            print(
+                json.dumps(
+                    {
+                        "bundle": str(args.out),
+                        "candidate_id": candidate.candidate_id,
+                        "claims": len(bundle["claims"]),
+                        "evidence": len(bundle["evidence"]),
+                        "authorship": bundle["authorship"]["kind"],
+                        "next": f"howlproof evaluate {args.out} --profile research --json",
+                    }
+                )
+            )
+            return 0
+        if args.command == "import-proof":
+            from howldream.proof_bridge import import_proof
+
+            assessment = import_proof(args.bundle, json.loads(args.result.read_text()))
+            text = assessment.model_dump_json(indent=2)
+            if args.out:
+                args.out.write_text(text + "\n")
+            print(text)
             return 0
         if args.command == "review":
             from howldream.schema import Evidence
@@ -327,9 +371,22 @@ def main() -> int:
         return 0
     except ValidationError as error:
         details = [
-            {"field": ".".join(map(str, e["loc"])), "problem": e["type"]} for e in error.errors()
+            {
+                "field": ".".join(map(str, e["loc"])),
+                "problem": e["type"],
+                "message": e["msg"],
+                **(
+                    {"expected": e["ctx"]["expected"]} if "expected" in (e.get("ctx") or {}) else {}
+                ),
+            }
+            for e in error.errors()
         ]
-        print(json.dumps({"error": "invalid experiment", "details": details}), file=sys.stderr)
+        artifact = (
+            "howl.candidate/v1 candidate"
+            if args.command in {"export-proof", "review"}
+            else "experiment"
+        )
+        print(json.dumps({"error": f"invalid {artifact}", "details": details}), file=sys.stderr)
     except (OSError, YAMLError, ValueError, KeyError, TypeError) as error:
         message = (
             str(error)

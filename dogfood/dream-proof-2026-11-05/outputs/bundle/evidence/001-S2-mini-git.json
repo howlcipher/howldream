@@ -1,0 +1,13 @@
+{
+  "facts": {
+    "published_at": "2026-03-01",
+    "python_seconds": "74.6 s",
+    "ruby_cost": "$0.36",
+    "ruby_seconds": "73.1 s",
+    "ruby_steep_seconds": "186.6 s",
+    "typescript_cost": "$0.62",
+    "typescript_seconds": "133.0 s"
+  },
+  "id": "S2-mini-git",
+  "text": "Transcribed from ruby_ideas/claude/11_sources.md row S2 (tool summary of the mame/ai-coding-lang-bench README); NOT re-fetched for this run. Claude Code, Opus 4.6, March 2026, 20 runs per config, one small prototype task."
+}

@@ -1,0 +1,28 @@
+{
+  "source": "generated default (the artifact declares no contract)",
+  "schema_version": 1,
+  "artifact": "bundle",
+  "description": "Generated default: the artifact declares no acceptance criteria.",
+  "profiles": [
+    "research"
+  ],
+  "adversaries": [
+    "FUNCTIONAL",
+    "SECURITY",
+    "RELIABILITY",
+    "AI",
+    "OPERATOR"
+  ],
+  "blocking_severity": "HIGH",
+  "acceptance": [],
+  "exclusions": [],
+  "include_ignored": [],
+  "service": null,
+  "api": null,
+  "web": null,
+  "markup": null,
+  "injection": null,
+  "cli": null,
+  "ai": null,
+  "docs": null
+}

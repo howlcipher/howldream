@@ -1,0 +1,49 @@
+{
+  "schema": "howlproof.handoff/v1",
+  "authority": "ADVISORY",
+  "run_id": "hp-20261105-205948-851e9661fe36",
+  "artifact": "bundle",
+  "commit": "1abdbff9e0c2811aea32135a84ec4275be4fe87d",
+  "branch": "feat/dream-proof-bridge",
+  "tree_digest": "58c8b6b19fba3394ab64ca80de5a365f62f3c60a4e7d34395bcfbfd4fdda7bd8",
+  "verdict": "INSUFFICIENT_EVIDENCE",
+  "deciding_rule": "no_acceptance_criteria",
+  "criteria_satisfied": 0,
+  "criteria_total": 0,
+  "blocking_finding_ids": [],
+  "finding_ids": [
+    "HP-FUNC-0001"
+  ],
+  "unresolved_risks": [
+    "HP-FUNC-0001 (HIGH): claim rr-2-inaccurate: independent evidence S2-mini-git contradicts python_seconds approx 40 s"
+  ],
+  "limitations": [
+    "research.claims.c003 was UNAVAILABLE: no grounded check was supplied for this claim; a citation or quotation is not proof, and any verification plan stays proposed until the author grounds it",
+    "research.claims.c005 was SKIPPED: value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+    "research.claims.c007 was UNAVAILABLE: matching evidence exists but none is declared independent; evidence that is not independent cannot support or refute a claim",
+    "research.claims.c008 was UNAVAILABLE: independent evidence conflicts (S5-tiobe-jul supports, S5-tiobe-sep contradicts); a newer source is not a resolution",
+    "research.claims.c009 was UNAVAILABLE: no cited evidence is both usable and relevant to the compared fact (S1-ruby-4.0-notes: irrelevant)"
+  ],
+  "validation_modes": {
+    "REAL": [
+      "research.claims.bundle",
+      "research.claims.c001",
+      "research.claims.c002",
+      "research.claims.c004",
+      "research.claims.c006"
+    ],
+    "SIMULATED": [],
+    "SKIPPED": [
+      "research.claims.c005"
+    ],
+    "UNAVAILABLE": [
+      "research.claims.c003",
+      "research.claims.c007",
+      "research.claims.c008",
+      "research.claims.c009"
+    ],
+    "NOT_APPLICABLE": [],
+    "ERROR": []
+  },
+  "note": "Advisory only. HowlProof does not promote, merge, deploy or approve. Promotion decisions belong to HowlPlane and HowlChangeOps."
+}

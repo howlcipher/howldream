@@ -1,0 +1,386 @@
+{
+  "schema_version": "howl.assessment/v1",
+  "assessment_id": "assess-proof-574ca7e192a11e32",
+  "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1",
+  "disposition": "INVESTIGATE",
+  "reason": "1 claim(s) refuted; 5 unresolved",
+  "evidence": [
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "rr-1-accurate",
+      "claim_text": "In the mini-git benchmark the Ruby configuration took 73.1 s.",
+      "category": "EMPIRICAL",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "SUPPORTED",
+      "method": "fact_compare",
+      "explanation": "independent evidence S2-mini-git satisfies ruby_seconds approx 73.1 s",
+      "evidence_considered": [
+        {
+          "id": "S2-mini-git",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+          "relation": "supports",
+          "published_at": "2026-03-01",
+          "sha256": "8240d0eb65b45d53f39943f99a76b2a6fb2aa98c3a9fe669a999e85888901c5e",
+          "observed": "73.1 s"
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "whether the source is correct, current or representative"
+      ],
+      "untrusted_flags": []
+    },
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "rr-2-inaccurate",
+      "claim_text": "In the mini-git benchmark the Python configuration took 40 s.",
+      "category": "EMPIRICAL",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "REFUTED",
+      "method": "fact_compare",
+      "explanation": "independent evidence S2-mini-git contradicts python_seconds approx 40 s",
+      "evidence_considered": [
+        {
+          "id": "S2-mini-git",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+          "relation": "contradicts",
+          "published_at": "2026-03-01",
+          "sha256": "8240d0eb65b45d53f39943f99a76b2a6fb2aa98c3a9fe669a999e85888901c5e",
+          "observed": "74.6 s"
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "whether the contradicting source is itself correct"
+      ],
+      "untrusted_flags": []
+    },
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "rr-3-no-method",
+      "claim_text": "Ruby makes AI-assisted development about 40% cheaper than TypeScript.",
+      "category": "EMPIRICAL",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "INCONCLUSIVE",
+      "method": "none",
+      "explanation": "no grounded check was supplied for this claim; a citation or quotation is not proof, and any verification plan stays proposed until the author grounds it",
+      "evidence_considered": [
+        {
+          "id": "S2-mini-git",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+          "relation": "unexamined",
+          "published_at": "2026-03-01",
+          "sha256": "8240d0eb65b45d53f39943f99a76b2a6fb2aa98c3a9fe669a999e85888901c5e"
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "whether the cited sources establish the claim"
+      ],
+      "untrusted_flags": []
+    },
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "rr-4-currency",
+      "claim_text": "The Ruby configuration cost $0.36 per run.",
+      "category": "EMPIRICAL",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "SUPPORTED",
+      "method": "fact_compare",
+      "explanation": "independent evidence S2-mini-git satisfies ruby_cost approx $0.36",
+      "evidence_considered": [
+        {
+          "id": "S2-mini-git",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+          "relation": "supports",
+          "published_at": "2026-03-01",
+          "sha256": "8240d0eb65b45d53f39943f99a76b2a6fb2aa98c3a9fe669a999e85888901c5e",
+          "observed": "$0.36"
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "whether the source is correct, current or representative"
+      ],
+      "untrusted_flags": []
+    },
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "rr-5-forecast",
+      "claim_text": "Ruby will return to the TIOBE top 10 by 2028.",
+      "category": "VALUE_JUDGMENT",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "REQUIRES_EXTERNAL_VALIDATION",
+      "method": "none",
+      "explanation": "value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+      "evidence_considered": [
+        {
+          "id": "S5-tiobe-jul",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+          "relation": "unexamined",
+          "published_at": "2026-07-15",
+          "sha256": "2346d3bc4401298ba6809d79ffadd7331c644b4f79115c9f62f26e58ddb096dd"
+        },
+        {
+          "id": "S5-tiobe-sep",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+          "relation": "unexamined",
+          "published_at": "2026-09-20",
+          "sha256": "ec026567fcf921b902ac254dd424fecdd8ad94b5445dc4525cf41b2269d0eef7"
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "the truth of the judgment or forecast"
+      ],
+      "untrusted_flags": []
+    },
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "rr-6a-arithmetic",
+      "claim_text": "Ruby+Steep took 2.55 times as long as Ruby (186.6 / 73.1).",
+      "category": "TECHNICAL",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "SUPPORTED",
+      "method": "arithmetic",
+      "explanation": "186.6 / 73.1 = 2.552667578659370725034199726; expected approx 2.55 -> holds",
+      "evidence_considered": [
+        {
+          "id": "S2-mini-git",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+          "relation": "unexamined",
+          "published_at": "2026-03-01",
+          "sha256": "8240d0eb65b45d53f39943f99a76b2a6fb2aa98c3a9fe669a999e85888901c5e"
+        },
+        {
+          "id": "S1-ruby-4.0-notes",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+          "relation": "unexamined",
+          "published_at": "2025-12-25",
+          "sha256": "44a01c9667a366fec6c1b867ae32ed03ecb9a2a91d93b50dbe721e45d557e4d1"
+        },
+        {
+          "id": "S5-tiobe-jul",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+          "relation": "unexamined",
+          "published_at": "2026-07-15",
+          "sha256": "2346d3bc4401298ba6809d79ffadd7331c644b4f79115c9f62f26e58ddb096dd"
+        },
+        {
+          "id": "S5-tiobe-sep",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+          "relation": "unexamined",
+          "published_at": "2026-09-20",
+          "sha256": "ec026567fcf921b902ac254dd424fecdd8ad94b5445dc4525cf41b2269d0eef7"
+        },
+        {
+          "id": "local-rv-install",
+          "integrity": "ok",
+          "independent": false,
+          "source_type": "UNCLASSIFIED",
+          "relation": "unexamined",
+          "published_at": "2026-11-05",
+          "sha256": "c205566224a847495528a22779394a7a254b25d4500a38c9ce65a67ba0804b52"
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "inputs of the expression were taken from the claim, not independently sourced"
+      ],
+      "untrusted_flags": []
+    },
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "rr-6b-executable",
+      "claim_text": "rv installs a Ruby in under 30 s.",
+      "category": "TECHNICAL",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "INCONCLUSIVE",
+      "method": "fact_compare",
+      "explanation": "matching evidence exists but none is declared independent; evidence that is not independent cannot support or refute a claim",
+      "evidence_considered": [
+        {
+          "id": "local-rv-install",
+          "integrity": "ok",
+          "independent": false,
+          "source_type": "UNCLASSIFIED",
+          "relation": "supports",
+          "published_at": "2026-11-05",
+          "sha256": "c205566224a847495528a22779394a7a254b25d4500a38c9ce65a67ba0804b52",
+          "observed": "2.010 s"
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "independent corroboration"
+      ],
+      "untrusted_flags": []
+    },
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "rr-7-superseded",
+      "claim_text": "Ruby is in the TIOBE top 20.",
+      "category": "EMPIRICAL",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "INCONCLUSIVE",
+      "method": "fact_compare",
+      "explanation": "independent evidence conflicts (S5-tiobe-jul supports, S5-tiobe-sep contradicts); a newer source is not a resolution",
+      "evidence_considered": [
+        {
+          "id": "S5-tiobe-jul",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+          "relation": "supports",
+          "published_at": "2026-07-15",
+          "sha256": "2346d3bc4401298ba6809d79ffadd7331c644b4f79115c9f62f26e58ddb096dd",
+          "observed": "1"
+        },
+        {
+          "id": "S5-tiobe-sep",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+          "relation": "contradicts",
+          "published_at": "2026-09-20",
+          "sha256": "ec026567fcf921b902ac254dd424fecdd8ad94b5445dc4525cf41b2269d0eef7",
+          "observed": "0"
+        }
+      ],
+      "conflicts": [
+        {
+          "kind": "supports_vs_contradicts",
+          "evidence": [
+            "S5-tiobe-jul",
+            "S5-tiobe-sep"
+          ],
+          "newer": "S5-tiobe-sep"
+        }
+      ],
+      "not_checked": [
+        "which conflicting source is correct"
+      ],
+      "untrusted_flags": []
+    },
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "rr-8-wrong-source",
+      "claim_text": "YJIT makes Rails apps 92% faster, per the Ruby 4.0 release notes.",
+      "category": "EMPIRICAL",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "INCONCLUSIVE",
+      "method": "fact_compare",
+      "explanation": "no cited evidence is both usable and relevant to the compared fact (S1-ruby-4.0-notes: irrelevant)",
+      "evidence_considered": [
+        {
+          "id": "S1-ruby-4.0-notes",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+          "relation": "irrelevant",
+          "published_at": "2025-12-25",
+          "sha256": "44a01c9667a366fec6c1b867ae32ed03ecb9a2a91d93b50dbe721e45d557e4d1",
+          "note": "the evidence has no fact named 'yjit_rails_speedup'"
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "whether the cited sources address the claim"
+      ],
+      "untrusted_flags": []
+    }
+  ],
+  "unresolved_claims": [
+    "Ruby makes AI-assisted development about 40% cheaper than TypeScript.",
+    "Ruby will return to the TIOBE top 10 by 2028.",
+    "rv installs a Ruby in under 30 s.",
+    "Ruby is in the TIOBE top 20.",
+    "YJIT makes Rails apps 92% faster, per the Ruby 4.0 release notes."
+  ],
+  "contradictions": [
+    "In the mini-git benchmark the Python configuration took 40 s."
+  ],
+  "confidence": "LOW",
+  "limitations": [
+    "research.claims.c003 was UNAVAILABLE: no grounded check was supplied for this claim; a citation or quotation is not proof, and any verification plan stays proposed until the author grounds it",
+    "research.claims.c005 was SKIPPED: value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+    "research.claims.c007 was UNAVAILABLE: matching evidence exists but none is declared independent; evidence that is not independent cannot support or refute a claim",
+    "research.claims.c008 was UNAVAILABLE: independent evidence conflicts (S5-tiobe-jul supports, S5-tiobe-sep contradicts); a newer source is not a resolution",
+    "research.claims.c009 was UNAVAILABLE: no cited evidence is both usable and relevant to the compared fact (S1-ruby-4.0-notes: irrelevant)",
+    "claim results hold only for the checks the candidate's author supplied; independence of evidence is as declared, not authenticated"
+  ],
+  "authority": {
+    "type": "ADVISORY",
+    "executable": false
+  },
+  "provenance": {
+    "run_id": "hdx-2f5ef9e5f568",
+    "producer_component": "howldream",
+    "producer_version": "0.4.5",
+    "model_or_provider": null,
+    "observation_kind": "DETERMINISTIC",
+    "created_at": "2026-11-05T20:59:48.795196+00:00",
+    "transformations": [
+      "howlproof_claim_import"
+    ],
+    "source_candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1",
+    "bundle_sha256": "cb798720dfe55065bdc5026e9aac64efcab9420384c3bf0eab4df7b3e5e328f2",
+    "authorship": {
+      "component": "claude-opus-agent",
+      "kind": "EXTERNAL_AUTHORED",
+      "model": "claude (Ruby Renaissance, Nov 2026)",
+      "provider": "anthropic"
+    },
+    "proof": {
+      "run_id": "hp-20261105-205948-851e9661fe36",
+      "version": "0.2.0b1",
+      "verdict": "INSUFFICIENT_EVIDENCE",
+      "deciding_rule": "no_acceptance_criteria",
+      "started_at": "2026-11-05T20:59:48.720468+00:00",
+      "completed_at": "2026-11-05T20:59:48.795196+00:00",
+      "unresolved_risks": [
+        "HP-FUNC-0001 (HIGH): claim rr-2-inaccurate: independent evidence S2-mini-git contradicts python_seconds approx 40 s"
+      ]
+    },
+    "claim_statuses": {
+      "rr-1-accurate": "SUPPORTED",
+      "rr-2-inaccurate": "REFUTED",
+      "rr-3-no-method": "INCONCLUSIVE",
+      "rr-4-currency": "SUPPORTED",
+      "rr-5-forecast": "REQUIRES_EXTERNAL_VALIDATION",
+      "rr-6a-arithmetic": "SUPPORTED",
+      "rr-6b-executable": "INCONCLUSIVE",
+      "rr-7-superseded": "INCONCLUSIVE",
+      "rr-8-wrong-source": "INCONCLUSIVE"
+    }
+  }
+}

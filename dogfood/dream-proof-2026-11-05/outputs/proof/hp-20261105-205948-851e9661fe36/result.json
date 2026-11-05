@@ -1,0 +1,579 @@
+{
+  "schema": "howlproof.result/v1",
+  "run_id": "hp-20261105-205948-851e9661fe36",
+  "authority": "ADVISORY",
+  "version": "0.2.0b1",
+  "artifact": "bundle",
+  "profiles": [
+    "research"
+  ],
+  "adversaries": [
+    "FUNCTIONAL",
+    "SECURITY",
+    "RELIABILITY",
+    "AI",
+    "OPERATOR"
+  ],
+  "target": {
+    "root": "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/dream-proof-2026-11-05/outputs/bundle",
+    "is_git": true,
+    "commit": "1abdbff9e0c2811aea32135a84ec4275be4fe87d",
+    "branch": "feat/dream-proof-bridge",
+    "dirty": true,
+    "file_count": 6,
+    "oversized_files_not_copied": [],
+    "tree_digest_before": "58c8b6b19fba3394ab64ca80de5a365f62f3c60a4e7d34395bcfbfd4fdda7bd8",
+    "tree_digest_after": "58c8b6b19fba3394ab64ca80de5a365f62f3c60a4e7d34395bcfbfd4fdda7bd8"
+  },
+  "started_at": "2026-11-05T20:59:48.720468+00:00",
+  "completed_at": "2026-11-05T20:59:48.795196+00:00",
+  "duration_ms": 74,
+  "verdict": "INSUFFICIENT_EVIDENCE",
+  "verdict_definition": "The artifact may or may not be acceptable. The evaluation that ran was inadequate to make a defensible determination, so no determination is claimed.",
+  "deciding_rule": "no_acceptance_criteria",
+  "rationale": [
+    "The artifact defines no acceptance criteria.",
+    "Running checks without criteria shows activity, not conformance."
+  ],
+  "criteria": [],
+  "counts": {
+    "checks": 10,
+    "verified": 4,
+    "failed": 1,
+    "skipped": 1,
+    "unavailable": 4,
+    "not_applicable": 0,
+    "errored": 0,
+    "simulated": 0,
+    "findings": 1,
+    "blocking_findings": 0,
+    "criteria_satisfied": 0,
+    "criteria_total": 0,
+    "by_severity": {
+      "BLOCKER": 0,
+      "HIGH": 1,
+      "MEDIUM": 0,
+      "LOW": 0,
+      "INFORMATIONAL": 0
+    },
+    "by_adversary": {
+      "FUNCTIONAL": 1,
+      "SECURITY": 0,
+      "RELIABILITY": 0,
+      "AI": 0,
+      "OPERATOR": 0,
+      "INTEGRITY": 0
+    }
+  },
+  "checks": [
+    {
+      "check_id": "research.claims.bundle",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim bundle is well formed and 5 evidence file(s) match their registered digests",
+      "limitation": "establishes structure and byte integrity only; no claim is verified by this check",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 4,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "bundle_sha256": "cb798720dfe55065bdc5026e9aac64efcab9420384c3bf0eab4df7b3e5e328f2",
+        "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1",
+        "claims": 9
+      }
+    },
+    {
+      "check_id": "research.claims.c001",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim rr-1-accurate: SUPPORTED",
+      "limitation": "compares author-grounded checks against evidence whose independence is as declared in the bundle and is not authenticated; establishes only the compared fact, not that a source is correct, current or representative",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "rr-1-accurate",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "SUPPORTED",
+        "explanation": "independent evidence S2-mini-git satisfies ruby_seconds approx 73.1 s",
+        "evidence_considered": [
+          {
+            "id": "S2-mini-git",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+            "relation": "supports",
+            "published_at": "2026-03-01",
+            "sha256": "8240d0eb65b45d53f39943f99a76b2a6fb2aa98c3a9fe669a999e85888901c5e",
+            "observed": "73.1 s"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the source is correct, current or representative"
+        ],
+        "bundle_sha256": "cb798720dfe55065bdc5026e9aac64efcab9420384c3bf0eab4df7b3e5e328f2",
+        "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1"
+      }
+    },
+    {
+      "check_id": "research.claims.c002",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "FAILED",
+      "summary": "claim rr-2-inaccurate: REFUTED",
+      "limitation": "compares author-grounded checks against evidence whose independence is as declared in the bundle and is not authenticated; establishes only the compared fact, not that a source is correct, current or representative",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "rr-2-inaccurate",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "REFUTED",
+        "explanation": "independent evidence S2-mini-git contradicts python_seconds approx 40 s",
+        "evidence_considered": [
+          {
+            "id": "S2-mini-git",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+            "relation": "contradicts",
+            "published_at": "2026-03-01",
+            "sha256": "8240d0eb65b45d53f39943f99a76b2a6fb2aa98c3a9fe669a999e85888901c5e",
+            "observed": "74.6 s"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the contradicting source is itself correct"
+        ],
+        "bundle_sha256": "cb798720dfe55065bdc5026e9aac64efcab9420384c3bf0eab4df7b3e5e328f2",
+        "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1"
+      }
+    },
+    {
+      "check_id": "research.claims.c003",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim rr-3-no-method: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "no grounded check was supplied for this claim; a citation or quotation is not proof, and any verification plan stays proposed until the author grounds it",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "rr-3-no-method",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "none",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "no grounded check was supplied for this claim; a citation or quotation is not proof, and any verification plan stays proposed until the author grounds it",
+        "evidence_considered": [
+          {
+            "id": "S2-mini-git",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+            "relation": "unexamined",
+            "published_at": "2026-03-01",
+            "sha256": "8240d0eb65b45d53f39943f99a76b2a6fb2aa98c3a9fe669a999e85888901c5e"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the cited sources establish the claim"
+        ],
+        "bundle_sha256": "cb798720dfe55065bdc5026e9aac64efcab9420384c3bf0eab4df7b3e5e328f2",
+        "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1"
+      }
+    },
+    {
+      "check_id": "research.claims.c004",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim rr-4-currency: SUPPORTED",
+      "limitation": "compares author-grounded checks against evidence whose independence is as declared in the bundle and is not authenticated; establishes only the compared fact, not that a source is correct, current or representative",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "rr-4-currency",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "SUPPORTED",
+        "explanation": "independent evidence S2-mini-git satisfies ruby_cost approx $0.36",
+        "evidence_considered": [
+          {
+            "id": "S2-mini-git",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+            "relation": "supports",
+            "published_at": "2026-03-01",
+            "sha256": "8240d0eb65b45d53f39943f99a76b2a6fb2aa98c3a9fe669a999e85888901c5e",
+            "observed": "$0.36"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the source is correct, current or representative"
+        ],
+        "bundle_sha256": "cb798720dfe55065bdc5026e9aac64efcab9420384c3bf0eab4df7b3e5e328f2",
+        "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1"
+      }
+    },
+    {
+      "check_id": "research.claims.c005",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "SKIPPED",
+      "summary": "claim rr-5-forecast: REQUIRES_EXTERNAL_VALIDATION",
+      "limitation": "nothing was established about this claim",
+      "reason": "value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "rr-5-forecast",
+        "category": "VALUE_JUDGMENT",
+        "assumption": false,
+        "method": "none",
+        "claim_status": "REQUIRES_EXTERNAL_VALIDATION",
+        "explanation": "value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+        "evidence_considered": [
+          {
+            "id": "S5-tiobe-jul",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+            "relation": "unexamined",
+            "published_at": "2026-07-15",
+            "sha256": "2346d3bc4401298ba6809d79ffadd7331c644b4f79115c9f62f26e58ddb096dd"
+          },
+          {
+            "id": "S5-tiobe-sep",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+            "relation": "unexamined",
+            "published_at": "2026-09-20",
+            "sha256": "ec026567fcf921b902ac254dd424fecdd8ad94b5445dc4525cf41b2269d0eef7"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "the truth of the judgment or forecast"
+        ],
+        "bundle_sha256": "cb798720dfe55065bdc5026e9aac64efcab9420384c3bf0eab4df7b3e5e328f2",
+        "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1"
+      }
+    },
+    {
+      "check_id": "research.claims.c006",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim rr-6a-arithmetic: SUPPORTED",
+      "limitation": "compares author-grounded checks against evidence whose independence is as declared in the bundle and is not authenticated; establishes only the compared fact, not that a source is correct, current or representative",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "rr-6a-arithmetic",
+        "category": "TECHNICAL",
+        "assumption": false,
+        "method": "arithmetic",
+        "claim_status": "SUPPORTED",
+        "explanation": "186.6 / 73.1 = 2.552667578659370725034199726; expected approx 2.55 -> holds",
+        "evidence_considered": [
+          {
+            "id": "S2-mini-git",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+            "relation": "unexamined",
+            "published_at": "2026-03-01",
+            "sha256": "8240d0eb65b45d53f39943f99a76b2a6fb2aa98c3a9fe669a999e85888901c5e"
+          },
+          {
+            "id": "S1-ruby-4.0-notes",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+            "relation": "unexamined",
+            "published_at": "2025-12-25",
+            "sha256": "44a01c9667a366fec6c1b867ae32ed03ecb9a2a91d93b50dbe721e45d557e4d1"
+          },
+          {
+            "id": "S5-tiobe-jul",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+            "relation": "unexamined",
+            "published_at": "2026-07-15",
+            "sha256": "2346d3bc4401298ba6809d79ffadd7331c644b4f79115c9f62f26e58ddb096dd"
+          },
+          {
+            "id": "S5-tiobe-sep",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+            "relation": "unexamined",
+            "published_at": "2026-09-20",
+            "sha256": "ec026567fcf921b902ac254dd424fecdd8ad94b5445dc4525cf41b2269d0eef7"
+          },
+          {
+            "id": "local-rv-install",
+            "integrity": "ok",
+            "independent": false,
+            "source_type": "UNCLASSIFIED",
+            "relation": "unexamined",
+            "published_at": "2026-11-05",
+            "sha256": "c205566224a847495528a22779394a7a254b25d4500a38c9ce65a67ba0804b52"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "inputs of the expression were taken from the claim, not independently sourced"
+        ],
+        "bundle_sha256": "cb798720dfe55065bdc5026e9aac64efcab9420384c3bf0eab4df7b3e5e328f2",
+        "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1"
+      }
+    },
+    {
+      "check_id": "research.claims.c007",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim rr-6b-executable: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "matching evidence exists but none is declared independent; evidence that is not independent cannot support or refute a claim",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "rr-6b-executable",
+        "category": "TECHNICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "matching evidence exists but none is declared independent; evidence that is not independent cannot support or refute a claim",
+        "evidence_considered": [
+          {
+            "id": "local-rv-install",
+            "integrity": "ok",
+            "independent": false,
+            "source_type": "UNCLASSIFIED",
+            "relation": "supports",
+            "published_at": "2026-11-05",
+            "sha256": "c205566224a847495528a22779394a7a254b25d4500a38c9ce65a67ba0804b52",
+            "observed": "2.010 s"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "independent corroboration"
+        ],
+        "bundle_sha256": "cb798720dfe55065bdc5026e9aac64efcab9420384c3bf0eab4df7b3e5e328f2",
+        "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1"
+      }
+    },
+    {
+      "check_id": "research.claims.c008",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim rr-7-superseded: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "independent evidence conflicts (S5-tiobe-jul supports, S5-tiobe-sep contradicts); a newer source is not a resolution",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "rr-7-superseded",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "independent evidence conflicts (S5-tiobe-jul supports, S5-tiobe-sep contradicts); a newer source is not a resolution",
+        "evidence_considered": [
+          {
+            "id": "S5-tiobe-jul",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+            "relation": "supports",
+            "published_at": "2026-07-15",
+            "sha256": "2346d3bc4401298ba6809d79ffadd7331c644b4f79115c9f62f26e58ddb096dd",
+            "observed": "1"
+          },
+          {
+            "id": "S5-tiobe-sep",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+            "relation": "contradicts",
+            "published_at": "2026-09-20",
+            "sha256": "ec026567fcf921b902ac254dd424fecdd8ad94b5445dc4525cf41b2269d0eef7",
+            "observed": "0"
+          }
+        ],
+        "conflicts": [
+          {
+            "kind": "supports_vs_contradicts",
+            "evidence": [
+              "S5-tiobe-jul",
+              "S5-tiobe-sep"
+            ],
+            "newer": "S5-tiobe-sep"
+          }
+        ],
+        "untrusted_flags": [],
+        "not_checked": [
+          "which conflicting source is correct"
+        ],
+        "bundle_sha256": "cb798720dfe55065bdc5026e9aac64efcab9420384c3bf0eab4df7b3e5e328f2",
+        "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1"
+      }
+    },
+    {
+      "check_id": "research.claims.c009",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim rr-8-wrong-source: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "no cited evidence is both usable and relevant to the compared fact (S1-ruby-4.0-notes: irrelevant)",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "rr-8-wrong-source",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "no cited evidence is both usable and relevant to the compared fact (S1-ruby-4.0-notes: irrelevant)",
+        "evidence_considered": [
+          {
+            "id": "S1-ruby-4.0-notes",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "DERIVED_FROM_EXTERNAL_DATA",
+            "relation": "irrelevant",
+            "published_at": "2025-12-25",
+            "sha256": "44a01c9667a366fec6c1b867ae32ed03ecb9a2a91d93b50dbe721e45d557e4d1",
+            "note": "the evidence has no fact named 'yjit_rails_speedup'"
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the cited sources address the claim"
+        ],
+        "bundle_sha256": "cb798720dfe55065bdc5026e9aac64efcab9420384c3bf0eab4df7b3e5e328f2",
+        "candidate_id": "hdx-2f5ef9e5f568/ext-1/idea/1"
+      }
+    }
+  ],
+  "findings": [
+    {
+      "check_id": "research.claims.c002",
+      "adversary": "FUNCTIONAL",
+      "category": "correctness",
+      "title": "Claim rr-2-inaccurate refuted by independent evidence",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "summary": "claim rr-2-inaccurate: independent evidence S2-mini-git contradicts python_seconds approx 40 s",
+      "evidence": "[\n  {\n    \"id\": \"S2-mini-git\",\n    \"independent\": true,\n    \"integrity\": \"ok\",\n    \"observed\": \"74.6 s\",\n    \"published_at\": \"2026-03-01\",\n    \"relation\": \"contradicts\",\n    \"sha256\": \"8240d0eb65b45d53f39943f99a76b2a6fb2aa98c3a9fe669a999e85888901c5e\",\n    \"source_type\": \"DERIVED_FROM_EXTERNAL_DATA\"\n  }\n]",
+      "recommended_remediation": "Revise or withdraw the claim, or supply independent evidence that resolves the contradiction.",
+      "location": null,
+      "rule": "research.claims.refuted",
+      "state": "FOUND",
+      "reproduction": null,
+      "resolution_reason": null,
+      "id": "HP-FUNC-0001",
+      "fingerprint_basis": null,
+      "fingerprint": "68910b457eb5397d1b864d567a6354b992be5e4f151bcd81e215804f7e3c1c3c",
+      "first_seen_run": "hp-20261105-205948-851e9661fe36",
+      "first_seen_commit": "1abdbff9e0c2811aea32135a84ec4275be4fe87d",
+      "last_seen_run": "hp-20261105-205948-851e9661fe36",
+      "detail": {},
+      "blocking": false
+    }
+  ],
+  "unresolved_risks": [
+    "HP-FUNC-0001 (HIGH): claim rr-2-inaccurate: independent evidence S2-mini-git contradicts python_seconds approx 40 s"
+  ],
+  "limitations": [
+    "research.claims.c003 was UNAVAILABLE: no grounded check was supplied for this claim; a citation or quotation is not proof, and any verification plan stays proposed until the author grounds it",
+    "research.claims.c005 was SKIPPED: value judgments and forecasts cannot be established by an automated check, and citations do not change that",
+    "research.claims.c007 was UNAVAILABLE: matching evidence exists but none is declared independent; evidence that is not independent cannot support or refute a claim",
+    "research.claims.c008 was UNAVAILABLE: independent evidence conflicts (S5-tiobe-jul supports, S5-tiobe-sep contradicts); a newer source is not a resolution",
+    "research.claims.c009 was UNAVAILABLE: no cited evidence is both usable and relevant to the compared fact (S1-ruby-4.0-notes: irrelevant)"
+  ],
+  "notes": [
+    "no service is declared, so live adversaries have nothing to attack"
+  ],
+  "validation_modes": {
+    "REAL": [
+      "research.claims.bundle",
+      "research.claims.c001",
+      "research.claims.c002",
+      "research.claims.c004",
+      "research.claims.c006"
+    ],
+    "SIMULATED": [],
+    "SKIPPED": [
+      "research.claims.c005"
+    ],
+    "UNAVAILABLE": [
+      "research.claims.c003",
+      "research.claims.c007",
+      "research.claims.c008",
+      "research.claims.c009"
+    ],
+    "NOT_APPLICABLE": [],
+    "ERROR": []
+  }
+}

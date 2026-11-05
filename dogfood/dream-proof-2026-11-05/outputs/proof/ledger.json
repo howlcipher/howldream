@@ -1,0 +1,32 @@
+{
+  "artifacts": {
+    "bundle": {
+      "counters": {
+        "FUNC": 1
+      },
+      "findings": {
+        "68910b457eb5397d1b864d567a6354b992be5e4f151bcd81e215804f7e3c1c3c": {
+          "adversary": "FUNCTIONAL",
+          "first_seen_commit": "1abdbff9e0c2811aea32135a84ec4275be4fe87d",
+          "first_seen_run": "hp-20261105-205948-851e9661fe36",
+          "first_seen_tree_digest": "58c8b6b19fba3394ab64ca80de5a365f62f3c60a4e7d34395bcfbfd4fdda7bd8",
+          "history": [
+            {
+              "at": "2026-11-05T20:59:48.767457+00:00",
+              "note": "first observed",
+              "run_id": "hp-20261105-205948-851e9661fe36",
+              "state": "FOUND"
+            }
+          ],
+          "id": "HP-FUNC-0001",
+          "last_seen_run": "hp-20261105-205948-851e9661fe36",
+          "last_seen_tree_digest": "58c8b6b19fba3394ab64ca80de5a365f62f3c60a4e7d34395bcfbfd4fdda7bd8",
+          "severity": "HIGH",
+          "state": "FOUND",
+          "title": "Claim rr-2-inaccurate refuted by independent evidence"
+        }
+      }
+    }
+  },
+  "schema": "howlproof.ledger/v1"
+}
