@@ -1,0 +1,26 @@
+{
+  "candidate_id": "imagination/03-flawed-math-allocator",
+  "source_run_id": "imagination-study-20261106",
+  "parent_request_id": "req-imagination-20261106",
+  "objective": "Speculative chunked allocator arithmetic validation",
+  "text": "TITLE: Speculative chunked allocator\n\nA chunked memory allocator with an arithmetic claim.\nCALC: 1024 / 4 = 512",
+  "claims": [
+    {
+      "id": "c03-allocator-division-check",
+      "candidate_id": "imagination/03-flawed-math-allocator",
+      "kind": "CALC",
+      "category": "TECHNICAL",
+      "text": "1024 / 4 = 512",
+      "status": "UNVERIFIED"
+    }
+  ],
+  "assumptions": [],
+  "contradictions": [],
+  "provenance": {
+    "producer_component": "howldream",
+    "observation_kind": "EXTERNALLY_OBSERVED",
+    "novelty_status": "UNCAPTURED_PRIOR_ART",
+    "prior_art_checked": true,
+    "created_at": "2026-11-06T22:06:00.990709+00:00"
+  }
+}

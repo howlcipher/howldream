@@ -1,0 +1,54 @@
+{
+  "authorship": {
+    "component": null,
+    "kind": "UNKNOWN",
+    "model": null,
+    "note": "artifact carries no authorship records (legacy or hand-built)",
+    "provider": null
+  },
+  "candidate": {
+    "candidate_id": "imagination/02-ring-dispatch-bus",
+    "objective": "Design an ultra-low-latency in-memory message bus",
+    "parent_request_id": "req-imagination-20261106",
+    "source_run_id": "imagination-study-20261106",
+    "status": "GENERATED",
+    "text": "TITLE: Zero-copy lock-free ring buffer dispatch bus\n\nA memory-mapped atomic slot ring eliminating serialization overhead.\nIDEA: Hardware-mapped ring buffer dispatch bus\nCALC: 65536 * 16 = 1048576",
+    "trust": "UNVERIFIED"
+  },
+  "claims": [
+    {
+      "assumption": false,
+      "category": "TECHNICAL",
+      "category_basis": "derived_from_calc",
+      "check": {
+        "expected": "1048576",
+        "expression": "65536 * 16",
+        "op": "eq",
+        "type": "arithmetic"
+      },
+      "claim_id": "c02-buffer-capacity-bytes",
+      "evidence_refs": [],
+      "falsification": "refuted if 65536 * 16 != 1048576",
+      "falsification_basis": "derived_from_calc",
+      "origin": "SOURCE_STRUCTURED",
+      "source_kind": "CALC",
+      "text": "65536 * 16 = 1048576",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "author a deterministic experiment or executable check and supply it as a check"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    }
+  ],
+  "evidence": [],
+  "lineage": {
+    "candidate_created_at": "2026-11-06T22:06:00.990705+00:00",
+    "candidate_sha256": "2cdb16394dcdcddd587f2468d1e03d9c8e2fd3aacfd9ff236b55e83347d8ee5c",
+    "exported_by": "howldream",
+    "exporter_version": "0.4.5"
+  },
+  "schema": "howl.claim_bundle/v1"
+}
