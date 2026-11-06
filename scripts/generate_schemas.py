@@ -79,6 +79,24 @@ def write_schemas(out_dir: Path) -> list[Path]:
     return written
 
 
+def check_drift(schemas_dir: Path) -> tuple[bool, list[str]]:
+    """Compare schemas_dir against regenerated schemas from contracts.py.
+    
+    Returns (has_drift, list_of_drifted_or_missing_filenames).
+    """
+    with tempfile.TemporaryDirectory() as tmp:
+        tmp_dir = Path(tmp)
+        write_schemas(tmp_dir)
+        drifted: list[str] = []
+        for slug, _model, _title in ENVELOPES:
+            name = f"{slug}.schema.json"
+            checked_in = schemas_dir / name
+            regenerated = tmp_dir / name
+            if not checked_in.exists() or not filecmp.cmp(checked_in, regenerated, shallow=False):
+                drifted.append(name)
+        return bool(drifted), drifted
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -97,27 +115,13 @@ def main() -> int:
             print(f"wrote {path.relative_to(repo_root)}")
         return 0
 
-    with tempfile.TemporaryDirectory() as tmp:
-        tmp_dir = Path(tmp)
-        write_schemas(tmp_dir)
-        drift = False
-        for slug, _model, _title in ENVELOPES:
-            name = f"{slug}.schema.json"
-            checked_in = schemas_dir / name
-            regenerated = tmp_dir / name
-            if not checked_in.exists():
-                print(f"DRIFT: {name} does not exist in schemas/ (run without --check)")
-                drift = True
-                continue
-            if not filecmp.cmp(checked_in, regenerated, shallow=False):
-                print(
-                    f"DRIFT: {name} does not match contracts.py (run without --check to regenerate)"
-                )
-                drift = True
-        if drift:
-            return 1
-        print(f"schemas/ matches contracts.py for all {len(ENVELOPES)} envelopes")
-        return 0
+    has_drift, drifted = check_drift(schemas_dir)
+    if has_drift:
+        for name in drifted:
+            print(f"DRIFT: {name} does not match contracts.py (run without --check to regenerate)")
+        return 1
+    print(f"schemas/ matches contracts.py for all {len(ENVELOPES)} envelopes")
+    return 0
 
 
 if __name__ == "__main__":

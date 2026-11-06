@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+Contract schema synchronization: regenerate `schemas/howl.exploration.v1.schema.json` to
+incorporate `AcquisitionPointer` and evidence trust additions from M2. Expose `check_drift`
+in `scripts/generate_schemas.py` and wire it into `tests/test_authority_invariants.py`
+(`test_checked_in_schemas_match_contracts_py_without_drift`) to guarantee local test runs
+catch schema drift before pushing to CI.
+
 M2 evidence integrity micro-study (`dogfood/m2-microstudy-2026-11-05/`): 3-candidate verification
 suite exercising the complete CLI pipeline (`export-proof` -> `acquire` -> `evaluate` -> `import-proof`).
 Validates primary-source benchmark verification with quoted methodology, deterministic arithmetic
