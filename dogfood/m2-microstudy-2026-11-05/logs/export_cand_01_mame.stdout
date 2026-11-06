@@ -1,0 +1,1 @@
+{"bundle": "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/bundles/cand_01_mame", "candidate_id": "micro/01-mame-benchmark", "claims": 1, "evidence": 1, "authorship": "EXTERNAL_AUTHORED", "next": "howlproof evaluate /run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/bundles/cand_01_mame --profile research --json"}

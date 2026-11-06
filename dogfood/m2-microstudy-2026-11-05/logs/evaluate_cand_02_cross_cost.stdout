@@ -1,0 +1,402 @@
+{
+  "schema": "howlproof.result/v1",
+  "run_id": "hp-20261106-011956-09af18371363",
+  "authority": "ADVISORY",
+  "version": "0.2.0b1",
+  "artifact": "cand_02_cross_cost",
+  "profiles": [
+    "research"
+  ],
+  "adversaries": [
+    "FUNCTIONAL",
+    "SECURITY",
+    "RELIABILITY",
+    "AI",
+    "OPERATOR"
+  ],
+  "target": {
+    "root": "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/bundles/cand_02_cross_cost",
+    "is_git": true,
+    "commit": "eacad0c9bc61ad790b35755687a61beb7655af73",
+    "branch": "dogfood/m2-microstudy",
+    "dirty": true,
+    "file_count": 3,
+    "oversized_files_not_copied": [],
+    "tree_digest_before": "4eaa0ee49db2a3aef013dfa079135ecbdd9d4924d04a937da41e3315d079b9c8",
+    "tree_digest_after": "4eaa0ee49db2a3aef013dfa079135ecbdd9d4924d04a937da41e3315d079b9c8"
+  },
+  "started_at": "2026-11-06T01:19:56.062991+00:00",
+  "completed_at": "2026-11-06T01:19:56.136577+00:00",
+  "duration_ms": 73,
+  "verdict": "INSUFFICIENT_EVIDENCE",
+  "verdict_definition": "The artifact may or may not be acceptable. The evaluation that ran was inadequate to make a defensible determination, so no determination is claimed.",
+  "deciding_rule": "no_acceptance_criteria",
+  "rationale": [
+    "The artifact defines no acceptance criteria.",
+    "Running checks without criteria shows activity, not conformance."
+  ],
+  "criteria": [],
+  "counts": {
+    "checks": 4,
+    "verified": 3,
+    "failed": 0,
+    "skipped": 0,
+    "unavailable": 1,
+    "not_applicable": 0,
+    "errored": 0,
+    "simulated": 0,
+    "findings": 0,
+    "blocking_findings": 0,
+    "criteria_satisfied": 0,
+    "criteria_total": 0,
+    "by_severity": {
+      "BLOCKER": 0,
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 0,
+      "INFORMATIONAL": 0
+    },
+    "by_adversary": {
+      "FUNCTIONAL": 0,
+      "SECURITY": 0,
+      "RELIABILITY": 0,
+      "AI": 0,
+      "OPERATOR": 0,
+      "INTEGRITY": 0
+    }
+  },
+  "checks": [
+    {
+      "check_id": "research.claims.bundle",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim bundle is well formed and 2 evidence file(s) match their registered digests",
+      "limitation": "establishes structure and byte integrity only; no claim is verified by this check",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 5,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "bundle_sha256": "9fe9c82f13b5907cff951b15cf37d9f23d1b3128484736800751e86c1ce155c7",
+        "candidate_id": "micro/02-cross-lang-cost",
+        "claims": 3,
+        "trust_model": "howl.evidence_trust/v1"
+      }
+    },
+    {
+      "check_id": "research.claims.c001",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim c02-ruby-cost: SUPPORTED",
+      "limitation": "compares author-grounded checks against evidence; sourced claims need an observed acquisition in which the fact and subject terms appear. Establishes only the compared proposition within its stated scope, not that a source is correct, current, representative or independent in origin",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c02-ruby-cost",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "SUPPORTED",
+        "explanation": "evidence mame_bench satisfies ruby_cost approx $0.36",
+        "evidence_considered": [
+          {
+            "id": "mame_bench",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "supports",
+            "published_at": "2026-03-15T00:00:00Z",
+            "sha256": "cc654969dccbb438289195442cef5f07557edb7682ab10eecffd98ac75be413f",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://github.com/mame/ai-coding-lang-bench",
+              "produced_by": "mame",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "OBSERVED",
+              "acquisition_id": "acq-6f6954384423ac24",
+              "acquisition_kind": "OPERATOR_FILE",
+              "acquisition_method": "operator_supplied_file",
+              "retrieved_at": "2026-11-06T01:19:53Z",
+              "observed_location": "https://github.com/mame/ai-coding-lang-bench",
+              "content_sha256": "89089a7650fb22a885c76cd7b328961ae4f26d22cdacd8539c1cdc193579fd14",
+              "reference_class": "URL",
+              "source_origin": "OPERATOR_ATTESTED_FILE",
+              "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+              "facts_located_in_source": true,
+              "relevance": "STRUCTURAL_MATCH",
+              "methodology": "RECORDED"
+            },
+            "eligible": true,
+            "observed": "$0.36",
+            "ineligible_reasons": []
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the source is correct, current or representative"
+        ],
+        "checked_proposition": "Claude Code average cost per run for Ruby is $0.36.",
+        "scope": null,
+        "scope_limited": false,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": "SUPPORTED",
+        "check_passed": true,
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": true,
+          "evidence_integrity": "ok",
+          "source_origin": "OPERATOR_ATTESTED_FILE",
+          "claim_relevance": "STRUCTURAL_MATCH",
+          "methodology": "RECORDED",
+          "corroboration": "SINGLE_SOURCE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": true,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "SOURCE_VERIFIED"
+        },
+        "bundle_sha256": "9fe9c82f13b5907cff951b15cf37d9f23d1b3128484736800751e86c1ce155c7",
+        "candidate_id": "micro/02-cross-lang-cost"
+      }
+    },
+    {
+      "check_id": "research.claims.c002",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim c02-cost-reduction-arithmetic: SUPPORTED",
+      "limitation": "compares author-grounded checks against evidence; sourced claims need an observed acquisition in which the fact and subject terms appear. Establishes only the compared proposition within its stated scope, not that a source is correct, current, representative or independent in origin",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c02-cost-reduction-arithmetic",
+        "category": "TECHNICAL",
+        "assumption": false,
+        "method": "arithmetic",
+        "claim_status": "SUPPORTED",
+        "explanation": "(0.62 - 0.36) / 0.62 = 0.4193548387096774193548387097; expected approx 0.419 -> holds",
+        "evidence_considered": [
+          {
+            "id": "mame_bench",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "unexamined",
+            "published_at": "2026-03-15T00:00:00Z",
+            "sha256": "cc654969dccbb438289195442cef5f07557edb7682ab10eecffd98ac75be413f",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://github.com/mame/ai-coding-lang-bench",
+              "produced_by": "mame",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "OBSERVED",
+              "acquisition_id": "acq-6f6954384423ac24",
+              "acquisition_kind": "OPERATOR_FILE",
+              "acquisition_method": "operator_supplied_file",
+              "retrieved_at": "2026-11-06T01:19:53Z",
+              "observed_location": "https://github.com/mame/ai-coding-lang-bench",
+              "content_sha256": "89089a7650fb22a885c76cd7b328961ae4f26d22cdacd8539c1cdc193579fd14",
+              "reference_class": "URL",
+              "source_origin": "OPERATOR_ATTESTED_FILE",
+              "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "inputs of the expression were taken from the claim, not independently sourced"
+        ],
+        "checked_proposition": "Ruby generation cost ($0.36) represents a 41.9% cost reduction relative to TypeScript ($0.62): (0.62 - 0.36) / 0.62 = 0.419.",
+        "scope": null,
+        "scope_limited": false,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": "SUPPORTED",
+        "check_passed": true,
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": true,
+          "evidence_integrity": "not_applicable",
+          "source_origin": "NOT_EXAMINED",
+          "claim_relevance": "NOT_APPLICABLE",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "UNVERIFIED",
+          "real_world_eligible": false,
+          "real_world_truth": "NOT_ESTABLISHED",
+          "evidence_status": "DETERMINISTIC_CHECK_ONLY"
+        },
+        "bundle_sha256": "9fe9c82f13b5907cff951b15cf37d9f23d1b3128484736800751e86c1ce155c7",
+        "candidate_id": "micro/02-cross-lang-cost"
+      }
+    },
+    {
+      "check_id": "research.claims.c003",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "UNAVAILABLE",
+      "summary": "claim c02-placeholder-token-reduction: INCONCLUSIVE",
+      "limitation": "nothing was established about this claim",
+      "reason": "the supplied evidence satisfies token_reduction_pct approx 65%, but it cannot be treated as verified: placeholder_bench: source_ref is a placeholder and no acquisition record exists",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c02-placeholder-token-reduction",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "INCONCLUSIVE",
+        "explanation": "the supplied evidence satisfies token_reduction_pct approx 65%, but it cannot be treated as verified: placeholder_bench: source_ref is a placeholder and no acquisition record exists",
+        "evidence_considered": [
+          {
+            "id": "placeholder_bench",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "supports",
+            "published_at": null,
+            "sha256": "ab76a39e5c3cd2e4b3b1dff3a5135436afe4d05bfe5c8631c1debfc1ee9e9df0",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://example.org/bench-token-study-a",
+              "produced_by": "unknown-vendor",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "NONE",
+              "acquisition_id": null,
+              "acquisition_kind": null,
+              "acquisition_method": null,
+              "retrieved_at": null,
+              "observed_location": null,
+              "content_sha256": null,
+              "reference_class": "PLACEHOLDER",
+              "source_origin": "PLACEHOLDER",
+              "evidence_form": "SUBMITTED_EXTRACT",
+              "facts_located_in_source": null,
+              "relevance": "NOT_EVALUATED",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": false,
+            "observed": "65%",
+            "ineligible_reasons": [
+              "source_ref is a placeholder and no acquisition record exists"
+            ]
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the supplied numbers come from an authentic source",
+          "real-world truth"
+        ],
+        "checked_proposition": "Rubydex achieves a 65% prompt token reduction.",
+        "scope": null,
+        "scope_limited": false,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": "SUPPORTED",
+        "check_passed": true,
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": true,
+          "evidence_integrity": "ok",
+          "source_origin": "PLACEHOLDER",
+          "claim_relevance": "NOT_ESTABLISHED",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": false,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "SUPPLIED_DATA_AGREES"
+        },
+        "bundle_sha256": "9fe9c82f13b5907cff951b15cf37d9f23d1b3128484736800751e86c1ce155c7",
+        "candidate_id": "micro/02-cross-lang-cost"
+      }
+    }
+  ],
+  "findings": [],
+  "unresolved_risks": [],
+  "limitations": [
+    "research.claims.c003 was UNAVAILABLE: the supplied evidence satisfies token_reduction_pct approx 65%, but it cannot be treated as verified: placeholder_bench: source_ref is a placeholder and no acquisition record exists"
+  ],
+  "notes": [
+    "no service is declared, so live adversaries have nothing to attack"
+  ],
+  "validation_modes": {
+    "REAL": [
+      "research.claims.bundle",
+      "research.claims.c001",
+      "research.claims.c002"
+    ],
+    "SIMULATED": [],
+    "SKIPPED": [],
+    "UNAVAILABLE": [
+      "research.claims.c003"
+    ],
+    "NOT_APPLICABLE": [],
+    "ERROR": []
+  },
+  "manifest": {
+    "schema": "howlproof.run/v1",
+    "run_id": "hp-20261106-011956-09af18371363",
+    "authority": "ADVISORY",
+    "version": "0.2.0b1",
+    "implementation_hash": "102c32672453a3debe9caedcb14db67581b100b84e938ace15a386be6ddd8cb0",
+    "artifact": "cand_02_cross_cost",
+    "profiles": [
+      "research"
+    ],
+    "started_at": "2026-11-06T01:19:56.062991+00:00",
+    "completed_at": "2026-11-06T01:19:56.136577+00:00",
+    "verdict": "INSUFFICIENT_EVIDENCE",
+    "evaluators": [
+      "research.claims/v1"
+    ],
+    "file_hashes": {
+      "checks.jsonl": "23501ae483ab6b1a45ea0f1772a8569d025900d46e8de189eda04f4ace97a71b",
+      "config.json": "61420c10c4444565aa18fb5e63b0a7a90f5a0e16653416953c76acca8b50be67",
+      "environment.json": "5ab75bc5ece04942cb3ee376646dc7eb9c96bd8909de376e461f052633a2f7a9",
+      "evidence/research.claims/claim_results.json": "4ab4622f258fa70901aaa1294547bd35ec5c415e2b1a5315e00639b7ed4773f3",
+      "handoff.json": "1ea081fc58f38559bc10fc4b9e65f61352549583660e0e3f83c803c3f42ce78c",
+      "result.json": "74d02d574c04b1cd4fcf811014a1b51bb66e5842717ac4242ac806440f3ee3b6",
+      "result.md": "eb15905d779561002922597131fb944046906e9ec97209a0a254765db90f3856",
+      "target.json": "497c6c51d83aa59a6d2d8805db5cce0ea7b2400ef66240628b5e07477a3bb93e"
+    }
+  },
+  "path": "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/proof_out/cand_02_cross_cost/hp-20261106-011956-09af18371363"
+}

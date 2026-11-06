@@ -1,0 +1,22 @@
+[
+  {
+    "id": "mame_bench",
+    "text": "",
+    "facts": {
+      "ruby_time_seconds": "73.1 s",
+      "published_at": "2026-03-15T00:00:00Z"
+    },
+    "provenance": {
+      "source_type": "EXTERNAL_OBSERVATION",
+      "produced_by": "mame",
+      "source_ref": "https://github.com/mame/ai-coding-lang-bench",
+      "independent_of_implementation": true,
+      "represents_observed_reality": true
+    },
+    "acquisition": {
+      "id": "acq-6f6954384423ac24",
+      "content_sha256": "89089a7650fb22a885c76cd7b328961ae4f26d22cdacd8539c1cdc193579fd14"
+    },
+    "methodology_quote": "We asked Claude Code (Opus 4.6) to implement a **mini-git** \u2014 a simplified version of Git"
+  }
+]

@@ -1,0 +1,153 @@
+{
+  "authorship": {
+    "component": "microstudy-runner",
+    "kind": "EXTERNAL_AUTHORED",
+    "model": null,
+    "provider": null
+  },
+  "candidate": {
+    "candidate_id": "micro/02-cross-lang-cost",
+    "objective": "Evaluate cross-language AI generation costs and token reduction claims.",
+    "parent_request_id": "microstudy-20261105",
+    "source_run_id": "microstudy-20261105",
+    "status": "GENERATED",
+    "text": "Cross-language AI coding cost comparison and token reduction assertions.",
+    "trust": "UNVERIFIED"
+  },
+  "claims": [
+    {
+      "assumption": false,
+      "category": "EMPIRICAL",
+      "category_basis": "explicit",
+      "check": {
+        "expected": "$0.36",
+        "fact": "ruby_cost",
+        "nature": "measurement",
+        "op": "approx",
+        "tolerance": "$0.01",
+        "type": "fact_compare"
+      },
+      "claim_id": "c02-ruby-cost",
+      "evidence_refs": [
+        "mame_bench"
+      ],
+      "falsification": "refuted if independent evidence reports ruby_cost not approx $0.36",
+      "falsification_basis": "derived_from_check",
+      "origin": "SOURCE_STRUCTURED",
+      "source_kind": "FACT",
+      "subject_terms": [
+        "Ruby",
+        "cost"
+      ],
+      "text": "Claude Code average cost per run for Ruby is $0.36.",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "compare against independent primary-source data",
+          "record units, dates and methodology of every source"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    },
+    {
+      "assumption": false,
+      "category": "TECHNICAL",
+      "category_basis": "explicit",
+      "check": {
+        "expected": "0.419",
+        "expression": "(0.62 - 0.36) / 0.62",
+        "op": "approx",
+        "tolerance": "0.001",
+        "type": "arithmetic"
+      },
+      "claim_id": "c02-cost-reduction-arithmetic",
+      "evidence_refs": [
+        "mame_bench"
+      ],
+      "falsification": null,
+      "falsification_basis": null,
+      "origin": "SOURCE_STRUCTURED",
+      "source_kind": "CALC",
+      "text": "Ruby generation cost ($0.36) represents a 41.9% cost reduction relative to TypeScript ($0.62): (0.62 - 0.36) / 0.62 = 0.419.",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "author a deterministic experiment or executable check and supply it as a check"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    },
+    {
+      "assumption": false,
+      "category": "EMPIRICAL",
+      "category_basis": "explicit",
+      "check": {
+        "expected": "65%",
+        "fact": "token_reduction_pct",
+        "op": "approx",
+        "tolerance": "5%",
+        "type": "fact_compare"
+      },
+      "claim_id": "c02-placeholder-token-reduction",
+      "evidence_refs": [
+        "placeholder_bench"
+      ],
+      "falsification": "refuted if independent evidence reports token_reduction_pct not approx 65%",
+      "falsification_basis": "derived_from_check",
+      "origin": "SOURCE_STRUCTURED",
+      "source_kind": "FACT",
+      "subject_terms": [
+        "Rubydex",
+        "tokens"
+      ],
+      "text": "Rubydex achieves a 65% prompt token reduction.",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "compare against independent primary-source data",
+          "record units, dates and methodology of every source"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "acquisition": {
+        "content_sha256": "89089a7650fb22a885c76cd7b328961ae4f26d22cdacd8539c1cdc193579fd14",
+        "id": "acq-6f6954384423ac24"
+      },
+      "id": "mame_bench",
+      "independent": true,
+      "methodology_quote": "We asked Claude Code (Opus 4.6) to implement a **mini-git** \u2014 a simplified version of Git",
+      "path": "evidence/001-mame_bench.json",
+      "produced_by": "mame",
+      "published_at": "2026-03-15T00:00:00Z",
+      "represents_observed_reality": true,
+      "sha256": "cc654969dccbb438289195442cef5f07557edb7682ab10eecffd98ac75be413f",
+      "source_ref": "https://github.com/mame/ai-coding-lang-bench",
+      "source_type": "EXTERNAL_OBSERVATION"
+    },
+    {
+      "id": "placeholder_bench",
+      "independent": true,
+      "path": "evidence/002-placeholder_bench.json",
+      "produced_by": "unknown-vendor",
+      "published_at": null,
+      "represents_observed_reality": true,
+      "sha256": "ab76a39e5c3cd2e4b3b1dff3a5135436afe4d05bfe5c8631c1debfc1ee9e9df0",
+      "source_ref": "https://example.org/bench-token-study-a",
+      "source_type": "EXTERNAL_OBSERVATION"
+    }
+  ],
+  "lineage": {
+    "candidate_created_at": "2026-11-05T20:00:00Z",
+    "candidate_sha256": "305991eb81adced263aa798f072d1b72c072cfc6dec74976ad18088527c02748",
+    "exported_by": "howldream",
+    "exporter_version": "0.4.5"
+  },
+  "schema": "howl.claim_bundle/v1"
+}

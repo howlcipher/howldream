@@ -1,0 +1,348 @@
+{
+  "schema": "howlproof.result/v1",
+  "run_id": "hp-20261106-011957-7e60783c1392",
+  "authority": "ADVISORY",
+  "version": "0.2.0b1",
+  "artifact": "cand_03_scoped_mutant",
+  "profiles": [
+    "research"
+  ],
+  "adversaries": [
+    "FUNCTIONAL",
+    "SECURITY",
+    "RELIABILITY",
+    "AI",
+    "OPERATOR"
+  ],
+  "target": {
+    "root": "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/bundles/cand_03_scoped_mutant",
+    "is_git": true,
+    "commit": "eacad0c9bc61ad790b35755687a61beb7655af73",
+    "branch": "dogfood/m2-microstudy",
+    "dirty": true,
+    "file_count": 3,
+    "oversized_files_not_copied": [],
+    "tree_digest_before": "61ed80ece1192617d1fd6f044513ea0ecd437766e03f4afb7af3e45a785ba5c3",
+    "tree_digest_after": "61ed80ece1192617d1fd6f044513ea0ecd437766e03f4afb7af3e45a785ba5c3"
+  },
+  "started_at": "2026-11-06T01:19:57.102295+00:00",
+  "completed_at": "2026-11-06T01:19:57.183560+00:00",
+  "duration_ms": 81,
+  "verdict": "INSUFFICIENT_EVIDENCE",
+  "verdict_definition": "The artifact may or may not be acceptable. The evaluation that ran was inadequate to make a defensible determination, so no determination is claimed.",
+  "deciding_rule": "no_acceptance_criteria",
+  "rationale": [
+    "The artifact defines no acceptance criteria.",
+    "Running checks without criteria shows activity, not conformance."
+  ],
+  "criteria": [],
+  "counts": {
+    "checks": 3,
+    "verified": 2,
+    "failed": 1,
+    "skipped": 0,
+    "unavailable": 0,
+    "not_applicable": 0,
+    "errored": 0,
+    "simulated": 0,
+    "findings": 1,
+    "blocking_findings": 0,
+    "criteria_satisfied": 0,
+    "criteria_total": 0,
+    "by_severity": {
+      "BLOCKER": 0,
+      "HIGH": 1,
+      "MEDIUM": 0,
+      "LOW": 0,
+      "INFORMATIONAL": 0
+    },
+    "by_adversary": {
+      "FUNCTIONAL": 1,
+      "SECURITY": 0,
+      "RELIABILITY": 0,
+      "AI": 0,
+      "OPERATOR": 0,
+      "INTEGRITY": 0
+    }
+  },
+  "checks": [
+    {
+      "check_id": "research.claims.bundle",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim bundle is well formed and 2 evidence file(s) match their registered digests",
+      "limitation": "establishes structure and byte integrity only; no claim is verified by this check",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 6,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "bundle_sha256": "753465674bcca9290f0525c0ff94641c9879c011b51f7a6e8dcebf1b07561d96",
+        "candidate_id": "micro/03-scoped-mutant",
+        "claims": 2,
+        "trust_model": "howl.evidence_trust/v1"
+      }
+    },
+    {
+      "check_id": "research.claims.c001",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "FAILED",
+      "summary": "claim c03-mutant-readme-agent: REFUTED",
+      "limitation": "compares author-grounded checks against evidence; sourced claims need an observed acquisition in which the fact and subject terms appear. Establishes only the compared proposition within its stated scope, not that a source is correct, current, representative or independent in origin",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c03-mutant-readme-agent",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "text_presence",
+        "claim_status": "REFUTED",
+        "explanation": "'agent' is not found in mutant_readme (expected present); this concerns only the checked artifact(s); the term does appear in other bundle evidence (mutant_skill), so the broader question is open",
+        "evidence_considered": [
+          {
+            "id": "mutant_readme",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "lacks",
+            "published_at": null,
+            "sha256": "e2616aa615b84dc485db7daf0054ca3126b612306758ec11eaf318f8cee0a9a3",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://github.com/mbj/mutant",
+              "produced_by": "mbj/mutant",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "OBSERVED",
+              "acquisition_id": "acq-d2069e537615e8aa",
+              "acquisition_kind": "OPERATOR_FILE",
+              "acquisition_method": "operator_supplied_file",
+              "retrieved_at": "2026-11-06T01:19:54Z",
+              "observed_location": "https://github.com/mbj/mutant",
+              "content_sha256": "50853f45ced3f829db853ce770c6a05bdedff7906226d720782486032c969ee0",
+              "reference_class": "URL",
+              "source_origin": "OPERATOR_ATTESTED_FILE",
+              "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+              "facts_located_in_source": null,
+              "relevance": "STRUCTURAL_MATCH",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": true,
+            "ineligible_reasons": []
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the feature or behaviour exists outside the checked artifact(s); absence from a document is not absence from the project",
+          "whether the artifact's statements are true"
+        ],
+        "checked_proposition": "The text of the Mutant README contains the word 'agent'",
+        "scope": {
+          "artifact": "mbj/mutant README.md",
+          "extent": "SINGLE_FILE"
+        },
+        "scope_limited": true,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": "REFUTED",
+        "check_passed": false,
+        "also_found_in": [
+          "mutant_skill"
+        ],
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": false,
+          "evidence_integrity": "ok",
+          "source_origin": "OPERATOR_ATTESTED_FILE",
+          "claim_relevance": "STRUCTURAL_MATCH",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "SINGLE_SOURCE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": true,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "SOURCE_VERIFIED_SCOPED"
+        },
+        "bundle_sha256": "753465674bcca9290f0525c0ff94641c9879c011b51f7a6e8dcebf1b07561d96",
+        "candidate_id": "micro/03-scoped-mutant"
+      }
+    },
+    {
+      "check_id": "research.claims.c002",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim c03-mutant-skill-agent: SUPPORTED",
+      "limitation": "compares author-grounded checks against evidence; sourced claims need an observed acquisition in which the fact and subject terms appear. Establishes only the compared proposition within its stated scope, not that a source is correct, current, representative or independent in origin",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c03-mutant-skill-agent",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "text_presence",
+        "claim_status": "SUPPORTED",
+        "explanation": "'agent' is found in mutant_skill (expected present); this concerns only the checked artifact(s)",
+        "evidence_considered": [
+          {
+            "id": "mutant_skill",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "contains",
+            "published_at": null,
+            "sha256": "f2510326f7a6f936971cbdf5b5ecfa0518bf6063f158f243dd3042fa18d219ca",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://github.com/mbj/mutant",
+              "produced_by": "mbj/mutant",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "OBSERVED",
+              "acquisition_id": "acq-d4af534c49f50803",
+              "acquisition_kind": "OPERATOR_FILE",
+              "acquisition_method": "operator_supplied_file",
+              "retrieved_at": "2026-11-06T01:19:54Z",
+              "observed_location": "https://github.com/mbj/mutant",
+              "content_sha256": "ef8f4b28a556eab88341e0585552f13049e1c7a0ee14e69496ac63452c6cf1a6",
+              "reference_class": "URL",
+              "source_origin": "OPERATOR_ATTESTED_FILE",
+              "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+              "facts_located_in_source": null,
+              "relevance": "STRUCTURAL_MATCH",
+              "methodology": "NOT_EVALUATED"
+            },
+            "eligible": true,
+            "ineligible_reasons": []
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the feature or behaviour exists outside the checked artifact(s); absence from a document is not absence from the project",
+          "whether the artifact's statements are true"
+        ],
+        "checked_proposition": "The text of Mutant SKILL.md contains the word 'agent'",
+        "scope": {
+          "artifact": "mbj/mutant SKILL.md",
+          "extent": "SINGLE_FILE"
+        },
+        "scope_limited": true,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": "SUPPORTED",
+        "check_passed": true,
+        "also_found_in": [],
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": true,
+          "evidence_integrity": "ok",
+          "source_origin": "OPERATOR_ATTESTED_FILE",
+          "claim_relevance": "STRUCTURAL_MATCH",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "SINGLE_SOURCE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": true,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "SOURCE_VERIFIED_SCOPED"
+        },
+        "bundle_sha256": "753465674bcca9290f0525c0ff94641c9879c011b51f7a6e8dcebf1b07561d96",
+        "candidate_id": "micro/03-scoped-mutant"
+      }
+    }
+  ],
+  "findings": [
+    {
+      "check_id": "research.claims.c001",
+      "adversary": "FUNCTIONAL",
+      "category": "correctness",
+      "title": "Claim c03-mutant-readme-agent refuted by independent evidence",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "summary": "claim c03-mutant-readme-agent: 'agent' is not found in mutant_readme (expected present); this concerns only the checked artifact(s); the term does appear in other bundle evidence (mutant_skill), so the broader question is open",
+      "evidence": "[\n  {\n    \"claimed_provenance\": {\n      \"independent\": true,\n      \"note\": \"as declared by the bundle author; not verified provenance\",\n      \"produced_by\": \"mbj/mutant\",\n      \"represents_observed_reality\": true,\n      \"source_ref\": \"https://github.com/mbj/mutant\",\n      \"source_type\": \"EXTERNAL_OBSERVATION\"\n    },\n    \"eligible\": true,\n    \"id\": \"mutant_readme\",\n    \"independent\": true,\n    \"ineligible_reasons\": [],\n    \"integrity\": \"ok\",\n    \"published_at\": null,\n    \"relation\": \"lacks\",\n    \"sha256\": \"e2616aa615b84dc485db7daf0054ca3126b612306758ec11eaf318f8cee0a9a3\",\n    \"source_type\": \"EXTERNAL_OBSERVATION\",\n    \"trust\": {\n      \"acquisition\": \"OBSERVED\",\n      \"acquisition_id\": \"acq-d2069e537615e8aa\",\n      \"acquisition_kind\": \"OPERATOR_FILE\",\n      \"acquisition_method\": \"operator_supplied_file\",\n      \"content_sha256\": \"50853f45ced3f829db853ce770c6a05bdedff7906226d720782486032c969ee0\",\n      \"evidence_form\": \"EXTRACT_OF_ACQUIRED_SOURCE\",\n      \"facts_located_in_source\": null,\n      \"integrity\": \"ok\",\n      \"methodology\": \"NOT_EVALUATED\",\n      \"observed_location\": \"https://github.com/mbj/mutant\",\n      \"reference_class\": \"URL\",\n      \"relevance\": \"STRUCTURAL_MATCH\",\n      \"retrieved_at\": \"2026-11-06T01:19:54Z\",\n      \"source_origin\": \"OPERATOR_ATTESTED_FILE\"\n    }\n  }\n]",
+      "recommended_remediation": "Revise or withdraw the claim, or supply independent evidence that resolves the contradiction.",
+      "location": null,
+      "rule": "research.claims.refuted",
+      "state": "FOUND",
+      "reproduction": null,
+      "resolution_reason": null,
+      "id": "HP-FUNC-0001",
+      "fingerprint_basis": null,
+      "fingerprint": "9c82c34c7808275eed4bd4577696ec01778308aa50a13fb8ff0b7011520a88f7",
+      "first_seen_run": "hp-20261106-011957-7e60783c1392",
+      "first_seen_commit": "eacad0c9bc61ad790b35755687a61beb7655af73",
+      "last_seen_run": "hp-20261106-011957-7e60783c1392",
+      "detail": {},
+      "blocking": false
+    }
+  ],
+  "unresolved_risks": [
+    "HP-FUNC-0001 (HIGH): claim c03-mutant-readme-agent: 'agent' is not found in mutant_readme (expected present); this concerns only the checked artifact(s); the term does appear in other bundle evidence (mutant_skill), so the broader question is open"
+  ],
+  "limitations": [],
+  "notes": [
+    "no service is declared, so live adversaries have nothing to attack"
+  ],
+  "validation_modes": {
+    "REAL": [
+      "research.claims.bundle",
+      "research.claims.c001",
+      "research.claims.c002"
+    ],
+    "SIMULATED": [],
+    "SKIPPED": [],
+    "UNAVAILABLE": [],
+    "NOT_APPLICABLE": [],
+    "ERROR": []
+  },
+  "manifest": {
+    "schema": "howlproof.run/v1",
+    "run_id": "hp-20261106-011957-7e60783c1392",
+    "authority": "ADVISORY",
+    "version": "0.2.0b1",
+    "implementation_hash": "102c32672453a3debe9caedcb14db67581b100b84e938ace15a386be6ddd8cb0",
+    "artifact": "cand_03_scoped_mutant",
+    "profiles": [
+      "research"
+    ],
+    "started_at": "2026-11-06T01:19:57.102295+00:00",
+    "completed_at": "2026-11-06T01:19:57.183560+00:00",
+    "verdict": "INSUFFICIENT_EVIDENCE",
+    "evaluators": [
+      "research.claims/v1"
+    ],
+    "file_hashes": {
+      "checks.jsonl": "fde9952a525853d0b79de5685d57b2439671f81b473ab416f9d04b3908d7bc32",
+      "config.json": "5c8cf944841d676e0567b04f02c0f4bdf2a3af5758c1a0a81aab0b74078f14d0",
+      "environment.json": "9a71872b2c6cdca62f7d74c757c69c8a71ed630c83a962a47c083575adea5dee",
+      "evidence/research.claims/claim_results.json": "bedbc4b744f11bcf154186fa6e8f4034b16ea4b55dddd61b12ae56c54eca358b",
+      "findings/HP-FUNC-0001.json": "46ce4a00ac5c5da42fd44555ea4ed0abc3781473e4b2becbfcc149303c7fefc8",
+      "handoff.json": "635531de8888265eed65bde3e5f5381cff734725db6b05b312de7a962bac3465",
+      "result.json": "715a7cd12fd1dabf2b644fc653d5b2d5be07d6af96385cc66120bd0bb9254f1b",
+      "result.md": "e77044c448a72a2ec3153010ddea2a89b2aad331bdd12fca33abfb189c7d1a6d",
+      "target.json": "853c6e167af03b414122a0370ef12efb670b5c149002c0e265bc5ae6174e4ab4"
+    }
+  },
+  "path": "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/proof_out/cand_03_scoped_mutant/hp-20261106-011957-7e60783c1392"
+}

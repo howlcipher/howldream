@@ -1,0 +1,83 @@
+{
+  "candidate_id": "micro/02-cross-lang-cost",
+  "source_run_id": "microstudy-20261105",
+  "parent_request_id": "microstudy-20261105",
+  "objective": "Evaluate cross-language AI generation costs and token reduction claims.",
+  "text": "Cross-language AI coding cost comparison and token reduction assertions.",
+  "claims": [
+    {
+      "id": "c02-ruby-cost",
+      "candidate_id": "micro/02-cross-lang-cost",
+      "kind": "FACT",
+      "text": "Claude Code average cost per run for Ruby is $0.36.",
+      "status": "UNVERIFIED",
+      "category": "EMPIRICAL",
+      "evidence_refs": [
+        "mame_bench"
+      ],
+      "check": {
+        "type": "fact_compare",
+        "fact": "ruby_cost",
+        "op": "approx",
+        "expected": "$0.36",
+        "tolerance": "$0.01",
+        "nature": "measurement"
+      },
+      "subject_terms": [
+        "Ruby",
+        "cost"
+      ]
+    },
+    {
+      "id": "c02-cost-reduction-arithmetic",
+      "candidate_id": "micro/02-cross-lang-cost",
+      "kind": "CALC",
+      "text": "Ruby generation cost ($0.36) represents a 41.9% cost reduction relative to TypeScript ($0.62): (0.62 - 0.36) / 0.62 = 0.419.",
+      "status": "UNVERIFIED",
+      "category": "TECHNICAL",
+      "evidence_refs": [
+        "mame_bench"
+      ],
+      "check": {
+        "type": "arithmetic",
+        "expression": "(0.62 - 0.36) / 0.62",
+        "op": "approx",
+        "expected": "0.419",
+        "tolerance": "0.001"
+      }
+    },
+    {
+      "id": "c02-placeholder-token-reduction",
+      "candidate_id": "micro/02-cross-lang-cost",
+      "kind": "FACT",
+      "text": "Rubydex achieves a 65% prompt token reduction.",
+      "status": "UNVERIFIED",
+      "category": "EMPIRICAL",
+      "evidence_refs": [
+        "placeholder_bench"
+      ],
+      "check": {
+        "type": "fact_compare",
+        "fact": "token_reduction_pct",
+        "op": "approx",
+        "expected": "65%",
+        "tolerance": "5%"
+      },
+      "subject_terms": [
+        "Rubydex",
+        "tokens"
+      ]
+    }
+  ],
+  "assumptions": [],
+  "provenance": {
+    "producer_component": "howldream",
+    "observation_kind": "EXTERNALLY_OBSERVED",
+    "origin": {
+      "component": "microstudy-runner",
+      "provider": null,
+      "model": null
+    },
+    "created_at": "2026-11-05T20:00:00Z"
+  }
+}

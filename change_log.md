@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+M2 evidence integrity micro-study (`dogfood/m2-microstudy-2026-11-05/`): 3-candidate verification
+suite exercising the complete CLI pipeline (`export-proof` -> `acquire` -> `evaluate` -> `import-proof`).
+Validates primary-source benchmark verification with quoted methodology, deterministic arithmetic
+versus placeholder suppression, and scoped documentation refutation boundaries.
+
 M2 evidence integrity at the bridge. **Behaviour change:** `import-proof` no longer emits
 `ACCEPT_FOR_DEVELOPMENT` (HowlPlane promotes candidates to development on that value); a
 fully source-verified result is `INVESTIGATE` with a `proof_evidence_summary` row

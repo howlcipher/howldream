@@ -1,0 +1,34 @@
+[
+  {
+    "id": "mutant_readme",
+    "text": "",
+    "facts": {},
+    "provenance": {
+      "source_type": "EXTERNAL_OBSERVATION",
+      "produced_by": "mbj/mutant",
+      "source_ref": "https://github.com/mbj/mutant",
+      "independent_of_implementation": true,
+      "represents_observed_reality": true
+    },
+    "acquisition": {
+      "id": "acq-d2069e537615e8aa",
+      "content_sha256": "50853f45ced3f829db853ce770c6a05bdedff7906226d720782486032c969ee0"
+    }
+  },
+  {
+    "id": "mutant_skill",
+    "text": "",
+    "facts": {},
+    "provenance": {
+      "source_type": "EXTERNAL_OBSERVATION",
+      "produced_by": "mbj/mutant",
+      "source_ref": "https://github.com/mbj/mutant",
+      "independent_of_implementation": true,
+      "represents_observed_reality": true
+    },
+    "acquisition": {
+      "id": "acq-d4af534c49f50803",
+      "content_sha256": "ef8f4b28a556eab88341e0585552f13049e1c7a0ee14e69496ac63452c6cf1a6"
+    }
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "attested_by": "microstudy-operator",
+  "claimed_source_url": "https://github.com/mbj/mutant",
+  "content_sha256": "50853f45ced3f829db853ce770c6a05bdedff7906226d720782486032c969ee0",
+  "content_type": null,
+  "http_status": null,
+  "id": "acq-d2069e537615e8aa",
+  "kind": "OPERATOR_FILE",
+  "limitations": [
+    "file was supplied by the operator and not fetched by howlproof; where it came from is as attested, not observed"
+  ],
+  "method": "operator_supplied_file",
+  "observed_url": null,
+  "record_sha256": "7324577b34c68073450cdebf43856d822b128518ccc52606c24f04917a00e022",
+  "redirects": [],
+  "requested_url": null,
+  "retrieved_at": "2026-11-06T01:19:54Z",
+  "size": 6208,
+  "tool": "howlproof/0.2.0b1"
+}

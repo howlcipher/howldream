@@ -1,0 +1,225 @@
+{
+  "schema": "howlproof.result/v1",
+  "run_id": "hp-20261106-011955-f33763f0c37b",
+  "authority": "ADVISORY",
+  "version": "0.2.0b1",
+  "artifact": "cand_01_mame",
+  "profiles": [
+    "research"
+  ],
+  "adversaries": [
+    "FUNCTIONAL",
+    "SECURITY",
+    "RELIABILITY",
+    "AI",
+    "OPERATOR"
+  ],
+  "target": {
+    "root": "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/bundles/cand_01_mame",
+    "is_git": true,
+    "commit": "eacad0c9bc61ad790b35755687a61beb7655af73",
+    "branch": "dogfood/m2-microstudy",
+    "dirty": true,
+    "file_count": 2,
+    "oversized_files_not_copied": [],
+    "tree_digest_before": "1c65451897649f6bf2cc15cb84c7320b011313d23dc84c68d2ca41d898091e73",
+    "tree_digest_after": "1c65451897649f6bf2cc15cb84c7320b011313d23dc84c68d2ca41d898091e73"
+  },
+  "started_at": "2026-11-06T01:19:55.065642+00:00",
+  "completed_at": "2026-11-06T01:19:55.135199+00:00",
+  "duration_ms": 69,
+  "verdict": "INSUFFICIENT_EVIDENCE",
+  "verdict_definition": "The artifact may or may not be acceptable. The evaluation that ran was inadequate to make a defensible determination, so no determination is claimed.",
+  "deciding_rule": "no_acceptance_criteria",
+  "rationale": [
+    "The artifact defines no acceptance criteria.",
+    "Running checks without criteria shows activity, not conformance."
+  ],
+  "criteria": [],
+  "counts": {
+    "checks": 2,
+    "verified": 2,
+    "failed": 0,
+    "skipped": 0,
+    "unavailable": 0,
+    "not_applicable": 0,
+    "errored": 0,
+    "simulated": 0,
+    "findings": 0,
+    "blocking_findings": 0,
+    "criteria_satisfied": 0,
+    "criteria_total": 0,
+    "by_severity": {
+      "BLOCKER": 0,
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 0,
+      "INFORMATIONAL": 0
+    },
+    "by_adversary": {
+      "FUNCTIONAL": 0,
+      "SECURITY": 0,
+      "RELIABILITY": 0,
+      "AI": 0,
+      "OPERATOR": 0,
+      "INTEGRITY": 0
+    }
+  },
+  "checks": [
+    {
+      "check_id": "research.claims.bundle",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim bundle is well formed and 1 evidence file(s) match their registered digests",
+      "limitation": "establishes structure and byte integrity only; no claim is verified by this check",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 4,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "bundle_sha256": "7c28b111f1aac2b2aec73f000e95891dec523930bba8d03a76e870c9777034c4",
+        "candidate_id": "micro/01-mame-benchmark",
+        "claims": 1,
+        "trust_model": "howl.evidence_trust/v1"
+      }
+    },
+    {
+      "check_id": "research.claims.c001",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim c01-ruby-generation-time: SUPPORTED",
+      "limitation": "compares author-grounded checks against evidence; sourced claims need an observed acquisition in which the fact and subject terms appear. Establishes only the compared proposition within its stated scope, not that a source is correct, current, representative or independent in origin",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c01-ruby-generation-time",
+        "category": "EMPIRICAL",
+        "assumption": false,
+        "method": "fact_compare",
+        "claim_status": "SUPPORTED",
+        "explanation": "evidence mame_bench satisfies ruby_time_seconds approx 73.1 s",
+        "evidence_considered": [
+          {
+            "id": "mame_bench",
+            "integrity": "ok",
+            "independent": true,
+            "source_type": "EXTERNAL_OBSERVATION",
+            "relation": "supports",
+            "published_at": "2026-03-15T00:00:00Z",
+            "sha256": "f1e80228d8d14682ab85d30225bdd15c59d31d7483be379ffff95340ba9c8701",
+            "claimed_provenance": {
+              "source_type": "EXTERNAL_OBSERVATION",
+              "independent": true,
+              "represents_observed_reality": true,
+              "source_ref": "https://github.com/mame/ai-coding-lang-bench",
+              "produced_by": "mame",
+              "note": "as declared by the bundle author; not verified provenance"
+            },
+            "trust": {
+              "integrity": "ok",
+              "acquisition": "OBSERVED",
+              "acquisition_id": "acq-6f6954384423ac24",
+              "acquisition_kind": "OPERATOR_FILE",
+              "acquisition_method": "operator_supplied_file",
+              "retrieved_at": "2026-11-06T01:19:53Z",
+              "observed_location": "https://github.com/mame/ai-coding-lang-bench",
+              "content_sha256": "89089a7650fb22a885c76cd7b328961ae4f26d22cdacd8539c1cdc193579fd14",
+              "reference_class": "URL",
+              "source_origin": "OPERATOR_ATTESTED_FILE",
+              "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+              "facts_located_in_source": true,
+              "relevance": "STRUCTURAL_MATCH",
+              "methodology": "RECORDED"
+            },
+            "eligible": true,
+            "observed": "73.1 s",
+            "ineligible_reasons": []
+          }
+        ],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "whether the source is correct, current or representative"
+        ],
+        "checked_proposition": "The Claude Code mini-git benchmark reports Ruby completion time of approximately 73.1 seconds.",
+        "scope": {
+          "artifact": "mame/ai-coding-lang-bench README.md",
+          "extent": "BENCHMARK_REPORT"
+        },
+        "scope_limited": true,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": "SUPPORTED",
+        "check_passed": true,
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": true,
+          "evidence_integrity": "ok",
+          "source_origin": "OPERATOR_ATTESTED_FILE",
+          "claim_relevance": "STRUCTURAL_MATCH",
+          "methodology": "RECORDED",
+          "corroboration": "SINGLE_SOURCE",
+          "corroborated": false,
+          "input_provenance": "SEE_EVIDENCE",
+          "real_world_eligible": true,
+          "real_world_truth": "UNRESOLVED",
+          "evidence_status": "SOURCE_VERIFIED_SCOPED"
+        },
+        "bundle_sha256": "7c28b111f1aac2b2aec73f000e95891dec523930bba8d03a76e870c9777034c4",
+        "candidate_id": "micro/01-mame-benchmark"
+      }
+    }
+  ],
+  "findings": [],
+  "unresolved_risks": [],
+  "limitations": [],
+  "notes": [
+    "no service is declared, so live adversaries have nothing to attack"
+  ],
+  "validation_modes": {
+    "REAL": [
+      "research.claims.bundle",
+      "research.claims.c001"
+    ],
+    "SIMULATED": [],
+    "SKIPPED": [],
+    "UNAVAILABLE": [],
+    "NOT_APPLICABLE": [],
+    "ERROR": []
+  },
+  "manifest": {
+    "schema": "howlproof.run/v1",
+    "run_id": "hp-20261106-011955-f33763f0c37b",
+    "authority": "ADVISORY",
+    "version": "0.2.0b1",
+    "implementation_hash": "102c32672453a3debe9caedcb14db67581b100b84e938ace15a386be6ddd8cb0",
+    "artifact": "cand_01_mame",
+    "profiles": [
+      "research"
+    ],
+    "started_at": "2026-11-06T01:19:55.065642+00:00",
+    "completed_at": "2026-11-06T01:19:55.135199+00:00",
+    "verdict": "INSUFFICIENT_EVIDENCE",
+    "evaluators": [
+      "research.claims/v1"
+    ],
+    "file_hashes": {
+      "checks.jsonl": "e9ac77440681f10ce1e08de4d24d2f6187ec3d26c49ea7815098cf8dbb30528c",
+      "config.json": "70ad52e9bf18b7036ebe4c45cd7d81d13aad8e2ebbcac23aa19ab8f201fa44b3",
+      "environment.json": "5ed384f16bffc004d8d9fe890e8938faa15ffc8bde637f6bf2e53ef9508a2fb3",
+      "evidence/research.claims/claim_results.json": "8fbabd685376e1fee592748bd7599893d0280426862ad5a2d0f1268cae0c794b",
+      "handoff.json": "902a1887dc72f4832796757afb7290e63159e13539bcbf08c3c385f7bdaf171a",
+      "result.json": "0b8958e5d31d7eb863144c324c6ff9d98a0a255b87d1c842eed2f5ad7d01ed91",
+      "result.md": "1420cb270df78cb7b87b23081b7487d446c7883299837281dcdc3667b4194535",
+      "target.json": "115127c50fb55d1211fc955d2fb11806ff88994cb57a4f7d4b35e4164662c7fe"
+    }
+  },
+  "path": "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/proof_out/cand_01_mame/hp-20261106-011955-f33763f0c37b"
+}

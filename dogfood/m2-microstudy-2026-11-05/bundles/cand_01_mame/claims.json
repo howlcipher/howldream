@@ -1,0 +1,85 @@
+{
+  "authorship": {
+    "component": "microstudy-runner",
+    "kind": "EXTERNAL_AUTHORED",
+    "model": null,
+    "provider": null
+  },
+  "candidate": {
+    "candidate_id": "micro/01-mame-benchmark",
+    "objective": "Verify empirical benchmark measurement using primary source repository data and quoted methodology.",
+    "parent_request_id": "microstudy-20261105",
+    "source_run_id": "microstudy-20261105",
+    "status": "GENERATED",
+    "text": "Claude Code mini-git benchmark: Ruby generation completes in approximately 73.1 seconds per run.",
+    "trust": "UNVERIFIED"
+  },
+  "claims": [
+    {
+      "assumption": false,
+      "category": "EMPIRICAL",
+      "category_basis": "explicit",
+      "check": {
+        "expected": "73.1 s",
+        "fact": "ruby_time_seconds",
+        "nature": "measurement",
+        "op": "approx",
+        "tolerance": "0.1",
+        "type": "fact_compare"
+      },
+      "checked_proposition": "The Claude Code mini-git benchmark reports Ruby completion time of approximately 73.1 seconds.",
+      "claim_id": "c01-ruby-generation-time",
+      "evidence_refs": [
+        "mame_bench"
+      ],
+      "falsification": "refuted if independent evidence reports ruby_time_seconds not approx 73.1 s",
+      "falsification_basis": "derived_from_check",
+      "origin": "SOURCE_STRUCTURED",
+      "scope": {
+        "artifact": "mame/ai-coding-lang-bench README.md",
+        "extent": "BENCHMARK_REPORT"
+      },
+      "source_kind": "FACT",
+      "subject_terms": [
+        "Ruby",
+        "Claude Code",
+        "mini-git"
+      ],
+      "text": "Ruby completes the mini-git generation benchmark in approximately 73.1 seconds.",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "compare against independent primary-source data",
+          "record units, dates and methodology of every source"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "acquisition": {
+        "content_sha256": "89089a7650fb22a885c76cd7b328961ae4f26d22cdacd8539c1cdc193579fd14",
+        "id": "acq-6f6954384423ac24"
+      },
+      "id": "mame_bench",
+      "independent": true,
+      "methodology_quote": "We asked Claude Code (Opus 4.6) to implement a **mini-git** \u2014 a simplified version of Git",
+      "path": "evidence/001-mame_bench.json",
+      "produced_by": "mame",
+      "published_at": "2026-03-15T00:00:00Z",
+      "represents_observed_reality": true,
+      "sha256": "f1e80228d8d14682ab85d30225bdd15c59d31d7483be379ffff95340ba9c8701",
+      "source_ref": "https://github.com/mame/ai-coding-lang-bench",
+      "source_type": "EXTERNAL_OBSERVATION"
+    }
+  ],
+  "lineage": {
+    "candidate_created_at": "2026-11-05T20:00:00Z",
+    "candidate_sha256": "da8a332b1ef93e2a06323f15c198f65178fbb81c034ea5a15495dbdd0c3de9ef",
+    "exported_by": "howldream",
+    "exporter_version": "0.4.5"
+  },
+  "schema": "howl.claim_bundle/v1"
+}

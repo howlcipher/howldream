@@ -1,0 +1,203 @@
+[
+  {
+    "label": "acquire_mame",
+    "cmd": [
+      "/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python",
+      "-m",
+      "howlproof.cli",
+      "acquire",
+      "--store",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/acquisition_store",
+      "--file",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/inputs/raw/mame_README.md",
+      "--source-url",
+      "https://github.com/mame/ai-coding-lang-bench",
+      "--operator",
+      "microstudy-operator"
+    ],
+    "exit_code": 0
+  },
+  {
+    "label": "acquire_mutant_readme",
+    "cmd": [
+      "/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python",
+      "-m",
+      "howlproof.cli",
+      "acquire",
+      "--store",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/acquisition_store",
+      "--file",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/inputs/raw/mutant_README.md",
+      "--source-url",
+      "https://github.com/mbj/mutant",
+      "--operator",
+      "microstudy-operator"
+    ],
+    "exit_code": 0
+  },
+  {
+    "label": "acquire_mutant_skill",
+    "cmd": [
+      "/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python",
+      "-m",
+      "howlproof.cli",
+      "acquire",
+      "--store",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/acquisition_store",
+      "--file",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/inputs/raw/mutant_SKILL.md",
+      "--source-url",
+      "https://github.com/mbj/mutant",
+      "--operator",
+      "microstudy-operator"
+    ],
+    "exit_code": 0
+  },
+  {
+    "label": "export_cand_01_mame",
+    "cmd": [
+      "/run/media/howlcipher/tallgeese/dev/howldream/.venv/bin/python",
+      "-m",
+      "howldream.cli",
+      "export-proof",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/inputs/cand_01_mame_candidate.json",
+      "--evidence",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/inputs/cand_01_mame_evidence.json",
+      "--out",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/bundles/cand_01_mame"
+    ],
+    "exit_code": 0
+  },
+  {
+    "label": "evaluate_cand_01_mame",
+    "cmd": [
+      "/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python",
+      "-m",
+      "howlproof.cli",
+      "evaluate",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/bundles/cand_01_mame",
+      "--profile",
+      "research",
+      "--acquisition-store",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/acquisition_store",
+      "--evidence-root",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/proof_out/cand_01_mame",
+      "--json"
+    ],
+    "exit_code": 40
+  },
+  {
+    "label": "import_cand_01_mame",
+    "cmd": [
+      "/run/media/howlcipher/tallgeese/dev/howldream/.venv/bin/python",
+      "-m",
+      "howldream.cli",
+      "import-proof",
+      "--bundle",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/bundles/cand_01_mame",
+      "--result",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/results/cand_01_mame_proof_result.json",
+      "--out",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/assessments/cand_01_mame_assessment.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "label": "export_cand_02_cross_cost",
+    "cmd": [
+      "/run/media/howlcipher/tallgeese/dev/howldream/.venv/bin/python",
+      "-m",
+      "howldream.cli",
+      "export-proof",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/inputs/cand_02_cross_cost_candidate.json",
+      "--evidence",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/inputs/cand_02_cross_cost_evidence.json",
+      "--out",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/bundles/cand_02_cross_cost"
+    ],
+    "exit_code": 0
+  },
+  {
+    "label": "evaluate_cand_02_cross_cost",
+    "cmd": [
+      "/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python",
+      "-m",
+      "howlproof.cli",
+      "evaluate",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/bundles/cand_02_cross_cost",
+      "--profile",
+      "research",
+      "--acquisition-store",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/acquisition_store",
+      "--evidence-root",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/proof_out/cand_02_cross_cost",
+      "--json"
+    ],
+    "exit_code": 40
+  },
+  {
+    "label": "import_cand_02_cross_cost",
+    "cmd": [
+      "/run/media/howlcipher/tallgeese/dev/howldream/.venv/bin/python",
+      "-m",
+      "howldream.cli",
+      "import-proof",
+      "--bundle",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/bundles/cand_02_cross_cost",
+      "--result",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/results/cand_02_cross_cost_proof_result.json",
+      "--out",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/assessments/cand_02_cross_cost_assessment.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "label": "export_cand_03_scoped_mutant",
+    "cmd": [
+      "/run/media/howlcipher/tallgeese/dev/howldream/.venv/bin/python",
+      "-m",
+      "howldream.cli",
+      "export-proof",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/inputs/cand_03_scoped_mutant_candidate.json",
+      "--evidence",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/inputs/cand_03_scoped_mutant_evidence.json",
+      "--out",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/bundles/cand_03_scoped_mutant"
+    ],
+    "exit_code": 0
+  },
+  {
+    "label": "evaluate_cand_03_scoped_mutant",
+    "cmd": [
+      "/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python",
+      "-m",
+      "howlproof.cli",
+      "evaluate",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/bundles/cand_03_scoped_mutant",
+      "--profile",
+      "research",
+      "--acquisition-store",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/acquisition_store",
+      "--evidence-root",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/proof_out/cand_03_scoped_mutant",
+      "--json"
+    ],
+    "exit_code": 40
+  },
+  {
+    "label": "import_cand_03_scoped_mutant",
+    "cmd": [
+      "/run/media/howlcipher/tallgeese/dev/howldream/.venv/bin/python",
+      "-m",
+      "howldream.cli",
+      "import-proof",
+      "--bundle",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/bundles/cand_03_scoped_mutant",
+      "--result",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/results/cand_03_scoped_mutant_proof_result.json",
+      "--out",
+      "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/m2-microstudy-2026-11-05/assessments/cand_03_scoped_mutant_assessment.json"
+    ],
+    "exit_code": 0
+  }
+]
