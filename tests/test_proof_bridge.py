@@ -227,6 +227,44 @@ def test_natural_language_candidate_marks_extraction(tmp_path):
     assert all(c["check"] is None for c in bundle["claims"])
 
 
+def test_export_auto_derives_calc_and_fact_checks(tmp_path):
+    claims = [
+        sclaim("c-calc", "125 * 16 = 2000", kind="CALC"),
+        sclaim("c-fact", "latency_ms=50", kind="FACT"),
+        sclaim("c-idea", "Build a high throughput cache", kind="IDEA"),
+    ]
+    cand = candidate(claims=claims)
+    bundle = export_proof(cand, [], tmp_path / "auto_checks")
+
+    by_id = {c["claim_id"]: c for c in bundle["claims"]}
+    
+    # CALC claim gained arithmetic check
+    assert by_id["c-calc"]["category"] == "TECHNICAL"
+    assert by_id["c-calc"]["check"] == {
+        "type": "arithmetic",
+        "expression": "125 * 16",
+        "op": "eq",
+        "expected": "2000",
+    }
+    assert by_id["c-calc"]["falsification"] == "refuted if 125 * 16 != 2000"
+    assert by_id["c-calc"]["falsification_basis"] == "derived_from_calc"
+
+    # FACT claim gained fact_compare check
+    assert by_id["c-fact"]["category"] == "EMPIRICAL"
+    assert by_id["c-fact"]["check"] == {
+        "type": "fact_compare",
+        "fact": "latency_ms",
+        "op": "eq",
+        "expected": "50",
+        "tolerance": "0",
+    }
+    assert by_id["c-fact"]["falsification_basis"] == "derived_from_fact"
+
+    # IDEA claim remains without check
+    assert by_id["c-idea"]["category"] == "HYPOTHESIS"
+    assert by_id["c-idea"]["check"] is None
+
+
 # -- import: the mapping table -----------------------------------------------------------
 
 

@@ -2,6 +2,24 @@
 
 ## Unreleased
 
+Anti-reinvention prior art research and re-dreaming loop (`howldream.prior_art`):
+Detects when dreamed candidates duplicate existing concepts or prior art before promoting
+them into exploration or evaluation. Implements `PriorArtResearcher` protocol with `MockPriorArt`,
+`LedgerPriorArt`, `CommandPriorArt` (shell command / script delegator), and `WebSearchPriorArt`.
+Integrates into `engine.run()` and `engine.explore()`: when prior art is detected, the candidate
+is classified as `WHEEL_REINVENTED`, the captured concept is registered in `explored_families`,
+and the generator enters a bounded retry loop prompting the model to explore uncaptured
+architectures. Prior art match details and novelty status are preserved in candidate provenance.
+
+Auto-derived validation checks in Dream-to-Proof bridge (`howldream.proof_bridge`):
+`export-proof` now automatically extracts arithmetic operations from `CALC:` proposition lines
+(`{left} {op} {right} == {expected}`) into `arithmetic` checks and key-value equality from
+`FACT:` proposition lines into `fact_compare` checks, eliminating the manual check authoring
+bottleneck between HowlDream generation and HowlProof evaluation.
+
+Added `--prior-art-command` to `howldream explore` CLI to allow external scripts or web-search
+tools to gate candidate ideation against existing art.
+
 Publish canonical JSON Schema for `howl.claim_bundle/v1` (`schemas/howl.claim_bundle.v1.schema.json`).
 Models `ClaimBundle`, `BundleCandidate`, `BundleAuthorship`, `BundleClaim`, `BundleEvidenceEntry`,
 and `BundleLineage` in `src/howldream/contracts.py` as strict envelopes. Adds two new tests in
