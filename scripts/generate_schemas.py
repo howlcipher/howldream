@@ -20,6 +20,7 @@ from typing import Any
 from howldream.contracts import (
     CandidateAssessment,
     CandidateHandoff,
+    ClaimBundle,
     DevelopmentResult,
     ExplorationRequest,
     ExplorationResult,
@@ -53,6 +54,11 @@ ENVELOPES: list[tuple[str, type[Any], str]] = [
         "howl.exploration_result.v1",
         ExplorationResult,
         "HowlDream Exploration Result (howl.exploration_result/v1)",
+    ),
+    (
+        "howl.claim_bundle.v1",
+        ClaimBundle,
+        "Howl Ecosystem Claim Bundle (howl.claim_bundle/v1)",
     ),
 ]
 

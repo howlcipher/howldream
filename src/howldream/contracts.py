@@ -8,11 +8,11 @@ from uuid import uuid4
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
-from howldream.schema import Evidence
+from howldream.schema import AcquisitionPointer, Evidence
 
 
 class StrictModel(BaseModel):
-    model_config = ConfigDict(extra="forbid", strict=True)
+    model_config = ConfigDict(extra="forbid", strict=True, populate_by_name=True)
 
 
 class ExplorationAuthority(StrictModel):
@@ -349,6 +349,92 @@ class ExplorationResult(StrictModel):
     )
     provenance: Provenance = Field(default_factory=Provenance)
     descent_dag: DescentDAG = Field(default_factory=DescentDAG)
+
+
+class BundleAuthorship(StrictModel):
+    """Authorship attribution for a claim bundle: who authored the underlying ideas."""
+
+    kind: Literal[
+        "EXTERNAL_AUTHORED",
+        "MODEL_GENERATED",
+        "MOCK",
+        "SYNTHETIC_FIXTURE",
+        "UNKNOWN",
+    ]
+    component: str | None = None
+    provider: str | None = None
+    model: str | None = None
+    note: str | None = None
+
+
+class BundleCandidate(StrictModel):
+    """Candidate identity and snapshot metadata inside a claim bundle."""
+
+    candidate_id: str = Field(min_length=1, max_length=200)
+    source_run_id: str | None = None
+    parent_request_id: str | None = None
+    objective: str | None = None
+    text: str | None = None
+    status: str | None = None
+    trust: str | None = None
+
+
+class BundleClaim(StrictModel):
+    """An individual research claim evaluated by HowlProof: howl.claim_bundle/v1."""
+
+    claim_id: str = Field(min_length=1, max_length=200)
+    text: str = Field(min_length=1, max_length=10000)
+    category: Literal["EMPIRICAL", "TECHNICAL", "HYPOTHESIS", "VALUE_JUDGMENT"]
+    evidence_refs: list[str] = Field(default_factory=list)
+    assumption: bool = False
+    source_kind: str | None = None
+    category_basis: str | None = None
+    origin: str | None = None
+    falsification: str | None = None
+    falsification_basis: str | None = None
+    check: dict[str, Any] | None = None
+    subject_terms: list[str] | None = None
+    checked_proposition: str | None = None
+    scope: dict[str, str] | None = None
+    verification_plan: dict[str, Any] | None = None
+
+
+class BundleEvidenceEntry(StrictModel):
+    """Evidence entry metadata inside a claim bundle pointing to an evidence file."""
+
+    id: str = Field(min_length=1, max_length=200)
+    path: str = Field(min_length=1, max_length=500)
+    sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    source_type: str | None = None
+    produced_by: str | None = None
+    source_ref: str | None = None
+    independent: bool = False
+    represents_observed_reality: bool | None = None
+    published_at: str | None = None
+    acquisition: AcquisitionPointer | None = None
+    methodology_quote: str | None = None
+
+
+class BundleLineage(StrictModel):
+    """Lineage metadata recorded when exporting a claim bundle."""
+
+    exported_by: str | None = None
+    exporter_version: str | None = None
+    candidate_created_at: str | None = None
+    candidate_sha256: str | None = None
+
+
+class ClaimBundle(StrictModel):
+    """Standardized claim bundle envelope: howl.claim_bundle/v1."""
+
+    schema_version: Literal["howl.claim_bundle/v1"] = Field(
+        default="howl.claim_bundle/v1", alias="schema"
+    )
+    candidate: BundleCandidate
+    authorship: BundleAuthorship
+    claims: list[BundleClaim] = Field(default_factory=list)
+    evidence: list[BundleEvidenceEntry] = Field(default_factory=list)
+    lineage: BundleLineage = Field(default_factory=BundleLineage)
 
 
 def create_request_id() -> str:

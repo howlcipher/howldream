@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+Publish canonical JSON Schema for `howl.claim_bundle/v1` (`schemas/howl.claim_bundle.v1.schema.json`).
+Models `ClaimBundle`, `BundleCandidate`, `BundleAuthorship`, `BundleClaim`, `BundleEvidenceEntry`,
+and `BundleLineage` in `src/howldream/contracts.py` as strict envelopes. Adds two new tests in
+`tests/test_authority_invariants.py` validating schema fidelity and proving all dogfood bundles
+validate against the published schema.
+
 Contract schema synchronization: regenerate `schemas/howl.exploration.v1.schema.json` to
 incorporate `AcquisitionPointer` and evidence trust additions from M2. Expose `check_drift`
 in `scripts/generate_schemas.py` and wire it into `tests/test_authority_invariants.py`

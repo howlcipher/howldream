@@ -30,6 +30,7 @@ without regenerating). This is the drift-detection mechanism referenced in
 | `howl.assessment.v1.schema.json` | `CandidateAssessment` (`howl.assessment/v1`) | HowlFrame | HowlCreate, HowlDream |
 | `howl.development_result.v1.schema.json` | `DevelopmentResult` (`howl.development_result/v1`) | HowlCreate | downstream review |
 | `howl.exploration_result.v1.schema.json` | `ExplorationResult` (`howl.exploration_result/v1`) | HowlDream | HowlPlane, HowlRelay |
+| `howl.claim_bundle.v1.schema.json` | `ClaimBundle` (`howl.claim_bundle/v1`) | HowlDream (`export-proof`), external agents | HowlProof (`evaluate`) |
 
 This list was derived by finding every model in `contracts.py` carrying a
 `schema_version: Literal[...]` field. If a new envelope family is added to
