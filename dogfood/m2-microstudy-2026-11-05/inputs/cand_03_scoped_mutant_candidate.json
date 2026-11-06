@@ -1,0 +1,68 @@
+{
+  "candidate_id": "micro/03-scoped-mutant",
+  "source_run_id": "microstudy-20261105",
+  "parent_request_id": "microstudy-20261105",
+  "objective": "Verify agent documentation in Mutant repository, preserving scoped refutation boundaries.",
+  "text": "Mutant documentation features and agent integration availability.",
+  "claims": [
+    {
+      "id": "c03-mutant-readme-agent",
+      "candidate_id": "micro/03-scoped-mutant",
+      "kind": "FACT",
+      "text": "The Mutant README documents AI agent integration.",
+      "status": "UNVERIFIED",
+      "category": "EMPIRICAL",
+      "evidence_refs": [
+        "mutant_readme"
+      ],
+      "check": {
+        "type": "text_presence",
+        "term": "agent",
+        "expect": "present"
+      },
+      "subject_terms": [
+        "Mutant"
+      ],
+      "checked_proposition": "The text of the Mutant README contains the word 'agent'",
+      "scope": {
+        "artifact": "mbj/mutant README.md",
+        "extent": "SINGLE_FILE"
+      }
+    },
+    {
+      "id": "c03-mutant-skill-agent",
+      "candidate_id": "micro/03-scoped-mutant",
+      "kind": "FACT",
+      "text": "The Mutant repository provides AI agent integration via SKILL.md.",
+      "status": "UNVERIFIED",
+      "category": "EMPIRICAL",
+      "evidence_refs": [
+        "mutant_skill"
+      ],
+      "check": {
+        "type": "text_presence",
+        "term": "agent",
+        "expect": "present"
+      },
+      "subject_terms": [
+        "Mutant"
+      ],
+      "checked_proposition": "The text of Mutant SKILL.md contains the word 'agent'",
+      "scope": {
+        "artifact": "mbj/mutant SKILL.md",
+        "extent": "SINGLE_FILE"
+      }
+    }
+  ],
+  "assumptions": [],
+  "provenance": {
+    "producer_component": "howldream",
+    "observation_kind": "EXTERNALLY_OBSERVED",
+    "origin": {
+      "component": "microstudy-runner",
+      "provider": null,
+      "model": null
+    },
+    "created_at": "2026-11-05T20:00:00Z"
+  }
+}

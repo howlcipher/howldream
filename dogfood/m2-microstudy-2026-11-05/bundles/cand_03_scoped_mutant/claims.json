@@ -1,0 +1,130 @@
+{
+  "authorship": {
+    "component": "microstudy-runner",
+    "kind": "EXTERNAL_AUTHORED",
+    "model": null,
+    "provider": null
+  },
+  "candidate": {
+    "candidate_id": "micro/03-scoped-mutant",
+    "objective": "Verify agent documentation in Mutant repository, preserving scoped refutation boundaries.",
+    "parent_request_id": "microstudy-20261105",
+    "source_run_id": "microstudy-20261105",
+    "status": "GENERATED",
+    "text": "Mutant documentation features and agent integration availability.",
+    "trust": "UNVERIFIED"
+  },
+  "claims": [
+    {
+      "assumption": false,
+      "category": "EMPIRICAL",
+      "category_basis": "explicit",
+      "check": {
+        "expect": "present",
+        "term": "agent",
+        "type": "text_presence"
+      },
+      "checked_proposition": "The text of the Mutant README contains the word 'agent'",
+      "claim_id": "c03-mutant-readme-agent",
+      "evidence_refs": [
+        "mutant_readme"
+      ],
+      "falsification": null,
+      "falsification_basis": null,
+      "origin": "SOURCE_STRUCTURED",
+      "scope": {
+        "artifact": "mbj/mutant README.md",
+        "extent": "SINGLE_FILE"
+      },
+      "source_kind": "FACT",
+      "subject_terms": [
+        "Mutant"
+      ],
+      "text": "The Mutant README documents AI agent integration.",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "compare against independent primary-source data",
+          "record units, dates and methodology of every source"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    },
+    {
+      "assumption": false,
+      "category": "EMPIRICAL",
+      "category_basis": "explicit",
+      "check": {
+        "expect": "present",
+        "term": "agent",
+        "type": "text_presence"
+      },
+      "checked_proposition": "The text of Mutant SKILL.md contains the word 'agent'",
+      "claim_id": "c03-mutant-skill-agent",
+      "evidence_refs": [
+        "mutant_skill"
+      ],
+      "falsification": null,
+      "falsification_basis": null,
+      "origin": "SOURCE_STRUCTURED",
+      "scope": {
+        "artifact": "mbj/mutant SKILL.md",
+        "extent": "SINGLE_FILE"
+      },
+      "source_kind": "FACT",
+      "subject_terms": [
+        "Mutant"
+      ],
+      "text": "The Mutant repository provides AI agent integration via SKILL.md.",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "compare against independent primary-source data",
+          "record units, dates and methodology of every source"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "acquisition": {
+        "content_sha256": "50853f45ced3f829db853ce770c6a05bdedff7906226d720782486032c969ee0",
+        "id": "acq-d2069e537615e8aa"
+      },
+      "id": "mutant_readme",
+      "independent": true,
+      "path": "evidence/001-mutant_readme.json",
+      "produced_by": "mbj/mutant",
+      "published_at": null,
+      "represents_observed_reality": true,
+      "sha256": "e2616aa615b84dc485db7daf0054ca3126b612306758ec11eaf318f8cee0a9a3",
+      "source_ref": "https://github.com/mbj/mutant",
+      "source_type": "EXTERNAL_OBSERVATION"
+    },
+    {
+      "acquisition": {
+        "content_sha256": "ef8f4b28a556eab88341e0585552f13049e1c7a0ee14e69496ac63452c6cf1a6",
+        "id": "acq-d4af534c49f50803"
+      },
+      "id": "mutant_skill",
+      "independent": true,
+      "path": "evidence/002-mutant_skill.json",
+      "produced_by": "mbj/mutant",
+      "published_at": null,
+      "represents_observed_reality": true,
+      "sha256": "f2510326f7a6f936971cbdf5b5ecfa0518bf6063f158f243dd3042fa18d219ca",
+      "source_ref": "https://github.com/mbj/mutant",
+      "source_type": "EXTERNAL_OBSERVATION"
+    }
+  ],
+  "lineage": {
+    "candidate_created_at": "2026-11-05T20:00:00Z",
+    "candidate_sha256": "ee857b5f56a2dd6442205ce1f93f3c66a7a1919d3d7211d79487e3f4789eacd8",
+    "exported_by": "howldream",
+    "exporter_version": "0.4.5"
+  },
+  "schema": "howl.claim_bundle/v1"
+}

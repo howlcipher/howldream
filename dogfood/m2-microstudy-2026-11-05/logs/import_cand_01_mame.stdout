@@ -1,0 +1,137 @@
+{
+  "schema_version": "howl.assessment/v1",
+  "assessment_id": "assess-proof-087d120df067aa5e",
+  "candidate_id": "micro/01-mame-benchmark",
+  "disposition": "INVESTIGATE",
+  "reason": "all 1 claim(s) supported within their stated scope by checked evidence; no approval to develop is granted by this result",
+  "evidence": [
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "c01-ruby-generation-time",
+      "claim_text": "Ruby completes the mini-git generation benchmark in approximately 73.1 seconds.",
+      "category": "EMPIRICAL",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "SUPPORTED",
+      "method": "fact_compare",
+      "explanation": "evidence mame_bench satisfies ruby_time_seconds approx 73.1 s",
+      "evidence_considered": [
+        {
+          "id": "mame_bench",
+          "integrity": "ok",
+          "independent": true,
+          "source_type": "EXTERNAL_OBSERVATION",
+          "relation": "supports",
+          "published_at": "2026-03-15T00:00:00Z",
+          "sha256": "f1e80228d8d14682ab85d30225bdd15c59d31d7483be379ffff95340ba9c8701",
+          "claimed_provenance": {
+            "source_type": "EXTERNAL_OBSERVATION",
+            "independent": true,
+            "represents_observed_reality": true,
+            "source_ref": "https://github.com/mame/ai-coding-lang-bench",
+            "produced_by": "mame",
+            "note": "as declared by the bundle author; not verified provenance"
+          },
+          "trust": {
+            "integrity": "ok",
+            "acquisition": "OBSERVED",
+            "acquisition_id": "acq-6f6954384423ac24",
+            "acquisition_kind": "OPERATOR_FILE",
+            "acquisition_method": "operator_supplied_file",
+            "retrieved_at": "2026-11-06T01:19:53Z",
+            "observed_location": "https://github.com/mame/ai-coding-lang-bench",
+            "content_sha256": "89089a7650fb22a885c76cd7b328961ae4f26d22cdacd8539c1cdc193579fd14",
+            "reference_class": "URL",
+            "source_origin": "OPERATOR_ATTESTED_FILE",
+            "evidence_form": "EXTRACT_OF_ACQUIRED_SOURCE",
+            "facts_located_in_source": true,
+            "relevance": "STRUCTURAL_MATCH",
+            "methodology": "RECORDED"
+          },
+          "eligible": true,
+          "observed": "73.1 s",
+          "ineligible_reasons": []
+        }
+      ],
+      "conflicts": [],
+      "not_checked": [
+        "whether the source is correct, current or representative"
+      ],
+      "untrusted_flags": [],
+      "assurance": {
+        "trust_model": "howl.evidence_trust/v1",
+        "check_passed": true,
+        "evidence_integrity": "ok",
+        "source_origin": "OPERATOR_ATTESTED_FILE",
+        "claim_relevance": "STRUCTURAL_MATCH",
+        "methodology": "RECORDED",
+        "corroboration": "SINGLE_SOURCE",
+        "corroborated": false,
+        "input_provenance": "SEE_EVIDENCE",
+        "real_world_eligible": true,
+        "real_world_truth": "UNRESOLVED",
+        "evidence_status": "SOURCE_VERIFIED_SCOPED"
+      },
+      "check_outcome": "SUPPORTED",
+      "checked_proposition": "The Claude Code mini-git benchmark reports Ruby completion time of approximately 73.1 seconds.",
+      "scope": {
+        "artifact": "mame/ai-coding-lang-bench README.md",
+        "extent": "BENCHMARK_REPORT"
+      },
+      "scope_limited": true,
+      "broader_question": "NOT_EVALUATED",
+      "also_found_in": []
+    },
+    {
+      "kind": "proof_evidence_summary",
+      "evidence_status": "ALL_CLAIMS_SOURCE_VERIFIED",
+      "claims": 1,
+      "source_verified_or_deterministic": 1,
+      "scope_limited_refutations": 0,
+      "development_approval": "NOT_GRANTED",
+      "note": "a research assessment is evidence, not authorization: building, deploying, purchasing or publishing needs a separate explicit approval"
+    }
+  ],
+  "unresolved_claims": [],
+  "contradictions": [],
+  "confidence": "MEDIUM",
+  "limitations": [
+    "claim results hold only for the checks the candidate's author supplied; independence of origin is not established and real-world truth stays unresolved",
+    "this assessment does not approve development; a separate explicit approval is required"
+  ],
+  "authority": {
+    "type": "ADVISORY",
+    "executable": false
+  },
+  "provenance": {
+    "run_id": "microstudy-20261105",
+    "producer_component": "howldream",
+    "producer_version": "0.4.5",
+    "model_or_provider": null,
+    "observation_kind": "DETERMINISTIC",
+    "created_at": "2026-11-06T01:19:55.135199+00:00",
+    "transformations": [
+      "howlproof_claim_import"
+    ],
+    "source_candidate_id": "micro/01-mame-benchmark",
+    "bundle_sha256": "7c28b111f1aac2b2aec73f000e95891dec523930bba8d03a76e870c9777034c4",
+    "authorship": {
+      "component": "microstudy-runner",
+      "kind": "EXTERNAL_AUTHORED",
+      "model": null,
+      "provider": null
+    },
+    "proof": {
+      "run_id": "hp-20261106-011955-f33763f0c37b",
+      "version": "0.2.0b1",
+      "verdict": "INSUFFICIENT_EVIDENCE",
+      "deciding_rule": "no_acceptance_criteria",
+      "started_at": "2026-11-06T01:19:55.065642+00:00",
+      "completed_at": "2026-11-06T01:19:55.135199+00:00",
+      "unresolved_risks": []
+    },
+    "claim_statuses": {
+      "c01-ruby-generation-time": "SUPPORTED"
+    }
+  }
+}

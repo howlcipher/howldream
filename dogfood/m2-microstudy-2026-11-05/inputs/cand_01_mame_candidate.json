@@ -1,0 +1,49 @@
+{
+  "candidate_id": "micro/01-mame-benchmark",
+  "source_run_id": "microstudy-20261105",
+  "parent_request_id": "microstudy-20261105",
+  "objective": "Verify empirical benchmark measurement using primary source repository data and quoted methodology.",
+  "text": "Claude Code mini-git benchmark: Ruby generation completes in approximately 73.1 seconds per run.",
+  "claims": [
+    {
+      "id": "c01-ruby-generation-time",
+      "candidate_id": "micro/01-mame-benchmark",
+      "kind": "FACT",
+      "text": "Ruby completes the mini-git generation benchmark in approximately 73.1 seconds.",
+      "status": "UNVERIFIED",
+      "category": "EMPIRICAL",
+      "evidence_refs": [
+        "mame_bench"
+      ],
+      "check": {
+        "type": "fact_compare",
+        "fact": "ruby_time_seconds",
+        "op": "approx",
+        "expected": "73.1 s",
+        "tolerance": "0.1",
+        "nature": "measurement"
+      },
+      "subject_terms": [
+        "Ruby",
+        "Claude Code",
+        "mini-git"
+      ],
+      "checked_proposition": "The Claude Code mini-git benchmark reports Ruby completion time of approximately 73.1 seconds.",
+      "scope": {
+        "artifact": "mame/ai-coding-lang-bench README.md",
+        "extent": "BENCHMARK_REPORT"
+      }
+    }
+  ],
+  "assumptions": [],
+  "provenance": {
+    "producer_component": "howldream",
+    "observation_kind": "EXTERNALLY_OBSERVED",
+    "origin": {
+      "component": "microstudy-runner",
+      "provider": null,
+      "model": null
+    },
+    "created_at": "2026-11-05T20:00:00Z"
+  }
+}

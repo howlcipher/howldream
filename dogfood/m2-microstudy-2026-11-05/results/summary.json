@@ -1,0 +1,110 @@
+{
+  "cand_01_mame": {
+    "candidate_id": "micro/01-mame-benchmark",
+    "proof_verdict": "INSUFFICIENT_EVIDENCE",
+    "dream_disposition": "INVESTIGATE",
+    "dream_confidence": "MEDIUM",
+    "dream_reason": "all 1 claim(s) supported within their stated scope by checked evidence; no approval to develop is granted by this result",
+    "evidence_summary": {
+      "kind": "proof_evidence_summary",
+      "evidence_status": "ALL_CLAIMS_SOURCE_VERIFIED",
+      "claims": 1,
+      "source_verified_or_deterministic": 1,
+      "scope_limited_refutations": 0,
+      "development_approval": "NOT_GRANTED",
+      "note": "a research assessment is evidence, not authorization: building, deploying, purchasing or publishing needs a separate explicit approval"
+    },
+    "claims": {
+      "c01-ruby-generation-time": {
+        "claim_status": "SUPPORTED",
+        "check_outcome": "SUPPORTED",
+        "scope_limited": true,
+        "source_origin": "OPERATOR_ATTESTED_FILE",
+        "evidence_status": "SOURCE_VERIFIED_SCOPED",
+        "corroboration": "SINGLE_SOURCE",
+        "real_world_truth": "UNRESOLVED"
+      }
+    }
+  },
+  "cand_02_cross_cost": {
+    "candidate_id": "micro/02-cross-lang-cost",
+    "proof_verdict": "INSUFFICIENT_EVIDENCE",
+    "dream_disposition": "UNRESOLVED",
+    "dream_confidence": "LOW",
+    "dream_reason": "1 claim(s) remain unresolved",
+    "evidence_summary": {
+      "kind": "proof_evidence_summary",
+      "evidence_status": "PARTIALLY_VERIFIED",
+      "claims": 3,
+      "source_verified_or_deterministic": 2,
+      "scope_limited_refutations": 0,
+      "development_approval": "NOT_GRANTED",
+      "note": "a research assessment is evidence, not authorization: building, deploying, purchasing or publishing needs a separate explicit approval"
+    },
+    "claims": {
+      "c02-ruby-cost": {
+        "claim_status": "SUPPORTED",
+        "check_outcome": "SUPPORTED",
+        "scope_limited": false,
+        "source_origin": "OPERATOR_ATTESTED_FILE",
+        "evidence_status": "SOURCE_VERIFIED",
+        "corroboration": "SINGLE_SOURCE",
+        "real_world_truth": "UNRESOLVED"
+      },
+      "c02-cost-reduction-arithmetic": {
+        "claim_status": "SUPPORTED",
+        "check_outcome": "SUPPORTED",
+        "scope_limited": false,
+        "source_origin": "NOT_EXAMINED",
+        "evidence_status": "DETERMINISTIC_CHECK_ONLY",
+        "corroboration": "NONE",
+        "real_world_truth": "NOT_ESTABLISHED"
+      },
+      "c02-placeholder-token-reduction": {
+        "claim_status": "INCONCLUSIVE",
+        "check_outcome": "SUPPORTED",
+        "scope_limited": false,
+        "source_origin": "PLACEHOLDER",
+        "evidence_status": "SUPPLIED_DATA_AGREES",
+        "corroboration": "NONE",
+        "real_world_truth": "UNRESOLVED"
+      }
+    }
+  },
+  "cand_03_scoped_mutant": {
+    "candidate_id": "micro/03-scoped-mutant",
+    "proof_verdict": "INSUFFICIENT_EVIDENCE",
+    "dream_disposition": "INVESTIGATE",
+    "dream_confidence": "LOW",
+    "dream_reason": "1 claim(s) refuted (1 only within a limited scope); 0 unresolved",
+    "evidence_summary": {
+      "kind": "proof_evidence_summary",
+      "evidence_status": "PARTIALLY_VERIFIED",
+      "claims": 2,
+      "source_verified_or_deterministic": 1,
+      "scope_limited_refutations": 1,
+      "development_approval": "NOT_GRANTED",
+      "note": "a research assessment is evidence, not authorization: building, deploying, purchasing or publishing needs a separate explicit approval"
+    },
+    "claims": {
+      "c03-mutant-readme-agent": {
+        "claim_status": "REFUTED",
+        "check_outcome": "REFUTED",
+        "scope_limited": true,
+        "source_origin": "OPERATOR_ATTESTED_FILE",
+        "evidence_status": "SOURCE_VERIFIED_SCOPED",
+        "corroboration": "SINGLE_SOURCE",
+        "real_world_truth": "UNRESOLVED"
+      },
+      "c03-mutant-skill-agent": {
+        "claim_status": "SUPPORTED",
+        "check_outcome": "SUPPORTED",
+        "scope_limited": true,
+        "source_origin": "OPERATOR_ATTESTED_FILE",
+        "evidence_status": "SOURCE_VERIFIED_SCOPED",
+        "corroboration": "SINGLE_SOURCE",
+        "real_world_truth": "UNRESOLVED"
+      }
+    }
+  }
+}
