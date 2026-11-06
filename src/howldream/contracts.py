@@ -428,7 +428,7 @@ class ClaimBundle(StrictModel):
     """Standardized claim bundle envelope: howl.claim_bundle/v1."""
 
     schema_version: Literal["howl.claim_bundle/v1"] = Field(
-        default="howl.claim_bundle/v1", alias="schema"
+        ..., alias="schema"
     )
     candidate: BundleCandidate
     authorship: BundleAuthorship
