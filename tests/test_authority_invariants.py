@@ -312,3 +312,85 @@ def test_checked_in_schemas_match_contracts_py_without_drift():
 
     has_drift, drifted = mod.check_drift(SCHEMAS_DIR)
     assert not has_drift, f"Schema drift detected in {drifted}; run scripts/generate_schemas.py"
+
+
+def test_claim_bundle_schema_validates_canonical_bundle():
+    """howl.claim_bundle/v1 validates across Pydantic and JSON Schema layers."""
+    from howldream.contracts import ClaimBundle
+
+    schema = load_schema("howl.claim_bundle.v1")
+    bundle_data = {
+        "schema": "howl.claim_bundle/v1",
+        "candidate": {
+            "candidate_id": "cand-test-001",
+            "source_run_id": "run-001",
+            "objective": "Test candidate",
+            "text": "Idea text",
+            "status": "GENERATED",
+            "trust": "UNVERIFIED",
+        },
+        "authorship": {
+            "kind": "EXTERNAL_AUTHORED",
+            "component": "test-runner",
+        },
+        "claims": [
+            {
+                "claim_id": "c001",
+                "text": "Claim text",
+                "category": "EMPIRICAL",
+                "evidence_refs": ["e001"],
+                "check": {
+                    "type": "fact_compare",
+                    "fact": "latency",
+                    "op": "le",
+                    "expected": "50 ms",
+                },
+                "subject_terms": ["Latency"],
+            }
+        ],
+        "evidence": [
+            {
+                "id": "e001",
+                "path": "evidence/001-test.json",
+                "sha256": "a" * 64,
+                "independent": True,
+                "source_type": "EXTERNAL_OBSERVATION",
+            }
+        ],
+        "lineage": {
+            "exported_by": "howldream",
+            "exporter_version": "0.4.5",
+        },
+    }
+    # Both layers succeed
+    ClaimBundle.model_validate(bundle_data)
+    jsonschema.validate(bundle_data, schema)
+
+    # Injected authority / executable is rejected by both layers (strict / additionalProperties: false)
+    injected = {**bundle_data, "authority": {"type": "EXECUTIVE", "executable": True}}
+    with pytest.raises(ValidationError):
+        ClaimBundle.model_validate(injected)
+    with pytest.raises(jsonschema.ValidationError):
+        jsonschema.validate(injected, schema)
+
+    # Invalid category rejected
+    bad_cat = json.loads(json.dumps(bundle_data))
+    bad_cat["claims"][0]["category"] = "UNSUPPORTED_CATEGORY"
+    with pytest.raises(ValidationError):
+        ClaimBundle.model_validate(bad_cat)
+    with pytest.raises(jsonschema.ValidationError):
+        jsonschema.validate(bad_cat, schema)
+
+
+def test_exported_claim_bundles_validate_against_bundle_schema():
+    """All exported claims.json bundles in dogfood validate against the published schema."""
+    schema = load_schema("howl.claim_bundle.v1")
+    repo_root = Path(__file__).resolve().parent.parent
+    bundles = [
+        p for p in repo_root.glob("dogfood/**/claims.json")
+        if isinstance(json.loads(p.read_text()), dict)
+    ]
+    assert len(bundles) >= 4, f"Expected at least 4 bundle files, found {len(bundles)}"
+    for bundle_path in bundles:
+        data = json.loads(bundle_path.read_text())
+        jsonschema.validate(data, schema)
