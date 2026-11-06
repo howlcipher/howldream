@@ -1,5 +1,27 @@
 {
   "$defs": {
+    "AcquisitionPointer": {
+      "additionalProperties": false,
+      "description": "Points at a HowlProof acquisition record. A pointer is a claim; Proof verifies it\nagainst the operator's acquisition store, and Dream never treats it as proof.",
+      "properties": {
+        "content_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Content Sha256",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^acq-[0-9a-f]{16}$",
+          "title": "Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "content_sha256"
+      ],
+      "title": "AcquisitionPointer",
+      "type": "object"
+    },
     "CandidateHandoff": {
       "additionalProperties": false,
       "description": "Speculative candidate for cross-component evaluation: howl.candidate/v1.",
@@ -176,6 +198,17 @@
       "additionalProperties": false,
       "description": "Supplied evidence with explicit validation-source provenance.",
       "properties": {
+        "acquisition": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AcquisitionPointer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
         "facts": {
           "additionalProperties": {
             "type": "string"
@@ -186,6 +219,12 @@
         "id": {
           "pattern": "^[a-zA-Z0-9_./-]{1,100}$",
           "title": "Id",
+          "type": "string"
+        },
+        "methodology_quote": {
+          "default": "",
+          "maxLength": 2000,
+          "title": "Methodology Quote",
           "type": "string"
         },
         "provenance": {

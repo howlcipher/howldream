@@ -298,3 +298,17 @@ def test_candidate_assessment_accepts_reason_both_layers(schemas):
     assert assessment.authority.executable is False
     # Schema validation also succeeds without additionalProperties violation
     jsonschema.validate(payload, schemas["howl.assessment.v1"])
+
+
+def test_checked_in_schemas_match_contracts_py_without_drift():
+    """Automates CI drift detection: checked-in schemas/ must exactly match contracts.py."""
+    import importlib.util
+
+    script_path = Path(__file__).resolve().parent.parent / "scripts" / "generate_schemas.py"
+    spec = importlib.util.spec_from_file_location("generate_schemas", script_path)
+    assert spec is not None and spec.loader is not None
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+
+    has_drift, drifted = mod.check_drift(SCHEMAS_DIR)
+    assert not has_drift, f"Schema drift detected in {drifted}; run scripts/generate_schemas.py"
