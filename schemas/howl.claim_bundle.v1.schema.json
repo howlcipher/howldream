@@ -561,12 +561,12 @@
     },
     "schema": {
       "const": "howl.claim_bundle/v1",
-      "default": "howl.claim_bundle/v1",
       "title": "Schema",
       "type": "string"
     }
   },
   "required": [
+    "schema",
     "candidate",
     "authorship"
   ],
