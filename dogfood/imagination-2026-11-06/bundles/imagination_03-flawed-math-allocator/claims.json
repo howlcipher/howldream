@@ -1,0 +1,54 @@
+{
+  "authorship": {
+    "component": null,
+    "kind": "UNKNOWN",
+    "model": null,
+    "note": "artifact carries no authorship records (legacy or hand-built)",
+    "provider": null
+  },
+  "candidate": {
+    "candidate_id": "imagination/03-flawed-math-allocator",
+    "objective": "Speculative chunked allocator arithmetic validation",
+    "parent_request_id": "req-imagination-20261106",
+    "source_run_id": "imagination-study-20261106",
+    "status": "GENERATED",
+    "text": "TITLE: Speculative chunked allocator\n\nA chunked memory allocator with an arithmetic claim.\nCALC: 1024 / 4 = 512",
+    "trust": "UNVERIFIED"
+  },
+  "claims": [
+    {
+      "assumption": false,
+      "category": "TECHNICAL",
+      "category_basis": "derived_from_calc",
+      "check": {
+        "expected": "512",
+        "expression": "1024 / 4",
+        "op": "eq",
+        "type": "arithmetic"
+      },
+      "claim_id": "c03-allocator-division-check",
+      "evidence_refs": [],
+      "falsification": "refuted if 1024 / 4 != 512",
+      "falsification_basis": "derived_from_calc",
+      "origin": "SOURCE_STRUCTURED",
+      "source_kind": "CALC",
+      "text": "1024 / 4 = 512",
+      "verification_plan": {
+        "grounded": true,
+        "methods": [
+          "author a deterministic experiment or executable check and supply it as a check"
+        ],
+        "note": "a proposed plan is not an acceptance test; only a supplied check is evaluated",
+        "status": "PROPOSED"
+      }
+    }
+  ],
+  "evidence": [],
+  "lineage": {
+    "candidate_created_at": "2026-11-06T22:06:00.990709+00:00",
+    "candidate_sha256": "76e36bc7d966dbe465f9a8065d60bb2ea1d3c78437b5fda152bf518b5170e6ae",
+    "exported_by": "howldream",
+    "exporter_version": "0.4.5"
+  },
+  "schema": "howl.claim_bundle/v1"
+}

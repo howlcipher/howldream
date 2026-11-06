@@ -186,3 +186,45 @@ def test_explore_retries_when_prior_art_reinvented_and_finds_novel_idea(tmp_path
     assert novel.provenance.model_extra.get("novelty_status") == "UNCAPTURED_PRIOR_ART"
     assert novel.provenance.model_extra.get("prior_art_checked") is True
 
+
+def test_search_prior_art_script_cli():
+    import json
+    import subprocess
+    import sys
+    from pathlib import Path
+
+    script = Path(__file__).resolve().parent.parent / "scripts" / "search_prior_art.py"
+    res1 = subprocess.run(
+        [sys.executable, str(script), "Redis key-value in-memory cache"],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    out1 = json.loads(res1.stdout)
+    assert out1["captured"] is True
+    assert "Redis" in out1["title"]
+
+    res2 = subprocess.run(
+        [sys.executable, str(script), "Hyper-dimensional holographic ring storage"],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    out2 = json.loads(res2.stdout)
+    assert out2["captured"] is False
+
+
+def test_command_prior_art_with_search_script():
+    import sys
+    from pathlib import Path
+
+    script = Path(__file__).resolve().parent.parent / "scripts" / "search_prior_art.py"
+    researcher = CommandPriorArt(f"{sys.executable} {script} {{query}}")
+    match = researcher.research("IDEA: Redis in-memory cache engine")
+    assert match is not None
+    assert "Redis" in match.title
+
+    no_match = researcher.research("IDEA: Novel non-volatile phase change ring memory")
+    assert no_match is None
+
+

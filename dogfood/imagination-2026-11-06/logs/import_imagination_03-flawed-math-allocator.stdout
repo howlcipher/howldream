@@ -1,0 +1,102 @@
+{
+  "schema_version": "howl.assessment/v1",
+  "assessment_id": "assess-proof-dcc10ae2fa1176ff",
+  "candidate_id": "imagination/03-flawed-math-allocator",
+  "disposition": "REJECT",
+  "reason": "all 1 claim(s) refuted",
+  "evidence": [
+    {
+      "kind": "proof_claim_result",
+      "claim_id": "c03-allocator-division-check",
+      "claim_text": "1024 / 4 = 512",
+      "category": "TECHNICAL",
+      "claim_origin": "SOURCE_STRUCTURED",
+      "assumption": false,
+      "claim_status": "REFUTED",
+      "method": "arithmetic",
+      "explanation": "1024 / 4 = 256; expected eq 512 -> does not hold",
+      "evidence_considered": [],
+      "conflicts": [],
+      "not_checked": [
+        "inputs of the expression were taken from the claim, not independently sourced"
+      ],
+      "untrusted_flags": [],
+      "assurance": {
+        "trust_model": "howl.evidence_trust/v1",
+        "check_passed": false,
+        "evidence_integrity": "not_applicable",
+        "source_origin": "NOT_EXAMINED",
+        "claim_relevance": "NOT_APPLICABLE",
+        "methodology": "NOT_EVALUATED",
+        "corroboration": "NONE",
+        "corroborated": false,
+        "input_provenance": "UNVERIFIED",
+        "real_world_eligible": false,
+        "real_world_truth": "NOT_ESTABLISHED",
+        "evidence_status": "DETERMINISTIC_CHECK_ONLY"
+      },
+      "check_outcome": "REFUTED",
+      "checked_proposition": "1024 / 4 = 512",
+      "scope": null,
+      "scope_limited": false,
+      "broader_question": "NOT_EVALUATED",
+      "also_found_in": []
+    },
+    {
+      "kind": "proof_evidence_summary",
+      "evidence_status": "PARTIALLY_VERIFIED",
+      "claims": 1,
+      "source_verified_or_deterministic": 0,
+      "scope_limited_refutations": 0,
+      "development_approval": "NOT_GRANTED",
+      "note": "a research assessment is evidence, not authorization: building, deploying, purchasing or publishing needs a separate explicit approval"
+    }
+  ],
+  "unresolved_claims": [],
+  "contradictions": [
+    "1024 / 4 = 512"
+  ],
+  "confidence": "HIGH",
+  "limitations": [
+    "claim results hold only for the checks the candidate's author supplied; independence of origin is not established and real-world truth stays unresolved",
+    "this assessment does not approve development; a separate explicit approval is required"
+  ],
+  "authority": {
+    "type": "ADVISORY",
+    "executable": false
+  },
+  "provenance": {
+    "run_id": "imagination-study-20261106",
+    "producer_component": "howldream",
+    "producer_version": "0.4.5",
+    "model_or_provider": null,
+    "observation_kind": "DETERMINISTIC",
+    "created_at": "2026-11-06T22:06:02.537056+00:00",
+    "transformations": [
+      "howlproof_claim_import"
+    ],
+    "source_candidate_id": "imagination/03-flawed-math-allocator",
+    "bundle_sha256": "11e0ae67323e89d05ada057366b714170cf0a2c72be27e148dfc72ece1c6a203",
+    "authorship": {
+      "component": null,
+      "kind": "UNKNOWN",
+      "model": null,
+      "note": "artifact carries no authorship records (legacy or hand-built)",
+      "provider": null
+    },
+    "proof": {
+      "run_id": "hp-20261106-220602-305d6a607e69",
+      "version": "0.2.0b1",
+      "verdict": "INSUFFICIENT_EVIDENCE",
+      "deciding_rule": "no_acceptance_criteria",
+      "started_at": "2026-11-06T22:06:02.476414+00:00",
+      "completed_at": "2026-11-06T22:06:02.537056+00:00",
+      "unresolved_risks": [
+        "HP-FUNC-0001 (HIGH): claim c03-allocator-division-check: 1024 / 4 = 256; expected eq 512 -> does not hold"
+      ]
+    },
+    "claim_statuses": {
+      "c03-allocator-division-check": "REFUTED"
+    }
+  }
+}

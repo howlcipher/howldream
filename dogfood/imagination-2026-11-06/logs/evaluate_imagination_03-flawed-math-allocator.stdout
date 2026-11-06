@@ -1,0 +1,213 @@
+{
+  "schema": "howlproof.result/v1",
+  "run_id": "hp-20261106-220602-305d6a607e69",
+  "authority": "ADVISORY",
+  "version": "0.2.0b1",
+  "artifact": "imagination_03-flawed-math-allocator",
+  "profiles": [
+    "research"
+  ],
+  "adversaries": [
+    "FUNCTIONAL",
+    "SECURITY",
+    "RELIABILITY",
+    "AI",
+    "OPERATOR"
+  ],
+  "target": {
+    "root": "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/imagination-2026-11-06/bundles/imagination_03-flawed-math-allocator",
+    "is_git": true,
+    "commit": "7dda132d4e441c14ec3969ca80576cb0a440da5e",
+    "branch": "feat/imagination-dogfood-study-cli",
+    "dirty": true,
+    "file_count": 1,
+    "oversized_files_not_copied": [],
+    "tree_digest_before": "bc07dd41fb2209c6cfe7246f4ae37d7a67e18caaa28405d2e3776f36c84de9ff",
+    "tree_digest_after": "bc07dd41fb2209c6cfe7246f4ae37d7a67e18caaa28405d2e3776f36c84de9ff"
+  },
+  "started_at": "2026-11-06T22:06:02.476414+00:00",
+  "completed_at": "2026-11-06T22:06:02.537056+00:00",
+  "duration_ms": 60,
+  "verdict": "INSUFFICIENT_EVIDENCE",
+  "verdict_definition": "The artifact may or may not be acceptable. The evaluation that ran was inadequate to make a defensible determination, so no determination is claimed.",
+  "deciding_rule": "no_acceptance_criteria",
+  "rationale": [
+    "The artifact defines no acceptance criteria.",
+    "Running checks without criteria shows activity, not conformance."
+  ],
+  "criteria": [],
+  "counts": {
+    "checks": 2,
+    "verified": 1,
+    "failed": 1,
+    "skipped": 0,
+    "unavailable": 0,
+    "not_applicable": 0,
+    "errored": 0,
+    "simulated": 0,
+    "findings": 1,
+    "blocking_findings": 0,
+    "criteria_satisfied": 0,
+    "criteria_total": 0,
+    "by_severity": {
+      "BLOCKER": 0,
+      "HIGH": 1,
+      "MEDIUM": 0,
+      "LOW": 0,
+      "INFORMATIONAL": 0
+    },
+    "by_adversary": {
+      "FUNCTIONAL": 1,
+      "SECURITY": 0,
+      "RELIABILITY": 0,
+      "AI": 0,
+      "OPERATOR": 0,
+      "INTEGRITY": 0
+    }
+  },
+  "checks": [
+    {
+      "check_id": "research.claims.bundle",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "VERIFIED",
+      "summary": "claim bundle is well formed and 0 evidence file(s) match their registered digests",
+      "limitation": "establishes structure and byte integrity only; no claim is verified by this check",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 1,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "bundle_sha256": "11e0ae67323e89d05ada057366b714170cf0a2c72be27e148dfc72ece1c6a203",
+        "candidate_id": "imagination/03-flawed-math-allocator",
+        "claims": 1,
+        "trust_model": "howl.evidence_trust/v1"
+      }
+    },
+    {
+      "check_id": "research.claims.c001",
+      "checker": "research.claims/v1",
+      "adversary": "FUNCTIONAL",
+      "status": "FAILED",
+      "summary": "claim c03-allocator-division-check: REFUTED",
+      "limitation": "compares author-grounded checks against evidence; sourced claims need an observed acquisition in which the fact and subject terms appear. Establishes only the compared proposition within its stated scope, not that a source is correct, current, representative or independent in origin",
+      "reason": "",
+      "mode": "REAL",
+      "duration_ms": 0,
+      "evidence_refs": [
+        "evidence/research.claims/claim_results.json"
+      ],
+      "detail": {
+        "claim_id": "c03-allocator-division-check",
+        "category": "TECHNICAL",
+        "assumption": false,
+        "method": "arithmetic",
+        "claim_status": "REFUTED",
+        "explanation": "1024 / 4 = 256; expected eq 512 -> does not hold",
+        "evidence_considered": [],
+        "conflicts": [],
+        "untrusted_flags": [],
+        "not_checked": [
+          "inputs of the expression were taken from the claim, not independently sourced"
+        ],
+        "checked_proposition": "1024 / 4 = 512",
+        "scope": null,
+        "scope_limited": false,
+        "broader_question": "NOT_EVALUATED",
+        "check_outcome": "REFUTED",
+        "check_passed": false,
+        "assurance": {
+          "trust_model": "howl.evidence_trust/v1",
+          "check_passed": false,
+          "evidence_integrity": "not_applicable",
+          "source_origin": "NOT_EXAMINED",
+          "claim_relevance": "NOT_APPLICABLE",
+          "methodology": "NOT_EVALUATED",
+          "corroboration": "NONE",
+          "corroborated": false,
+          "input_provenance": "UNVERIFIED",
+          "real_world_eligible": false,
+          "real_world_truth": "NOT_ESTABLISHED",
+          "evidence_status": "DETERMINISTIC_CHECK_ONLY"
+        },
+        "bundle_sha256": "11e0ae67323e89d05ada057366b714170cf0a2c72be27e148dfc72ece1c6a203",
+        "candidate_id": "imagination/03-flawed-math-allocator"
+      }
+    }
+  ],
+  "findings": [
+    {
+      "check_id": "research.claims.c001",
+      "adversary": "FUNCTIONAL",
+      "category": "correctness",
+      "title": "Claim c03-allocator-division-check refuted by independent evidence",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "summary": "claim c03-allocator-division-check: 1024 / 4 = 256; expected eq 512 -> does not hold",
+      "evidence": "[]",
+      "recommended_remediation": "Revise or withdraw the claim, or supply independent evidence that resolves the contradiction.",
+      "location": null,
+      "rule": "research.claims.refuted",
+      "state": "FOUND",
+      "reproduction": null,
+      "resolution_reason": null,
+      "id": "HP-FUNC-0001",
+      "fingerprint_basis": null,
+      "fingerprint": "4f57da126e2a4da1491cbc004b321343ec7aef0b2b502bdf6a3e1fac15cc2c6e",
+      "first_seen_run": "hp-20261106-220602-305d6a607e69",
+      "first_seen_commit": "7dda132d4e441c14ec3969ca80576cb0a440da5e",
+      "last_seen_run": "hp-20261106-220602-305d6a607e69",
+      "detail": {},
+      "blocking": false
+    }
+  ],
+  "unresolved_risks": [
+    "HP-FUNC-0001 (HIGH): claim c03-allocator-division-check: 1024 / 4 = 256; expected eq 512 -> does not hold"
+  ],
+  "limitations": [],
+  "notes": [
+    "no service is declared, so live adversaries have nothing to attack"
+  ],
+  "validation_modes": {
+    "REAL": [
+      "research.claims.bundle",
+      "research.claims.c001"
+    ],
+    "SIMULATED": [],
+    "SKIPPED": [],
+    "UNAVAILABLE": [],
+    "NOT_APPLICABLE": [],
+    "ERROR": []
+  },
+  "manifest": {
+    "schema": "howlproof.run/v1",
+    "run_id": "hp-20261106-220602-305d6a607e69",
+    "authority": "ADVISORY",
+    "version": "0.2.0b1",
+    "implementation_hash": "102c32672453a3debe9caedcb14db67581b100b84e938ace15a386be6ddd8cb0",
+    "artifact": "imagination_03-flawed-math-allocator",
+    "profiles": [
+      "research"
+    ],
+    "started_at": "2026-11-06T22:06:02.476414+00:00",
+    "completed_at": "2026-11-06T22:06:02.537056+00:00",
+    "verdict": "INSUFFICIENT_EVIDENCE",
+    "evaluators": [
+      "research.claims/v1"
+    ],
+    "file_hashes": {
+      "checks.jsonl": "d274a2e60c8743ef532c08b37c93088c2a8db1aa7008f68ee907e2d7a0e75e45",
+      "config.json": "aaeb3ff85804885f1819b22b89687dc58efa7431063e5d86952558f8bb4f708c",
+      "environment.json": "4007c2b4e71251fc2828bf784f121666afddb4661aa286df962e6f022a4071eb",
+      "evidence/research.claims/claim_results.json": "ebf91a131880a7b0c9644056f7fc7e0c907eb6650e9089cca79d02cdc41ac521",
+      "findings/HP-FUNC-0001.json": "4251c6b950bcf6462c7bf3b4fa2c9befe332e11949e72f2ed055c14f88900ae5",
+      "handoff.json": "a4e1000f6d7e5cc085c66c5473293d5a286c0e4671f806518649378c5f6e406a",
+      "result.json": "ee7bbb1cbf8bd96582723bf054ee12d321fc67debcc6d345e95b3da4f618e7b0",
+      "result.md": "78c6f07c3ee93918ec73b63f8d7e2745955683008ed93c2a1acf027911700339",
+      "target.json": "14ab460ea4102bea00fc1b631637f62214e19e711cd4e105145bf738062f711c"
+    }
+  },
+  "path": "/run/media/howlcipher/tallgeese/dev/howldream/dogfood/imagination-2026-11-06/proof_out/imagination_03-flawed-math-allocator/hp-20261106-220602-305d6a607e69"
+}

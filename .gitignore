@@ -11,3 +11,4 @@ build/
 .howldream/
 .env
 screenshots/
+dogfood/**/proof_out/

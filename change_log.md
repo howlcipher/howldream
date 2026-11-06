@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+Imagination and anti-reinvention empirical dogfood study (`dogfood/imagination-2026-11-06/`):
+Full CLI round-trip reproduction verifying prior art interception, novel candidate graduation,
+auto-derived proposition checking, HowlProof research evaluation, and adversarial negative-control
+falsification. Includes `scripts/search_prior_art.py` with built-in signatures for common architectures
+and JSON index support, used with `howldream explore --prior-art-command`.
+
 Anti-reinvention prior art research and re-dreaming loop (`howldream.prior_art`):
 Detects when dreamed candidates duplicate existing concepts or prior art before promoting
 them into exploration or evaluation. Implements `PriorArtResearcher` protocol with `MockPriorArt`,

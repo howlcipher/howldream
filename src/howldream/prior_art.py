@@ -137,7 +137,7 @@ class CommandPriorArt:
             if res.returncode != 0 or not res.stdout.strip():
                 return None
             data = json.loads(res.stdout)
-            if isinstance(data, dict) and data.get("captured"):
+            if isinstance(data, dict) and (data.get("captured") or data.get("matched")):
                 return PriorArtMatch(
                     title=data.get("title", "Prior Art"),
                     source_ref=data.get("source_ref") or data.get("url", "unknown"),

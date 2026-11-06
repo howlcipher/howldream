@@ -1,0 +1,13 @@
+{
+  "captured": true,
+  "matched": true,
+  "title": "Redis In-Memory Data Store",
+  "source_ref": "https://redis.io",
+  "summary": "In-memory database and cache with optional disk persistence and pub/sub.",
+  "matched_terms": [
+    "redis",
+    "in-memory key-value",
+    "in-memory cache"
+  ],
+  "confidence": "HIGH"
+}

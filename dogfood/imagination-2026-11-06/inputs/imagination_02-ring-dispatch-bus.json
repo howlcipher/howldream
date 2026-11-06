@@ -1,0 +1,26 @@
+{
+  "candidate_id": "imagination/02-ring-dispatch-bus",
+  "source_run_id": "imagination-study-20261106",
+  "parent_request_id": "req-imagination-20261106",
+  "objective": "Design an ultra-low-latency in-memory message bus",
+  "text": "TITLE: Zero-copy lock-free ring buffer dispatch bus\n\nA memory-mapped atomic slot ring eliminating serialization overhead.\nIDEA: Hardware-mapped ring buffer dispatch bus\nCALC: 65536 * 16 = 1048576",
+  "claims": [
+    {
+      "id": "c02-buffer-capacity-bytes",
+      "candidate_id": "imagination/02-ring-dispatch-bus",
+      "kind": "CALC",
+      "category": "TECHNICAL",
+      "text": "65536 * 16 = 1048576",
+      "status": "UNVERIFIED"
+    }
+  ],
+  "assumptions": [],
+  "contradictions": [],
+  "provenance": {
+    "producer_component": "howldream",
+    "observation_kind": "EXTERNALLY_OBSERVED",
+    "novelty_status": "UNCAPTURED_PRIOR_ART",
+    "prior_art_checked": true,
+    "created_at": "2026-11-06T22:06:00.990705+00:00"
+  }
+}
