@@ -211,7 +211,52 @@ def export_proof(
         falsification, falsification_basis = claim.get("falsification"), None
         if falsification:
             falsification_basis = "author"
-        elif isinstance(check, dict) and check.get("type") == "fact_compare":
+
+        # Auto-derive checks from author-stated proposition grammar when no check was supplied
+        if check is None and claim.get("kind") == "CALC":
+            calc_match = re.fullmatch(
+                r"(-?\d{1,12}(?:\.\d{1,8})?)\s*([+*\-/])\s*"
+                r"(-?\d{1,12}(?:\.\d{1,8})?)\s*=\s*(-?\d{1,24}(?:\.\d{1,8})?)",
+                claim["text"].strip(),
+            )
+            if calc_match:
+                left, op, right, expected = calc_match.groups()
+                check = {
+                    "type": "arithmetic",
+                    "expression": f"{left} {op} {right}",
+                    "op": "eq",
+                    "expected": expected,
+                }
+                category = "TECHNICAL"
+                basis = "derived_from_calc"
+                if not falsification:
+                    falsification = f"refuted if {left} {op} {right} != {expected}"
+                    falsification_basis = "derived_from_calc"
+        elif check is None and claim.get("kind") == "FACT":
+            fact_match = re.fullmatch(
+                r"([a-zA-Z0-9_.-]+)\s*(=|approx|le|ge|lt|gt)\s*(.+)",
+                claim["text"].strip(),
+            )
+            if fact_match:
+                fact_name, raw_op, expected = fact_match.groups()
+                op = "eq" if raw_op == "=" else raw_op
+                check = {
+                    "type": "fact_compare",
+                    "fact": fact_name,
+                    "op": op,
+                    "expected": expected.strip(),
+                    "tolerance": "0",
+                }
+                category = "EMPIRICAL"
+                basis = "derived_from_fact"
+                if not falsification:
+                    falsification = (
+                        f"refuted if independent evidence reports {fact_name} "
+                        f"not {op} {expected.strip()}"
+                    )
+                    falsification_basis = "derived_from_fact"
+
+        if not falsification and isinstance(check, dict) and check.get("type") == "fact_compare":
             falsification = (
                 f"refuted if independent evidence reports {check.get('fact')} "
                 f"not {check.get('op')} {check.get('expected')}"

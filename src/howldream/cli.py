@@ -80,6 +80,10 @@ def build_parser() -> argparse.ArgumentParser:
     explore_parser.add_argument("--from-candidate", type=Path)
     explore_parser.add_argument("--objective")
     explore_parser.add_argument("--evidence", type=Path)
+    explore_parser.add_argument(
+        "--prior-art-command",
+        help="command template for researching prior art, e.g. 'search_tool {query}'",
+    )
     claim_audit = commands.add_parser("audit-report")
     claim_audit.add_argument("target", type=Path)
     claim_audit.add_argument("--validation", type=Path, required=True)
@@ -296,7 +300,17 @@ def main() -> int:
                     "allow_remote": True,
                     "model": getattr(provider_override.adapter.config, "model", None) or "command",
                 }
-            _run_dir, exp_res = explore(req, args.output, provider_override=provider_override)
+            prior_art_researcher = None
+            if getattr(args, "prior_art_command", None):
+                from howldream.prior_art import CommandPriorArt
+
+                prior_art_researcher = CommandPriorArt(args.prior_art_command)
+            _run_dir, exp_res = explore(
+                req,
+                args.output,
+                provider_override=provider_override,
+                prior_art_researcher=prior_art_researcher,
+            )
             print(exp_res.model_dump_json(indent=2))
             return 1 if load_run(_run_dir)["manifest"]["status"] == "PARTIAL" else 0
         if args.command == "trace":
