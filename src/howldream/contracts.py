@@ -427,9 +427,7 @@ class BundleLineage(StrictModel):
 class ClaimBundle(StrictModel):
     """Standardized claim bundle envelope: howl.claim_bundle/v1."""
 
-    schema_version: Literal["howl.claim_bundle/v1"] = Field(
-        ..., alias="schema"
-    )
+    schema_version: Literal["howl.claim_bundle/v1"] = Field(..., alias="schema")
     candidate: BundleCandidate
     authorship: BundleAuthorship
     claims: list[BundleClaim] = Field(default_factory=list)

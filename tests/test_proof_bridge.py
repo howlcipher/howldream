@@ -237,7 +237,7 @@ def test_export_auto_derives_calc_and_fact_checks(tmp_path):
     bundle = export_proof(cand, [], tmp_path / "auto_checks")
 
     by_id = {c["claim_id"]: c for c in bundle["claims"]}
-    
+
     # CALC claim gained arithmetic check
     assert by_id["c-calc"]["category"] == "TECHNICAL"
     assert by_id["c-calc"]["check"] == {

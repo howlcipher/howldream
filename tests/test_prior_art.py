@@ -21,10 +21,7 @@ def test_extract_idea_line_prefers_idea_prefix():
         "ASSUMPTION: Memory is bounded\n"
         "CALC: 64 * 8 = 512"
     )
-    assert (
-        extract_idea_line(text)
-        == "Compressed zero-copy page cache with bloom filter triage"
-    )
+    assert extract_idea_line(text) == "Compressed zero-copy page cache with bloom filter triage"
 
 
 def test_extract_idea_line_falls_back_to_first_line():
@@ -79,13 +76,17 @@ def test_ledger_prior_art_matches_against_prior_entries():
     researcher = LedgerPriorArt(prior_entries)
 
     # Matched prior art
-    matched = researcher.research("IDEA: Use bloom filters for membership testing in network packets")
+    matched = researcher.research(
+        "IDEA: Use bloom filters for membership testing in network packets"
+    )
     assert matched is not None
     assert matched.title == "tool-bloom-filter"
     assert "bloom" in matched.matched_terms
 
     # Uncaptured idea
-    uncaptured = researcher.research("IDEA: Speculative branch prediction based on thermal dissipation")
+    uncaptured = researcher.research(
+        "IDEA: Speculative branch prediction based on thermal dissipation"
+    )
     assert uncaptured is None
 
 
@@ -228,3 +229,50 @@ def test_command_prior_art_with_search_script():
     assert no_match is None
 
 
+def test_command_prior_art_does_not_run_template_through_a_shell(tmp_path):
+    import sys
+
+    helper = tmp_path / "helper.py"
+    helper.write_text(
+        "import json, sys\nprint(json.dumps({'captured': False, 'argv': sys.argv[1:]}))\n"
+    )
+    marker = tmp_path / "injected"
+    researcher = CommandPriorArt(f"{sys.executable} {helper} {{query}} ; touch {marker}")
+
+    assert researcher.research("IDEA: Holographic optical interference storage") is None
+    assert not marker.exists(), "template was interpreted by a shell"
+
+
+def test_command_prior_art_passes_query_as_one_argument(tmp_path):
+    import sys
+
+    helper = tmp_path / "helper.py"
+    helper.write_text(
+        "import json, sys\n"
+        "ok = sys.argv[1:] == ['holographic optical interference storage']\n"
+        "print(json.dumps({'captured': ok, 'title': 'argv'}))\n"
+    )
+    researcher = CommandPriorArt(f"{sys.executable} {helper} {{query}}")
+
+    match = researcher.research("IDEA: Holographic optical interference storage")
+    assert match is not None and match.title == "argv"
+
+
+def test_command_prior_art_rejects_empty_template():
+    import pytest
+
+    with pytest.raises(ValueError):
+        CommandPriorArt("   ")
+    with pytest.raises(ValueError):
+        CommandPriorArt("search {unknown}")
+
+
+def test_web_search_prior_art_rejects_non_http_endpoints():
+    import pytest
+
+    from howldream.prior_art import WebSearchPriorArt
+
+    for endpoint in ("file:///etc/passwd", "ftp://example.org/search", "search.example.org"):
+        with pytest.raises(ValueError):
+            WebSearchPriorArt(endpoint)
+    assert WebSearchPriorArt("https://search.example.org/api").endpoint_url.startswith("https")

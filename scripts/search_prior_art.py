@@ -104,9 +104,7 @@ def check_prior_art(
         matched_terms: list[str] = []
         for kw in keywords:
             kw_lower = kw.lower()
-            if kw_lower in norm_query or (
-                " " not in kw_lower and kw_lower in query_tokens
-            ):
+            if kw_lower in norm_query or (" " not in kw_lower and kw_lower in query_tokens):
                 matched_terms.append(kw)
 
         if not matched_terms and entry_title.lower() in norm_query:
@@ -129,9 +127,13 @@ def check_prior_art(
 def main() -> int:
     parser = argparse.ArgumentParser(description="Search prior art for HowlDream")
     parser.add_argument("query", nargs="?", default="", help="Query or candidate proposition")
-    parser.add_argument("--index", type=Path, default=None, help="Path to JSON catalog of prior art")
+    parser.add_argument(
+        "--index", type=Path, default=None, help="Path to JSON catalog of prior art"
+    )
     parser.add_argument("--mock-match", help="Trigger deterministic match if substring present")
-    parser.add_argument("--no-builtin", action="store_true", help="Disable built-in standard catalog")
+    parser.add_argument(
+        "--no-builtin", action="store_true", help="Disable built-in standard catalog"
+    )
 
     args = parser.parse_args()
     result = check_prior_art(

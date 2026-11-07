@@ -75,7 +75,9 @@ def test_imagination_to_proof_end_to_end_lifecycle(tmp_path):
 
     req = ExplorationRequest(
         request_id="imaginative-session-cache-001",
-        objective="Design an ultra-low-latency distributed session cache with zero-copy serialization",
+        objective=(
+            "Design an ultra-low-latency distributed session cache with zero-copy serialization"
+        ),
         budget={"max_candidates": 1, "max_calls": 5, "max_trials": 1},
     )
 
@@ -90,7 +92,9 @@ def test_imagination_to_proof_end_to_end_lifecycle(tmp_path):
     reinvented = result.candidates[0]
     assert reinvented.status == "REJECTED"
     assert reinvented.provenance.model_extra.get("novelty_status") == "WHEEL_REINVENTED"
-    assert "Redis" in (reinvented.provenance.model_extra.get("prior_art_match") or {}).get("title", "")
+    assert "Redis" in (reinvented.provenance.model_extra.get("prior_art_match") or {}).get(
+        "title", ""
+    )
 
     # Second candidate was novel and uncaptured
     novel_candidate = result.candidates[1]
@@ -139,7 +143,8 @@ def test_imagination_to_proof_end_to_end_lifecycle(tmp_path):
         text=True,
         check=False,
     )
-    # HowlProof returns 40 on INSUFFICIENT_EVIDENCE (the natural state when no operator contract is supplied)
+    # HowlProof returns 40 on INSUFFICIENT_EVIDENCE, the natural state when no
+    # operator contract is supplied.
     assert eval_proc.returncode in (0, 40), f"Proof evaluate crashed: {eval_proc.stderr}"
     proof_result = json.loads(eval_proc.stdout)
 
@@ -157,9 +162,7 @@ def test_imagination_to_proof_end_to_end_lifecycle(tmp_path):
     assert assessment.candidate_id == novel_candidate.candidate_id
 
     # The proof claim results must record that the calculation was SUPPORTED
-    proof_claims = [
-        e for e in assessment.evidence if e.get("kind") == "proof_claim_result"
-    ]
+    proof_claims = [e for e in assessment.evidence if e.get("kind") == "proof_claim_result"]
     supported_calc = next(
         (pc for pc in proof_claims if "64 * 8" in pc.get("explanation", "")), None
     )
@@ -213,9 +216,7 @@ def test_imagination_falsifies_flawed_calculation(tmp_path):
     proof_result = json.loads(eval_proc.stdout)
 
     assessment = import_proof(bundle_dir, proof_result)
-    proof_claims = [
-        e for e in assessment.evidence if e.get("kind") == "proof_claim_result"
-    ]
+    proof_claims = [e for e in assessment.evidence if e.get("kind") == "proof_claim_result"]
     calc_result = next(pc for pc in proof_claims if pc["claim_id"] == "c2")
     assert calc_result["claim_status"] == "REFUTED"
     assert "does not hold" in calc_result["explanation"]

@@ -114,9 +114,23 @@ class LedgerPriorArt:
 
 
 class CommandPriorArt:
-    """Executes a bounded external search/research command to inspect prior art."""
+    """Executes a bounded external search/research command to inspect prior art.
+
+    The template is split into arguments with shell rules and run without a shell, so
+    pipes, redirects and separators in it are passed literally rather than interpreted.
+    ``{query}`` (or ``{raw_query}``) is replaced inside its argument, and the query is
+    always passed as part of a single argument.
+    """
 
     def __init__(self, command_template: str, timeout_seconds: float = 10.0):
+        self.argv_template = shlex.split(command_template)
+        if not self.argv_template:
+            raise ValueError("prior art command template is empty")
+        try:
+            for part in self.argv_template:
+                part.format(query="", raw_query="")
+        except (IndexError, KeyError, ValueError) as exc:
+            raise ValueError(f"prior art command template is invalid: {exc}") from exc
         self.command_template = command_template
         self.timeout_seconds = timeout_seconds
 
@@ -124,11 +138,10 @@ class CommandPriorArt:
         query = concept_query(text)
         if not query:
             return None
-        cmd = self.command_template.format(query=shlex.quote(query), raw_query=query)
+        argv = [part.format(query=query, raw_query=query) for part in self.argv_template]
         try:
             res = subprocess.run(
-                cmd,
-                shell=True,
+                argv,
                 capture_output=True,
                 text=True,
                 timeout=self.timeout_seconds,
@@ -151,9 +164,16 @@ class CommandPriorArt:
 
 
 class WebSearchPriorArt:
-    """SSRF-guarded web search researcher querying a configured search endpoint."""
+    """Web search researcher querying an operator-configured HTTP(S) search endpoint.
+
+    Only ``http`` and ``https`` endpoints are accepted. It does not block private or
+    loopback addresses; the operator chooses the endpoint.
+    """
 
     def __init__(self, endpoint_url: str, timeout_seconds: float = 5.0):
+        parsed = urllib.parse.urlsplit(endpoint_url)
+        if parsed.scheme not in ("http", "https") or not parsed.netloc:
+            raise ValueError(f"prior art endpoint must be an http(s) URL: {endpoint_url!r}")
         self.endpoint_url = endpoint_url
         self.timeout_seconds = timeout_seconds
 
@@ -170,7 +190,8 @@ class WebSearchPriorArt:
             },
         )
         try:
-            with urllib.request.urlopen(req, timeout=self.timeout_seconds) as resp:
+            # Scheme is restricted to http(s) in __init__.
+            with urllib.request.urlopen(req, timeout=self.timeout_seconds) as resp:  # nosec B310
                 body = resp.read(100_000)
             data = json.loads(body.decode("utf-8"))
             results = data.get("results") or data.get("hits") or []

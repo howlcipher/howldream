@@ -366,7 +366,8 @@ def test_claim_bundle_schema_validates_canonical_bundle():
     ClaimBundle.model_validate(bundle_data)
     jsonschema.validate(bundle_data, schema)
 
-    # Injected authority / executable is rejected by both layers (strict / additionalProperties: false)
+    # Injected authority / executable is rejected by both layers
+    # (strict / additionalProperties: false)
     injected = {**bundle_data, "authority": {"type": "EXECUTIVE", "executable": True}}
     with pytest.raises(ValidationError):
         ClaimBundle.model_validate(injected)
@@ -387,7 +388,8 @@ def test_exported_claim_bundles_validate_against_bundle_schema():
     schema = load_schema("howl.claim_bundle.v1")
     repo_root = Path(__file__).resolve().parent.parent
     bundles = [
-        p for p in repo_root.glob("dogfood/**/claims.json")
+        p
+        for p in repo_root.glob("dogfood/**/claims.json")
         if isinstance(json.loads(p.read_text()), dict)
     ]
     assert len(bundles) >= 4, f"Expected at least 4 bundle files, found {len(bundles)}"

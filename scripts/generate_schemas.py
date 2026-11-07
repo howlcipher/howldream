@@ -87,7 +87,7 @@ def write_schemas(out_dir: Path) -> list[Path]:
 
 def check_drift(schemas_dir: Path) -> tuple[bool, list[str]]:
     """Compare schemas_dir against regenerated schemas from contracts.py.
-    
+
     Returns (has_drift, list_of_drifted_or_missing_filenames).
     """
     with tempfile.TemporaryDirectory() as tmp:
