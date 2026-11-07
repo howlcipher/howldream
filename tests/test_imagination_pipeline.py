@@ -12,10 +12,15 @@ Verifies the complete cycle:
 
 from __future__ import annotations
 
+import importlib.util
 import json
+import os
 import subprocess
+import sys
 from pathlib import Path
 from typing import ClassVar
+
+import pytest
 
 from howldream.contracts import CandidateAssessment, ExplorationRequest
 from howldream.engine import explore
@@ -26,10 +31,20 @@ from howldream.providers import CAPABILITIES, Response
 
 
 def proof_python() -> str:
-    path = Path("/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python")
-    if path.is_file():
-        return str(path)
-    return "python3"
+    """Return an interpreter that can run real HowlProof, or skip with the reason.
+
+    ``HOWLPROOF_PYTHON`` names one explicitly. Otherwise the current interpreter is
+    used when it can import ``howlproof``. Ordinary Dream-only runs skip explicitly;
+    the ecosystem-integration CI job installs a pinned HowlProof and runs these.
+    """
+    configured = os.environ.get("HOWLPROOF_PYTHON")
+    if configured:
+        if not Path(configured).is_file():
+            pytest.fail(f"HOWLPROOF_PYTHON does not exist: {configured}")
+        return configured
+    if importlib.util.find_spec("howlproof") is not None:
+        return sys.executable
+    pytest.skip("real HowlProof is not installed; set HOWLPROOF_PYTHON or install howlproof")
 
 
 def test_imagination_to_proof_end_to_end_lifecycle(tmp_path):
@@ -75,7 +90,9 @@ def test_imagination_to_proof_end_to_end_lifecycle(tmp_path):
 
     req = ExplorationRequest(
         request_id="imaginative-session-cache-001",
-        objective="Design an ultra-low-latency distributed session cache with zero-copy serialization",
+        objective=(
+            "Design an ultra-low-latency distributed session cache with zero-copy serialization"
+        ),
         budget={"max_candidates": 1, "max_calls": 5, "max_trials": 1},
     )
 
@@ -90,7 +107,9 @@ def test_imagination_to_proof_end_to_end_lifecycle(tmp_path):
     reinvented = result.candidates[0]
     assert reinvented.status == "REJECTED"
     assert reinvented.provenance.model_extra.get("novelty_status") == "WHEEL_REINVENTED"
-    assert "Redis" in (reinvented.provenance.model_extra.get("prior_art_match") or {}).get("title", "")
+    assert "Redis" in (reinvented.provenance.model_extra.get("prior_art_match") or {}).get(
+        "title", ""
+    )
 
     # Second candidate was novel and uncaptured
     novel_candidate = result.candidates[1]
@@ -139,7 +158,8 @@ def test_imagination_to_proof_end_to_end_lifecycle(tmp_path):
         text=True,
         check=False,
     )
-    # HowlProof returns 40 on INSUFFICIENT_EVIDENCE (the natural state when no operator contract is supplied)
+    # HowlProof returns 40 on INSUFFICIENT_EVIDENCE, the natural state when no
+    # operator contract is supplied.
     assert eval_proc.returncode in (0, 40), f"Proof evaluate crashed: {eval_proc.stderr}"
     proof_result = json.loads(eval_proc.stdout)
 
@@ -157,9 +177,7 @@ def test_imagination_to_proof_end_to_end_lifecycle(tmp_path):
     assert assessment.candidate_id == novel_candidate.candidate_id
 
     # The proof claim results must record that the calculation was SUPPORTED
-    proof_claims = [
-        e for e in assessment.evidence if e.get("kind") == "proof_claim_result"
-    ]
+    proof_claims = [e for e in assessment.evidence if e.get("kind") == "proof_claim_result"]
     supported_calc = next(
         (pc for pc in proof_claims if "64 * 8" in pc.get("explanation", "")), None
     )
@@ -213,9 +231,7 @@ def test_imagination_falsifies_flawed_calculation(tmp_path):
     proof_result = json.loads(eval_proc.stdout)
 
     assessment = import_proof(bundle_dir, proof_result)
-    proof_claims = [
-        e for e in assessment.evidence if e.get("kind") == "proof_claim_result"
-    ]
+    proof_claims = [e for e in assessment.evidence if e.get("kind") == "proof_claim_result"]
     calc_result = next(pc for pc in proof_claims if pc["claim_id"] == "c2")
     assert calc_result["claim_status"] == "REFUTED"
     assert "does not hold" in calc_result["explanation"]

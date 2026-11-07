@@ -89,7 +89,10 @@ def prompt_for(
     if families:
         request += " Search materially different families from already explored areas where useful."
     if avoid_reinvention:
-        request += f" Do not reinvent existing wheels: {avoid_reinvention}. Propose a distinct, uncaptured engineering approach."
+        request += (
+            f" Do not reinvent existing wheels: {avoid_reinvention}."
+            " Propose a distinct, uncaptured engineering approach."
+        )
     return INSTRUCTIONS + json.dumps(
         {
             "objective": experiment.objective,

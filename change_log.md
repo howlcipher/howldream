@@ -2,6 +2,22 @@
 
 ## Unreleased
 
+Fix CI on `main`, red since the claim bundle schema work. `ruff format --check` failed on
+seven files and hid four lines over flake8's 100 characters. Files are formatted and lines
+wrapped. The re-dream prompt text is unchanged.
+
+**Security:** `CommandPriorArt` (`howldream explore --prior-art-command`) no longer runs its
+template through a shell. The template is split with shell rules and run as an argument
+list, so `;`, `|`, `>` and similar are passed literally, and an empty or malformed template
+is rejected when it is created. Templates that relied on pipes or redirects need a wrapper
+script. `WebSearchPriorArt` now accepts only `http` and `https` endpoints, and its docstring
+no longer claims an SSRF guard it does not have. CI's `bandit` step flagged both.
+
+`tests/test_imagination_pipeline.py` called real HowlProof through a path on one machine,
+with a fallback to `python3`, so it failed anywhere else. It now uses `HOWLPROOF_PYTHON` or
+an interpreter that can import `howlproof`, and skips with a stated reason otherwise. The
+`ecosystem-integration` CI job installs HowlProof at a pinned commit and runs it for real.
+
 Imagination and anti-reinvention empirical dogfood study (`dogfood/imagination-2026-11-06/`):
 Full CLI round-trip reproduction verifying prior art interception, novel candidate graduation,
 auto-derived proposition checking, HowlProof research evaluation, and adversarial negative-control
