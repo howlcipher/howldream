@@ -57,4 +57,7 @@ jobs:
       - run: pip install "git+https://github.com/howlcipher/howlcreate.git@ce393c256ae65f9452ee268393d2726037625fbe"
       - name: Confirm real howlcreate import
         run: python -c "from howlcreate.engine.candidate_ingestion import scaffold_candidate; print('real howlcreate.engine.candidate_ingestion import OK')"
-      - run: pytest tests/test_end_to_end_ecosystem.py tests/test_repair.py -q
+      - run: pip install "git+https://github.com/howlcipher/howlproof.git@3b3e4eea407e5069f1b0b0be14ff7321b69bd77c"
+      - name: Confirm real howlproof import
+        run: python -c "import howlproof.cli; print('real howlproof.cli import OK')"
+      - run: pytest tests/test_end_to_end_ecosystem.py tests/test_repair.py tests/test_imagination_pipeline.py -q -rs

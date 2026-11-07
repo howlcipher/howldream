@@ -13,6 +13,11 @@ is rejected when it is created. Templates that relied on pipes or redirects need
 script. `WebSearchPriorArt` now accepts only `http` and `https` endpoints, and its docstring
 no longer claims an SSRF guard it does not have. CI's `bandit` step flagged both.
 
+`tests/test_imagination_pipeline.py` called real HowlProof through a path on one machine,
+with a fallback to `python3`, so it failed anywhere else. It now uses `HOWLPROOF_PYTHON` or
+an interpreter that can import `howlproof`, and skips with a stated reason otherwise. The
+`ecosystem-integration` CI job installs HowlProof at a pinned commit and runs it for real.
+
 Imagination and anti-reinvention empirical dogfood study (`dogfood/imagination-2026-11-06/`):
 Full CLI round-trip reproduction verifying prior art interception, novel candidate graduation,
 auto-derived proposition checking, HowlProof research evaluation, and adversarial negative-control

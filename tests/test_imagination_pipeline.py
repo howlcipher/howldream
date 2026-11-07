@@ -12,10 +12,15 @@ Verifies the complete cycle:
 
 from __future__ import annotations
 
+import importlib.util
 import json
+import os
 import subprocess
+import sys
 from pathlib import Path
 from typing import ClassVar
+
+import pytest
 
 from howldream.contracts import CandidateAssessment, ExplorationRequest
 from howldream.engine import explore
@@ -26,10 +31,20 @@ from howldream.providers import CAPABILITIES, Response
 
 
 def proof_python() -> str:
-    path = Path("/run/media/howlcipher/tallgeese/dev/howlproof/.venv/bin/python")
-    if path.is_file():
-        return str(path)
-    return "python3"
+    """Return an interpreter that can run real HowlProof, or skip with the reason.
+
+    ``HOWLPROOF_PYTHON`` names one explicitly. Otherwise the current interpreter is
+    used when it can import ``howlproof``. Ordinary Dream-only runs skip explicitly;
+    the ecosystem-integration CI job installs a pinned HowlProof and runs these.
+    """
+    configured = os.environ.get("HOWLPROOF_PYTHON")
+    if configured:
+        if not Path(configured).is_file():
+            pytest.fail(f"HOWLPROOF_PYTHON does not exist: {configured}")
+        return configured
+    if importlib.util.find_spec("howlproof") is not None:
+        return sys.executable
+    pytest.skip("real HowlProof is not installed; set HOWLPROOF_PYTHON or install howlproof")
 
 
 def test_imagination_to_proof_end_to_end_lifecycle(tmp_path):
