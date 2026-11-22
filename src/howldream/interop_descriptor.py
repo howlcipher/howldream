@@ -28,6 +28,7 @@ ENV = ["HOWLDREAM_API_KEY", "HOWL_FORBID_LOCAL_INFERENCE"]
 NOT_JSON = {"report"}
 
 EMITS = {
+    "advise-improvement": ["howldream.improvement_advice/v1"],
     "explore": ["howl.exploration_result/v1"],
     "export": ["howl.candidate/v1"],
     "review": ["howl.candidate/v1", "howl.assessment/v1"],
@@ -39,6 +40,7 @@ EMITS = {
 }
 
 ACCEPTS = {
+    "advise-improvement": ["howl.improvement_candidate/v1"],
     "explore": ["howl.exploration/v1", "howl.candidate/v1"],
     "review": ["howl.candidate/v1"],
 }
