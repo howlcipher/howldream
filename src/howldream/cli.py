@@ -42,6 +42,7 @@ def build_parser() -> argparse.ArgumentParser:
         sub.add_argument(
             "--output", type=Path, default=Path(".howldream/runs"), help="artifact storage root"
         )
+    commands.add_parser("advise-improvement").add_argument("target", type=Path)
     benchmark_parser = commands.add_parser("benchmark")
     benchmark_parser.add_argument(
         "action", nargs="?", choices=["list", "run", "report", "dreambench"]
@@ -151,6 +152,11 @@ def main() -> int:
         return 0
     result: dict | list
     try:
+        if args.command == "advise-improvement":
+            from howldream.improvement import advise
+
+            print(json.dumps(advise(args.target), indent=2))
+            return 0
         provider_override = None
         if getattr(args, "command_config", None):
             if not args.allow_remote:

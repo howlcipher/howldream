@@ -312,3 +312,10 @@ git checkout is present, `git_commit` falls back to pip's VCS install metadata.
 Provider artifacts use shared credential redaction, including bearer-prefixed
 assignments and hyphenated GitHub token bodies. Synthetic persistence regressions
 cover unknown provider echoes as well as configured secrets.
+
+### Improvement advisories
+
+With HowlLoop installed in the same Python environment, run
+`howldream advise-improvement candidate.json` for one evidence-linked hypothesis,
+experiment, tradeoff, and regression checklist. This operation makes zero provider
+calls. All output remains advisory.

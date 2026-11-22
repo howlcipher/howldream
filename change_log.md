@@ -359,3 +359,5 @@ result, and local verification evidence alongside the original model observation
   uncertainty; preserve parent rejection gates and reference scoped parent checks.
 - Keep unverified tradeoff CONFLICT statements unresolved; only actual contradiction or
   critical failure triggers semantic rejection. Pin ecosystem CI to merged Create support.
+
+- Added bounded, provider-free advisory handoffs for HowlLoop candidates.
